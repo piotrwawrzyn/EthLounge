@@ -3,7 +3,7 @@ import GetTokenPrice from './GetTokenPrice';
 import { DictionarrySymbol } from './SupportedTokens';
 import TokenFromWei from './TokenFromWei';
 import store from '../../redux/store';
-import { updateEstimateBet } from '../../redux/actions/actions';
+import { updateEstimateBet } from '../../redux/actions';
 
 const EstimateBetValue = (itemsToBet, prices, dispatch = true) => {
     const symbols = itemsToBet.map((curr) => {

@@ -13,7 +13,6 @@ const contractPath = path.resolve(__dirname, 'contracts', `${contractName}.sol`)
 const source = fs.readFileSync(contractPath, 'UTF-8');
 const output = solc.compile(source, 1).contracts;
 
-
 // Create build folder
 fs.ensureDirSync(buildPath);
 
