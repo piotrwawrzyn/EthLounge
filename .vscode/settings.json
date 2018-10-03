@@ -1,0 +1,4 @@
+{
+    "git.ignoreLimitWarning": true,
+    "prettier.jsxBracketSameLine": true
+}
