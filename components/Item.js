@@ -1,7 +1,7 @@
 import React from 'react';
-import { DictionarrySymbol } from './helpers/SupportedTokens';
+import { DictionarrySymbol } from '../helpers/SupportedTokens';
 import { Label, Image } from 'semantic-ui-react';
-import TokenFromWei from './helpers/TokenFromWei';
+import TokenFromWei from '../helpers/TokenFromWei';
 
 export default (props) => {
     return (

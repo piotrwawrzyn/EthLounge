@@ -34,3 +34,17 @@ export function updatePrices(prices) {
     }
 }
 
+export function pickTeam(team) {
+    return {
+        type: 'PICK_TEAM',
+        team
+    }
+}
+
+export function toggleModal(head = '', reasons = []) {
+    return {
+        type: 'TOGGLE_MODAL',
+        head: head,
+        reasons: reasons
+    }
+}

@@ -25,7 +25,6 @@ class BettingBox extends Component {
                     rangeSlider = <RangeSlider prices={this.props.prices} item={item} toBet={items} handleRange={this.props.handleRange}></RangeSlider>
                 }
             }
-
             
             bettingBoxes.push(
                     <Grid.Row key={pos}>
@@ -45,7 +44,6 @@ class BettingBox extends Component {
     render() {
         return (
             <div className="betting-box">
-
                 <Grid columns='equal'>
                     {this.renderItems(this.props.items)}
                 </Grid>

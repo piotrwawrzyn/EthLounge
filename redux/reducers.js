@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import EstimateBetValue from '../components/helpers/EstimateBetValue';
+import EstimateBetValue from '../helpers/EstimateBetValue';
 
-const initialState = {items: {toBet: [], wallet: []}, account: '', signedIn: false, prices: {}, betValue: 0};
+const initialState = {items: {toBet: [], wallet: []}, account: '', signedIn: false, prices: {}, betValue: 0, pickedTeam: {}, errorModal: {isOpen: false, head: '', reasons: [] }};
 
-const matchReducer = (state = {items: {toBet: [], wallet: []}, account: '', signedIn: false, prices: {}, betValue: 0}, action) => {
+const matchReducer = (state = initialState, action) => {
     let newState = _.cloneDeep(state);
 
     switch(action.type) {               
@@ -34,7 +34,8 @@ const matchReducer = (state = {items: {toBet: [], wallet: []}, account: '', sign
         }
 
         case 'LOG_OUT': {
-            newState = {items: {toBet: [], wallet: []}, account: '', signedIn: false, betValue: 0, prices: newState.prices};
+            newState = {...initialState};
+            newState.prices = state.prices;
             console.log('Logged out! State is now: ', newState);
             break;
         }  
@@ -54,6 +55,18 @@ const matchReducer = (state = {items: {toBet: [], wallet: []}, account: '', sign
 
         case 'UPDATE_ESTIMATE_BET': {
             newState.betValue = action.sum;
+            break;
+        }
+
+        case 'PICK_TEAM': {
+            newState.pickedTeam = action.team;
+            break;
+        }
+
+        case 'TOGGLE_MODAL': {
+            newState.errorModal.isOpen = !state.errorModal.isOpen;
+            newState.errorModal.head = action.head;
+            newState.errorModal.reasons = action.reasons;
             break;
         }
 

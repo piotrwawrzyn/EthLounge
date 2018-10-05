@@ -93,6 +93,88 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./components/ErrorModal.js":
+/*!**********************************!*\
+  !*** ./components/ErrorModal.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../redux/actions */ "./redux/actions.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var ErrorModal =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ErrorModal, _Component);
+
+  function ErrorModal() {
+    _classCallCheck(this, ErrorModal);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ErrorModal).apply(this, arguments));
+  }
+
+  _createClass(ErrorModal, [{
+    key: "render",
+    value: function render() {
+      var modal = this.props.modal;
+      var list = modal.reasons.map(function (curr) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, curr);
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
+        size: "tiny",
+        open: modal.isOpen,
+        closeOnDocumentClick: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
+        className: "font-error"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+        name: "times circle outline"
+      }), modal.head), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Description, {
+        className: "font-error"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, list))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        className: "dark-orange-bg font-white",
+        onClick: function onClick(e) {
+          return _redux_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_3__["toggleModal"])());
+        }
+      }, "OK")));
+    }
+  }]);
+
+  return ErrorModal;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (ErrorModal);
+
+/***/ }),
+
 /***/ "./components/Item.js":
 /*!****************************!*\
   !*** ./components/Item.js ***!
@@ -104,10 +186,10 @@ module.exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _helpers_SupportedTokens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/SupportedTokens */ "./components/helpers/SupportedTokens.js");
+/* harmony import */ var _helpers_SupportedTokens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/SupportedTokens */ "./helpers/SupportedTokens.js");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _helpers_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers/TokenFromWei */ "./components/helpers/TokenFromWei.js");
+/* harmony import */ var _helpers_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/TokenFromWei */ "./helpers/TokenFromWei.js");
 
 
 
@@ -135,17 +217,29 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/head */ "next/head");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Menu */ "./components/Layout/Menu.js");
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/head */ "next/head");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Menu */ "./components/Layout/Menu.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
+
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -173,35 +267,78 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 var layout = function layout(ChildPage) {
   return (
     /*#__PURE__*/
-    function (_React$Component) {
-      _inherits(Layout, _React$Component);
+    function (_Component) {
+      _inherits(_class, _Component);
 
-      function Layout() {
-        _classCallCheck(this, Layout);
+      function _class() {
+        _classCallCheck(this, _class);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(Layout).apply(this, arguments));
+        return _possibleConstructorReturn(this, _getPrototypeOf(_class).apply(this, arguments));
       }
 
-      _createClass(Layout, [{
+      _createClass(_class, [{
         key: "render",
         value: function render() {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
-            store: _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"]
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Container"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
+          return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_4__["Provider"], {
+            store: _redux_store__WEBPACK_IMPORTED_MODULE_6__["default"]
+          }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Container"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("link", {
             rel: "stylesheet",
             href: "//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
+          }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("link", {
             rel: "stylesheet",
             href: "https://unpkg.com/react-rangeslider/umd/rangeslider.min.css"
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
+          }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("link", {
             rel: "stylesheet",
             href: "/static/css/style.css"
-          })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ChildPage, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Footer")));
+          })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Menu__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ChildPage, {
+            initial: this.props
+          }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Footer")));
         }
+      }], [{
+        key: "getInitialProps",
+        value: function () {
+          var _getInitialProps = _asyncToGenerator(
+          /*#__PURE__*/
+          _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(initialProps) {
+            var props, getInitialProps, childPageProps;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    props = {};
+                    getInitialProps = ChildPage.getInitialProps;
+
+                    if (!getInitialProps) {
+                      _context.next = 7;
+                      break;
+                    }
+
+                    _context.next = 5;
+                    return getInitialProps(initialProps);
+
+                  case 5:
+                    childPageProps = _context.sent;
+                    props = _objectSpread({}, props, childPageProps);
+
+                  case 7:
+                    return _context.abrupt("return", props);
+
+                  case 8:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+          return function getInitialProps(_x) {
+            return _getInitialProps.apply(this, arguments);
+          };
+        }()
       }]);
 
-      return Layout;
-    }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component)
+      return _class;
+    }(react__WEBPACK_IMPORTED_MODULE_1__["Component"])
   );
 };
 
@@ -231,7 +368,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_blockies__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_blockies__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _ethereum_EthLounge__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../ethereum/EthLounge */ "./ethereum/EthLounge.js");
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
-/* harmony import */ var _helpers_Sleep__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../helpers/Sleep */ "./components/helpers/Sleep.js");
+/* harmony import */ var _helpers_Sleep__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../helpers/Sleep */ "./helpers/Sleep.js");
+/* harmony import */ var _helpers_ShortEthAddress__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../helpers/ShortEthAddress */ "./helpers/ShortEthAddress.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -263,6 +401,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 
 
 
@@ -361,9 +500,7 @@ function (_Component) {
 
       if (readyToGenerateRightMenu) {
         if (signedIn) {
-          var accountStart = this.state.account.slice(0, 6);
-          var accountEnd = this.state.account.slice(36, 42);
-          console.log(accountStart);
+          var ethAddressShort = Object(_helpers_ShortEthAddress__WEBPACK_IMPORTED_MODULE_9__["default"])(this.state.account);
           var ethAddressStyle = {
             color: 'white'
           };
@@ -388,7 +525,7 @@ function (_Component) {
             style: ethAddressStyle,
             href: "https://etherscan.io/address/".concat(this.state.account),
             target: "_blank"
-          }, "".concat(accountStart, "...").concat(accountEnd))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+          }, ethAddressShort)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
             onClick: function onClick(e) {
               return _this2.handleLogout(e);
             },
@@ -398,7 +535,7 @@ function (_Component) {
             icon: true,
             labelPosition: "right",
             className: "user-column-right-signout-button"
-          }, "Sign out", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+          }, "Log out", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
             name: "power off"
           })))));
         }
@@ -415,7 +552,7 @@ function (_Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
         loading: true,
-        color: "orange"
+        className: "dark-orange-bg"
       });
     }
   }, {
@@ -528,8 +665,7 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"], {
         inverted: true,
         size: "large",
-        className: "menu",
-        color: "orange"
+        className: "menu"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
         src: "/static/img/logo.png"
       })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
@@ -556,7 +692,7 @@ function (_Component) {
         href: "https://metamask.io/",
         target: "_blank"
       }, "here"), "."), "                        ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], null, "But I have Metamask..."), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "If you have Metamask installed, please make sure to unlock your account."))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-        color: "orange",
+        className: "dark-orange-bg font-white",
         onClick: function onClick(e) {
           _this3.setState({
             popupOpen: false
@@ -586,7 +722,7 @@ function (_Component) {
                 amounts = result[1];
 
                 for (i = 0; i < amounts.length; i++) {
-                  if (amounts[i] !== "0") {
+                  if (amounts[i] !== '0') {
                     newItem = new Item(tokens[i], amounts[i], 'token-box');
                     _redux_store__WEBPACK_IMPORTED_MODULE_7__["default"].dispatch({
                       type: 'ADD_ITEM',
@@ -631,7 +767,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_rangeslider__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_rangeslider__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! big.js */ "big.js");
 /* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers/EstimateBetValue */ "./components/helpers/EstimateBetValue.js");
+/* harmony import */ var _helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/EstimateBetValue */ "./helpers/EstimateBetValue.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -713,291 +849,6 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (RangeSlider);
-
-/***/ }),
-
-/***/ "./components/helpers/CryptoPrices.js":
-/*!********************************************!*\
-  !*** ./components/helpers/CryptoPrices.js ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _SupportedTokens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SupportedTokens */ "./components/helpers/SupportedTokens.js");
-/* harmony import */ var _GetTokenPrice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GetTokenPrice */ "./components/helpers/GetTokenPrice.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-
-var data =
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.next = 2;
-            return Object(_GetTokenPrice__WEBPACK_IMPORTED_MODULE_2__["default"])(_SupportedTokens__WEBPACK_IMPORTED_MODULE_1__["SupportedTokens"].map(function (curr) {
-              return _SupportedTokens__WEBPACK_IMPORTED_MODULE_1__["DictionarrySymbol"].get(curr);
-            }));
-
-          case 2:
-            response = _context.sent;
-            return _context.abrupt("return", response);
-
-          case 4:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, this);
-  }));
-
-  return function data() {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = (data);
-
-/***/ }),
-
-/***/ "./components/helpers/EstimateBetValue.js":
-/*!************************************************!*\
-  !*** ./components/helpers/EstimateBetValue.js ***!
-  \************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! big.js */ "big.js");
-/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _GetTokenPrice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GetTokenPrice */ "./components/helpers/GetTokenPrice.js");
-/* harmony import */ var _SupportedTokens__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SupportedTokens */ "./components/helpers/SupportedTokens.js");
-/* harmony import */ var _TokenFromWei__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TokenFromWei */ "./components/helpers/TokenFromWei.js");
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
-/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
-
-
-
-
-
-
-
-var EstimateBetValue = function EstimateBetValue(itemsToBet, prices) {
-  var dispatch = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-  var symbols = itemsToBet.map(function (curr) {
-    return _SupportedTokens__WEBPACK_IMPORTED_MODULE_2__["DictionarrySymbol"].get(curr.token);
-  });
-  var values = symbols.map(function (curr) {
-    return prices.data[curr].USD;
-  });
-  var sum = values.reduce(function (sum, curr, index) {
-    console.log("".concat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(itemsToBet[index])), " * ").concat(curr, " = ").concat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(itemsToBet[index])).mul(curr)));
-    return sum + parseFloat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(itemsToBet[index])).mul(curr).toFixed(2));
-  }, 0);
-  if (sum === '00.00') sum = '0';
-  if (dispatch) _redux_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_5__["updateEstimateBet"])(sum));
-  return sum;
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (EstimateBetValue);
-
-/***/ }),
-
-/***/ "./components/helpers/GetTokenPrice.js":
-/*!*********************************************!*\
-  !*** ./components/helpers/GetTokenPrice.js ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "axios");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-var getTokenPrice =
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(symbols) {
-    var call;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.next = 2;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default()("https://min-api.cryptocompare.com/data/pricemulti?fsyms=".concat(symbols.map(function (curr) {
-              return curr + ',';
-            }), ",&tsyms=USD,ETH"));
-
-          case 2:
-            call = _context.sent;
-            return _context.abrupt("return", call);
-
-          case 4:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, this);
-  }));
-
-  return function getTokenPrice(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = (getTokenPrice);
-
-/***/ }),
-
-/***/ "./components/helpers/OptimizeTokenAmount.js":
-/*!***************************************************!*\
-  !*** ./components/helpers/OptimizeTokenAmount.js ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! big.js */ "big.js");
-/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var optimize = function optimize(amount) {
-  var minimalAmountToDisplay = 0.0001;
-  amount = big_js__WEBPACK_IMPORTED_MODULE_0___default()(amount);
-
-  if (amount.cmp(minimalAmountToDisplay) === 1 || amount.cmp(minimalAmountToDisplay) === 0) {
-    return amount.round(4);
-  }
-
-  return "< ".concat(minimalAmountToDisplay);
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (optimize);
-
-/***/ }),
-
-/***/ "./components/helpers/Sleep.js":
-/*!*************************************!*\
-  !*** ./components/helpers/Sleep.js ***!
-  \*************************************/
-/*! exports provided: Sleep */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Sleep", function() { return Sleep; });
-function Sleep(ms) {
-  return new Promise(function (resolve) {
-    return setTimeout(resolve, ms);
-  });
-}
-
-/***/ }),
-
-/***/ "./components/helpers/SupportedTokens.js":
-/*!***********************************************!*\
-  !*** ./components/helpers/SupportedTokens.js ***!
-  \***********************************************/
-/*! exports provided: SupportedTokens, DictionarryFull, DictionarrySymbol, DictionarryDecimals */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SupportedTokens", function() { return SupportedTokens; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DictionarryFull", function() { return DictionarryFull; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DictionarrySymbol", function() { return DictionarrySymbol; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DictionarryDecimals", function() { return DictionarryDecimals; });
-var eth = '0x0000000000000000000000000000000000000000';
-var powr = '0x7f0C267ef144D319CcF1d724c222a59A50CD7B43';
-var SupportedTokens = [eth, powr];
-var DictionarryFull = new Map();
-DictionarryFull.set(eth, 'Ethereum');
-DictionarryFull.set(powr, 'Power Ledger');
-var DictionarrySymbol = new Map();
-DictionarrySymbol.set(eth, 'ETH');
-DictionarrySymbol.set(powr, 'POWR');
-var DictionarryDecimals = new Map();
-DictionarryDecimals.set(eth, 18);
-DictionarryDecimals.set(powr, 8);
-
-
-/***/ }),
-
-/***/ "./components/helpers/TokenFromWei.js":
-/*!********************************************!*\
-  !*** ./components/helpers/TokenFromWei.js ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _SupportedTokens__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SupportedTokens */ "./components/helpers/SupportedTokens.js");
-/* harmony import */ var _OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OptimizeTokenAmount */ "./components/helpers/OptimizeTokenAmount.js");
-/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! big.js */ "big.js");
-/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-
-var getScientificNotation = function getScientificNotation(decimals) {
-  var number = decimals - 1;
-  return "10e+".concat(number);
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (function (item) {
-  var label = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  var optimize = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-  switch (label) {
-    case '':
-      {
-        if (optimize) return "".concat(Object(_OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__["default"])(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed()));
-        return "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed());
-      }
-
-    case 'symbol':
-      {
-        if (optimize) return "".concat(Object(_OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__["default"])(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed()), " ").concat(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarrySymbol"].get(item.token));
-        return "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed(), " ").concat(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarrySymbol"].get(item.token));
-      }
-
-    case 'full':
-      {
-        if (optimize) return "".concat(Object(_OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__["default"])(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed()), " ").concat(dictionarryFull.get(item.token));
-        return "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed(), " ").concat(dictionarryFull.get(item.token));
-      }
-  }
-});
 
 /***/ }),
 
@@ -1251,6 +1102,163 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./components/match/Teams.js":
+/*!***********************************!*\
+  !*** ./components/match/Teams.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
+/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var Teams =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Teams, _Component);
+
+  function Teams(props) {
+    var _this;
+
+    _classCallCheck(this, Teams);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Teams).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (event, team, pickedTeam) {
+      if (_this.props.signedIn) {
+        if (pickedTeam.slug) {
+          if (pickedTeam.slug === team.slug) {
+            _redux_store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_3__["pickTeam"])({}));
+            return;
+          }
+        }
+
+        _redux_store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_3__["pickTeam"])(team));
+      }
+    });
+
+    return _this;
+  }
+
+  _createClass(Teams, [{
+    key: "generateTeamLabel",
+    value: function generateTeamLabel(team, pickedTeam) {
+      var _this2 = this;
+
+      var style = this.props.signedIn ? {
+        cursor: 'pointer'
+      } : {};
+      var classNameModifier = pickedTeam.slug == team.slug ? ' team-label-picked' : '';
+      var teamCaption = pickedTeam.slug == team.slug ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "team-name team-name-picked"
+      }, team.name) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "team-name"
+      }, team.name);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: function onClick(event) {
+          _this2.handleClick(event, team, pickedTeam);
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        size: "huge",
+        style: style,
+        className: "team-label".concat(classNameModifier)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+        src: "/static/img/teams/".concat(team.slug, ".png")
+      })), teamCaption);
+    }
+  }, {
+    key: "generatePercentage",
+    value: function generatePercentage(teams, index) {
+      //const sumOdds = teams[0].odds + teams[1].odds;       
+      var percentage = Math.round(1 / teams[index].odds * 100) + '%';
+      if (index === 0) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        as: "a",
+        color: "black",
+        ribbon: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "team-percentage"
+      }, percentage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "team-odds"
+      }, "x ", teams[index].odds));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        as: "a",
+        color: "black",
+        ribbon: "right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "team-percentage"
+      }, percentage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "team-odds"
+      }, "x ", teams[index].odds));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          teams = _this$props.teams,
+          pickedTeam = _this$props.pickedTeam;
+      if (teams) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"], {
+        className: "teams-grid",
+        padded: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+        width: 2
+      }, this.generatePercentage(teams, 0)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+        width: 5,
+        verticalAlign: "middle",
+        textAlign: "center"
+      }, this.generateTeamLabel(teams[0], pickedTeam)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+        width: 2,
+        verticalAlign: "middle",
+        textAlign: "center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        color: "black"
+      }, "VS")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+        width: 5,
+        verticalAlign: "middle",
+        textAlign: "center"
+      }, this.generateTeamLabel(teams[1], pickedTeam)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+        width: 2
+      }, this.generatePercentage(teams, 1))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null)));
+      return '0';
+    }
+  }]);
+
+  return Teams;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Teams);
+
+/***/ }),
+
 /***/ "./components/match/TokenBox.js":
 /*!**************************************!*\
   !*** ./components/match/TokenBox.js ***!
@@ -1302,29 +1310,27 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TokenBox).call(this, props));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderItems", function (items) {
-      if (!items) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Loading...");else {
-        var toRender = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, items.map(function (item) {
-          if (item.position == 'token-box') {
-            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TokenBoxItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
-              key: item.token,
-              item: {
-                token: item.token,
-                amount: item.amount,
-                initialAmount: item.initialAmount,
-                position: item.position
-              },
-              handleDrop: function handleDrop(item, pos) {
-                return _this.handleDrop(item, pos);
-              }
-            });
-          } else {
-            return "";
-          }
+      var toRender = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, items.map(function (item) {
+        if (item.position == 'token-box') {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TokenBoxItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            key: item.token,
+            item: {
+              token: item.token,
+              amount: item.amount,
+              initialAmount: item.initialAmount,
+              position: item.position
+            },
+            handleDrop: function handleDrop(item, pos) {
+              return _this.handleDrop(item, pos);
+            }
+          });
+        } else {
+          return '';
+        }
 
-          ;
-        }));
-        return toRender;
-      }
+        ;
+      }));
+      return toRender;
     });
 
     _this.handleDrop = _this.handleDrop.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -1503,6 +1509,308 @@ if (typeof window != 'undefined' && typeof window.web3 != 'undefined') {
 
 /***/ }),
 
+/***/ "./helpers/CryptoPrices.js":
+/*!*********************************!*\
+  !*** ./helpers/CryptoPrices.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SupportedTokens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SupportedTokens */ "./helpers/SupportedTokens.js");
+/* harmony import */ var _GetTokenPrice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GetTokenPrice */ "./helpers/GetTokenPrice.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+var data =
+/*#__PURE__*/
+function () {
+  var _ref = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return Object(_GetTokenPrice__WEBPACK_IMPORTED_MODULE_2__["default"])(_SupportedTokens__WEBPACK_IMPORTED_MODULE_1__["SupportedTokens"].map(function (curr) {
+              return _SupportedTokens__WEBPACK_IMPORTED_MODULE_1__["DictionarrySymbol"].get(curr);
+            }));
+
+          case 2:
+            response = _context.sent;
+            return _context.abrupt("return", response);
+
+          case 4:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+
+  return function data() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (data);
+
+/***/ }),
+
+/***/ "./helpers/EstimateBetValue.js":
+/*!*************************************!*\
+  !*** ./helpers/EstimateBetValue.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! big.js */ "big.js");
+/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _GetTokenPrice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GetTokenPrice */ "./helpers/GetTokenPrice.js");
+/* harmony import */ var _SupportedTokens__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SupportedTokens */ "./helpers/SupportedTokens.js");
+/* harmony import */ var _TokenFromWei__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TokenFromWei */ "./helpers/TokenFromWei.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
+/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/actions */ "./redux/actions.js");
+
+
+
+
+
+
+
+var EstimateBetValue = function EstimateBetValue(itemsToBet, prices) {
+  var dispatch = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+  var symbols = itemsToBet.map(function (curr) {
+    return _SupportedTokens__WEBPACK_IMPORTED_MODULE_2__["DictionarrySymbol"].get(curr.token);
+  });
+  var values = symbols.map(function (curr) {
+    return prices.data[curr].USD;
+  });
+  var sum = values.reduce(function (sum, curr, index) {
+    console.log("".concat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(itemsToBet[index])), " * ").concat(curr, " = ").concat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(itemsToBet[index])).mul(curr)));
+    return sum + parseFloat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(itemsToBet[index])).mul(curr).toFixed(2));
+  }, 0);
+  if (sum === '00.00') sum = '0';
+  if (dispatch) _redux_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_5__["updateEstimateBet"])(sum));
+  return sum;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (EstimateBetValue);
+
+/***/ }),
+
+/***/ "./helpers/GetTokenPrice.js":
+/*!**********************************!*\
+  !*** ./helpers/GetTokenPrice.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+var getTokenPrice =
+/*#__PURE__*/
+function () {
+  var _ref = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(symbols) {
+    var call;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default()("https://min-api.cryptocompare.com/data/pricemulti?fsyms=".concat(symbols.map(function (curr) {
+              return curr + ',';
+            }), ",&tsyms=USD,ETH"));
+
+          case 2:
+            call = _context.sent;
+            return _context.abrupt("return", call);
+
+          case 4:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+
+  return function getTokenPrice(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (getTokenPrice);
+
+/***/ }),
+
+/***/ "./helpers/OptimizeTokenAmount.js":
+/*!****************************************!*\
+  !*** ./helpers/OptimizeTokenAmount.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! big.js */ "big.js");
+/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var optimize = function optimize(amount) {
+  var minimalAmountToDisplay = 0.0001;
+  amount = big_js__WEBPACK_IMPORTED_MODULE_0___default()(amount);
+
+  if (amount.cmp(minimalAmountToDisplay) === 1 || amount.cmp(minimalAmountToDisplay) === 0) {
+    return amount.round(4);
+  }
+
+  return "< ".concat(minimalAmountToDisplay);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (optimize);
+
+/***/ }),
+
+/***/ "./helpers/ShortEthAddress.js":
+/*!************************************!*\
+  !*** ./helpers/ShortEthAddress.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (function (address) {
+  var addressStart = address.slice(0, 6);
+  var addressEnd = address.slice(36, 42);
+  return "".concat(addressStart, "...").concat(addressEnd);
+});
+
+/***/ }),
+
+/***/ "./helpers/Sleep.js":
+/*!**************************!*\
+  !*** ./helpers/Sleep.js ***!
+  \**************************/
+/*! exports provided: Sleep */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Sleep", function() { return Sleep; });
+function Sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+}
+
+/***/ }),
+
+/***/ "./helpers/SupportedTokens.js":
+/*!************************************!*\
+  !*** ./helpers/SupportedTokens.js ***!
+  \************************************/
+/*! exports provided: SupportedTokens, DictionarryFull, DictionarrySymbol, DictionarryDecimals */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SupportedTokens", function() { return SupportedTokens; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DictionarryFull", function() { return DictionarryFull; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DictionarrySymbol", function() { return DictionarrySymbol; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DictionarryDecimals", function() { return DictionarryDecimals; });
+var eth = '0x0000000000000000000000000000000000000000';
+var powr = '0x7f0C267ef144D319CcF1d724c222a59A50CD7B43';
+var SupportedTokens = [eth, powr];
+var DictionarryFull = new Map();
+DictionarryFull.set(eth, 'Ethereum');
+DictionarryFull.set(powr, 'Power Ledger');
+var DictionarrySymbol = new Map();
+DictionarrySymbol.set(eth, 'ETH');
+DictionarrySymbol.set(powr, 'POWR');
+var DictionarryDecimals = new Map();
+DictionarryDecimals.set(eth, 18);
+DictionarryDecimals.set(powr, 8);
+
+
+/***/ }),
+
+/***/ "./helpers/TokenFromWei.js":
+/*!*********************************!*\
+  !*** ./helpers/TokenFromWei.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SupportedTokens__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SupportedTokens */ "./helpers/SupportedTokens.js");
+/* harmony import */ var _OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OptimizeTokenAmount */ "./helpers/OptimizeTokenAmount.js");
+/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! big.js */ "big.js");
+/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var getScientificNotation = function getScientificNotation(decimals) {
+  var number = decimals - 1;
+  return "10e+".concat(number);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (function (item) {
+  var label = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var optimize = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  switch (label) {
+    case '':
+      {
+        if (optimize) return "".concat(Object(_OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__["default"])(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed()));
+        return "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed());
+      }
+
+    case 'symbol':
+      {
+        if (optimize) return "".concat(Object(_OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__["default"])(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed()), " ").concat(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarrySymbol"].get(item.token));
+        return "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed(), " ").concat(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarrySymbol"].get(item.token));
+      }
+
+    case 'full':
+      {
+        if (optimize) return "".concat(Object(_OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__["default"])(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed()), " ").concat(dictionarryFull.get(item.token));
+        return "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed(), " ").concat(dictionarryFull.get(item.token));
+      }
+  }
+});
+
+/***/ }),
+
 /***/ "./pages/matches/match.js":
 /*!********************************!*\
   !*** ./pages/matches/match.js ***!
@@ -1528,8 +1836,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_match_BettingBox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/match/BettingBox */ "./components/match/BettingBox.js");
 /* harmony import */ var _components_match_TokenBox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/match/TokenBox */ "./components/match/TokenBox.js");
 /* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
-/* harmony import */ var _components_helpers_CryptoPrices__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/helpers/CryptoPrices */ "./components/helpers/CryptoPrices.js");
+/* harmony import */ var _helpers_CryptoPrices__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../helpers/CryptoPrices */ "./helpers/CryptoPrices.js");
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
+/* harmony import */ var _components_match_Teams__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/match/Teams */ "./components/match/Teams.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _components_ErrorModal__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/ErrorModal */ "./components/ErrorModal.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1566,6 +1878,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
 var Match =
 /*#__PURE__*/
 function (_Component) {
@@ -1589,7 +1904,7 @@ function (_Component) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return Object(_components_helpers_CryptoPrices__WEBPACK_IMPORTED_MODULE_10__["default"])();
+                return Object(_helpers_CryptoPrices__WEBPACK_IMPORTED_MODULE_10__["default"])();
 
               case 2:
                 prices = _context.sent;
@@ -1608,11 +1923,35 @@ function (_Component) {
       };
     }()
   }, {
+    key: "handleClick",
+    value: function handleClick() {
+      var errorHead = "You forgot to do the following";
+      var errors = [];
+      if (!this.props.signedIn) errors.push('Please log in to place bets.');
+      if (this.props.items.toBet.length === 0) errors.push('Please place at least one token in order to place a bet.');
+      if (lodash__WEBPACK_IMPORTED_MODULE_13___default.a.isEmpty(this.props.pickedTeam)) errors.push('Please pick a team.');
+
+      if (errors.length > 0) {
+        _redux_store__WEBPACK_IMPORTED_MODULE_11__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_9__["toggleModal"])(errorHead, errors));
+        console.log(this.props);
+        return;
+      } //handle correct PLACE BET
+
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
+      var _this = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"], {
+        relaxed: true
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
         width: 8
-      }, "FNATIC vs GAMBIT"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_match_Teams__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        teams: this.props.initial.teams,
+        pickedTeam: this.props.pickedTeam,
+        signedIn: this.props.signedIn
+      }), "LAST BETS:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
         width: 8
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Place bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_match_BettingBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
         prices: this.props.prices,
@@ -1622,28 +1961,41 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "bet-container"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+        onClick: function onClick(event) {
+          return _this.handleClick();
+        },
         className: "button-bet",
         size: "large",
         color: "black"
-      }, "Place bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"], {
+      }, "Place bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_ErrorModal__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        modal: this.props.errorModal
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"], {
         relaxed: true,
         floated: "right",
         className: "info-bet"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Label"], {
-        color: "orange",
-        horizontal: true
-      }, "ESTIMATED BET VALUE"), " ", this.props.betValue, "$"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Label"], {
-        color: "orange",
-        horizontal: true
-      }, "ESTIMATED REWARD"), " "))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
-        width: 8
-      }, "LAST BETS:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
-        width: 8
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Balances"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_match_TokenBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, this.renderBetValue(this.props.betValue), this.renderEstimatedReward(this.props.betValue))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Balances"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_match_TokenBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
         signedIn: this.props.signedIn,
         items: this.props.items.wallet,
         handleDrop: this.props.changePosition
-      }))));
+      })));
+    }
+  }, {
+    key: "renderBetValue",
+    value: function renderBetValue(betValue) {
+      if (this.props.items.toBet.length > 0) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Label"], {
+        className: "orange-label",
+        horizontal: true
+      }, "ESTIMATED BET VALUE"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, " ".concat(betValue, "$")));
+      return '';
+    }
+  }, {
+    key: "renderEstimatedReward",
+    value: function renderEstimatedReward(betValue) {
+      if (this.props.items.toBet.length > 0 && !lodash__WEBPACK_IMPORTED_MODULE_13___default.a.isEmpty(this.props.pickedTeam)) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Label"], {
+        className: "orange-label",
+        horizontal: true
+      }, "ESTIMATED RETURN"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, " ".concat((parseFloat(betValue) * this.props.pickedTeam.odds).toFixed(2), "$")));
+      return '';
     }
   }], [{
     key: "getInitialProps",
@@ -1651,7 +2003,7 @@ function (_Component) {
       var _getInitialProps = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(props) {
-        var matchID, teams, odds;
+        var matchID, teams;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -1661,22 +2013,19 @@ function (_Component) {
                 teams = [{
                   name: 'Fnatic',
                   slug: 'fnatic',
-                  imgUrl: "../../img/teams/fnatic.png"
+                  imgUrl: "../../img/teams/fnatic.png",
+                  odds: 1.56
                 }, {
                   name: 'Gambit',
                   slug: 'gambit',
-                  imgUrl: "../../img/teams/gambit.png"
-                }]; // This information will be pulled from Ethereum blockchain (downloaded on server)
-
-                odds = new Map();
-                odds.set(teams[0].slug, 1, 2);
-                odds.set(teams[1].slug, 5, 8);
+                  imgUrl: "../../img/teams/gambit.png",
+                  odds: 2.77
+                }];
                 return _context2.abrupt("return", {
-                  matchID: matchID,
                   teams: teams
                 });
 
-              case 6:
+              case 3:
               case "end":
                 return _context2.stop();
             }
@@ -1709,7 +2058,9 @@ var mapStateToProps = function mapStateToProps(state) {
     items: state.items,
     signedIn: state.signedIn,
     betValue: state.betValue,
-    prices: state.prices
+    prices: state.prices,
+    pickedTeam: state.pickedTeam,
+    errorModal: state.errorModal
   };
 };
 
@@ -1722,7 +2073,7 @@ Match = Object(react_dnd__WEBPACK_IMPORTED_MODULE_4__["DragDropContext"])(react_
 /*!**************************!*\
   !*** ./redux/actions.js ***!
   \**************************/
-/*! exports provided: addItem, changeItemPosition, changeItemAmount, updateEstimateBet, updatePrices */
+/*! exports provided: addItem, changeItemPosition, changeItemAmount, updateEstimateBet, updatePrices, pickTeam, toggleModal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1732,6 +2083,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeItemAmount", function() { return changeItemAmount; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateEstimateBet", function() { return updateEstimateBet; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePrices", function() { return updatePrices; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pickTeam", function() { return pickTeam; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleModal", function() { return toggleModal; });
 function addItem(item) {
   return {
     type: 'ADD_ITEM',
@@ -1763,6 +2116,21 @@ function updatePrices(prices) {
     prices: prices
   };
 }
+function pickTeam(team) {
+  return {
+    type: 'PICK_TEAM',
+    team: team
+  };
+}
+function toggleModal() {
+  var head = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  var reasons = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  return {
+    type: 'TOGGLE_MODAL',
+    head: head,
+    reasons: reasons
+  };
+}
 
 /***/ }),
 
@@ -1777,7 +2145,11 @@ function updatePrices(prices) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/helpers/EstimateBetValue */ "./components/helpers/EstimateBetValue.js");
+/* harmony import */ var _helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/EstimateBetValue */ "./helpers/EstimateBetValue.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var initialState = {
@@ -1788,20 +2160,17 @@ var initialState = {
   account: '',
   signedIn: false,
   prices: {},
-  betValue: 0
+  betValue: 0,
+  pickedTeam: {},
+  errorModal: {
+    isOpen: false,
+    head: '',
+    reasons: []
+  }
 };
 
 var matchReducer = function matchReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    items: {
-      toBet: [],
-      wallet: []
-    },
-    account: '',
-    signedIn: false,
-    prices: {},
-    betValue: 0
-  };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   var newState = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.cloneDeep(state);
@@ -1836,22 +2205,14 @@ var matchReducer = function matchReducer() {
           });
         }
 
-        newState.betValue = Object(_components_helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_1__["default"])(newState.items.toBet, newState.prices, false);
+        newState.betValue = Object(_helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_1__["default"])(newState.items.toBet, newState.prices, false);
         break;
       }
 
     case 'LOG_OUT':
       {
-        newState = {
-          items: {
-            toBet: [],
-            wallet: []
-          },
-          account: '',
-          signedIn: false,
-          betValue: 0,
-          prices: newState.prices
-        };
+        newState = _objectSpread({}, initialState);
+        newState.prices = state.prices;
         console.log('Logged out! State is now: ', newState);
         break;
       }
@@ -1874,6 +2235,20 @@ var matchReducer = function matchReducer() {
     case 'UPDATE_ESTIMATE_BET':
       {
         newState.betValue = action.sum;
+        break;
+      }
+
+    case 'PICK_TEAM':
+      {
+        newState.pickedTeam = action.team;
+        break;
+      }
+
+    case 'TOGGLE_MODAL':
+      {
+        newState.errorModal.isOpen = !state.errorModal.isOpen;
+        newState.errorModal.head = action.head;
+        newState.errorModal.reasons = action.reasons;
         break;
       }
   }

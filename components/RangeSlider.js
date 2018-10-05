@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'react-rangeslider';
 import Big from 'big.js';
-import EstimateBetValue from './helpers/EstimateBetValue';
+import EstimateBetValue from '../helpers/EstimateBetValue';
 
 class RangeSlider extends Component {
 

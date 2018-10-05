@@ -16,23 +16,21 @@ class TokenBox extends Component {
     }
 
     renderItems = (items) => {
-        if(!items) return <h2>Loading...</h2>;
-        else {
             const toRender = <div>{items.map(item => {
                 if(item.position == 'token-box') {
                 return (
                 <TokenBoxItem key={item.token} item={{token: item.token, amount: item.amount, initialAmount: item.initialAmount, position: item.position}} handleDrop={(item, pos) => this.handleDrop(item, pos)}></TokenBoxItem>);
-                } else {return ""};            
+                } else {return ''};            
             })}</div>;
             
             return toRender;
-        }
+        
       }
 
     render() {
         if (this.props.signedIn)
         return (
-            <div className="tokens-box">            
+            <div className='tokens-box'>            
                 {this.renderItems(this.props.items)}   
             </div>
         );
