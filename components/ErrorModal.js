@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import store from '../redux/store';
 import { Modal, Message, Button, Header, Icon } from 'semantic-ui-react'
-import { toggleModal } from '../redux/actions';
+import { toggleErrorModal } from '../redux/actions';
 
 class ErrorModal extends Component {
 
@@ -26,7 +26,7 @@ class ErrorModal extends Component {
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button className="dark-orange-bg font-white" onClick={(e) => store.dispatch(toggleModal())}>
+                    <Button className="dark-orange-bg font-white" onClick={(e) => store.dispatch(toggleErrorModal())}>
                         OK
                     </Button>
                 </Modal.Actions>

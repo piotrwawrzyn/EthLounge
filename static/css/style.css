@@ -15,8 +15,16 @@
     background: var(--orange-light) !important;
 }
 
+.black-bg {
+    background: black !important;
+}
+
 .font-white {
     color: white !important;
+}
+
+.font-dark-orange {
+    color: var(--orange-dark);
 }
 
 .font-error {
@@ -31,17 +39,17 @@
 
 /* TokenBox Item */
 
-.token-box-item {
+.balance-box-token {
   float: left;
   margin: 0 1em 1em 0;
   width: 30%;
 }
 
-.token-box-item .label:hover {
+.balance-box-token .label:hover {
     cursor: grab !important;
 }
 
-.token-box-item-dragging {
+.balance-box-token-dragging {
     opacity: 0.1;
 }
 
@@ -56,21 +64,21 @@
 
 /* BettingBox Item */
 
-.betting-box-item-hovered {
+.betting-box-token-hovered {
     background: #ddd !important;
 }
 
-.betting-box-item-candrop {
+.betting-box-token-candrop {
     background: rgb(56, 57, 58, 0.2) !important;
     transform: scale(1.1);
     transition-duration: 0.3s;
 }
 
-.betting-box-item-dropped {
+.betting-box-token-dropped {
     padding: 0em 0 0em 0 !important;
 }
 
-.betting-box-item-dropped .label:hover {
+.betting-box-token-dropped .label:hover {
     background: rgb(255, 51, 0, 0.15) !important;
 }
 
@@ -121,7 +129,7 @@
     margin-top: 0.6em !important;
 }
 
-.ui.menu .item:before {
+.ui.menu .token:before {
     background: rgba(34,36,38,.15) !important;
 }
 
@@ -173,4 +181,14 @@
 
 .bet-container {
     padding-top: 1em;
+}
+
+/* Confirm Bet Modal */
+
+.confirm-bet-modal-img {
+    opacity: 0.12;
+}
+
+.confirm-bet-modal-ul {
+    margin: 0 !important;
 }

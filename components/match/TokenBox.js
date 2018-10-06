@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-import TokenBoxItem from './TokenBoxItem';
+import BalanceBoxToken from './BalanceBoxToken';
 import { Message } from 'semantic-ui-react';
-
+import { changeTokenPosition } from '../../redux/actions';
+import store from '../../redux/store';
 
 class TokenBox extends Component {
 
     constructor(props) {
         super(props);    
-        
-        this.handleDrop = this.handleDrop.bind(this);
     }
 
-    handleDrop(item, pos) {
-        this.props.handleDrop(item, pos);
+    handleDrop(token, pos) {
+        store.dispatch(changeTokenPosition(token, pos));
     }
 
-    renderItems = (items) => {
-            const toRender = <div>{items.map(item => {
-                if(item.position == 'token-box') {
+    renderItems = (tokens) => {
+            const toRender = <div>{tokens.map(token => {
+                if(token.position == 'balance-box') {
                 return (
-                <TokenBoxItem key={item.token} item={{token: item.token, amount: item.amount, initialAmount: item.initialAmount, position: item.position}} handleDrop={(item, pos) => this.handleDrop(item, pos)}></TokenBoxItem>);
+                <BalanceBoxToken key={token.address} token={{...token}} handleDrop={(token, pos) => this.handleDrop(token, pos)}></BalanceBoxToken>);
                 } else {return ''};            
             })}</div>;
             
@@ -31,7 +30,7 @@ class TokenBox extends Component {
         if (this.props.signedIn)
         return (
             <div className='tokens-box'>            
-                {this.renderItems(this.props.items)}   
+                {this.renderItems(this.props.tokens)}   
             </div>
         );
 

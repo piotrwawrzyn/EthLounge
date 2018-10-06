@@ -162,7 +162,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, list))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
         className: "dark-orange-bg font-white",
         onClick: function onClick(e) {
-          return _redux_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_3__["toggleModal"])());
+          return _redux_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_3__["toggleErrorModal"])());
         }
       }, "OK")));
     }
@@ -172,39 +172,6 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (ErrorModal);
-
-/***/ }),
-
-/***/ "./components/Item.js":
-/*!****************************!*\
-  !*** ./components/Item.js ***!
-  \****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _helpers_SupportedTokens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/SupportedTokens */ "./helpers/SupportedTokens.js");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _helpers_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/TokenFromWei */ "./helpers/TokenFromWei.js");
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = (function (props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Label"], {
-    as: "a",
-    key: props.item.token,
-    className: "token-label"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
-    avatar: true,
-    spaced: "right",
-    src: "/static/img/tokens/".concat(_helpers_SupportedTokens__WEBPACK_IMPORTED_MODULE_1__["DictionarrySymbol"].get(props.item.token), ".png")
-  }), Object(_helpers_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(props.item, 'symbol', true));
-});
 
 /***/ }),
 
@@ -370,6 +337,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
 /* harmony import */ var _helpers_Sleep__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../helpers/Sleep */ "./helpers/Sleep.js");
 /* harmony import */ var _helpers_ShortEthAddress__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../helpers/ShortEthAddress */ "./helpers/ShortEthAddress.js");
+/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -412,10 +380,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-var Item = function Item(token, amount, position) {
-  _classCallCheck(this, Item);
 
-  this.token = token;
+var Token = function Token(address, amount, position) {
+  _classCallCheck(this, Token);
+
+  this.address = address;
   this.amount = amount;
   this.initialAmount = amount;
   this.position = position;
@@ -437,7 +406,6 @@ function (_Component) {
       loading: false,
       account: '',
       signedIn: false,
-      items: {},
       popupOpen: false,
       readyToGenerateRightMenu: false
     };
@@ -472,7 +440,7 @@ function (_Component) {
                     signedIn: true,
                     account: account
                   });
-                  this.getItems(account);
+                  this.getTokens(account);
                 } else _redux_store__WEBPACK_IMPORTED_MODULE_7__["default"].dispatch({
                   type: 'LOG_OUT'
                 });
@@ -541,7 +509,6 @@ function (_Component) {
         }
 
         return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-          className: "menu-right-item-button",
           loading: this.state.loading,
           onClick: function onClick(e) {
             return _this2.handleLogin(e);
@@ -586,7 +553,7 @@ function (_Component) {
                   this.setState({
                     account: account
                   });
-                  this.getItems(account);
+                  this.getTokens(account);
                   this.setState({
                     signedIn: true
                   });
@@ -677,11 +644,10 @@ function (_Component) {
       }), "Withdraw"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
         name: "question circle outline"
       }), "FAQ"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, {
-        position: "right",
-        className: "menu-right-item"
+        position: "right"
       }, this.generateRightMenu(this.state.signedIn, this.state.readyToGenerateRightMenu)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
         open: this.state.popupOpen,
-        size: "small"
+        size: "tiny"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, null, "You need Metamask to sign in"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Content, {
         image: true
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
@@ -701,12 +667,12 @@ function (_Component) {
       }, "Close"))));
     }
   }, {
-    key: "getItems",
+    key: "getTokens",
     value: function () {
-      var _getItems = _asyncToGenerator(
+      var _getTokens = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(account) {
-        var result, tokens, amounts, i, newItem;
+        var result, tokenAddresses, tokenAmounts, i, newToken;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
@@ -718,16 +684,13 @@ function (_Component) {
 
               case 2:
                 result = _context4.sent;
-                tokens = result[0];
-                amounts = result[1];
+                tokenAddresses = result[0];
+                tokenAmounts = result[1];
 
-                for (i = 0; i < amounts.length; i++) {
-                  if (amounts[i] !== '0') {
-                    newItem = new Item(tokens[i], amounts[i], 'token-box');
-                    _redux_store__WEBPACK_IMPORTED_MODULE_7__["default"].dispatch({
-                      type: 'ADD_ITEM',
-                      item: newItem
-                    });
+                for (i = 0; i < tokenAmounts.length; i++) {
+                  if (tokenAmounts[i] !== '0') {
+                    newToken = new Token(tokenAddresses[i], tokenAmounts[i], 'balance-box');
+                    _redux_store__WEBPACK_IMPORTED_MODULE_7__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_10__["addToken"])(newToken));
                   }
                 }
 
@@ -739,8 +702,8 @@ function (_Component) {
         }, _callee4, this);
       }));
 
-      return function getItems(_x3) {
-        return _getItems.apply(this, arguments);
+      return function getTokens(_x3) {
+        return _getTokens.apply(this, arguments);
       };
     }()
   }]);
@@ -748,7 +711,7 @@ function (_Component) {
   return MenuExampleSizeLarge;
 }(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])()(MenuExampleSizeLarge));
+/* harmony default export */ __webpack_exports__["default"] = (MenuExampleSizeLarge);
 
 /***/ }),
 
@@ -768,6 +731,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! big.js */ "big.js");
 /* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/EstimateBetValue */ "./helpers/EstimateBetValue.js");
+/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/actions */ "./redux/actions.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -793,6 +758,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 var RangeSlider =
 /*#__PURE__*/
 function (_Component) {
@@ -806,15 +773,16 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(RangeSlider).call(this, props));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleRange", function (val) {
+      var token = _this.props.token;
+
       _this.setState({
         value: val
       });
 
       var change = val / 1000;
-      var newAmount = "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(_this.props.item.initialAmount).mul(change).toFixed(0));
-      _this.props.item.amount = newAmount;
-
-      _this.props.handleRange(_this.props.item);
+      var newAmount = "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(token.initialAmount).mul(change).toFixed(0));
+      token.amount = newAmount;
+      _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_4__["changeTokenAmount"])(token));
     });
 
     _this.handleRange = _this.handleRange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -852,6 +820,130 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./components/Token.js":
+/*!*****************************!*\
+  !*** ./components/Token.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers_SupportedTokens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/SupportedTokens */ "./helpers/SupportedTokens.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _helpers_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/TokenFromWei */ "./helpers/TokenFromWei.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Label"], {
+    as: "a",
+    key: props.token.address,
+    className: "token-label"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
+    avatar: true,
+    spaced: "right",
+    src: "/static/img/tokens/".concat(_helpers_SupportedTokens__WEBPACK_IMPORTED_MODULE_1__["DictionarrySymbol"].get(props.token.address), ".png")
+  }), Object(_helpers_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(props.token, 'symbol', true));
+});
+
+/***/ }),
+
+/***/ "./components/match/BalanceBoxToken.js":
+/*!*********************************************!*\
+  !*** ./components/match/BalanceBoxToken.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Token__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Token */ "./components/Token.js");
+/* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dnd */ "react-dnd");
+/* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dnd__WEBPACK_IMPORTED_MODULE_2__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var itemSource = {
+  beginDrag: function beginDrag(props) {
+    return props.token;
+  },
+  endDrag: function endDrag(props, monitor) {
+    if (!monitor.didDrop()) return;
+    return props.handleDrop(props.token, monitor.getDropResult().pos);
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging()
+  };
+}
+
+var BalanceBoxToken =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(BalanceBoxToken, _Component);
+
+  function BalanceBoxToken(props) {
+    _classCallCheck(this, BalanceBoxToken);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(BalanceBoxToken).call(this, props));
+  }
+
+  _createClass(BalanceBoxToken, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          isDragging = _this$props.isDragging,
+          connectDragSource = _this$props.connectDragSource;
+      var classNameModifier = '';
+
+      if (isDragging) {
+        classNameModifier = ' balance-box-token-dragging';
+      }
+
+      return connectDragSource(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'balance-box-token' + classNameModifier
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Token__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        token: this.props.token
+      })));
+    }
+  }]);
+
+  return BalanceBoxToken;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_dnd__WEBPACK_IMPORTED_MODULE_2__["DragSource"])('token', itemSource, collect)(BalanceBoxToken));
+
+/***/ }),
+
 /***/ "./components/match/BettingBox.js":
 /*!****************************************!*\
   !*** ./components/match/BettingBox.js ***!
@@ -865,7 +957,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _BettingBoxItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BettingBoxItem */ "./components/match/BettingBoxItem.js");
+/* harmony import */ var _BettingBoxToken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BettingBoxToken */ "./components/match/BettingBoxToken.js");
 /* harmony import */ var _RangeSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../RangeSlider */ "./components/RangeSlider.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -902,30 +994,29 @@ function (_Component) {
   }
 
   _createClass(BettingBox, [{
-    key: "renderItems",
-    value: function renderItems(items) {
+    key: "renderTokens",
+    value: function renderTokens(tokens) {
       var bettingBoxes = [];
       var numberOfBoxes = 4;
 
       for (var i = 0; i < numberOfBoxes; i++) {
         var pos = "betting-box-".concat(i);
-        var itemProp = void 0;
+        var tokenProp = void 0;
         var rangeSlider = '';
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
         var _iteratorError = undefined;
 
         try {
-          for (var _iterator = items[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var item = _step.value;
+          for (var _iterator = tokens[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var token = _step.value;
 
-            if (item.position === pos) {
-              itemProp = item;
+            if (token.position === pos) {
+              tokenProp = token;
               rangeSlider = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RangeSlider__WEBPACK_IMPORTED_MODULE_3__["default"], {
                 prices: this.props.prices,
-                item: item,
-                toBet: items,
-                handleRange: this.props.handleRange
+                token: token,
+                toBet: tokens
               });
             }
           }
@@ -948,10 +1039,9 @@ function (_Component) {
           key: pos
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
           width: 7
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BettingBoxItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BettingBoxToken__WEBPACK_IMPORTED_MODULE_2__["default"], {
           pos: pos,
-          droppedItem: itemProp,
-          handleDelete: this.props.handleDelete
+          droppedToken: tokenProp
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
           width: 9,
           verticalAlign: "middle"
@@ -967,7 +1057,7 @@ function (_Component) {
         className: "betting-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"], {
         columns: "equal"
-      }, this.renderItems(this.props.items)));
+      }, this.renderTokens(this.props.tokens)));
     }
   }]);
 
@@ -978,10 +1068,10 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./components/match/BettingBoxItem.js":
-/*!********************************************!*\
-  !*** ./components/match/BettingBoxItem.js ***!
-  \********************************************/
+/***/ "./components/match/BettingBoxToken.js":
+/*!*********************************************!*\
+  !*** ./components/match/BettingBoxToken.js ***!
+  \*********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -993,7 +1083,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dnd */ "react-dnd");
 /* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dnd__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Item */ "./components/Item.js");
+/* harmony import */ var _Token__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Token */ "./components/Token.js");
+/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1016,6 +1108,8 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+
+
 var itemSource = {
   drop: function drop(props) {
     return {
@@ -1028,30 +1122,30 @@ function collect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
-    item: monitor.getItem(),
+    token: monitor.getItem(),
     canDrop: monitor.canDrop()
   };
 }
 
-var BettingBoxItem =
+var BettingBoxToken =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(BettingBoxItem, _Component);
+  _inherits(BettingBoxToken, _Component);
 
-  function BettingBoxItem(props) {
+  function BettingBoxToken(props) {
     var _this;
 
-    _classCallCheck(this, BettingBoxItem);
+    _classCallCheck(this, BettingBoxToken);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(BettingBoxItem).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BettingBoxToken).call(this, props));
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(BettingBoxItem, [{
+  _createClass(BettingBoxToken, [{
     key: "handleClick",
     value: function handleClick(e) {
-      this.props.handleDelete(this.props.droppedItem);
+      _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_4__["changeTokenPosition"])(this.props.droppedToken, 'balance-box'));
     }
   }, {
     key: "render",
@@ -1060,45 +1154,245 @@ function (_Component) {
           canDrop = _this$props.canDrop,
           connectDropTarget = _this$props.connectDropTarget,
           isOver = _this$props.isOver,
-          item = _this$props.item,
+          token = _this$props.token,
           pos = _this$props.pos;
       var classNameModifier = '';
 
       if (isOver && canDrop) {
-        classNameModifier += ' betting-box-item-hovered';
+        classNameModifier += ' betting-box-token-hovered';
       }
 
       if (!isOver && canDrop) {
-        classNameModifier += ' betting-box-item-candrop';
+        classNameModifier += ' betting-box-token-candrop';
       }
 
-      var token;
-
-      if (this.props.droppedItem) {
-        token = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Item__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          item: this.props.droppedItem,
-          className: "item-dropped"
-        });
-        classNameModifier = ' betting-box-item-dropped';
+      if (this.props.droppedToken) {
+        classNameModifier = ' betting-box-token-dropped';
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], {
           onClick: this.handleClick,
           textAlign: "center",
-          className: 'betting-box-item' + classNameModifier
-        }, token));
+          className: 'betting-box-token' + classNameModifier
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Token__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          token: this.props.droppedToken,
+          className: "token-dropped"
+        })));
       }
 
       return connectDropTarget(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], {
         size: "big",
         textAlign: "center",
-        className: 'betting-box-item' + classNameModifier
+        className: 'betting-box-token' + classNameModifier
       })));
     }
   }]);
 
-  return BettingBoxItem;
+  return BettingBoxToken;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_dnd__WEBPACK_IMPORTED_MODULE_2__["DropTarget"])('item', itemSource, collect)(BettingBoxItem));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_dnd__WEBPACK_IMPORTED_MODULE_2__["DropTarget"])('token', itemSource, collect)(BettingBoxToken));
+
+/***/ }),
+
+/***/ "./components/match/ConfirmBetModal.js":
+/*!*********************************************!*\
+  !*** ./components/match/ConfirmBetModal.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
+/* harmony import */ var _helpers_TokenFromWei__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/TokenFromWei */ "./helpers/TokenFromWei.js");
+/* harmony import */ var _ethereum_EthLounge__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../ethereum/EthLounge */ "./ethereum/EthLounge.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+
+
+
+var ConfirmBetModal =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ConfirmBetModal, _Component);
+
+  function ConfirmBetModal(props) {
+    var _this;
+
+    _classCallCheck(this, ConfirmBetModal);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ConfirmBetModal).call(this, props));
+    _this.handleConfirm = _this.handleConfirm.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.state = {
+      isLoading: false,
+      isFinalModalOpen: false
+    };
+    return _this;
+  }
+
+  _createClass(ConfirmBetModal, [{
+    key: "handleConfirm",
+    value: function () {
+      var _handleConfirm = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(tokensToBet, pickedTeam, account, matchID) {
+        var tokens, amounts;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.setState({
+                  isLoading: true
+                });
+                tokens = tokensToBet.map(function (curr) {
+                  return curr.address;
+                });
+                amounts = tokensToBet.map(function (curr) {
+                  return curr.amount;
+                });
+                _context.prev = 3;
+                _context.next = 6;
+                return _ethereum_EthLounge__WEBPACK_IMPORTED_MODULE_6__["default"].methods.placeBet(matchID, pickedTeam.slug, tokens, amounts).send({
+                  from: account
+                });
+
+              case 6:
+                _context.next = 10;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](3);
+
+              case 10:
+                this.setState({
+                  isLoading: false
+                });
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[3, 8]]);
+      }));
+
+      return function handleConfirm(_x, _x2, _x3, _x4) {
+        return _handleConfirm.apply(this, arguments);
+      };
+    }()
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          open = _this$props.open,
+          tokensToBet = _this$props.tokensToBet,
+          pickedTeam = _this$props.pickedTeam,
+          account = _this$props.account,
+          matchID = _this$props.matchID;
+      var tokenList = tokensToBet.map(function (curr) {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["List"].Item, {
+          as: "p"
+        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Icon"], {
+          name: "right triangle"
+        }), Object(_helpers_TokenFromWei__WEBPACK_IMPORTED_MODULE_5__["default"])(curr, 'symbol'));
+      });
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
+        size: "tiny",
+        open: open
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(FinalModal, null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Header, null, "You are about to place a bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Description, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Grid"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Grid"].Column, {
+        width: 10
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Header"], null, "Your bet:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["List"], {
+        className: "confirm-bet-modal-ul font-dark-orange",
+        as: "ul"
+      }, tokenList), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Header"], null, "Picked Team: ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "font-dark-orange"
+      }, pickedTeam.name)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Header"], null, "Odds: ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "font-dark-orange"
+      }, pickedTeam.odds))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Grid"].Column, {
+        verticalAlign: "middle",
+        width: 6
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Image"], {
+        className: "confirm-bet-modal-img",
+        floated: "right",
+        size: "small",
+        src: "/static/img/teams/".concat(pickedTeam.slug, ".png")
+      }))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+        color: "black",
+        onClick: function onClick(e) {
+          _redux_store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_4__["toggleModal"])('confirmBetModal'));
+        }
+      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+        loading: this.state.isLoading,
+        className: "dark-orange-bg font-white",
+        onClick: function onClick(e) {
+          return _this2.handleConfirm(tokensToBet, pickedTeam, account, matchID);
+        }
+      }, "Confirm")));
+    }
+  }]);
+
+  return ConfirmBetModal;
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+
+var FinalModal =
+/*#__PURE__*/
+function (_Component2) {
+  _inherits(FinalModal, _Component2);
+
+  function FinalModal() {
+    _classCallCheck(this, FinalModal);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(FinalModal).apply(this, arguments));
+  }
+
+  _createClass(FinalModal, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
+        size: "tiny"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Header, null, "Modal #2"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "That's everything!")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Actions, null));
+    }
+  }]);
+
+  return FinalModal;
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (ConfirmBetModal);
 
 /***/ }),
 
@@ -1270,10 +1564,14 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _TokenBoxItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TokenBoxItem */ "./components/match/TokenBoxItem.js");
+/* harmony import */ var _BalanceBoxToken__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BalanceBoxToken */ "./components/match/BalanceBoxToken.js");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1297,6 +1595,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 var TokenBox =
 /*#__PURE__*/
 function (_Component) {
@@ -1309,19 +1609,14 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TokenBox).call(this, props));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderItems", function (items) {
-      var toRender = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, items.map(function (item) {
-        if (item.position == 'token-box') {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TokenBoxItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            key: item.token,
-            item: {
-              token: item.token,
-              amount: item.amount,
-              initialAmount: item.initialAmount,
-              position: item.position
-            },
-            handleDrop: function handleDrop(item, pos) {
-              return _this.handleDrop(item, pos);
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderItems", function (tokens) {
+      var toRender = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tokens.map(function (token) {
+        if (token.position == 'balance-box') {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BalanceBoxToken__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            key: token.address,
+            token: _objectSpread({}, token),
+            handleDrop: function handleDrop(token, pos) {
+              return _this.handleDrop(token, pos);
             }
           });
         } else {
@@ -1333,21 +1628,20 @@ function (_Component) {
       return toRender;
     });
 
-    _this.handleDrop = _this.handleDrop.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
   _createClass(TokenBox, [{
     key: "handleDrop",
-    value: function handleDrop(item, pos) {
-      this.props.handleDrop(item, pos);
+    value: function handleDrop(token, pos) {
+      _redux_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_3__["changeTokenPosition"])(token, pos));
     }
   }, {
     key: "render",
     value: function render() {
       if (this.props.signedIn) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tokens-box"
-      }, this.renderItems(this.props.items));
+      }, this.renderItems(this.props.tokens));
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Message"], {
         warning: true,
         header: "Sign in with Metamask",
@@ -1360,97 +1654,6 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (TokenBox);
-
-/***/ }),
-
-/***/ "./components/match/TokenBoxItem.js":
-/*!******************************************!*\
-  !*** ./components/match/TokenBoxItem.js ***!
-  \******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Item */ "./components/Item.js");
-/* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dnd */ "react-dnd");
-/* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dnd__WEBPACK_IMPORTED_MODULE_2__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-var itemSource = {
-  beginDrag: function beginDrag(props) {
-    return props.item;
-  },
-  endDrag: function endDrag(props, monitor) {
-    if (!monitor.didDrop()) return;
-    return props.handleDrop(props.item, monitor.getDropResult().pos);
-  }
-};
-
-function collect(connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource(),
-    connectDragPreview: connect.dragPreview(),
-    isDragging: monitor.isDragging()
-  };
-}
-
-var TokenBoxItem =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(TokenBoxItem, _Component);
-
-  function TokenBoxItem(props) {
-    _classCallCheck(this, TokenBoxItem);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(TokenBoxItem).call(this, props));
-  }
-
-  _createClass(TokenBoxItem, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          isDragging = _this$props.isDragging,
-          connectDragSource = _this$props.connectDragSource;
-      var classNameModifier = '';
-
-      if (isDragging) {
-        classNameModifier = ' token-box-item-dragging';
-      }
-
-      return connectDragSource(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: 'token-box-item' + classNameModifier
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        item: this.props.item
-      })));
-    }
-  }]);
-
-  return TokenBoxItem;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_dnd__WEBPACK_IMPORTED_MODULE_2__["DragSource"])('item', itemSource, collect)(TokenBoxItem));
 
 /***/ }),
 
@@ -1591,17 +1794,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var EstimateBetValue = function EstimateBetValue(itemsToBet, prices) {
+var EstimateBetValue = function EstimateBetValue(tokensToBet, prices) {
   var dispatch = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-  var symbols = itemsToBet.map(function (curr) {
-    return _SupportedTokens__WEBPACK_IMPORTED_MODULE_2__["DictionarrySymbol"].get(curr.token);
+  var symbols = tokensToBet.map(function (curr) {
+    return _SupportedTokens__WEBPACK_IMPORTED_MODULE_2__["DictionarrySymbol"].get(curr.address);
   });
   var values = symbols.map(function (curr) {
     return prices.data[curr].USD;
   });
   var sum = values.reduce(function (sum, curr, index) {
-    console.log("".concat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(itemsToBet[index])), " * ").concat(curr, " = ").concat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(itemsToBet[index])).mul(curr)));
-    return sum + parseFloat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(itemsToBet[index])).mul(curr).toFixed(2));
+    console.log("".concat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(tokensToBet[index])), " * ").concat(curr, " = ").concat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(tokensToBet[index])).mul(curr)));
+    return sum + parseFloat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(tokensToBet[index])).mul(curr).toFixed(2));
   }, 0);
   if (sum === '00.00') sum = '0';
   if (dispatch) _redux_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_5__["updateEstimateBet"])(sum));
@@ -1784,27 +1987,27 @@ var getScientificNotation = function getScientificNotation(decimals) {
   return "10e+".concat(number);
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (function (item) {
+/* harmony default export */ __webpack_exports__["default"] = (function (token) {
   var label = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
   var optimize = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
   switch (label) {
     case '':
       {
-        if (optimize) return "".concat(Object(_OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__["default"])(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed()));
-        return "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed());
+        if (optimize) return "".concat(Object(_OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__["default"])(big_js__WEBPACK_IMPORTED_MODULE_2___default()(token.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(token.address))).toFixed()));
+        return "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(token.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(token.address))).toFixed());
       }
 
     case 'symbol':
       {
-        if (optimize) return "".concat(Object(_OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__["default"])(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed()), " ").concat(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarrySymbol"].get(item.token));
-        return "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed(), " ").concat(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarrySymbol"].get(item.token));
+        if (optimize) return "".concat(Object(_OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__["default"])(big_js__WEBPACK_IMPORTED_MODULE_2___default()(token.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(token.address))).toFixed()), " ").concat(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarrySymbol"].get(token.address));
+        return "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(token.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(token.address))).toFixed(), " ").concat(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarrySymbol"].get(token.address));
       }
 
     case 'full':
       {
-        if (optimize) return "".concat(Object(_OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__["default"])(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed()), " ").concat(dictionarryFull.get(item.token));
-        return "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(item.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(item.token))).toFixed(), " ").concat(dictionarryFull.get(item.token));
+        if (optimize) return "".concat(Object(_OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__["default"])(big_js__WEBPACK_IMPORTED_MODULE_2___default()(token.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(token.address))).toFixed()), " ").concat(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryFull"].get(token.address));
+        return "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(token.amount).div(getScientificNotation(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryDecimals"].get(token.address))).toFixed(), " ").concat(_SupportedTokens__WEBPACK_IMPORTED_MODULE_0__["DictionarryFull"].get(token.address));
       }
   }
 });
@@ -1842,6 +2045,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _components_ErrorModal__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/ErrorModal */ "./components/ErrorModal.js");
+/* harmony import */ var _components_match_ConfirmBetModal__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../components/match/ConfirmBetModal */ "./components/match/ConfirmBetModal.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1865,6 +2069,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1924,19 +2129,20 @@ function (_Component) {
     }()
   }, {
     key: "handleClick",
-    value: function handleClick() {
+    value: function handleClick(event, tokensToBet) {
+      event.preventDefault();
       var errorHead = "You forgot to do the following";
       var errors = [];
       if (!this.props.signedIn) errors.push('Please log in to place bets.');
-      if (this.props.items.toBet.length === 0) errors.push('Please place at least one token in order to place a bet.');
+      if (tokensToBet.length === 0) errors.push('Please place at least one token in order to place a bet.');
       if (lodash__WEBPACK_IMPORTED_MODULE_13___default.a.isEmpty(this.props.pickedTeam)) errors.push('Please pick a team.');
 
       if (errors.length > 0) {
-        _redux_store__WEBPACK_IMPORTED_MODULE_11__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_9__["toggleModal"])(errorHead, errors));
-        console.log(this.props);
+        _redux_store__WEBPACK_IMPORTED_MODULE_11__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_9__["toggleErrorModal"])(errorHead, errors));
         return;
-      } //handle correct PLACE BET
+      }
 
+      _redux_store__WEBPACK_IMPORTED_MODULE_11__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_9__["toggleModal"])('confirmBetModal'));
     }
   }, {
     key: "render",
@@ -1945,44 +2151,47 @@ function (_Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"], {
         relaxed: true
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_ErrorModal__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        modal: this.props.errorModal
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_match_ConfirmBetModal__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        open: this.props.confirmBetModal.isOpen,
+        tokensToBet: this.props.tokens.toBet,
+        pickedTeam: this.props.pickedTeam,
+        account: this.props.account,
+        matchID: this.props.initial.gameInfo.matchID
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
         width: 8
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_match_Teams__WEBPACK_IMPORTED_MODULE_12__["default"], {
-        teams: this.props.initial.teams,
+        teams: this.props.initial.gameInfo.teams,
         pickedTeam: this.props.pickedTeam,
         signedIn: this.props.signedIn
       }), "LAST BETS:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
         width: 8
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Place bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_match_BettingBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
         prices: this.props.prices,
-        items: this.props.items.toBet,
-        handleRange: this.props.handleRange,
-        handleDelete: this.props.changePosition
+        tokens: this.props.tokens.toBet
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "bet-container"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Button"], {
         onClick: function onClick(event) {
-          return _this.handleClick();
+          return _this.handleClick(event, _this.props.tokens.toBet);
         },
         className: "button-bet",
         size: "large",
         color: "black"
-      }, "Place bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_ErrorModal__WEBPACK_IMPORTED_MODULE_14__["default"], {
-        modal: this.props.errorModal
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"], {
+      }, "Place bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"], {
         relaxed: true,
         floated: "right",
         className: "info-bet"
       }, this.renderBetValue(this.props.betValue), this.renderEstimatedReward(this.props.betValue))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Balances"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_match_TokenBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
         signedIn: this.props.signedIn,
-        items: this.props.items.wallet,
-        handleDrop: this.props.changePosition
+        tokens: this.props.tokens.wallet
       })));
     }
   }, {
     key: "renderBetValue",
     value: function renderBetValue(betValue) {
-      if (this.props.items.toBet.length > 0) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Label"], {
+      if (this.props.tokens.toBet.length > 0) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Label"], {
         className: "orange-label",
         horizontal: true
       }, "ESTIMATED BET VALUE"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, " ".concat(betValue, "$")));
@@ -1991,7 +2200,7 @@ function (_Component) {
   }, {
     key: "renderEstimatedReward",
     value: function renderEstimatedReward(betValue) {
-      if (this.props.items.toBet.length > 0 && !lodash__WEBPACK_IMPORTED_MODULE_13___default.a.isEmpty(this.props.pickedTeam)) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Label"], {
+      if (this.props.tokens.toBet.length > 0 && !lodash__WEBPACK_IMPORTED_MODULE_13___default.a.isEmpty(this.props.pickedTeam)) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Label"], {
         className: "orange-label",
         horizontal: true
       }, "ESTIMATED RETURN"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, " ".concat((parseFloat(betValue) * this.props.pickedTeam.odds).toFixed(2), "$")));
@@ -2003,7 +2212,7 @@ function (_Component) {
       var _getInitialProps = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(props) {
-        var matchID, teams;
+        var matchID, teams, gameInfo;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -2021,11 +2230,15 @@ function (_Component) {
                   imgUrl: "../../img/teams/gambit.png",
                   odds: 2.77
                 }];
-                return _context2.abrupt("return", {
+                gameInfo = {
+                  matchID: matchID,
                   teams: teams
+                };
+                return _context2.abrupt("return", {
+                  gameInfo: gameInfo
                 });
 
-              case 3:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -2042,30 +2255,21 @@ function (_Component) {
   return Match;
 }(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    changePosition: function changePosition(item, pos) {
-      dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_9__["changeItemPosition"])(item, pos));
-    },
-    handleRange: function handleRange(item) {
-      dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_9__["changeItemAmount"])(item));
-    }
-  };
-};
-
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    items: state.items,
+    tokens: state.tokens,
     signedIn: state.signedIn,
     betValue: state.betValue,
     prices: state.prices,
     pickedTeam: state.pickedTeam,
-    errorModal: state.errorModal
+    errorModal: state.errorModal,
+    confirmBetModal: state.confirmBetModal,
+    account: state.account
   };
 };
 
 Match = Object(react_dnd__WEBPACK_IMPORTED_MODULE_4__["DragDropContext"])(react_dnd_html5_backend__WEBPACK_IMPORTED_MODULE_3___default.a)(Match);
-/* harmony default export */ __webpack_exports__["default"] = (Object(_components_Layout_Layout__WEBPACK_IMPORTED_MODULE_2__["default"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps, mapDispatchToProps)(Match)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_components_Layout_Layout__WEBPACK_IMPORTED_MODULE_2__["default"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps)(Match)));
 
 /***/ }),
 
@@ -2073,35 +2277,36 @@ Match = Object(react_dnd__WEBPACK_IMPORTED_MODULE_4__["DragDropContext"])(react_
 /*!**************************!*\
   !*** ./redux/actions.js ***!
   \**************************/
-/*! exports provided: addItem, changeItemPosition, changeItemAmount, updateEstimateBet, updatePrices, pickTeam, toggleModal */
+/*! exports provided: addToken, changeTokenPosition, changeTokenAmount, updateEstimateBet, updatePrices, pickTeam, toggleErrorModal, toggleModal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addItem", function() { return addItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeItemPosition", function() { return changeItemPosition; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeItemAmount", function() { return changeItemAmount; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToken", function() { return addToken; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeTokenPosition", function() { return changeTokenPosition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeTokenAmount", function() { return changeTokenAmount; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateEstimateBet", function() { return updateEstimateBet; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePrices", function() { return updatePrices; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pickTeam", function() { return pickTeam; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleErrorModal", function() { return toggleErrorModal; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleModal", function() { return toggleModal; });
-function addItem(item) {
+function addToken(token) {
   return {
-    type: 'ADD_ITEM',
-    item: item
+    type: 'ADD_TOKEN',
+    token: token
   };
 }
-function changeItemPosition(item, pos) {
+function changeTokenPosition(token, pos) {
   return {
     type: 'CHANGE_POS',
-    item: item,
+    token: token,
     pos: pos
   };
 }
-function changeItemAmount(item) {
+function changeTokenAmount(token) {
   return {
     type: 'CHANGE_AMOUNT',
-    item: item
+    token: token
   };
 }
 function updateEstimateBet(sum) {
@@ -2122,13 +2327,19 @@ function pickTeam(team) {
     team: team
   };
 }
-function toggleModal() {
+function toggleErrorModal() {
   var head = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   var reasons = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
   return {
-    type: 'TOGGLE_MODAL',
+    type: 'TOGGLE_ERROR_MODAL',
     head: head,
     reasons: reasons
+  };
+}
+function toggleModal(property) {
+  return {
+    type: 'TOGGLE_MODAL',
+    property: property
   };
 }
 
@@ -2153,7 +2364,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var initialState = {
-  items: {
+  tokens: {
     toBet: [],
     wallet: []
   },
@@ -2166,6 +2377,9 @@ var initialState = {
     isOpen: false,
     head: '',
     reasons: []
+  },
+  confirmBetModal: {
+    isOpen: false
   }
 };
 
@@ -2176,36 +2390,38 @@ var matchReducer = function matchReducer() {
   var newState = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.cloneDeep(state);
 
   switch (action.type) {
-    case 'ADD_ITEM':
+    case 'ADD_TOKEN':
       {
-        if (newState.items.wallet.some(function (curr) {
-          return curr.token == action.item.token;
+        if (newState.tokens.wallet.some(function (curr) {
+          return curr.address == action.token.address;
         })) return;
-        if (newState.items.toBet.some(function (curr) {
-          return curr.token == action.item.token;
+        if (newState.tokens.toBet.some(function (curr) {
+          return curr.address == action.token.address;
         })) return;
-        newState.items.wallet.push(action.item);
+        newState.tokens.wallet.push(action.token);
         break;
       }
 
     case 'CHANGE_POS':
       {
-        if (action.item.position === 'token-box') {
-          action.item.position = action.pos;
-          newState.items.toBet.push(action.item);
-          newState.items.wallet = newState.items.wallet.filter(function (curr) {
-            return curr.token != action.item.token;
+        console.log(action.token, state);
+
+        if (action.token.position === 'balance-box') {
+          action.token.position = action.pos;
+          newState.tokens.toBet.push(action.token);
+          newState.tokens.wallet = newState.tokens.wallet.filter(function (curr) {
+            return curr.address != action.token.address;
           });
         } else {
-          action.item.position = 'token-box';
-          action.item.amount = action.item.initialAmount;
-          newState.items.wallet.push(action.item);
-          newState.items.toBet = newState.items.toBet.filter(function (curr) {
-            return curr.token != action.item.token;
+          action.token.position = 'balance-box';
+          action.token.amount = action.token.initialAmount;
+          newState.tokens.wallet.push(action.token);
+          newState.tokens.toBet = newState.tokens.toBet.filter(function (curr) {
+            return curr.address != action.token.address;
           });
         }
 
-        newState.betValue = Object(_helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_1__["default"])(newState.items.toBet, newState.prices, false);
+        newState.betValue = Object(_helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_1__["default"])(newState.tokens.toBet, newState.prices, false);
         break;
       }
 
@@ -2245,6 +2461,12 @@ var matchReducer = function matchReducer() {
       }
 
     case 'TOGGLE_MODAL':
+      {
+        newState[action.property].isOpen = !newState[action.property].isOpen;
+        break;
+      }
+
+    case 'TOGGLE_ERROR_MODAL':
       {
         newState.errorModal.isOpen = !state.errorModal.isOpen;
         newState.errorModal.head = action.head;

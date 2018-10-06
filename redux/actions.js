@@ -1,22 +1,22 @@
-export function addItem(item) {
+export function addToken(token) {
     return {
-        type: 'ADD_ITEM',
-        item
+        type: 'ADD_TOKEN',
+        token
     }
 }
 
-export function changeItemPosition(item, pos) {
+export function changeTokenPosition(token, pos) {
     return {
         type: 'CHANGE_POS',
-        item,
+        token,
         pos
     }
 }
 
-export function changeItemAmount(item) {
+export function changeTokenAmount(token) {
     return {
         type: 'CHANGE_AMOUNT',
-        item
+        token
     }
 }
 
@@ -41,10 +41,17 @@ export function pickTeam(team) {
     }
 }
 
-export function toggleModal(head = '', reasons = []) {
+export function toggleErrorModal(head = '', reasons = []) {
     return {
-        type: 'TOGGLE_MODAL',
+        type: 'TOGGLE_ERROR_MODAL',
         head: head,
         reasons: reasons
+    }
+}
+
+export function toggleModal(property) {
+    return {
+        type: 'TOGGLE_MODAL',
+        property
     }
 }

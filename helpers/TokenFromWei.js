@@ -1,4 +1,4 @@
-import { DictionarrySymbol, DictionarryDecimals } from './SupportedTokens';
+import { DictionarrySymbol, DictionarryDecimals, DictionarryFull } from './SupportedTokens';
 import Optimize from './OptimizeTokenAmount';
 import Big from 'big.js';
 
@@ -8,27 +8,27 @@ const getScientificNotation = (decimals) => {
     return `10e+${number}`
 }
 
-export default (item, label = '', optimize = false) => {
+export default (token, label = '', optimize = false) => {
     switch (label) {
         case '': {
             if (optimize)
-            return `${Optimize(Big(item.amount).div(getScientificNotation(DictionarryDecimals.get(item.token))).toFixed())}`;
+            return `${Optimize(Big(token.amount).div(getScientificNotation(DictionarryDecimals.get(token.address))).toFixed())}`;
             
-            return `${Big(item.amount).div(getScientificNotation(DictionarryDecimals.get(item.token))).toFixed()}`;
+            return `${Big(token.amount).div(getScientificNotation(DictionarryDecimals.get(token.address))).toFixed()}`;
         }
 
         case 'symbol': {
             if (optimize)
-            return `${Optimize(Big(item.amount).div(getScientificNotation(DictionarryDecimals.get(item.token))).toFixed())} ${DictionarrySymbol.get(item.token)}`;
+            return `${Optimize(Big(token.amount).div(getScientificNotation(DictionarryDecimals.get(token.address))).toFixed())} ${DictionarrySymbol.get(token.address)}`;
 
-            return `${Big(item.amount).div(getScientificNotation(DictionarryDecimals.get(item.token))).toFixed()} ${DictionarrySymbol.get(item.token)}`;
+            return `${Big(token.amount).div(getScientificNotation(DictionarryDecimals.get(token.address))).toFixed()} ${DictionarrySymbol.get(token.address)}`;
         }
 
         case 'full': {
             if (optimize)
-            return `${Optimize(Big(item.amount).div(getScientificNotation(DictionarryDecimals.get(item.token))).toFixed())} ${dictionarryFull.get(item.token)}`;
+            return `${Optimize(Big(token.amount).div(getScientificNotation(DictionarryDecimals.get(token.address))).toFixed())} ${DictionarryFull.get(token.address)}`;
 
-            return `${Big(item.amount).div(getScientificNotation(DictionarryDecimals.get(item.token))).toFixed()} ${dictionarryFull.get(item.token)}`;
+            return `${Big(token.amount).div(getScientificNotation(DictionarryDecimals.get(token.address))).toFixed()} ${DictionarryFull.get(token.address)}`;
         }
     }
 

@@ -7,10 +7,11 @@ import EthLounge from '../../ethereum/EthLounge';
 import store from '../../redux/store';
 import { Sleep } from '../../helpers/Sleep';
 import ShortEthAddress from '../../helpers/ShortEthAddress';
+import { addToken } from '../../redux/actions';
 
-class Item {
-    constructor(token, amount, position) {
-        this.token = token;
+class Token {
+    constructor(address, amount, position) {
+        this.address = address;
         this.amount = amount;
         this.initialAmount = amount;
         this.position = position;
@@ -22,7 +23,7 @@ class MenuExampleSizeLarge extends Component {
    constructor(props) {
         super(props);
         this.handleLogin = this.handleLogin.bind(this);
-        this.state = {loading: false, account: '', signedIn: false, items: {}, popupOpen: false, readyToGenerateRightMenu: false}; 
+        this.state = {loading: false, account: '', signedIn: false, popupOpen: false, readyToGenerateRightMenu: false}; 
    }
 
    async componentDidMount() {
@@ -33,7 +34,7 @@ class MenuExampleSizeLarge extends Component {
         if (account && openSessionAccounts.length > 0) {
             store.dispatch({ type: 'LOG_IN', account: account });
             this.setState({signedIn: true, account: account})
-            this.getItems(account);
+            this.getTokens(account);
         }
         else
         store.dispatch({ type: 'LOG_OUT' }); 
@@ -68,7 +69,7 @@ class MenuExampleSizeLarge extends Component {
                     </Grid.Row>
                 </Grid>); 
        } 
-        return (<Button className='menu-right-item-button' loading={this.state.loading} onClick={e => this.handleLogin(e)} color='black'>Sign in</Button>);       
+        return (<Button loading={this.state.loading} onClick={e => this.handleLogin(e)} color='black'>Sign in</Button>);       
         }
        
       return <Button loading={true} className="dark-orange-bg" />;
@@ -84,7 +85,7 @@ class MenuExampleSizeLarge extends Component {
 
     if (typeof account !== 'undefined') {
         this.setState({account: account});
-        this.getItems(account);
+        this.getTokens(account);
         this.setState({signedIn: true});
         store.dispatch({ type: 'LOG_IN', account: account });
         window.localStorage.setItem('eth-account', account);
@@ -130,11 +131,11 @@ class MenuExampleSizeLarge extends Component {
             <Icon name='question circle outline' />   
             FAQ
         </Menu.Item>
-        <Menu.Item position='right' className='menu-right-item'>
+        <Menu.Item position='right'>
             {this.generateRightMenu(this.state.signedIn, this.state.readyToGenerateRightMenu)}     
         </Menu.Item>
 
-        <Modal open={this.state.popupOpen} size='small'>
+        <Modal open={this.state.popupOpen} size='tiny'>
                 <Modal.Header>You need Metamask to sign in</Modal.Header>
                 <Modal.Content image>
                     <Image wrapped size='medium' src='/static/img/metamask.png' />
@@ -157,15 +158,15 @@ class MenuExampleSizeLarge extends Component {
   }
 
 
-  async getItems(account) {
+  async getTokens(account) {
     const result = await EthLounge.methods.getBalances().call({from: account});
-    const tokens = result[0];
-    const amounts = result[1];
+    const tokenAddresses = result[0];
+    const tokenAmounts = result[1];
 
-    for (let i = 0; i < amounts.length; i++) {
-        if (amounts[i] !== '0') {
-            const newItem = new Item(tokens[i], amounts[i], 'token-box');
-            store.dispatch({ type: 'ADD_ITEM', item: newItem });
+    for (let i = 0; i < tokenAmounts.length; i++) {
+        if (tokenAmounts[i] !== '0') {
+            const newToken = new Token(tokenAddresses[i], tokenAmounts[i], 'balance-box');
+            store.dispatch(addToken(newToken));
         }
     }
   }
@@ -174,4 +175,4 @@ class MenuExampleSizeLarge extends Component {
 
 
 
-export default connect()(MenuExampleSizeLarge);
+export default MenuExampleSizeLarge;

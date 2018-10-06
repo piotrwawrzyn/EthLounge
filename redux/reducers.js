@@ -1,34 +1,35 @@
 import _ from 'lodash';
 import EstimateBetValue from '../helpers/EstimateBetValue';
 
-const initialState = {items: {toBet: [], wallet: []}, account: '', signedIn: false, prices: {}, betValue: 0, pickedTeam: {}, errorModal: {isOpen: false, head: '', reasons: [] }};
+const initialState = {tokens: {toBet: [], wallet: []}, account: '', signedIn: false, prices: {}, betValue: 0, pickedTeam: {}, errorModal: {isOpen: false, head: '', reasons: [] }, confirmBetModal: {isOpen: false}};
 
 const matchReducer = (state = initialState, action) => {
     let newState = _.cloneDeep(state);
 
     switch(action.type) {               
-        case 'ADD_ITEM': {
-            if(newState.items.wallet.some((curr) => curr.token == action.item.token)) return;
-            if(newState.items.toBet.some((curr) => curr.token == action.item.token)) return;
+        case 'ADD_TOKEN': {
+            if (newState.tokens.wallet.some( (curr) => curr.address == action.token.address) ) return;
+            if (newState.tokens.toBet.some( (curr) => curr.address == action.token.address) ) return;
            
-            newState.items.wallet.push(action.item);
+            newState.tokens.wallet.push(action.token);
             
             break;
         }  
 
-        case 'CHANGE_POS': {          
-            if (action.item.position === 'token-box') {
-                action.item.position = action.pos;
-                newState.items.toBet.push(action.item);
-                newState.items.wallet = newState.items.wallet.filter((curr) => curr.token != action.item.token);
+        case 'CHANGE_POS': {
+            console.log(action.token, state)          
+            if (action.token.position === 'balance-box') {
+                action.token.position = action.pos;
+                newState.tokens.toBet.push(action.token);
+                newState.tokens.wallet = newState.tokens.wallet.filter((curr) => curr.address != action.token.address);
             } else {
-                action.item.position = 'token-box';
-                action.item.amount = action.item.initialAmount;
-                newState.items.wallet.push(action.item);
-                newState.items.toBet = newState.items.toBet.filter((curr) => curr.token != action.item.token);           
+                action.token.position = 'balance-box';
+                action.token.amount = action.token.initialAmount;
+                newState.tokens.wallet.push(action.token);
+                newState.tokens.toBet = newState.tokens.toBet.filter((curr) => curr.address != action.token.address);           
             }
 
-            newState.betValue = EstimateBetValue(newState.items.toBet, newState.prices, false);
+            newState.betValue = EstimateBetValue(newState.tokens.toBet, newState.prices, false);
 
             break;
         }
@@ -64,11 +65,18 @@ const matchReducer = (state = initialState, action) => {
         }
 
         case 'TOGGLE_MODAL': {
+            newState[action.property].isOpen = !newState[action.property].isOpen;
+            break;
+        }
+
+        case 'TOGGLE_ERROR_MODAL': {
             newState.errorModal.isOpen = !state.errorModal.isOpen;
             newState.errorModal.head = action.head;
             newState.errorModal.reasons = action.reasons;
             break;
         }
+
+
 
     }
     

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Slider from 'react-rangeslider';
 import Big from 'big.js';
 import EstimateBetValue from '../helpers/EstimateBetValue';
+import { changeTokenAmount } from '../redux/actions';
+import store from '../redux/store';
 
 class RangeSlider extends Component {
 
@@ -13,11 +15,12 @@ class RangeSlider extends Component {
     }
 
     handleRange = (val) => {
+        const { token } = this.props;
         this.setState({value: val})
         const change = val/1000;
-        const newAmount = `${Big(this.props.item.initialAmount).mul(change).toFixed(0)}`;
-        this.props.item.amount = newAmount;
-        this.props.handleRange(this.props.item);
+        const newAmount = `${Big(token.initialAmount).mul(change).toFixed(0)}`;
+        token.amount = newAmount;
+        store.dispatch(changeTokenAmount(token));
     }
 
     render() {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
-import BettingBoxItem from './BettingBoxItem';
-import RangeSlider from '../RangeSlider'
+import BettingBoxToken from './BettingBoxToken';
+import RangeSlider from '../RangeSlider';
+
 
 class BettingBox extends Component {
 
@@ -9,27 +10,27 @@ class BettingBox extends Component {
         super(props);
     }
 
-    renderItems(items) {    
+    renderTokens(tokens) { 
         let bettingBoxes = [];
         const numberOfBoxes = 4;
         
 
         for (let i = 0; i < numberOfBoxes; i++) {
             let pos = `betting-box-${i}`;       
-            let itemProp;
+            let tokenProp;
             let rangeSlider = '';
 
-            for (let item of items) {
-                if (item.position === pos) {
-                    itemProp = item;
-                    rangeSlider = <RangeSlider prices={this.props.prices} item={item} toBet={items} handleRange={this.props.handleRange}></RangeSlider>
+            for (let token of tokens) {
+                if (token.position === pos) {
+                    tokenProp = token;
+                    rangeSlider = <RangeSlider prices={this.props.prices} token={token} toBet={tokens}></RangeSlider>
                 }
             }
             
             bettingBoxes.push(
                     <Grid.Row key={pos}>
                         <Grid.Column width={7}>
-                            <BettingBoxItem pos={pos} droppedItem={itemProp} handleDelete={this.props.handleDelete}/>                           
+                            <BettingBoxToken pos={pos} droppedToken={tokenProp} />                        
                         </Grid.Column>
                         <Grid.Column width={9} verticalAlign="middle">
                             {rangeSlider}
@@ -45,7 +46,7 @@ class BettingBox extends Component {
         return (
             <div className="betting-box">
                 <Grid columns='equal'>
-                    {this.renderItems(this.props.items)}
+                    {this.renderTokens(this.props.tokens)}
                 </Grid>
             </div>
         );
