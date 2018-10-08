@@ -1,43 +1,54 @@
 import React, { Component } from 'react';
 import store from '../../redux/store';
-import { Modal, Grid, Image, Button, List, Icon, Header } from 'semantic-ui-react'
+import { Modal, Grid, Image, Button, List, Icon, Header, Label } from 'semantic-ui-react'
 import { toggleModal } from '../../redux/actions';
 import TokenFromWei from '../../helpers/TokenFromWei';
 import EthLounge from '../../ethereum/EthLounge';
+import { Router } from '../../routes';
 
 class ConfirmBetModal extends Component {
 
     constructor(props) {
         super(props);
         this.handleConfirm = this.handleConfirm.bind(this);
-        this.state = {isLoading: false, isFinalModalOpen: false};
+        this.closeFinalModal = this.closeFinalModal.bind(this);
+        this.state = {isLoading: false,  isCancelDisabled: false, isFinalModalSuccessOpen: false, isFinalModalSuccessOpen: false,isFinalModalErrorOpen: false, errorMessage: '', transactionInfo: {}, waitingText: '' };
+    }
+
+    closeFinalModal() {
+        this.setState({isFinalModalErrorOpen: false, isFinalModalSuccessOpen: false});
+        store.dispatch(toggleModal('confirmBetModal'));
     }
 
     async handleConfirm(tokensToBet, pickedTeam, account, matchID) {
-        this.setState({isLoading: true});
+        console.log(this.state);
+        this.setState({isLoading: true, isCancelDisabled: true, waitingText: <Label>Please confirm the transaction on Metamask and wait a few seconds.</Label>});
         const tokens = tokensToBet.map((curr) => curr.address);
         const amounts = tokensToBet.map((curr) => curr.amount);
 
         try {
-            await EthLounge.methods.placeBet(matchID, pickedTeam.slug, tokens, amounts).send({from: account});
+            const transactionInfo = await EthLounge.methods.placeBet(matchID, pickedTeam.slug, tokens, amounts).send({from: account});
+            if (transactionInfo.status) {
+                this.setState({isFinalModalSuccessOpen: true, transactionInfo: transactionInfo});
+            }            
         } catch (err) {
-
+            console.log(err);
+            this.setState({isFinalModalErrorOpen: true, errorMessage: err.message.replace('Returned error: ', '')});
         }
-        
-        this.setState({isLoading: false});
-        
+        this.setState({isLoading: false, isCancelDisabled: false, waitingText: ''});        
     }
 
     render() {
         let { open, tokensToBet, pickedTeam, account, matchID } = this.props;
 
         const tokenList = tokensToBet.map((curr) => {
-            return <List.Item as='p'><Icon name='right triangle' />{TokenFromWei(curr, 'symbol')}</List.Item>
+            return <List.Item as='p' key={curr.address}><Icon name='right triangle' />{TokenFromWei(curr, 'symbol')}</List.Item>
         });
 
         return (
                 <Modal size='tiny' open={open}>
-                <FinalModal />
+                <FinalModalSuccess open={this.state.isFinalModalSuccessOpen} transactionInfo={this.state.transactionInfo} matchID={matchID} close={this.closeFinalModal}/>
+                <FinalModalError open={this.state.isFinalModalErrorOpen} errorMessage={this.state.errorMessage} close={this.closeFinalModal}/>
                     <Modal.Header>You are about to place a bet</Modal.Header>
                     <Modal.Content>
                         
@@ -47,7 +58,8 @@ class ConfirmBetModal extends Component {
                                     <Header>Your bet:</Header>
                                     <List className="confirm-bet-modal-ul font-dark-orange" as='ul'>{tokenList}</List>
                                     <Header>Picked Team: <span className="font-dark-orange">{pickedTeam.name}</span></Header>
-                                    <Header>Odds: <span className="font-dark-orange">{pickedTeam.odds}</span></Header>                        
+                                    <Header>Odds: <span className="font-dark-orange">{pickedTeam.odds}</span></Header>
+                                    {this.state.waitingText}                 
                                 </Grid.Column>
                                 <Grid.Column verticalAlign="middle" width={6}><Image className="confirm-bet-modal-img" floated="right" size='small' src={`/static/img/teams/${pickedTeam.slug}.png`} />
                                 </Grid.Column> 
@@ -55,8 +67,8 @@ class ConfirmBetModal extends Component {
                                                                     
                         </Modal.Description>
                     </Modal.Content>
-                    <Modal.Actions>                    
-                        <Button color="black" onClick={(e) => {store.dispatch(toggleModal('confirmBetModal'))}}>
+                    <Modal.Actions>                   
+                        <Button disabled={this.state.isCancelDisabled} color="black" onClick={e => store.dispatch(toggleModal('confirmBetModal'))}>
                             Cancel
                         </Button>
                         <Button loading={this.state.isLoading} className="dark-orange-bg font-white" onClick={e => this.handleConfirm(tokensToBet, pickedTeam, account, matchID)}>
@@ -69,21 +81,53 @@ class ConfirmBetModal extends Component {
     }
 }
 
-class FinalModal extends Component {
+class FinalModalSuccess extends Component {
+
+   
   
-    render() { 
+    render() {  
+    const {open, close, transactionInfo, matchID} = this.props;
+
+    const hash = transactionInfo.transactionHash;
+
       return (
-        <Modal  size='tiny'>
-          <Modal.Header>Modal #2</Modal.Header>
-          <Modal.Content>
-            <p>That's everything!</p>
+        <Modal open={open} size='tiny'>
+          <Modal.Header>Bet placed successfuly</Modal.Header>
+          <Modal.Content className="word-wrap">
+            <p>Transaction hash: <a href={`https://etherscan.io/tx/${hash}`}>{hash}</a>
+            </p>
           </Modal.Content>
           <Modal.Actions>
-            
+          <Button className="dark-orange-bg font-white" onClick={e => {
+            close();  
+            Router.push(`/matches/${matchID}`);
+          }}>
+                Go back
+          </Button>                 
           </Modal.Actions>
         </Modal>
       )
     }
   }
+
+  class FinalModalError extends Component {
+
+    render() { 
+      return (
+        <Modal open={this.props.open} size='mini'>
+          <Modal.Header className="font-error">Placing bet failed</Modal.Header>
+          <Modal.Content className="font-error word-wrap">
+            <p>{this.props.errorMessage}</p>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button className="dark-orange-bg font-white" onClick={e => this.props.close()}>
+                Go back
+            </Button>            
+          </Modal.Actions>
+        </Modal>
+      )
+    }
+  }
+
 
 export default ConfirmBetModal;

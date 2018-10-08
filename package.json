@@ -30,8 +30,9 @@
     "mocha": "^5.2.0"
   },
   "scripts": {
-    "test": "mocha",
-    "dev": "node server.js"
+    "test": "mocha --timeout 3000000",
+    "dev": "node server.js",
+    "ganache": "ganache-cli --accounts 1000"
   },
   "repository": {
     "type": "git",

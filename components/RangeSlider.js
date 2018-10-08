@@ -18,7 +18,8 @@ class RangeSlider extends Component {
         const { token } = this.props;
         this.setState({value: val})
         const change = val/1000;
-        const newAmount = `${Big(token.initialAmount).mul(change).toFixed(0)}`;
+        let newAmount = `${Big(token.initialAmount).mul(change).toFixed(0)}`;
+        newAmount = newAmount < 1 ? 1 : newAmount;
         token.amount = newAmount;
         store.dispatch(changeTokenAmount(token));
     }

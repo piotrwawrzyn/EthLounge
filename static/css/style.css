@@ -31,6 +31,18 @@
     color: var(--error) !important;
 }
 
+.word-wrap {
+    word-wrap: break-word;
+}
+
+.float-left {
+    float: left;
+}
+
+.font-size-xsmall {
+    font-size: x-small;
+}
+
 /* Item */
 
 .token-label {
@@ -186,7 +198,7 @@
 /* Confirm Bet Modal */
 
 .confirm-bet-modal-img {
-    opacity: 0.12;
+    opacity: 0.2;
 }
 
 .confirm-bet-modal-ul {
