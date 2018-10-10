@@ -3,8 +3,7 @@ import web3 from './web3';
 
 const instance = new web3.eth.Contract(
     JSON.parse(EthLounge.interface),
-    '0x05dF1f9e06C2818b0f9DD3384d61EbbD4b1Cab09');
+    '0x091116F767cfA2d9D7490883A8f7E5baf1318e3b');
 
-//Last v: 0x38c06BE80F47e7d85A6306CF4cc1E3f6fde3B80a
 
 export default instance;

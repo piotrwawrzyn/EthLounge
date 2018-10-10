@@ -1,4 +1,3 @@
-//solium-disable linebreak-style
 pragma solidity ^0.4.17;
 
 
@@ -15,10 +14,10 @@ contract EthLounge {
    mapping(address => mapping(address => uint)) public balances;
    mapping(address => bool) public isSupportedToken;
    address[] public supportedTokens;
-   address public eth;
+   uint public drawLimit;
   
    mapping(string => Game) activeGames;
-   mapping(string => PostGameData) postGameData;
+
    
 
    
@@ -27,24 +26,26 @@ contract EthLounge {
        string gameID;
        string[2] teams;
        string winningTeam;
+       string losingTeam;
+       
+       mapping(string => uint) totalWeiBet;
+       uint betsCleared;
+       
        mapping(string => Bet[]) bets;
-       bool isLocked;
-       bool isFinalized;
-       mapping(string => mapping(address => uint)) amountsBet;
-       mapping(string => address[]) tokensBet;
+       mapping(string => Token[]) tokens;
+       mapping(address => uint) multipliers;
+       
        mapping(string => mapping(address => bool)) wasSuchTokenBet;
        
-       uint[] multipliers;
-       
+       bool isLocked;
+       bool isFinalized;
    }
    
-    struct PostGameData {
-       address[] tokensToSplit;
-       uint[] values;
-       uint[] multipliers;
-       uint totalWeiBetWinningTeam;
-       uint totalWeiBetLosingTeam;
-   }  
+   struct Token {
+       address addr;
+       uint amount;
+       uint multiplier;
+   }
    
    struct Bet {
        address betMaker;
@@ -85,18 +86,18 @@ contract EthLounge {
    constructor() public {
        admins[msg.sender] = true;
        houseEdgeWallet = 0xA620ADa38bD1233CeBDa8127E3D9cdaDbfBd8de7;
-       eth = 0x0000000000000000000000000000000000000000;
+       drawLimit = 100;
        
        addSupportedToken(0x0000000000000000000000000000000000000000);
        addSupportedToken(0x7f0C267ef144D319CcF1d724c222a59A50CD7B43);
    }
    
    function() public payable {
-       balances[eth][msg.sender] += msg.value;
+       balances[address(0)][msg.sender] += msg.value;
    }
    
    function depositEther() public payable {
-       balances[eth][msg.sender] += msg.value;
+       balances[address(0)][msg.sender] += msg.value;
    }
    
    function depositToken(address token, uint amount) public payable {
@@ -108,11 +109,10 @@ contract EthLounge {
    
    function withdraw(address[] tokens, uint[] amounts) public enoughBalances(tokens, amounts) {
        
-       
        for (uint i = 0; i < tokens.length; i++) {
-           if (tokens[i] == eth) {
+           if (tokens[i] == address(0)) {
                msg.sender.transfer(amounts[i]);
-               balances[eth][msg.sender] -= amounts[i];
+               balances[address(0)][msg.sender] -= amounts[i];
            }
            else {
                ERC20(tokens[i]).transfer(msg.sender, amounts[i]);
@@ -127,39 +127,30 @@ contract EthLounge {
        
        Game storage game = activeGames[gameID];
        
-       
        for (uint i = 0; i < tokens.length; i++) {
-           balances[tokens[i]][msg.sender] -= amounts[i];
-           game.amountsBet[teamID][tokens[i]] += amounts[i];
            
-           if(!game.wasSuchTokenBet[teamID][tokens[i]]) {
+           balances[tokens[i]][msg.sender] -= amounts[i];
+           
+           if (!game.wasSuchTokenBet[teamID][tokens[i]]) {
+               game.tokens[teamID].push(Token({addr: tokens[i], amount: amounts[i], multiplier: 1}));
                game.wasSuchTokenBet[teamID][tokens[i]] = true;
-               game.tokensBet[teamID].push(tokens[i]);
+           } else {
+               Token[] memory copyOfTokens = game.tokens[teamID];
+               for (uint j = 0; j < copyOfTokens.length; j++) {
+                    if (copyOfTokens[j].addr == tokens[i]) {game.tokens[teamID][j].amount += amounts[i]; break;}
+               }  
            }
            
        }
        
-       Bet memory newBet = Bet({
+       activeGames[gameID].bets[teamID].push(Bet({
            betMaker: msg.sender,
            tokensDeposited: tokens,
            amounts: amounts
-       });
-       
-       
-       activeGames[gameID].bets[teamID].push(newBet);
+       }));
        
    }
    
-    function getGameInfo(string gameID) public view returns (string teamID_1, string teamID_2, uint totalBets_1, uint totalBets_2) {
-       Game storage game = activeGames[gameID];
-       
-       return (
-           game.teams[0],
-           game.teams[1],
-           game.bets[game.teams[0]].length,
-           game.bets[game.teams[1]].length
-           );
-   }
    
    function getBalances() public view returns (address[] , uint[]) {
        uint[] memory values = new uint[](supportedTokens.length);
@@ -172,219 +163,173 @@ contract EthLounge {
    
    // Contract only (private)
    
-   function getTokenValues(string gameID, string losingTeam, address[] memory tokens) public view returns(uint[]) {
-       uint[] memory values = new uint[](tokens.length);
-       Game storage game = activeGames[gameID];
-       
-       for (uint i = 0; i < tokens.length; i++) {
-           values[i] = game.amountsBet[losingTeam][tokens[i]];
-       }
-       
-       return values;
-   }
-   
-   function cutHouseEdge(address[] tokens, uint[] values) private returns(uint[]) {
-       for (uint i = 0; i < values.length; i++) {
-           if (values[i] > 0) {
-               uint houseEdge = values[i] / 50;
-               values[i] = values[i] -= houseEdge;
-               balances[tokens[i]][houseEdgeWallet] += houseEdge;
-           }
-       }
-       
-       return values;
-   }
-   
-   function minifyMultipliers(string gameID, string losingTeam, address[] memory  allTokens, uint numberOfTokensBet) private view returns(uint[]) {
-       Game storage game = activeGames[gameID];
-       
-       uint[] memory minifiedMultipliers = new uint[](numberOfTokensBet);
-       uint counter = 0;
-       
-       for (uint i = 0; i < allTokens.length; i++) {
-           if (game.wasSuchTokenBet[losingTeam][allTokens[i]]) {
-               minifiedMultipliers[counter] = game.multipliers[i];
-               counter++;
-           }
-       }
-       
-       return minifiedMultipliers;
-   }
-   
-   function returnBetTokens(Bet bet) private {
+   function returnDeposit(Bet bet) private {
         for (uint i = 0; i < bet.tokensDeposited.length; i++) {
                balances[bet.tokensDeposited[i]][bet.betMaker] += bet.amounts[i];
            }
    }
    
-   function calculateTotalWei(address[] memory tokens, uint[] memory values, uint[] memory multipliers) private returns (uint) {
-       uint totalWeiBet = 0;
-       
-       for (uint i = 0; i < tokens.length; i++) {
-           totalWeiBet += values[i] * multipliers[i] / 10**18;
-       }
-       
-       return totalWeiBet;
-   }
-   
-   function getTotalWeiWinningTeam(string gameID, string winningTeam) private view returns (uint) {
+   function calculateWeiDue(Bet bet, string gameID) private view returns(uint) {
        Game storage game = activeGames[gameID];
+       uint result = 0;
        
-       address[] memory tokens = game.tokensBet[winningTeam];
-       uint[] memory values = getTokenValues(gameID, winningTeam, tokens);
-       uint[] memory multipliers = minifyMultipliers(gameID, winningTeam, supportedTokens, values.length);
-       
-       
-       return calculateTotalWei(tokens, values, multipliers);
-   }
-   
-       function getWinningBetsArray(string gameID) public view returns (uint){
-           return activeGames[gameID].bets[activeGames[gameID].winningTeam].length;
+       for (uint i = 0; i < bet.tokensDeposited.length; i++) {
+           result += (bet.amounts[i] * game.multipliers[bet.tokensDeposited[i]]) / 10**18;
        }
+       
+       return result;
+   } 
    
      function draw(string gameID) public restricted {
         require(activeGames[gameID].isFinalized);
-         
         Game storage game = activeGames[gameID];
-         
-        Bet[] storage winningBets = activeGames[gameID].bets[game.winningTeam];
+        Token[] memory tokens = game.tokens[game.losingTeam];
+        Bet[] memory bets = game.bets[game.winningTeam];
         
-        PostGameData storage pgd = postGameData[gameID];
-      
-        uint limitPerCall = 50;
-        uint counter = 0;
-        if (winningBets.length < limitPerCall) limitPerCall = winningBets.length;
-          
-            while (counter < limitPerCall) {
-                counter++;
-                returnBetTokens(winningBets[0]);
-                uint weiDue = calculateTotalWei(winningBets[0].tokensDeposited, winningBets[0].amounts, pgd.multipliers) * pgd.totalWeiBetLosingTeam / pgd.totalWeiBetWinningTeam;
-
-                pgd.values = reward(weiDue, winningBets[0], pgd.tokensToSplit, pgd.values, pgd.multipliers); 
-                
-                winningBets[0] = winningBets[winningBets.length-1];
-                delete winningBets[winningBets.length-1];
-                winningBets.length--;
-            } 
-       
-       if (winningBets.length == 0) {
-           delete activeGames[gameID];
-           delete postGameData[gameID];
-       }
+        uint limit = drawLimit;
+        uint start = activeGames[gameID].betsCleared;
+        
+        if (bets.length - start > limit) {
+            limit = start + limit;
+        } else {
+            limit = bets.length;
+        }
+        
+        for (uint i = start; i < limit; i++) {
+            returnDeposit(bets[i]);
+            tokens = assignWinnings(tokens, bets[i], calculateWeiDue(bets[i], gameID));
+        }
+        
+        if (start + limit == bets.length) {
+          delete activeGames[gameID];  
+        } else {
+            activeGames[gameID].betsCleared += (limit - start);
+        }
+        
+        //assuming everyone got his winning already
+        
+        
+        
    }
-
-   function reward(uint weiDue, Bet memory winningBet, address[] storage tokens, uint[] storage values, uint[] storage multipliers) private returns(uint[]) {
-       
-       uint initialWeiDue = weiDue;
+   
+   function assignWinnings(Token[] tokens, Bet bet, uint initialWeiDue) private returns (Token[]) {
+       uint weiDue = initialWeiDue;
        uint nonce = 0;
-
-       while ( weiDue > 0 ) {
-            uint randomIndex = uint(keccak256(now, nonce++, winningBet.betMaker));
-
-            randomIndex = randomIndex % tokens.length;
+      
+        while ( weiDue > 0 ) {
+            uint amountTokenToGive;
+            uint amountWeiToGive;
             
-            if (values[randomIndex] > 0) {
-                uint weiWorth = (values[randomIndex] * multipliers[randomIndex]) / 10**18;
-                uint percentInitialWeiDue = (weiDue * 10**18) / initialWeiDue;
+            if (tokens.length != 1) {
+                bool empty = false;
+                uint index = uint(keccak256(nonce++, bet.betMaker, block.timestamp)) % tokens.length;
                 
-                uint amountTokenToGive;
-                uint amountWeiToGive;
                 
-                if (weiWorth <= weiDue) {
-                    // Give all tokens to the account
-                    amountTokenToGive = values[randomIndex];
-                    amountWeiToGive = weiWorth;
-                } 
-                else if ( percentInitialWeiDue <= 50 * 10**16 ) {
-                    // Complete the reward with these tokens
-                    amountWeiToGive = weiDue;
-                    amountTokenToGive = (weiDue * multipliers[randomIndex]) / 10**18;
-                } else {
-                    // Supply 20-60% of reward
-                    uint randomPercent = uint(keccak256(now, nonce++, winningBet.betMaker)) % 40;
-                    randomPercent = (randomPercent + 20) * 10**16;
-                    amountWeiToGive = (weiDue * randomPercent) / 10**18;
-                    amountTokenToGive = (amountWeiToGive * multipliers[randomIndex]) / 10**18;
-
-                }
-                
-                weiDue -= amountWeiToGive;
-                balances[tokens[randomIndex]][winningBet.betMaker] += amountTokenToGive;
-                values[randomIndex] -= amountTokenToGive;
-            }
+                    uint weiWorth = (tokens[index].amount * tokens[index].multiplier) / 10**18;
+                    
+                    // percent of initial weiDue
+                    uint percent = (weiDue * 10**22) / initialWeiDue;
+                    
+                    if (percent <= 50 * 10**20) {
+                        // Complete the reward with these tokens
+                        amountWeiToGive = weiDue;
+                        amountTokenToGive = (weiDue * tokens[index].multiplier) / 10**18; 
+                    } else if (weiWorth <= weiDue) {
+                        amountTokenToGive = tokens[index].amount;
+                        amountWeiToGive = weiWorth;
+                        empty = true;                    
+                    } else {
+                        percent = uint(keccak256(nonce, bet.betMaker, block.timestamp)) % 71;
+                        
+                        if (percent > 60) percent = 10**22; 
+                        else percent = (percent + 20) * 10**20;
+                  
+                        amountWeiToGive = (weiDue * percent) / 10**22;
+                        amountTokenToGive = (amountWeiToGive * tokens[index].multiplier) / 10**22;  
+                    }
+                    
+            } else {
+                index = 0;
+                amountWeiToGive = weiDue;
+                amountTokenToGive = (weiDue * tokens[index].multiplier) / 10**18; 
+           } 
+           
+            weiDue -= amountWeiToGive;
+            balances[tokens[index].addr][bet.betMaker] += amountTokenToGive;
+            tokens[index].amount -= amountTokenToGive;
+            if (empty) tokens = reduceTokens(tokens, index);
+             
+            
             
         }
         
-        return values;
+        return tokens;
    }
    
+   function reduceTokens(Token[] tokens, uint index) private pure returns(Token[]) {
+       Token[] memory reducedTokens = new Token[](tokens.length-1);
+       
+       for (uint i = 0; i < tokens.length-1; i++) {
+           if (i != index) reducedTokens[i] = tokens[i];
+       }
+       
+       return reducedTokens;
+   }
+
    
    // Admin only
    
    function createNewGame(string gameID, string teamID_1, string teamID_2) public restricted {
        
        Game memory newGame = Game({
-           gameID: gameID,
-           winningTeam: '',
+           gameID: gameID,           
            teams: [teamID_1, teamID_2],
+           winningTeam: '',
+           losingTeam: '',
+           betsCleared: 0,
            isLocked: false,
-           isFinalized: false,
-           multipliers: new uint[](supportedTokens.length)
+           isFinalized: false
        });
        
        activeGames[gameID] = newGame;
    }
    
-   function lockGame(string gameID, uint[] multipliers) public restricted {
-       activeGames[gameID].isLocked = true;
-       activeGames[gameID].multipliers = multipliers;
+   function lockGame(string gameID, address[] tokens, uint[] multipliers) public restricted {
+       Game storage game = activeGames[gameID];
+       game.isLocked = true;
+       
+       for (uint t = 0; t < 2; t++) {
+           uint totalWeiBet = 0;
+           string memory team = game.teams[t];
+           Token[] memory copyOfTokens = game.tokens[team];
+           for (uint i = 0; i < copyOfTokens.length; i++) {
+               for (uint j = 0; j < tokens.length; j++) {
+                   if (tokens[j] == copyOfTokens[i].addr) {
+                       game.tokens[team][i].multiplier = multipliers[j];
+                       game.multipliers[tokens[j]] = multipliers[j];
+                       totalWeiBet += (game.tokens[team][i].amount * multipliers[j]) / 10**18;
+                       break;
+                   }
+               }
+               game.totalWeiBet[team] =  totalWeiBet;
+           }
+           
+       }
+
    }
    
 
    function finalizeGame(string gameID, string winningTeam) public restricted isProperTeamID(gameID, winningTeam) {
-       
+      require(activeGames[gameID].isLocked);
+      
       Game storage game = activeGames[gameID];
-      
       game.winningTeam = winningTeam;
-      
-      string memory losingTeam;
-       
-      if (keccak256(abi.encodePacked(game.teams[0])) == keccak256(abi.encodePacked(winningTeam))) {
-          losingTeam = game.teams[1];
-      } else {
-          losingTeam = game.teams[0];
-      }
-       
-      address[] memory tokens = game.tokensBet[losingTeam];
-      uint[] memory values = getTokenValues(gameID, losingTeam, tokens);
-      uint[] memory multipliers = minifyMultipliers(gameID, losingTeam, supportedTokens, values.length);
-      
-      uint totalWeiBetLosingTeam = calculateTotalWei(tokens, values, multipliers);
-      uint totalWeiBetWinningTeam = getTotalWeiWinningTeam(gameID, winningTeam);
-       
-      
-      postGameData[gameID] = PostGameData({
-         tokensToSplit: tokens,
-         values: values,
-         multipliers: multipliers,
-         totalWeiBetWinningTeam: totalWeiBetWinningTeam,
-         totalWeiBetLosingTeam: totalWeiBetLosingTeam
-      });
+      game.losingTeam = keccak256(game.teams[0]) == keccak256(winningTeam) ? game.teams[1] : game.teams[0];
       
       game.isFinalized = true;
       
-      Bet[] winningBets = game.bets[winningTeam];
-      
-      if (totalWeiBetLosingTeam == 0 || totalWeiBetWinningTeam == 0) {
-          for (uint i = 0; i < winningBets.length; i++) {
-              returnBetTokens(winningBets[i]);
-          }
-          
-           delete activeGames[gameID];
-           delete postGameData[gameID];
-      } 
-      
       draw(gameID);
+       
        
    }
    
@@ -392,6 +337,10 @@ contract EthLounge {
        admins[newAdmin] = true;
    }
    
+   function removeAdmin(address adminToRemove) public restricted {
+       admins[adminToRemove] = false;
+   }
+
    function addSupportedToken(address newToken) public restricted {
        isSupportedToken[newToken] = true;
        supportedTokens.push(newToken);
@@ -412,12 +361,6 @@ contract EthLounge {
        houseEdgeWallet = msg.sender;
    }
    
-   function getTokensBet(string gameID, string teamID) public view returns (address[]) {
-       return activeGames[gameID].tokensBet[teamID];
-   }
    
    
 }
-
-
-
