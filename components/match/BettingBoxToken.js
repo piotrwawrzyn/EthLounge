@@ -6,67 +6,69 @@ import { changeTokenPosition } from '../../redux/actions';
 import store from '../../redux/store';
 
 const itemSource = {
-    drop(props) {
-        return {pos: props.pos};
-    },
-}
+  drop(props) {
+    return { pos: props.pos };
+  }
+};
 
 function collect(connect, monitor) {
-    return {
-        connectDropTarget: connect.dropTarget(),
-        isOver: monitor.isOver(),
-        token: monitor.getItem(),
-        canDrop: monitor.canDrop()
-    }
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+    token: monitor.getItem(),
+    canDrop: monitor.canDrop()
+  };
 }
 
 class BettingBoxToken extends Component {
-    constructor(props){
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    store.dispatch(changeTokenPosition(this.props.droppedToken, 'balance-box'));
+  }
+
+  render() {
+    const { canDrop, connectDropTarget, isOver, token, pos } = this.props;
+
+    let classNameModifier = '';
+
+    if (isOver && canDrop) {
+      classNameModifier += ' betting-box-token-hovered';
     }
 
-    handleClick(e) {
-        store.dispatch(changeTokenPosition(this.props.droppedToken, 'balance-box'));
+    if (!isOver && canDrop) {
+      classNameModifier += ' betting-box-token-candrop';
     }
 
-    render() {
-        const { canDrop, connectDropTarget, isOver, token, pos } = this.props;
-        
-        let classNameModifier = '';
+    if (this.props.droppedToken) {
+      classNameModifier = ' betting-box-token-dropped';
 
-        if (isOver && canDrop) {
-            classNameModifier += ' betting-box-token-hovered';
-        }
-
-        if (!isOver && canDrop) {
-            classNameModifier += ' betting-box-token-candrop';
-        }
-
-
-        if (this.props.droppedToken) {
-
-            classNameModifier = ' betting-box-token-dropped'
-
-            return (            
-                <div>
-                    <Segment onClick={this.handleClick} textAlign='center' className={'betting-box-token' + classNameModifier}>
-                        <Token token={this.props.droppedToken} className="token-dropped"></Token>
-                    </Segment>
-                </div>
-            );
-        } 
-            
-
-            return connectDropTarget(            
-                <div>
-                    <Segment size={"big"} textAlign='center' className={'betting-box-token' + classNameModifier}>
-                    </Segment>
-                </div>
-            );
-        
+      return (
+        <div>
+          <Segment
+            onClick={this.handleClick}
+            textAlign="center"
+            className={'betting-box-token' + classNameModifier}>
+            <Token token={this.props.droppedToken} className="token-dropped" />
+          </Segment>
+        </div>
+      );
     }
+
+    return connectDropTarget(
+      <div>
+        <Segment
+          size={'big'}
+          textAlign="center"
+          className={'betting-box-token' + classNameModifier}
+        />
+      </div>
+    );
+  }
 }
 
 export default DropTarget('token', itemSource, collect)(BettingBoxToken);

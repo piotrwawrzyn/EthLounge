@@ -1,5 +1,13 @@
-import React, { Component } from 'react'
-import { Button, Menu, Image, Icon, Grid, Modal, Header } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import {
+  Button,
+  Menu,
+  Image,
+  Icon,
+  Grid,
+  Modal,
+  Header
+} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import web3 from '../../ethereum/web3';
 import Blockies from 'react-blockies';
@@ -10,169 +18,209 @@ import ShortEthAddress from '../../helpers/ShortEthAddress';
 import { addToken } from '../../redux/actions';
 
 class Token {
-    constructor(address, amount, position) {
-        this.address = address;
-        this.amount = amount;
-        this.initialAmount = amount;
-        this.position = position;
-    }
+  constructor(address, amount, position) {
+    this.address = address;
+    this.amount = amount;
+    this.initialAmount = amount;
+    this.position = position;
+  }
 }
 
 class MenuExampleSizeLarge extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.state = {
+      loading: false,
+      account: '',
+      signedIn: false,
+      popupOpen: false,
+      readyToGenerateRightMenu: false
+    };
+  }
 
-   constructor(props) {
-        super(props);
-        this.handleLogin = this.handleLogin.bind(this);
-        this.state = {loading: false, account: '', signedIn: false, popupOpen: false, readyToGenerateRightMenu: false}; 
-   }
+  async componentDidMount() {
+    // Restore session from local storage
+    const account = window.localStorage.getItem('eth-account', account);
+    const openSessionAccounts = await web3.eth.getAccounts();
 
-   async componentDidMount() {
-        // Restore session from local storage
-        const account = window.localStorage.getItem('eth-account', account);
-        const openSessionAccounts = await web3.eth.getAccounts();
-        
-        if (account && openSessionAccounts.length > 0) {
-            store.dispatch({ type: 'LOG_IN', account: account });
-            this.setState({signedIn: true, account: account})
-            this.getTokens(account);
-        }
-        else
-        store.dispatch({ type: 'LOG_OUT' }); 
-        
-        this.setState({readyToGenerateRightMenu: true})
-   }
+    if (account && openSessionAccounts.length > 0) {
+      store.dispatch({ type: 'LOG_IN', account: account });
+      this.setState({ signedIn: true, account: account });
+      this.getTokens(account);
+    } else store.dispatch({ type: 'LOG_OUT' });
 
-    generateRightMenu(signedIn, readyToGenerateRightMenu) {
-        if(readyToGenerateRightMenu) {
-            if (signedIn) {
-            const ethAddressShort = ShortEthAddress(this.state.account);           
+    this.setState({ readyToGenerateRightMenu: true });
+  }
 
-            const ethAddressStyle = {color: 'white'};
+  generateRightMenu(signedIn, readyToGenerateRightMenu) {
+    if (readyToGenerateRightMenu) {
+      if (signedIn) {
+        const ethAddressShort = ShortEthAddress(this.state.account);
 
-            return (
-                <Grid>
-                    <Grid.Row verticalAlign='middle'>
-                        <Grid.Column width={4}>
-                            <div className='user-avatar'><Blockies seed={this.state.account} scale={6} size={14}/></div>
-                        </Grid.Column>
-                        <Grid.Column width={1}>
+        const ethAddressStyle = { color: 'white' };
 
-                        </Grid.Column>
-                        <Grid.Column width={10} className='user-column-right'>
-                            <div className='user-column-right-address'><a style={ethAddressStyle} href={`https://etherscan.io/address/${this.state.account}`} target='_blank'>{ethAddressShort}</a></div>
-                            <Button onClick={e => this.handleLogout(e)} loading={this.state.loading} size='mini' color='black' icon labelPosition='right' className='user-column-right-signout-button'>
-                                Log out
-                                <Icon name='power off' />
-                            </Button>
-                        </Grid.Column>
+        return (
+          <Grid>
+            <Grid.Row verticalAlign="middle">
+              <Grid.Column width={4}>
+                <div className="user-avatar">
+                  <Blockies seed={this.state.account} scale={6} size={18} />
+                </div>
+              </Grid.Column>
+              <Grid.Column width={1} />
+              <Grid.Column width={10} className="user-column-right">
+                <div className="user-column-right-address">
+                  <a
+                    style={ethAddressStyle}
+                    href={`https://etherscan.io/address/${this.state.account}`}
+                    target="_blank">
+                    {ethAddressShort}
+                  </a>
+                </div>
+                <Button
+                  onClick={e => this.handleLogout(e)}
+                  loading={this.state.loading}
+                  size="mini"
+                  color="black"
+                  icon
+                  labelPosition="right"
+                  className="user-column-right-signout-button">
+                  Log out
+                  <Icon name="power off" />
+                </Button>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        );
+      }
+      return (
+        <Button
+          loading={this.state.loading}
+          onClick={e => this.handleLogin(e)}
+          color="black">
+          Sign in
+        </Button>
+      );
+    }
 
-                    </Grid.Row>
-                </Grid>); 
-       } 
-        return (<Button loading={this.state.loading} onClick={e => this.handleLogin(e)} color='black'>Sign in</Button>);       
-        }
-       
-      return <Button loading={true} className="dark-orange-bg" />;
-   }
+    return <Button loading={true} className="dark-orange-bg" />;
+  }
 
-  async handleLogin(e) {  
-    this.setState({loading: true});
+  async handleLogin(e) {
+    this.setState({ loading: true });
     await Sleep(300);
 
     let account;
 
-    [ account ] = await web3.eth.getAccounts();
+    [account] = await web3.eth.getAccounts();
 
     if (typeof account !== 'undefined') {
-        this.setState({account: account});
-        this.getTokens(account);
-        this.setState({signedIn: true});
-        store.dispatch({ type: 'LOG_IN', account: account });
-        window.localStorage.setItem('eth-account', account);
+      this.setState({ account: account });
+      this.getTokens(account);
+      this.setState({ signedIn: true });
+      store.dispatch({ type: 'LOG_IN', account: account });
+      window.localStorage.setItem('eth-account', account);
     } else {
-        this.setState({popupOpen: true});
+      this.setState({ popupOpen: true });
     }
 
-    this.setState({loading: false});
+    this.setState({ loading: false });
   }
 
   async handleLogout(e) {
-    this.setState({loading: true});
+    this.setState({ loading: true });
     await Sleep(600);
-    this.setState({signedIn: false});
+    this.setState({ signedIn: false });
     store.dispatch({ type: 'LOG_OUT' });
-    this.setState({loading: false});
+    this.setState({ loading: false });
     window.localStorage.removeItem('eth-account');
   }
 
-
   render() {
-
     return (
-      <Menu inverted size='large' className='menu'>
+      <Menu inverted size="large" className="menu">
         <Menu.Item>
-            <Image src='/static/img/logo.png' />
+          <Image src="/static/img/logo.png" />
         </Menu.Item>
         <Menu.Item>
-            <Icon name='chess knight' />       
-             My Bets
+          <Icon name="chess knight" />
+          My Bets
         </Menu.Item>
         <Menu.Item>
-            <Icon name='angle double down' />   
-            Deposit
+          <Icon name="angle double down" />
+          Deposit
         </Menu.Item>
 
         <Menu.Item>
-            <Icon name='angle double up' />   
-            Withdraw
+          <Icon name="angle double up" />
+          Withdraw
         </Menu.Item>
 
         <Menu.Item>
-            <Icon name='question circle outline' />   
-            FAQ
+          <Icon name="question circle outline" />
+          FAQ
         </Menu.Item>
-        <Menu.Item position='right'>
-            {this.generateRightMenu(this.state.signedIn, this.state.readyToGenerateRightMenu)}     
+        <Menu.Item position="right">
+          {this.generateRightMenu(
+            this.state.signedIn,
+            this.state.readyToGenerateRightMenu
+          )}
         </Menu.Item>
 
-        <Modal open={this.state.popupOpen} size='tiny'>
-                <Modal.Header>You need Metamask to sign in</Modal.Header>
-                <Modal.Content image>
-                    <Image wrapped size='medium' src='/static/img/metamask.png' />
-                    <Modal.Description>
-                        <Header>What is Metamask?</Header>
-                        <p>MetaMask is an extension for accessing Ethereum Dapps. You can download it <a href='https://metamask.io/' target='_blank'>here</a>.</p>                        <Header>But I have Metamask...</Header>
-                        <p>If you have Metamask installed, please make sure to unlock your account.</p>                        
-                    </Modal.Description>
-                </Modal.Content>
-                <Modal.Actions>
-                    <Button className="dark-orange-bg font-white" onClick={(e) => {this.setState({popupOpen: false})}}>
-                        Close
-                    </Button>
-                </Modal.Actions>
-        </Modal>        
+        <Modal open={this.state.popupOpen} size="small">
+          <Modal.Header>You need Metamask to sign in</Modal.Header>
+          <Modal.Content image>
+            <Image wrapped size="medium" src="/static/img/metamask.png" />
+            <Modal.Description>
+              <Header>What is Metamask?</Header>
+              <p>
+                MetaMask is an extension for accessing Ethereum Dapps. You can
+                download it{' '}
+                <a href="https://metamask.io/" target="_blank">
+                  here
+                </a>
+                .
+              </p>{' '}
+              <Header>But I have Metamask...</Header>
+              <p>
+                If you have Metamask installed, please make sure to unlock your
+                account.
+              </p>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button
+              className="dark-orange-bg font-white"
+              onClick={e => {
+                this.setState({ popupOpen: false });
+              }}>
+              Close
+            </Button>
+          </Modal.Actions>
+        </Modal>
       </Menu>
-      
-
     );
   }
 
-
   async getTokens(account) {
-    const result = await EthLounge.methods.getBalances().call({from: account});
+    const result = await EthLounge.methods
+      .getBalances()
+      .call({ from: account });
     const tokenAddresses = result[0];
     const tokenAmounts = result[1];
 
     for (let i = 0; i < tokenAmounts.length; i++) {
-        if (tokenAmounts[i] !== '0') {
-            const newToken = new Token(tokenAddresses[i], tokenAmounts[i], 'balance-box');
-            store.dispatch(addToken(newToken));
-        }
+      if (tokenAmounts[i] !== '0') {
+        const newToken = new Token(
+          tokenAddresses[i],
+          tokenAmounts[i],
+          'balance-box'
+        );
+        store.dispatch(addToken(newToken));
+      }
     }
   }
 }
-
-
-
 
 export default MenuExampleSizeLarge;
