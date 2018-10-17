@@ -8,6 +8,7 @@
     "axios": "^0.18.0",
     "bcrypt": "^3.0.1",
     "big.js": "^5.1.2",
+    "concurrently": "^4.0.1",
     "connect-flash": "^0.1.1",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.4",
@@ -41,7 +42,7 @@
     "dev": "node server/server.js",
     "ganache": "ganache-cli --accounts 1000",
     "build": "next build",
-    "start": "node server/server.js"
+    "start": "concurrently  \"next build\" \"node server/server.js\""
   },
   "repository": {
     "type": "git",
