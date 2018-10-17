@@ -40,7 +40,8 @@
     "test": "mocha --timeout 3000000",
     "dev": "node server/server.js",
     "ganache": "ganache-cli --accounts 1000",
-    "start": "node server/server.js"
+    "build": "next build",
+    "start": "concurrently  \"next build\" \"node server/server.js\""
   },
   "repository": {
     "type": "git",
