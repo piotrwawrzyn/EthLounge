@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Segment, Icon } from 'semantic-ui-react';
 import { DropTarget } from 'react-dnd';
-import Token from '../Token';
-import { changeTokenPosition } from '../../redux/actions';
+import Token from './Token';
+import { changeTokenPosition } from '../../redux/match/actions';
 import store from '../../redux/store';
 
 const itemSource = {

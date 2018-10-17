@@ -1,0 +1,65 @@
+@import '_variables.css';
+
+/* Generic classes */
+
+.dark-orange-bg {
+  background: var(--orange-dark) !important;
+}
+
+.light-orange-bg {
+  background: var(--orange-light) !important;
+}
+
+.black-bg {
+  background: black !important;
+}
+
+.font-white {
+  color: white !important;
+}
+
+.font-dark-orange {
+  color: var(--orange-dark);
+}
+
+.font-error {
+  color: var(--error) !important;
+}
+
+.word-wrap {
+  word-wrap: break-word;
+}
+
+.float-left {
+  float: left;
+}
+
+.font-size-xsmall {
+  font-size: x-small;
+}
+
+/* Menu */
+
+.menu {
+  margin-top: 1.2em !important;
+  margin-bottom: 2.2em !important;
+  background: var(--orange-dark) !important;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  /* filter: contrast(7); 
+    -webkit-filter: contrast(7); */
+  box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.user-column-right-signout-button {
+  margin-top: 0.6em !important;
+}
+
+.ui.menu .token:before {
+  background: rgba(34, 36, 38, 0.15) !important;
+}

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Grid, Label, Image } from 'semantic-ui-react';
+import { Grid, Image, Label } from 'semantic-ui-react';
+
+import { pickTeam } from '../../redux/match/actions';
 import store from '../../redux/store';
-import { pickTeam } from '../../redux/actions';
 
 class Teams extends Component {
   constructor(props) {
@@ -10,11 +11,9 @@ class Teams extends Component {
 
   handleClick = (event, team, pickedTeam) => {
     if (this.props.signedIn) {
-      if (pickedTeam.slug) {
-        if (pickedTeam.slug === team.slug) {
-          store.dispatch(pickTeam({}));
-          return;
-        }
+      if (pickedTeam.slug === team.slug) {
+        store.dispatch(pickTeam({}));
+        return;
       }
       store.dispatch(pickTeam(team));
     }
@@ -36,19 +35,20 @@ class Teams extends Component {
         onClick={event => {
           this.handleClick(event, team, pickedTeam);
         }}>
+        {' '}
         <Label
           size="huge"
           style={style}
           className={`team-label${classNameModifier}`}>
           <Image src={`/static/img/teams/${team.slug}.png`} />
         </Label>
-        {teamCaption}
+        {teamCaption}{' '}
       </div>
     );
   }
 
   generatePercentage(teams, index) {
-    //const sumOdds = teams[0].odds + teams[1].odds;
+    const sumOdds = teams[0].odds + teams[1].odds;
     const percentage = Math.round((1 / teams[index].odds) * 100) + '%';
 
     if (index === 0)
@@ -62,7 +62,7 @@ class Teams extends Component {
     return (
       <Label as="a" color="black" ribbon="right">
         <p className="team-percentage">{percentage}</p>
-        <p className="team-odds">x {teams[index].odds}</p>
+        <p className="team-odds">x{teams[index].odds}</p>
       </Label>
     );
   }
@@ -72,38 +72,40 @@ class Teams extends Component {
 
     if (teams)
       return (
-        <Grid className="teams-grid" padded>
-          <Grid.Row>
-            <Grid.Column />
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column width={2}>
-              {this.generatePercentage(teams, 0)}
-            </Grid.Column>
+        <div>
+          <Grid className="teams-grid" padded>
+            <Grid.Row>
+              <Grid.Column />
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column width={2}>
+                {this.generatePercentage(teams, 0)}
+              </Grid.Column>
 
-            <Grid.Column width={5} verticalAlign="middle" textAlign="center">
-              {this.generateTeamLabel(teams[0], pickedTeam)}
-            </Grid.Column>
+              <Grid.Column width={5} verticalAlign="middle" textAlign="center">
+                {this.generateTeamLabel(teams[0], pickedTeam)}
+              </Grid.Column>
 
-            <Grid.Column width={2} verticalAlign="middle" textAlign="center">
-              <Label color="black">VS</Label>
-            </Grid.Column>
+              <Grid.Column width={2} verticalAlign="middle" textAlign="center">
+                <Label color="black">VS</Label>
+              </Grid.Column>
 
-            <Grid.Column width={5} verticalAlign="middle" textAlign="center">
-              {this.generateTeamLabel(teams[1], pickedTeam)}
-            </Grid.Column>
+              <Grid.Column width={5} verticalAlign="middle" textAlign="center">
+                {this.generateTeamLabel(teams[1], pickedTeam)}
+              </Grid.Column>
 
-            <Grid.Column width={2}>
-              {this.generatePercentage(teams, 1)}
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column />
-          </Grid.Row>
-        </Grid>
+              <Grid.Column width={2}>
+                {this.generatePercentage(teams, 1)}
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column />
+            </Grid.Row>
+          </Grid>
+        </div>
       );
 
-    return '0';
+    return '';
   }
 }
 

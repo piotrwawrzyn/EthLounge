@@ -88,92 +88,10 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ "./components/ErrorModal.js":
-/*!**********************************!*\
-  !*** ./components/ErrorModal.js ***!
-  \**********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../redux/actions */ "./redux/actions.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-
-
-var ErrorModal =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(ErrorModal, _Component);
-
-  function ErrorModal() {
-    _classCallCheck(this, ErrorModal);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(ErrorModal).apply(this, arguments));
-  }
-
-  _createClass(ErrorModal, [{
-    key: "render",
-    value: function render() {
-      var modal = this.props.modal;
-      var list = modal.reasons.map(function (curr) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, curr);
-      });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
-        size: "tiny",
-        open: modal.isOpen,
-        closeOnDocumentClick: true
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
-        className: "font-error"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
-        name: "times circle outline"
-      }), modal.head), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Description, {
-        className: "font-error"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, list))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-        className: "dark-orange-bg font-white",
-        onClick: function onClick(e) {
-          return _redux_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_3__["toggleErrorModal"])());
-        }
-      }, "OK")));
-    }
-  }]);
-
-  return ErrorModal;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-/* harmony default export */ __webpack_exports__["default"] = (ErrorModal);
-
-/***/ }),
 
 /***/ "./components/Layout/Layout.js":
 /*!*************************************!*\
@@ -196,6 +114,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Menu */ "./components/Layout/Menu.js");
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
+/* harmony import */ var _static_css_layout_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../static/css/layout.css */ "./static/css/layout.css");
+/* harmony import */ var _static_css_layout_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_static_css_layout_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_rangeslider_lib_index_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-rangeslider/lib/index.css */ "./node_modules/react-rangeslider/lib/index.css");
+/* harmony import */ var react_rangeslider_lib_index_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_rangeslider_lib_index_css__WEBPACK_IMPORTED_MODULE_8__);
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -231,6 +153,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var layout = function layout(ChildPage) {
   return (
     /*#__PURE__*/
@@ -251,12 +175,6 @@ var layout = function layout(ChildPage) {
           }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Container"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("link", {
             rel: "stylesheet",
             href: "//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"
-          }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("link", {
-            rel: "stylesheet",
-            href: "https://unpkg.com/react-rangeslider/umd/rangeslider.min.css"
-          }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("link", {
-            rel: "stylesheet",
-            href: "/static/css/style.css"
           })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Menu__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ChildPage, {
             initial: this.props
           }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Footer")));
@@ -335,9 +253,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_blockies__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_blockies__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _ethereum_EthLounge__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../ethereum/EthLounge */ "./ethereum/EthLounge.js");
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
-/* harmony import */ var _helpers_Sleep__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../helpers/Sleep */ "./helpers/Sleep.js");
-/* harmony import */ var _helpers_ShortEthAddress__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../helpers/ShortEthAddress */ "./helpers/ShortEthAddress.js");
-/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
+/* harmony import */ var _utils_Sleep__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utils/Sleep */ "./utils/Sleep.js");
+/* harmony import */ var _utils_ShortEthAddress__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils/ShortEthAddress */ "./utils/ShortEthAddress.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -354,6 +271,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
@@ -368,7 +287,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
@@ -378,17 +296,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-
-
-
-var Token = function Token(address, amount, position) {
-  _classCallCheck(this, Token);
-
-  this.address = address;
-  this.amount = amount;
-  this.initialAmount = amount;
-  this.position = position;
-};
 
 var MenuExampleSizeLarge =
 /*#__PURE__*/
@@ -440,7 +347,6 @@ function (_Component) {
                     signedIn: true,
                     account: account
                   });
-                  this.getTokens(account);
                 } else _redux_store__WEBPACK_IMPORTED_MODULE_7__["default"].dispatch({
                   type: 'LOG_OUT'
                 });
@@ -468,7 +374,7 @@ function (_Component) {
 
       if (readyToGenerateRightMenu) {
         if (signedIn) {
-          var ethAddressShort = Object(_helpers_ShortEthAddress__WEBPACK_IMPORTED_MODULE_9__["default"])(this.state.account);
+          var ethAddressShort = Object(_utils_ShortEthAddress__WEBPACK_IMPORTED_MODULE_9__["default"])(this.state.account);
           var ethAddressStyle = {
             color: 'white'
           };
@@ -538,7 +444,7 @@ function (_Component) {
                   loading: true
                 });
                 _context2.next = 3;
-                return Object(_helpers_Sleep__WEBPACK_IMPORTED_MODULE_8__["Sleep"])(300);
+                return Object(_utils_Sleep__WEBPACK_IMPORTED_MODULE_8__["Sleep"])(300);
 
               case 3:
                 _context2.next = 5;
@@ -553,7 +459,6 @@ function (_Component) {
                   this.setState({
                     account: account
                   });
-                  this.getTokens(account);
                   this.setState({
                     signedIn: true
                   });
@@ -598,7 +503,7 @@ function (_Component) {
                   loading: true
                 });
                 _context3.next = 3;
-                return Object(_helpers_Sleep__WEBPACK_IMPORTED_MODULE_8__["Sleep"])(600);
+                return Object(_utils_Sleep__WEBPACK_IMPORTED_MODULE_8__["Sleep"])(600);
 
               case 3:
                 this.setState({
@@ -666,193 +571,12 @@ function (_Component) {
         }
       }, "Close"))));
     }
-  }, {
-    key: "getTokens",
-    value: function () {
-      var _getTokens = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(account) {
-        var result, tokenAddresses, tokenAmounts, i, newToken;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.next = 2;
-                return _ethereum_EthLounge__WEBPACK_IMPORTED_MODULE_6__["default"].methods.getBalances().call({
-                  from: account
-                });
-
-              case 2:
-                result = _context4.sent;
-                tokenAddresses = result[0];
-                tokenAmounts = result[1];
-
-                for (i = 0; i < tokenAmounts.length; i++) {
-                  if (tokenAmounts[i] !== '0') {
-                    newToken = new Token(tokenAddresses[i], tokenAmounts[i], 'balance-box');
-                    _redux_store__WEBPACK_IMPORTED_MODULE_7__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_10__["addToken"])(newToken));
-                  }
-                }
-
-              case 6:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this);
-      }));
-
-      return function getTokens(_x3) {
-        return _getTokens.apply(this, arguments);
-      };
-    }()
   }]);
 
   return MenuExampleSizeLarge;
 }(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (MenuExampleSizeLarge);
-
-/***/ }),
-
-/***/ "./components/RangeSlider.js":
-/*!***********************************!*\
-  !*** ./components/RangeSlider.js ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_rangeslider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-rangeslider */ "react-rangeslider");
-/* harmony import */ var react_rangeslider__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_rangeslider__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! big.js */ "big.js");
-/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/EstimateBetValue */ "./helpers/EstimateBetValue.js");
-/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/actions */ "./redux/actions.js");
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-
-
-var RangeSlider =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(RangeSlider, _Component);
-
-  function RangeSlider(props) {
-    var _this;
-
-    _classCallCheck(this, RangeSlider);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(RangeSlider).call(this, props));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "range_max", 2000);
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleRange", function (val) {
-      var token = _this.props.token;
-
-      _this.setState({
-        value: val
-      });
-
-      var change = val / _this.range_max;
-      var newAmount = "".concat(big_js__WEBPACK_IMPORTED_MODULE_2___default()(token.initialAmount).mul(change).toFixed(0));
-      newAmount = newAmount < 1 ? 1 : newAmount;
-      token.amount = newAmount;
-      _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_4__["changeTokenAmount"])(token));
-    });
-
-    _this.handleRange = _this.handleRange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.state = {
-      value: _this.range_max
-    };
-    return _this;
-  }
-
-  _createClass(RangeSlider, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_rangeslider__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        min: 1,
-        max: this.range_max,
-        step: 10,
-        tooltip: false,
-        value: this.state.value,
-        onChange: function onChange(val) {
-          return _this2.handleRange(val);
-        },
-        onChangeComplete: function onChangeComplete(event) {
-          Object(_helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_3__["default"])(_this2.props.toBet, _this2.props.prices);
-        }
-      });
-    }
-  }]);
-
-  return RangeSlider;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-/* harmony default export */ __webpack_exports__["default"] = (RangeSlider);
-
-/***/ }),
-
-/***/ "./components/Token.js":
-/*!*****************************!*\
-  !*** ./components/Token.js ***!
-  \*****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _helpers_SupportedTokens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/SupportedTokens */ "./helpers/SupportedTokens.js");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _helpers_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/TokenFromWei */ "./helpers/TokenFromWei.js");
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = (function (props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Label"], {
-    as: "a",
-    key: props.token.address,
-    className: "token-label"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
-    avatar: true,
-    spaced: "right",
-    src: "/static/img/tokens/".concat(_helpers_SupportedTokens__WEBPACK_IMPORTED_MODULE_1__["DictionarrySymbol"].get(props.token.address), ".png")
-  }), Object(_helpers_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(props.token, 'symbol', true));
-});
 
 /***/ }),
 
@@ -867,7 +591,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Token__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Token */ "./components/Token.js");
+/* harmony import */ var _Token__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Token */ "./components/match/Token.js");
 /* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dnd */ "react-dnd");
 /* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dnd__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -961,7 +685,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _BettingBoxToken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BettingBoxToken */ "./components/match/BettingBoxToken.js");
-/* harmony import */ var _RangeSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../RangeSlider */ "./components/RangeSlider.js");
+/* harmony import */ var _RangeSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RangeSlider */ "./components/match/RangeSlider.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1086,8 +810,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dnd */ "react-dnd");
 /* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dnd__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Token__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Token */ "./components/Token.js");
-/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
+/* harmony import */ var _Token__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Token */ "./components/match/Token.js");
+/* harmony import */ var _redux_match_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/match/actions */ "./redux/match/actions.js");
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -1148,7 +872,7 @@ function (_Component) {
   _createClass(BettingBoxToken, [{
     key: "handleClick",
     value: function handleClick(e) {
-      _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_4__["changeTokenPosition"])(this.props.droppedToken, 'balance-box'));
+      _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_4__["changeTokenPosition"])(this.props.droppedToken, 'balance-box'));
     }
   }, {
     key: "render",
@@ -1209,14 +933,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
-/* harmony import */ var _helpers_TokenFromWei__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/TokenFromWei */ "./helpers/TokenFromWei.js");
-/* harmony import */ var _ethereum_EthLounge__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../ethereum/EthLounge */ "./ethereum/EthLounge.js");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../routes */ "./routes.js");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_routes__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _ethereum_EthLounge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../ethereum/EthLounge */ "./ethereum/EthLounge.js");
+/* harmony import */ var _redux_match_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/match/actions */ "./redux/match/actions.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
+/* harmony import */ var _server_routes_next_routes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../server/routes/next-routes */ "./server/routes/next-routes.js");
+/* harmony import */ var _server_routes_next_routes__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_server_routes_next_routes__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _utils_TokenFromWei__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/TokenFromWei */ "./utils/TokenFromWei.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1281,7 +1005,7 @@ function (_Component) {
         isFinalModalErrorOpen: false,
         isFinalModalSuccessOpen: false
       });
-      _redux_store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_4__["toggleModal"])('confirmBetModal'));
+      _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_4__["toggleModal"])('confirmBetModal'));
     }
   }, {
     key: "handleConfirm",
@@ -1298,7 +1022,7 @@ function (_Component) {
                 this.setState({
                   isLoading: true,
                   isCancelDisabled: true,
-                  waitingText: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Label"], null, "Please confirm the transaction on Metamask and wait a few seconds.")
+                  waitingText: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Label"], null, "Please confirm the transaction on Metamask and wait a few seconds.")
                 });
                 tokens = tokensToBet.map(function (curr) {
                   return curr.address;
@@ -1308,7 +1032,7 @@ function (_Component) {
                 });
                 _context.prev = 4;
                 _context.next = 7;
-                return _ethereum_EthLounge__WEBPACK_IMPORTED_MODULE_6__["default"].methods.placeBet(matchID, pickedTeam.slug, tokens, amounts).send({
+                return _ethereum_EthLounge__WEBPACK_IMPORTED_MODULE_3__["default"].methods.placeBet(matchID, pickedTeam.slug, tokens, amounts).send({
                   from: account
                 });
 
@@ -1365,14 +1089,14 @@ function (_Component) {
           account = _this$props.account,
           matchID = _this$props.matchID;
       var tokenList = tokensToBet.map(function (curr) {
-        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["List"].Item, {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["List"].Item, {
           as: "p",
           key: curr.address
-        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Icon"], {
+        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
           name: "right triangle"
-        }), Object(_helpers_TokenFromWei__WEBPACK_IMPORTED_MODULE_5__["default"])(curr, 'symbol'));
+        }), Object(_utils_TokenFromWei__WEBPACK_IMPORTED_MODULE_7__["default"])(curr, 'symbol'));
       });
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
         size: "tiny",
         open: open
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(FinalModalSuccess, {
@@ -1384,30 +1108,30 @@ function (_Component) {
         open: this.state.isFinalModalErrorOpen,
         errorMessage: this.state.errorMessage,
         close: this.closeFinalModal
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Header, null, "You are about to place a bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Description, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Grid"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Grid"].Column, {
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, null, "You are about to place a bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Description, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Column, {
         width: 10
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Header"], null, "Your bet:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["List"], {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], null, "Your bet: "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["List"], {
         className: "confirm-bet-modal-ul font-dark-orange",
         as: "ul"
-      }, tokenList), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Header"], null, "Picked Team:", ' ', react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      }, tokenList), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], null, "Picked Team:", ' ', react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "font-dark-orange"
-      }, pickedTeam.name)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Header"], null, "Odds:", ' ', react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      }, pickedTeam.name)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], null, "Odds:", ' ', react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "font-dark-orange"
-      }, pickedTeam.odds)), this.state.waitingText), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Grid"].Column, {
+      }, pickedTeam.odds)), this.state.waitingText, ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Column, {
         verticalAlign: "middle",
         width: 6
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Image"], {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
         className: "confirm-bet-modal-img",
         floated: "right",
         size: "small",
         src: "/static/img/teams/".concat(pickedTeam.slug, ".png")
-      }))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+      }))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
         disabled: this.state.isCancelDisabled,
         color: "black",
         onClick: function onClick(e) {
-          return _redux_store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_4__["toggleModal"])('confirmBetModal'));
+          return _redux_store__WEBPACK_IMPORTED_MODULE_5__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_4__["toggleModal"])('confirmBetModal'));
         }
-      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
         loading: this.state.isLoading,
         className: "dark-orange-bg font-white",
         onClick: function onClick(e) {
@@ -1440,20 +1164,20 @@ function (_Component2) {
           transactionInfo = _this$props2.transactionInfo,
           matchID = _this$props2.matchID;
       var hash = transactionInfo.transactionHash;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
         open: open,
         size: "tiny"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Header, null, "Bet placed successfuly"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Content, {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, null, "Bet placed successfuly"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Content, {
         className: "word-wrap"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Transaction hash:", ' ', react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-        href: "https://etherscan.io/tx/".concat(hash)
-      }, hash))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+        href: " https://etherscan.io/tx/".concat(hash)
+      }, hash))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
         className: "dark-orange-bg font-white",
         onClick: function onClick(e) {
           close();
-          _routes__WEBPACK_IMPORTED_MODULE_7__["Router"].push("/matches/".concat(matchID));
+          _server_routes_next_routes__WEBPACK_IMPORTED_MODULE_6__["Router"].push("/matches/".concat(matchID));
         }
-      }, "Go back")));
+      }, ' ', "Go back")));
     }
   }]);
 
@@ -1476,14 +1200,14 @@ function (_Component3) {
     value: function render() {
       var _this3 = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
         open: this.props.open,
         size: "mini"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Header, {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
         className: "font-error"
-      }, "Placing bet failed"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Content, {
+      }, "Placing bet failed"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Content, {
         className: "font-error word-wrap"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, this.props.errorMessage)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, this.props.errorMessage)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
         className: "dark-orange-bg font-white",
         onClick: function onClick(e) {
           return _this3.props.close();
@@ -1496,6 +1220,198 @@ function (_Component3) {
 }(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (ConfirmBetModal);
+
+/***/ }),
+
+/***/ "./components/match/ErrorModal.js":
+/*!****************************************!*\
+  !*** ./components/match/ErrorModal.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _redux_match_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../redux/match/actions */ "./redux/match/actions.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var ErrorModal =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ErrorModal, _Component);
+
+  function ErrorModal() {
+    _classCallCheck(this, ErrorModal);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ErrorModal).apply(this, arguments));
+  }
+
+  _createClass(ErrorModal, [{
+    key: "render",
+    value: function render() {
+      var modal = this.props.modal;
+      var list = modal.reasons.map(function (curr) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: curr
+        }, curr);
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
+        size: "tiny",
+        open: modal.isOpen,
+        closeOnDocumentClick: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"].Header, {
+        className: "font-error"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
+        name: "times circle outline"
+      }), modal.head), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"].Description, {
+        className: "font-error"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, list))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        className: "dark-orange-bg font-white",
+        onClick: function onClick(e) {
+          return _redux_store__WEBPACK_IMPORTED_MODULE_3__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_2__["toggleErrorModal"])());
+        }
+      }, "OK")));
+    }
+  }]);
+
+  return ErrorModal;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (ErrorModal);
+
+/***/ }),
+
+/***/ "./components/match/RangeSlider.js":
+/*!*****************************************!*\
+  !*** ./components/match/RangeSlider.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! big.js */ "big.js");
+/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_rangeslider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-rangeslider */ "react-rangeslider");
+/* harmony import */ var react_rangeslider__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_rangeslider__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _redux_match_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/match/actions */ "./redux/match/actions.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
+/* harmony import */ var _utils_EstimateBetValue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/EstimateBetValue */ "./utils/EstimateBetValue.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+var RangeSlider =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(RangeSlider, _Component);
+
+  function RangeSlider(props) {
+    var _this;
+
+    _classCallCheck(this, RangeSlider);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(RangeSlider).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "range_max", 2000);
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleRange", function (val) {
+      var token = _this.props.token;
+
+      _this.setState({
+        value: val
+      });
+
+      var change = val / _this.range_max;
+      var newAmount = "".concat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(token.initialAmount).mul(change).toFixed(0));
+      newAmount = newAmount < 1 ? 1 : newAmount;
+      token.amount = newAmount;
+      _redux_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_3__["changeTokenAmount"])(token));
+    });
+
+    _this.handleRange = _this.handleRange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.state = {
+      value: _this.range_max
+    };
+    return _this;
+  }
+
+  _createClass(RangeSlider, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_rangeslider__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        min: 1,
+        max: this.range_max,
+        step: 10,
+        tooltip: false,
+        value: this.state.value,
+        onChange: function onChange(val) {
+          return _this2.handleRange(val);
+        },
+        onChangeComplete: function onChangeComplete(event) {
+          Object(_utils_EstimateBetValue__WEBPACK_IMPORTED_MODULE_5__["default"])(_this2.props.toBet, _this2.props.prices);
+        }
+      });
+    }
+  }]);
+
+  return RangeSlider;
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (RangeSlider);
 
 /***/ }),
 
@@ -1512,8 +1428,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
-/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
+/* harmony import */ var _redux_match_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../redux/match/actions */ "./redux/match/actions.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1553,14 +1469,12 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (event, team, pickedTeam) {
       if (_this.props.signedIn) {
-        if (pickedTeam.slug) {
-          if (pickedTeam.slug === team.slug) {
-            _redux_store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_3__["pickTeam"])({}));
-            return;
-          }
+        if (pickedTeam.slug === team.slug) {
+          _redux_store__WEBPACK_IMPORTED_MODULE_3__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_2__["pickTeam"])({}));
+          return;
         }
 
-        _redux_store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_3__["pickTeam"])(team));
+        _redux_store__WEBPACK_IMPORTED_MODULE_3__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_2__["pickTeam"])(team));
       }
     });
 
@@ -1585,18 +1499,18 @@ function (_Component) {
         onClick: function onClick(event) {
           _this2.handleClick(event, team, pickedTeam);
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+      }, ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
         size: "huge",
         style: style,
         className: "team-label".concat(classNameModifier)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Image"], {
         src: "/static/img/teams/".concat(team.slug, ".png")
-      })), teamCaption);
+      })), teamCaption, ' ');
     }
   }, {
     key: "generatePercentage",
     value: function generatePercentage(teams, index) {
-      //const sumOdds = teams[0].odds + teams[1].odds;
+      var sumOdds = teams[0].odds + teams[1].odds;
       var percentage = Math.round(1 / teams[index].odds * 100) + '%';
       if (index === 0) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
         as: "a",
@@ -1615,7 +1529,7 @@ function (_Component) {
         className: "team-percentage"
       }, percentage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "team-odds"
-      }, "x ", teams[index].odds));
+      }, "x", teams[index].odds));
     }
   }, {
     key: "render",
@@ -1623,7 +1537,7 @@ function (_Component) {
       var _this$props = this.props,
           teams = _this$props.teams,
           pickedTeam = _this$props.pickedTeam;
-      if (teams) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"], {
+      if (teams) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"], {
         className: "teams-grid",
         padded: true
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
@@ -1644,8 +1558,8 @@ function (_Component) {
         textAlign: "center"
       }, this.generateTeamLabel(teams[1], pickedTeam)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
         width: 2
-      }, this.generatePercentage(teams, 1))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null)));
-      return '0';
+      }, this.generatePercentage(teams, 1))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null))));
+      return '';
     }
   }]);
 
@@ -1653,6 +1567,39 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Teams);
+
+/***/ }),
+
+/***/ "./components/match/Token.js":
+/*!***********************************!*\
+  !*** ./components/match/Token.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils_SupportedTokens__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/SupportedTokens */ "./utils/SupportedTokens.js");
+/* harmony import */ var _utils_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/TokenFromWei */ "./utils/TokenFromWei.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+    as: "a",
+    key: props.token.address,
+    className: "token-label"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+    avatar: true,
+    spaced: "right",
+    src: "/static/img/tokens/".concat(_utils_SupportedTokens__WEBPACK_IMPORTED_MODULE_2__["DictionarrySymbol"].get(props.token.address), ".png")
+  }), Object(_utils_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(props.token, 'symbol', true));
+});
 
 /***/ }),
 
@@ -1665,13 +1612,15 @@ function (_Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _BalanceBoxToken__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BalanceBoxToken */ "./components/match/BalanceBoxToken.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
+/* harmony import */ var _redux_match_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/match/actions */ "./redux/match/actions.js");
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
+/* harmony import */ var _BalanceBoxToken__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BalanceBoxToken */ "./components/match/BalanceBoxToken.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
@@ -1700,6 +1649,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var TokenBox =
 /*#__PURE__*/
 function (_Component) {
@@ -1713,18 +1663,18 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TokenBox).call(this, props));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderItems", function (tokens) {
-      var toRender = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tokens.map(function (token) {
-        if (token.position == "balance-box") {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BalanceBoxToken__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            key: token.address,
-            token: _objectSpread({}, token),
-            handleDrop: function handleDrop(token, pos) {
-              return _this.handleDrop(token, pos);
-            }
-          });
-        } else {
-          return "";
-        }
+      var tokensInBalance = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.filter(tokens, {
+        position: 'balance-box'
+      });
+
+      var toRender = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, tokensInBalance.map(function (token) {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_BalanceBoxToken__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          key: token.address,
+          token: _objectSpread({}, token),
+          handleDrop: function handleDrop(token, pos) {
+            return _this.handleDrop(token, pos);
+          }
+        });
       }));
       return toRender;
     });
@@ -1735,15 +1685,15 @@ function (_Component) {
   _createClass(TokenBox, [{
     key: "handleDrop",
     value: function handleDrop(token, pos) {
-      _redux_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_3__["changeTokenPosition"])(token, pos));
+      _redux_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_3__["changeTokenPosition"])(token, pos));
     }
   }, {
     key: "render",
     value: function render() {
-      if (this.props.signedIn) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      if (this.props.signedIn) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "tokens-box"
       }, this.renderItems(this.props.tokens));
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Message"], {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Message"], {
         warning: true,
         header: "Sign in with Metamask",
         content: "Please sign in with Metamask in order to see your balances and place bets."
@@ -1752,7 +1702,7 @@ function (_Component) {
   }]);
 
   return TokenBox;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (TokenBox);
 
@@ -1813,10 +1763,21 @@ if (typeof window != 'undefined' && typeof window.web3 != 'undefined') {
 
 /***/ }),
 
-/***/ "./helpers/CryptoPrices.js":
-/*!*********************************!*\
-  !*** ./helpers/CryptoPrices.js ***!
-  \*********************************/
+/***/ "./node_modules/react-rangeslider/lib/index.css":
+/*!******************************************************!*\
+  !*** ./node_modules/react-rangeslider/lib/index.css ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./pages/matches/match.js":
+/*!********************************!*\
+  !*** ./pages/matches/match.js ***!
+  \********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1824,8 +1785,661 @@ if (typeof window != 'undefined' && typeof window.web3 != 'undefined') {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _SupportedTokens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SupportedTokens */ "./helpers/SupportedTokens.js");
-/* harmony import */ var _GetTokenPrice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GetTokenPrice */ "./helpers/GetTokenPrice.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dnd */ "react-dnd");
+/* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dnd__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_dnd_html5_backend__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dnd-html5-backend */ "react-dnd-html5-backend");
+/* harmony import */ var react_dnd_html5_backend__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dnd_html5_backend__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_Layout_Layout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/Layout/Layout */ "./components/Layout/Layout.js");
+/* harmony import */ var _components_match_BettingBox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/match/BettingBox */ "./components/match/BettingBox.js");
+/* harmony import */ var _components_match_ConfirmBetModal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/match/ConfirmBetModal */ "./components/match/ConfirmBetModal.js");
+/* harmony import */ var _components_match_ErrorModal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/match/ErrorModal */ "./components/match/ErrorModal.js");
+/* harmony import */ var _components_match_Teams__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/match/Teams */ "./components/match/Teams.js");
+/* harmony import */ var _components_match_TokenBox__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/match/TokenBox */ "./components/match/TokenBox.js");
+/* harmony import */ var _redux_match_actions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../redux/match/actions */ "./redux/match/actions.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
+/* harmony import */ var _utils_CryptoPrices__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../utils/CryptoPrices */ "./utils/CryptoPrices.js");
+/* harmony import */ var _static_css_match_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../static/css/match.css */ "./static/css/match.css");
+/* harmony import */ var _static_css_match_css__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_static_css_match_css__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _ethereum_EthLounge__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../ethereum/EthLounge */ "./ethereum/EthLounge.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Token = function Token(address, amount, position) {
+  _classCallCheck(this, Token);
+
+  this.address = address;
+  this.amount = amount;
+  this.initialAmount = amount;
+  this.position = position;
+};
+
+var Match =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Match, _Component);
+
+  function Match() {
+    _classCallCheck(this, Match);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Match).apply(this, arguments));
+  }
+
+  _createClass(Match, [{
+    key: "componentDidMount",
+    value: function () {
+      var _componentDidMount = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var prices;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return Object(_utils_CryptoPrices__WEBPACK_IMPORTED_MODULE_15__["default"])();
+
+              case 2:
+                prices = _context.sent;
+                _redux_store__WEBPACK_IMPORTED_MODULE_14__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_13__["updatePrices"])(prices));
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function componentDidMount() {
+        return _componentDidMount.apply(this, arguments);
+      };
+    }()
+  }, {
+    key: "handleClick",
+    value: function handleClick(event, tokensToBet) {
+      event.preventDefault();
+      var errorHead = 'You forgot to do the following';
+      var errors = [];
+      if (!this.props.signedIn) errors.push('Please log in to place bets.');
+      if (tokensToBet.length === 0) errors.push('Please place at least one token in order to place a bet.');
+      if (lodash__WEBPACK_IMPORTED_MODULE_1___default.a.isEmpty(this.props.pickedTeam)) errors.push('Please pick a team.');
+
+      if (errors.length > 0) {
+        _redux_store__WEBPACK_IMPORTED_MODULE_14__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_13__["toggleErrorModal"])(errorHead, errors));
+        return;
+      }
+
+      _redux_store__WEBPACK_IMPORTED_MODULE_14__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_13__["toggleModal"])('confirmBetModal'));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"], {
+        relaxed: true
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_match_ErrorModal__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        modal: this.props.errorModal
+      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_match_ConfirmBetModal__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        open: this.props.confirmBetModal.isOpen,
+        tokensToBet: this.props.tokens.toBet,
+        pickedTeam: this.props.pickedTeam,
+        account: this.props.account,
+        matchID: this.props.initial.gameInfo.matchID
+      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
+        width: 8
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_match_Teams__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        teams: this.props.initial.gameInfo.teams,
+        pickedTeam: this.props.pickedTeam,
+        signedIn: this.props.signedIn
+      }), "LAST BETS:"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
+        width: 8
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h2", null, "Place bet"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_match_BettingBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        prices: this.props.prices,
+        tokens: this.props.tokens.toBet
+      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "bet-container"
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+        onClick: function onClick(event) {
+          return _this.handleClick(event, _this.props.tokens.toBet);
+        },
+        className: "button-bet",
+        size: "large",
+        color: "black"
+      }, "Place bet"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"], {
+        relaxed: true,
+        floated: "right",
+        className: "info-bet"
+      }, this.renderBetValue(this.props.betValue), this.renderEstimatedReward(this.props.betValue))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h2", null, "Balances"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_match_TokenBox__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        signedIn: this.props.signedIn,
+        tokens: this.props.tokens.wallet
+      })));
+    }
+  }, {
+    key: "renderBetValue",
+    value: function renderBetValue(betValue) {
+      if (this.props.tokens.toBet.length > 0) return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Label"], {
+        className: "orange-label",
+        horizontal: true
+      }, "ESTIMATED BET VALUE"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("strong", null, " ".concat(betValue, "$")));
+      return '';
+    }
+  }, {
+    key: "renderEstimatedReward",
+    value: function renderEstimatedReward(betValue) {
+      if (this.props.tokens.toBet.length > 0 && !lodash__WEBPACK_IMPORTED_MODULE_1___default.a.isEmpty(this.props.pickedTeam)) return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Label"], {
+        className: "orange-label",
+        horizontal: true
+      }, "ESTIMATED RETURN"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("strong", null, " ".concat((parseFloat(betValue) * this.props.pickedTeam.odds).toFixed(2), "$")));
+      return '';
+    }
+  }], [{
+    key: "getInitialProps",
+    value: function () {
+      var _getInitialProps = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(props) {
+        var matchID, teams, gameInfo;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                matchID = props.query.id; // This information will be pulled from database //
+
+                teams = [{
+                  name: 'Fnatic',
+                  slug: 'fnatic',
+                  imgUrl: "../../img/teams/fnatic.png",
+                  odds: 1.56
+                }, {
+                  name: 'Gambit',
+                  slug: 'gambit',
+                  imgUrl: "../../img/teams/gambit.png",
+                  odds: 2.77
+                }];
+                gameInfo = {
+                  matchID: matchID,
+                  teams: teams
+                };
+                return _context2.abrupt("return", {
+                  gameInfo: gameInfo
+                });
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      return function getInitialProps(_x) {
+        return _getInitialProps.apply(this, arguments);
+      };
+    }()
+  }]);
+
+  return Match;
+}(react__WEBPACK_IMPORTED_MODULE_2__["Component"]);
+
+var getTokens =
+/*#__PURE__*/
+function () {
+  var _ref = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(account) {
+    var result, tokenAddresses, tokenAmounts, tokens, i, newToken;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.next = 2;
+            return _ethereum_EthLounge__WEBPACK_IMPORTED_MODULE_17__["default"].methods.getBalances().call({
+              from: account
+            });
+
+          case 2:
+            result = _context3.sent;
+            tokenAddresses = result[0];
+            tokenAmounts = result[1];
+            tokens = [];
+
+            for (i = 0; i < tokenAmounts.length; i++) {
+              if (tokenAmounts[i] !== '0') {
+                newToken = new Token(tokenAddresses[i], tokenAmounts[i], 'balance-box');
+                tokens.push(newToken);
+              }
+            }
+
+            _redux_store__WEBPACK_IMPORTED_MODULE_14__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_13__["addTokens"])(tokens));
+
+          case 8:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, this);
+  }));
+
+  return function getTokens(_x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+_redux_store__WEBPACK_IMPORTED_MODULE_14__["default"].subscribe(function () {
+  if (_redux_store__WEBPACK_IMPORTED_MODULE_14__["default"].getState().lastAction.type === 'LOG_IN') {
+    console.log('LOG_IN');
+    getTokens(_redux_store__WEBPACK_IMPORTED_MODULE_14__["default"].getState().login.account);
+  }
+});
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    tokens: state.match.tokens,
+    signedIn: state.login.signedIn,
+    betValue: state.match.betValue,
+    prices: state.match.prices,
+    pickedTeam: state.match.pickedTeam,
+    errorModal: state.match.errorModal,
+    confirmBetModal: state.match.confirmBetModal,
+    account: state.login.account
+  };
+};
+
+Match = Object(react_dnd__WEBPACK_IMPORTED_MODULE_3__["DragDropContext"])(react_dnd_html5_backend__WEBPACK_IMPORTED_MODULE_4___default.a)(Match);
+/* harmony default export */ __webpack_exports__["default"] = (Object(_components_Layout_Layout__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps)(Match)));
+
+/***/ }),
+
+/***/ "./redux/layout/loginReducer.js":
+/*!**************************************!*\
+  !*** ./redux/layout/loginReducer.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var initialState = {
+  signedIn: false,
+  account: ''
+};
+
+var loginReducer = function loginReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  var newState = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.cloneDeep(state);
+
+  switch (action.type) {
+    case 'LOG_OUT':
+      {
+        newState = _objectSpread({}, initialState);
+        newState.prices = state.prices;
+        console.log('Logged out! State is now: ', newState);
+        break;
+      }
+
+    case 'LOG_IN':
+      {
+        console.log('Loggin in...');
+        newState.account = action.account;
+        newState.signedIn = true;
+        console.log('Logging in! State is now: ', newState);
+        break;
+      }
+  }
+
+  return newState;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (loginReducer);
+
+/***/ }),
+
+/***/ "./redux/match/actions.js":
+/*!********************************!*\
+  !*** ./redux/match/actions.js ***!
+  \********************************/
+/*! exports provided: addTokens, changeTokenPosition, changeTokenAmount, updateEstimateBet, updatePrices, pickTeam, toggleErrorModal, toggleModal */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTokens", function() { return addTokens; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeTokenPosition", function() { return changeTokenPosition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeTokenAmount", function() { return changeTokenAmount; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateEstimateBet", function() { return updateEstimateBet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePrices", function() { return updatePrices; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pickTeam", function() { return pickTeam; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleErrorModal", function() { return toggleErrorModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleModal", function() { return toggleModal; });
+function addTokens(tokens) {
+  return {
+    type: 'ADD_TOKENS',
+    tokens: tokens
+  };
+}
+function changeTokenPosition(token, pos) {
+  return {
+    type: 'CHANGE_POS',
+    token: token,
+    pos: pos
+  };
+}
+function changeTokenAmount(token) {
+  return {
+    type: 'CHANGE_AMOUNT',
+    token: token
+  };
+}
+function updateEstimateBet(sum) {
+  return {
+    type: 'UPDATE_ESTIMATE_BET',
+    sum: sum
+  };
+}
+function updatePrices(prices) {
+  return {
+    type: 'UPDATE_PRICES',
+    prices: prices
+  };
+}
+function pickTeam(team) {
+  return {
+    type: 'PICK_TEAM',
+    team: team
+  };
+}
+function toggleErrorModal() {
+  var head = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  var reasons = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  return {
+    type: 'TOGGLE_ERROR_MODAL',
+    head: head,
+    reasons: reasons
+  };
+}
+function toggleModal(property) {
+  return {
+    type: 'TOGGLE_MODAL',
+    property: property
+  };
+}
+
+/***/ }),
+
+/***/ "./redux/match/matchReducer.js":
+/*!*************************************!*\
+  !*** ./redux/match/matchReducer.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_EstimateBetValue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/EstimateBetValue */ "./utils/EstimateBetValue.js");
+
+
+var initialState = {
+  tokens: {
+    toBet: [],
+    wallet: []
+  },
+  prices: {},
+  betValue: 0,
+  pickedTeam: {},
+  errorModal: {
+    isOpen: false,
+    head: '',
+    reasons: []
+  },
+  confirmBetModal: {
+    isOpen: false
+  }
+};
+
+var matchReducer = function matchReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  var newState = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.cloneDeep(state);
+
+  switch (action.type) {
+    case 'ADD_TOKENS':
+      {
+        // if (
+        //   newState.tokens.wallet.some(
+        //     curr => curr.address == action.token.address
+        //   )
+        // )
+        //   return;
+        // if (
+        //   newState.tokens.toBet.some(curr => curr.address == action.token.address)
+        // )
+        //   return;
+        newState.tokens.wallet = action.tokens;
+        break;
+      }
+
+    case 'CHANGE_POS':
+      {
+        console.log(action.token, state);
+
+        if (action.token.position === 'balance-box') {
+          action.token.position = action.pos;
+          newState.tokens.toBet.push(action.token);
+          newState.tokens.wallet = newState.tokens.wallet.filter(function (curr) {
+            return curr.address != action.token.address;
+          });
+        } else {
+          action.token.position = 'balance-box';
+          action.token.amount = action.token.initialAmount;
+          newState.tokens.wallet.push(action.token);
+          newState.tokens.toBet = newState.tokens.toBet.filter(function (curr) {
+            return curr.address != action.token.address;
+          });
+        }
+
+        newState.betValue = Object(_utils_EstimateBetValue__WEBPACK_IMPORTED_MODULE_1__["default"])(newState.tokens.toBet, newState.prices, false);
+        break;
+      }
+
+    case 'UPDATE_PRICES':
+      {
+        newState.prices = action.prices;
+        break;
+      }
+
+    case 'UPDATE_ESTIMATE_BET':
+      {
+        newState.betValue = action.sum;
+        break;
+      }
+
+    case 'PICK_TEAM':
+      {
+        newState.pickedTeam = action.team;
+        break;
+      }
+
+    case 'TOGGLE_MODAL':
+      {
+        newState[action.property].isOpen = !newState[action.property].isOpen;
+        break;
+      }
+
+    case 'TOGGLE_ERROR_MODAL':
+      {
+        newState.errorModal.isOpen = !state.errorModal.isOpen;
+        newState.errorModal.head = action.head;
+        newState.errorModal.reasons = action.reasons;
+        break;
+      }
+  }
+
+  return newState;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (matchReducer);
+
+/***/ }),
+
+/***/ "./redux/reducers.js":
+/*!***************************!*\
+  !*** ./redux/reducers.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _match_matchReducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./match/matchReducer */ "./redux/match/matchReducer.js");
+/* harmony import */ var _layout_loginReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layout/loginReducer */ "./redux/layout/loginReducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "redux");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var lastAction = function lastAction() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  return action;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_2__["combineReducers"])({
+  login: _layout_loginReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  match: _match_matchReducer__WEBPACK_IMPORTED_MODULE_0__["default"],
+  lastAction: lastAction
+}));
+
+/***/ }),
+
+/***/ "./redux/store.js":
+/*!************************!*\
+  !*** ./redux/store.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reducers */ "./redux/reducers.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "redux");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var store = Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_0__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./server/routes/next-routes.js":
+/*!**************************************!*\
+  !*** ./server/routes/next-routes.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var routes = __webpack_require__(/*! next-routes */ "next-routes")();
+
+routes.add('/index', '/index').add('/matches/:id', '/matches/match');
+module.exports = routes;
+
+/***/ }),
+
+/***/ "./static/css/layout.css":
+/*!*******************************!*\
+  !*** ./static/css/layout.css ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./static/css/match.css":
+/*!******************************!*\
+  !*** ./static/css/match.css ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./utils/CryptoPrices.js":
+/*!*******************************!*\
+  !*** ./utils/CryptoPrices.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SupportedTokens__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SupportedTokens */ "./utils/SupportedTokens.js");
+/* harmony import */ var _GetTokenPrice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GetTokenPrice */ "./utils/GetTokenPrice.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1872,10 +2486,10 @@ function () {
 
 /***/ }),
 
-/***/ "./helpers/EstimateBetValue.js":
-/*!*************************************!*\
-  !*** ./helpers/EstimateBetValue.js ***!
-  \*************************************/
+/***/ "./utils/EstimateBetValue.js":
+/*!***********************************!*\
+  !*** ./utils/EstimateBetValue.js ***!
+  \***********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1883,11 +2497,11 @@ function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! big.js */ "big.js");
 /* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _GetTokenPrice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GetTokenPrice */ "./helpers/GetTokenPrice.js");
-/* harmony import */ var _SupportedTokens__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SupportedTokens */ "./helpers/SupportedTokens.js");
-/* harmony import */ var _TokenFromWei__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TokenFromWei */ "./helpers/TokenFromWei.js");
+/* harmony import */ var _GetTokenPrice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GetTokenPrice */ "./utils/GetTokenPrice.js");
+/* harmony import */ var _SupportedTokens__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SupportedTokens */ "./utils/SupportedTokens.js");
+/* harmony import */ var _TokenFromWei__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TokenFromWei */ "./utils/TokenFromWei.js");
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
-/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/actions */ "./redux/actions.js");
+/* harmony import */ var _redux_match_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../redux/match/actions */ "./redux/match/actions.js");
 
 
 
@@ -1908,7 +2522,7 @@ var EstimateBetValue = function EstimateBetValue(tokensToBet, prices) {
     return sum + parseFloat(big_js__WEBPACK_IMPORTED_MODULE_0___default()(Object(_TokenFromWei__WEBPACK_IMPORTED_MODULE_3__["default"])(tokensToBet[index])).mul(curr).toFixed(2));
   }, 0);
   if (sum === '00.00') sum = '0';
-  if (dispatch) _redux_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_5__["updateEstimateBet"])(sum));
+  if (dispatch) _redux_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_5__["updateEstimateBet"])(sum));
   return sum;
 };
 
@@ -1916,10 +2530,10 @@ var EstimateBetValue = function EstimateBetValue(tokensToBet, prices) {
 
 /***/ }),
 
-/***/ "./helpers/GetTokenPrice.js":
-/*!**********************************!*\
-  !*** ./helpers/GetTokenPrice.js ***!
-  \**********************************/
+/***/ "./utils/GetTokenPrice.js":
+/*!********************************!*\
+  !*** ./utils/GetTokenPrice.js ***!
+  \********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1974,10 +2588,10 @@ function () {
 
 /***/ }),
 
-/***/ "./helpers/OptimizeTokenAmount.js":
-/*!****************************************!*\
-  !*** ./helpers/OptimizeTokenAmount.js ***!
-  \****************************************/
+/***/ "./utils/OptimizeTokenAmount.js":
+/*!**************************************!*\
+  !*** ./utils/OptimizeTokenAmount.js ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2002,10 +2616,10 @@ var optimize = function optimize(amount) {
 
 /***/ }),
 
-/***/ "./helpers/ShortEthAddress.js":
-/*!************************************!*\
-  !*** ./helpers/ShortEthAddress.js ***!
-  \************************************/
+/***/ "./utils/ShortEthAddress.js":
+/*!**********************************!*\
+  !*** ./utils/ShortEthAddress.js ***!
+  \**********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2019,10 +2633,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./helpers/Sleep.js":
-/*!**************************!*\
-  !*** ./helpers/Sleep.js ***!
-  \**************************/
+/***/ "./utils/Sleep.js":
+/*!************************!*\
+  !*** ./utils/Sleep.js ***!
+  \************************/
 /*! exports provided: Sleep */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2037,10 +2651,10 @@ function Sleep(ms) {
 
 /***/ }),
 
-/***/ "./helpers/SupportedTokens.js":
-/*!************************************!*\
-  !*** ./helpers/SupportedTokens.js ***!
-  \************************************/
+/***/ "./utils/SupportedTokens.js":
+/*!**********************************!*\
+  !*** ./utils/SupportedTokens.js ***!
+  \**********************************/
 /*! exports provided: SupportedTokens, DictionarryFull, DictionarrySymbol, DictionarryDecimals */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2066,17 +2680,17 @@ DictionarryDecimals.set(powr, 8);
 
 /***/ }),
 
-/***/ "./helpers/TokenFromWei.js":
-/*!*********************************!*\
-  !*** ./helpers/TokenFromWei.js ***!
-  \*********************************/
+/***/ "./utils/TokenFromWei.js":
+/*!*******************************!*\
+  !*** ./utils/TokenFromWei.js ***!
+  \*******************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _SupportedTokens__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SupportedTokens */ "./helpers/SupportedTokens.js");
-/* harmony import */ var _OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OptimizeTokenAmount */ "./helpers/OptimizeTokenAmount.js");
+/* harmony import */ var _SupportedTokens__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SupportedTokens */ "./utils/SupportedTokens.js");
+/* harmony import */ var _OptimizeTokenAmount__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OptimizeTokenAmount */ "./utils/OptimizeTokenAmount.js");
 /* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! big.js */ "big.js");
 /* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_2__);
 
@@ -2115,508 +2729,7 @@ var getScientificNotation = function getScientificNotation(decimals) {
 
 /***/ }),
 
-/***/ "./pages/matches/match.js":
-/*!********************************!*\
-  !*** ./pages/matches/match.js ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_Layout_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Layout/Layout */ "./components/Layout/Layout.js");
-/* harmony import */ var react_dnd_html5_backend__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dnd-html5-backend */ "react-dnd-html5-backend");
-/* harmony import */ var react_dnd_html5_backend__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dnd_html5_backend__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dnd */ "react-dnd");
-/* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dnd__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_match_BettingBox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/match/BettingBox */ "./components/match/BettingBox.js");
-/* harmony import */ var _components_match_TokenBox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/match/TokenBox */ "./components/match/TokenBox.js");
-/* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../redux/actions */ "./redux/actions.js");
-/* harmony import */ var _helpers_CryptoPrices__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../helpers/CryptoPrices */ "./helpers/CryptoPrices.js");
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
-/* harmony import */ var _components_match_Teams__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/match/Teams */ "./components/match/Teams.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! lodash */ "lodash");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _components_ErrorModal__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/ErrorModal */ "./components/ErrorModal.js");
-/* harmony import */ var _components_match_ConfirmBetModal__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../components/match/ConfirmBetModal */ "./components/match/ConfirmBetModal.js");
-
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var Match =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Match, _Component);
-
-  function Match() {
-    _classCallCheck(this, Match);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Match).apply(this, arguments));
-  }
-
-  _createClass(Match, [{
-    key: "componentDidMount",
-    value: function () {
-      var _componentDidMount = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var prices;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return Object(_helpers_CryptoPrices__WEBPACK_IMPORTED_MODULE_10__["default"])();
-
-              case 2:
-                prices = _context.sent;
-                _redux_store__WEBPACK_IMPORTED_MODULE_11__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_9__["updatePrices"])(prices));
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      return function componentDidMount() {
-        return _componentDidMount.apply(this, arguments);
-      };
-    }()
-  }, {
-    key: "handleClick",
-    value: function handleClick(event, tokensToBet) {
-      event.preventDefault();
-      var errorHead = 'You forgot to do the following';
-      var errors = [];
-      if (!this.props.signedIn) errors.push('Please log in to place bets.');
-      if (tokensToBet.length === 0) errors.push('Please place at least one token in order to place a bet.');
-      if (lodash__WEBPACK_IMPORTED_MODULE_13___default.a.isEmpty(this.props.pickedTeam)) errors.push('Please pick a team.');
-
-      if (errors.length > 0) {
-        _redux_store__WEBPACK_IMPORTED_MODULE_11__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_9__["toggleErrorModal"])(errorHead, errors));
-        return;
-      }
-
-      _redux_store__WEBPACK_IMPORTED_MODULE_11__["default"].dispatch(Object(_redux_actions__WEBPACK_IMPORTED_MODULE_9__["toggleModal"])('confirmBetModal'));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this = this;
-
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"], {
-        relaxed: true
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_ErrorModal__WEBPACK_IMPORTED_MODULE_14__["default"], {
-        modal: this.props.errorModal
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_match_ConfirmBetModal__WEBPACK_IMPORTED_MODULE_15__["default"], {
-        open: this.props.confirmBetModal.isOpen,
-        tokensToBet: this.props.tokens.toBet,
-        pickedTeam: this.props.pickedTeam,
-        account: this.props.account,
-        matchID: this.props.initial.gameInfo.matchID
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
-        width: 8
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_match_Teams__WEBPACK_IMPORTED_MODULE_12__["default"], {
-        teams: this.props.initial.gameInfo.teams,
-        pickedTeam: this.props.pickedTeam,
-        signedIn: this.props.signedIn
-      }), "LAST BETS:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
-        width: 8
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Place bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_match_BettingBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        prices: this.props.prices,
-        tokens: this.props.tokens.toBet
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "bet-container"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Button"], {
-        onClick: function onClick(event) {
-          return _this.handleClick(event, _this.props.tokens.toBet);
-        },
-        className: "button-bet",
-        size: "large",
-        color: "black"
-      }, "Place bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"], {
-        relaxed: true,
-        floated: "right",
-        className: "info-bet"
-      }, this.renderBetValue(this.props.betValue), this.renderEstimatedReward(this.props.betValue))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Balances"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_match_TokenBox__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        signedIn: this.props.signedIn,
-        tokens: this.props.tokens.wallet
-      })));
-    }
-  }, {
-    key: "renderBetValue",
-    value: function renderBetValue(betValue) {
-      if (this.props.tokens.toBet.length > 0) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Label"], {
-        className: "orange-label",
-        horizontal: true
-      }, "ESTIMATED BET VALUE"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, " ".concat(betValue, "$")));
-      return '';
-    }
-  }, {
-    key: "renderEstimatedReward",
-    value: function renderEstimatedReward(betValue) {
-      if (this.props.tokens.toBet.length > 0 && !lodash__WEBPACK_IMPORTED_MODULE_13___default.a.isEmpty(this.props.pickedTeam)) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Label"], {
-        className: "orange-label",
-        horizontal: true
-      }, "ESTIMATED RETURN"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, " ".concat((parseFloat(betValue) * this.props.pickedTeam.odds).toFixed(2), "$")));
-      return '';
-    }
-  }], [{
-    key: "getInitialProps",
-    value: function () {
-      var _getInitialProps = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(props) {
-        var matchID, teams, gameInfo;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                matchID = props.query.id; // This information will be pulled from database //
-
-                teams = [{
-                  name: 'Fnatic',
-                  slug: 'fnatic',
-                  imgUrl: "../../img/teams/fnatic.png",
-                  odds: 1.56
-                }, {
-                  name: 'Gambit',
-                  slug: 'gambit',
-                  imgUrl: "../../img/teams/gambit.png",
-                  odds: 2.77
-                }];
-                gameInfo = {
-                  matchID: matchID,
-                  teams: teams
-                };
-                return _context2.abrupt("return", {
-                  gameInfo: gameInfo
-                });
-
-              case 4:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      return function getInitialProps(_x) {
-        return _getInitialProps.apply(this, arguments);
-      };
-    }()
-  }]);
-
-  return Match;
-}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    tokens: state.tokens,
-    signedIn: state.signedIn,
-    betValue: state.betValue,
-    prices: state.prices,
-    pickedTeam: state.pickedTeam,
-    errorModal: state.errorModal,
-    confirmBetModal: state.confirmBetModal,
-    account: state.account
-  };
-};
-
-Match = Object(react_dnd__WEBPACK_IMPORTED_MODULE_4__["DragDropContext"])(react_dnd_html5_backend__WEBPACK_IMPORTED_MODULE_3___default.a)(Match);
-/* harmony default export */ __webpack_exports__["default"] = (Object(_components_Layout_Layout__WEBPACK_IMPORTED_MODULE_2__["default"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps)(Match)));
-
-/***/ }),
-
-/***/ "./redux/actions.js":
-/*!**************************!*\
-  !*** ./redux/actions.js ***!
-  \**************************/
-/*! exports provided: addToken, changeTokenPosition, changeTokenAmount, updateEstimateBet, updatePrices, pickTeam, toggleErrorModal, toggleModal */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToken", function() { return addToken; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeTokenPosition", function() { return changeTokenPosition; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeTokenAmount", function() { return changeTokenAmount; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateEstimateBet", function() { return updateEstimateBet; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePrices", function() { return updatePrices; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pickTeam", function() { return pickTeam; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleErrorModal", function() { return toggleErrorModal; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleModal", function() { return toggleModal; });
-function addToken(token) {
-  return {
-    type: 'ADD_TOKEN',
-    token: token
-  };
-}
-function changeTokenPosition(token, pos) {
-  return {
-    type: 'CHANGE_POS',
-    token: token,
-    pos: pos
-  };
-}
-function changeTokenAmount(token) {
-  return {
-    type: 'CHANGE_AMOUNT',
-    token: token
-  };
-}
-function updateEstimateBet(sum) {
-  return {
-    type: 'UPDATE_ESTIMATE_BET',
-    sum: sum
-  };
-}
-function updatePrices(prices) {
-  return {
-    type: 'UPDATE_PRICES',
-    prices: prices
-  };
-}
-function pickTeam(team) {
-  return {
-    type: 'PICK_TEAM',
-    team: team
-  };
-}
-function toggleErrorModal() {
-  var head = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  var reasons = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-  return {
-    type: 'TOGGLE_ERROR_MODAL',
-    head: head,
-    reasons: reasons
-  };
-}
-function toggleModal(property) {
-  return {
-    type: 'TOGGLE_MODAL',
-    property: property
-  };
-}
-
-/***/ }),
-
-/***/ "./redux/reducers.js":
-/*!***************************!*\
-  !*** ./redux/reducers.js ***!
-  \***************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/EstimateBetValue */ "./helpers/EstimateBetValue.js");
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-var initialState = {
-  tokens: {
-    toBet: [],
-    wallet: []
-  },
-  account: '',
-  signedIn: false,
-  prices: {},
-  betValue: 0,
-  pickedTeam: {},
-  errorModal: {
-    isOpen: false,
-    head: '',
-    reasons: []
-  },
-  confirmBetModal: {
-    isOpen: false
-  }
-};
-
-var matchReducer = function matchReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  var newState = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.cloneDeep(state);
-
-  switch (action.type) {
-    case 'ADD_TOKEN':
-      {
-        if (newState.tokens.wallet.some(function (curr) {
-          return curr.address == action.token.address;
-        })) return;
-        if (newState.tokens.toBet.some(function (curr) {
-          return curr.address == action.token.address;
-        })) return;
-        newState.tokens.wallet.push(action.token);
-        break;
-      }
-
-    case 'CHANGE_POS':
-      {
-        console.log(action.token, state);
-
-        if (action.token.position === 'balance-box') {
-          action.token.position = action.pos;
-          newState.tokens.toBet.push(action.token);
-          newState.tokens.wallet = newState.tokens.wallet.filter(function (curr) {
-            return curr.address != action.token.address;
-          });
-        } else {
-          action.token.position = 'balance-box';
-          action.token.amount = action.token.initialAmount;
-          newState.tokens.wallet.push(action.token);
-          newState.tokens.toBet = newState.tokens.toBet.filter(function (curr) {
-            return curr.address != action.token.address;
-          });
-        }
-
-        newState.betValue = Object(_helpers_EstimateBetValue__WEBPACK_IMPORTED_MODULE_1__["default"])(newState.tokens.toBet, newState.prices, false);
-        break;
-      }
-
-    case 'LOG_OUT':
-      {
-        newState = _objectSpread({}, initialState);
-        newState.prices = state.prices;
-        console.log('Logged out! State is now: ', newState);
-        break;
-      }
-
-    case 'LOG_IN':
-      {
-        console.log('Loggin in...');
-        newState.account = action.account;
-        newState.signedIn = true;
-        console.log('Logging in! State is now: ', newState);
-        break;
-      }
-
-    case 'UPDATE_PRICES':
-      {
-        newState.prices = action.prices;
-        break;
-      }
-
-    case 'UPDATE_ESTIMATE_BET':
-      {
-        newState.betValue = action.sum;
-        break;
-      }
-
-    case 'PICK_TEAM':
-      {
-        newState.pickedTeam = action.team;
-        break;
-      }
-
-    case 'TOGGLE_MODAL':
-      {
-        newState[action.property].isOpen = !newState[action.property].isOpen;
-        break;
-      }
-
-    case 'TOGGLE_ERROR_MODAL':
-      {
-        newState.errorModal.isOpen = !state.errorModal.isOpen;
-        newState.errorModal.head = action.head;
-        newState.errorModal.reasons = action.reasons;
-        break;
-      }
-  }
-
-  return newState;
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (matchReducer);
-
-/***/ }),
-
-/***/ "./redux/store.js":
-/*!************************!*\
-  !*** ./redux/store.js ***!
-  \************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reducers */ "./redux/reducers.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "redux");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_1__);
-
-
-var store = Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_0__["default"]);
-/* harmony default export */ __webpack_exports__["default"] = (store);
-
-/***/ }),
-
-/***/ "./routes.js":
-/*!*******************!*\
-  !*** ./routes.js ***!
-  \*******************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var routes = __webpack_require__(/*! next-routes */ "next-routes")();
-
-routes.add('/index', '/index').add('/matches/:id', '/matches/match');
-module.exports = routes;
-
-/***/ }),
-
-/***/ 4:
+/***/ 3:
 /*!**************************************!*\
   !*** multi ./pages/matches/match.js ***!
   \**************************************/

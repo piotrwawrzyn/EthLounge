@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import store from '../../redux/store';
 import {
-  Modal,
-  Grid,
-  Image,
   Button,
-  List,
-  Icon,
+  Grid,
   Header,
-  Label
+  Icon,
+  Image,
+  Label,
+  List,
+  Modal
 } from 'semantic-ui-react';
-import { toggleModal } from '../../redux/actions';
-import TokenFromWei from '../../helpers/TokenFromWei';
+
 import EthLounge from '../../ethereum/EthLounge';
-import { Router } from '../../routes';
+import { toggleModal } from '../../redux/match/actions';
+import store from '../../redux/store';
+import { Router } from '../../server/routes/next-routes';
+import TokenFromWei from '../../utils/TokenFromWei';
 
 class ConfirmBetModal extends Component {
   constructor(props) {
@@ -108,7 +109,7 @@ class ConfirmBetModal extends Component {
           <Modal.Description>
             <Grid>
               <Grid.Column width={10}>
-                <Header>Your bet:</Header>
+                <Header>Your bet: </Header>
                 <List className="confirm-bet-modal-ul font-dark-orange" as="ul">
                   {tokenList}
                 </List>
@@ -120,7 +121,7 @@ class ConfirmBetModal extends Component {
                   Odds:{' '}
                   <span className="font-dark-orange">{pickedTeam.odds}</span>
                 </Header>
-                {this.state.waitingText}
+                {this.state.waitingText}{' '}
               </Grid.Column>
               <Grid.Column verticalAlign="middle" width={6}>
                 <Image
@@ -166,7 +167,7 @@ class FinalModalSuccess extends Component {
         <Modal.Content className="word-wrap">
           <p>
             Transaction hash:{' '}
-            <a href={`https://etherscan.io/tx/${hash}`}>{hash}</a>
+            <a href={` https://etherscan.io/tx/${hash}`}>{hash}</a>
           </p>
         </Modal.Content>
         <Modal.Actions>
@@ -176,6 +177,7 @@ class FinalModalSuccess extends Component {
               close();
               Router.push(`/matches/${matchID}`);
             }}>
+            {' '}
             Go back
           </Button>
         </Modal.Actions>

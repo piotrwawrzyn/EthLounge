@@ -13,18 +13,8 @@ import web3 from '../../ethereum/web3';
 import Blockies from 'react-blockies';
 import EthLounge from '../../ethereum/EthLounge';
 import store from '../../redux/store';
-import { Sleep } from '../../helpers/Sleep';
-import ShortEthAddress from '../../helpers/ShortEthAddress';
-import { addToken } from '../../redux/actions';
-
-class Token {
-  constructor(address, amount, position) {
-    this.address = address;
-    this.amount = amount;
-    this.initialAmount = amount;
-    this.position = position;
-  }
-}
+import { Sleep } from '../../utils/Sleep';
+import ShortEthAddress from '../../utils/ShortEthAddress';
 
 class MenuExampleSizeLarge extends Component {
   constructor(props) {
@@ -47,7 +37,6 @@ class MenuExampleSizeLarge extends Component {
     if (account && openSessionAccounts.length > 0) {
       store.dispatch({ type: 'LOG_IN', account: account });
       this.setState({ signedIn: true, account: account });
-      this.getTokens(account);
     } else store.dispatch({ type: 'LOG_OUT' });
 
     this.setState({ readyToGenerateRightMenu: true });
@@ -117,7 +106,6 @@ class MenuExampleSizeLarge extends Component {
 
     if (typeof account !== 'undefined') {
       this.setState({ account: account });
-      this.getTokens(account);
       this.setState({ signedIn: true });
       store.dispatch({ type: 'LOG_IN', account: account });
       window.localStorage.setItem('eth-account', account);
@@ -201,25 +189,6 @@ class MenuExampleSizeLarge extends Component {
         </Modal>
       </Menu>
     );
-  }
-
-  async getTokens(account) {
-    const result = await EthLounge.methods
-      .getBalances()
-      .call({ from: account });
-    const tokenAddresses = result[0];
-    const tokenAmounts = result[1];
-
-    for (let i = 0; i < tokenAmounts.length; i++) {
-      if (tokenAmounts[i] !== '0') {
-        const newToken = new Token(
-          tokenAddresses[i],
-          tokenAmounts[i],
-          'balance-box'
-        );
-        store.dispatch(addToken(newToken));
-      }
-    }
   }
 }
 

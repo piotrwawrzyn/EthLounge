@@ -1,8 +1,11 @@
-import React, { Component } from "react";
-import BalanceBoxToken from "./BalanceBoxToken";
-import { Message } from "semantic-ui-react";
-import { changeTokenPosition } from "../../redux/actions";
-import store from "../../redux/store";
+import _ from 'lodash';
+import React, { Component } from 'react';
+import { Message } from 'semantic-ui-react';
+
+import { changeTokenPosition } from '../../redux/match/actions';
+import store from '../../redux/store';
+
+import BalanceBoxToken from './BalanceBoxToken';
 
 class TokenBox extends Component {
   constructor(props) {
@@ -14,20 +17,17 @@ class TokenBox extends Component {
   }
 
   renderItems = tokens => {
+    const tokensInBalance = _.filter(tokens, { position: 'balance-box' });
     const toRender = (
       <div>
-        {tokens.map(token => {
-          if (token.position == "balance-box") {
-            return (
-              <BalanceBoxToken
-                key={token.address}
-                token={{ ...token }}
-                handleDrop={(token, pos) => this.handleDrop(token, pos)}
-              />
-            );
-          } else {
-            return "";
-          }
+        {tokensInBalance.map(token => {
+          return (
+            <BalanceBoxToken
+              key={token.address}
+              token={{ ...token }}
+              handleDrop={(token, pos) => this.handleDrop(token, pos)}
+            />
+          );
         })}
       </div>
     );

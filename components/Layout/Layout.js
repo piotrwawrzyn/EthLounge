@@ -4,6 +4,8 @@ import Head from 'next/head';
 import { Provider } from 'react-redux';
 import Menu from './Menu';
 import store from '../../redux/store';
+import '../../static/css/layout.css';
+import 'react-rangeslider/lib/index.css';
 
 const layout = ChildPage =>
   class extends Component {
@@ -33,11 +35,6 @@ const layout = ChildPage =>
                 rel="stylesheet"
                 href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"
               />
-              <link
-                rel="stylesheet"
-                href="https://unpkg.com/react-rangeslider/umd/rangeslider.min.css"
-              />
-              <link rel="stylesheet" href="/static/css/style.css" />
             </Head>
             <Menu />
             <ChildPage initial={this.props} />

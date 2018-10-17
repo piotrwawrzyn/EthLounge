@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
+
 import BettingBoxToken from './BettingBoxToken';
-import RangeSlider from '../RangeSlider';
+import RangeSlider from './RangeSlider';
 
 class BettingBox extends Component {
   constructor(props) {

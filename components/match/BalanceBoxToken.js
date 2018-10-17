@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Token from '../Token';
+import Token from './Token';
 import { DragSource } from 'react-dnd';
 
 const itemSource = {

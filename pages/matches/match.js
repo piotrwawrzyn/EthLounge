@@ -1,22 +1,35 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
-import Layout from '../../components/Layout/Layout';
-import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
-import { Grid, Button, List, Label, Modal } from 'semantic-ui-react';
+import { Button, Grid, Label, List, Modal } from 'semantic-ui-react';
+
+import Layout from '../../components/Layout/Layout';
 import BettingBox from '../../components/match/BettingBox';
+import ConfirmBetModal from '../../components/match/ConfirmBetModal';
+import ErrorModal from '../../components/match/ErrorModal';
+import Teams from '../../components/match/Teams';
 import TokenBox from '../../components/match/TokenBox';
 import {
-  updatePrices,
   toggleErrorModal,
-  toggleModal
-} from '../../redux/actions';
-import CryptoPrices from '../../helpers/CryptoPrices';
+  toggleModal,
+  updatePrices,
+  addTokens
+} from '../../redux/match/actions';
 import store from '../../redux/store';
-import Teams from '../../components/match/Teams';
-import _ from 'lodash';
-import ErrorModal from '../../components/ErrorModal';
-import ConfirmBetModal from '../../components/match/ConfirmBetModal';
+import CryptoPrices from '../../utils/CryptoPrices';
+import '../../static/css/match.css';
+import EthLounge from '../../ethereum/EthLounge';
+
+class Token {
+  constructor(address, amount, position) {
+    this.address = address;
+    this.amount = amount;
+    this.initialAmount = amount;
+    this.position = position;
+  }
+}
 
 class Match extends Component {
   static async getInitialProps(props) {
@@ -146,16 +159,43 @@ class Match extends Component {
   }
 }
 
+const getTokens = async account => {
+  const result = await EthLounge.methods.getBalances().call({ from: account });
+  const tokenAddresses = result[0];
+  const tokenAmounts = result[1];
+  const tokens = [];
+
+  for (let i = 0; i < tokenAmounts.length; i++) {
+    if (tokenAmounts[i] !== '0') {
+      const newToken = new Token(
+        tokenAddresses[i],
+        tokenAmounts[i],
+        'balance-box'
+      );
+
+      tokens.push(newToken);
+    }
+  }
+  store.dispatch(addTokens(tokens));
+};
+
+store.subscribe(() => {
+  if (store.getState().lastAction.type === 'LOG_IN') {
+    console.log('LOG_IN');
+    getTokens(store.getState().login.account);
+  }
+});
+
 const mapStateToProps = state => {
   return {
-    tokens: state.tokens,
-    signedIn: state.signedIn,
-    betValue: state.betValue,
-    prices: state.prices,
-    pickedTeam: state.pickedTeam,
-    errorModal: state.errorModal,
-    confirmBetModal: state.confirmBetModal,
-    account: state.account
+    tokens: state.match.tokens,
+    signedIn: state.login.signedIn,
+    betValue: state.match.betValue,
+    prices: state.match.prices,
+    pickedTeam: state.match.pickedTeam,
+    errorModal: state.match.errorModal,
+    confirmBetModal: state.match.confirmBetModal,
+    account: state.login.account
   };
 };
 
