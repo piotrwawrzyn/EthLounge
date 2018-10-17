@@ -42,7 +42,8 @@
     "dev": "node server/server.js",
     "ganache": "ganache-cli --accounts 1000",
     "build": "next build",
-    "start": "concurrently  \"next build\" \"node server/server.js\""
+    "start": "node server/server.js",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",

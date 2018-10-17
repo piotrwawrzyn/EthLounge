@@ -32,9 +32,9 @@ const handler = nextRoutes.getRequestHandler(app);
 
 require('./routes/auth-routes')(server);
 
-app.prepare().then(() => {
-  const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
+app.prepare().then(() => {
   server.use(handler).listen(port, err => {
     if (err) throw err;
   });
