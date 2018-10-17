@@ -39,7 +39,8 @@
   "scripts": {
     "test": "mocha --timeout 3000000",
     "dev": "node server/server.js",
-    "ganache": "ganache-cli --accounts 1000"
+    "ganache": "ganache-cli --accounts 1000",
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
