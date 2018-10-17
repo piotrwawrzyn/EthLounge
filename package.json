@@ -16,7 +16,7 @@
     "ganache-cli": "^6.1.8",
     "lodash": "^4.17.11",
     "mongoose": "^5.3.3",
-    "next": "^7.0.0",
+    "next": "^7.0.2",
     "next-js": "^0.9.0-alpha",
     "next-routes": "^1.4.2",
     "passport": "^0.4.0",

@@ -11,7 +11,6 @@ const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOG_OUT': {
       newState = { ...initialState };
-      newState.prices = state.prices;
       console.log('Logged out! State is now: ', newState);
       break;
     }

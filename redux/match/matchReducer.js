@@ -83,6 +83,12 @@ const matchReducer = (state = initialState, action) => {
       newState.errorModal.reasons = action.reasons;
       break;
     }
+
+    case 'LOG_OUT': {
+      newState = { ...initialState };
+      newState.prices = state.prices;
+      break;
+    }
   }
 
   return newState;

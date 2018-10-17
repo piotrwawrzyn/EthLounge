@@ -2129,14 +2129,12 @@ var loginReducer = function loginReducer() {
     case 'LOG_OUT':
       {
         newState = _objectSpread({}, initialState);
-        newState.prices = state.prices;
         console.log('Logged out! State is now: ', newState);
         break;
       }
 
     case 'LOG_IN':
       {
-        console.log('Loggin in...');
         newState.account = action.account;
         newState.signedIn = true;
         console.log('Logging in! State is now: ', newState);
@@ -2235,6 +2233,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils_EstimateBetValue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/EstimateBetValue */ "./utils/EstimateBetValue.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var initialState = {
@@ -2330,6 +2332,13 @@ var matchReducer = function matchReducer() {
         newState.errorModal.isOpen = !state.errorModal.isOpen;
         newState.errorModal.head = action.head;
         newState.errorModal.reasons = action.reasons;
+        break;
+      }
+
+    case 'LOG_OUT':
+      {
+        newState = _objectSpread({}, initialState);
+        newState.prices = state.prices;
         break;
       }
   }
