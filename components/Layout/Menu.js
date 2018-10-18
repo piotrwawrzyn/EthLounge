@@ -54,7 +54,7 @@ class MenuExampleSizeLarge extends Component {
             <Grid.Row verticalAlign="middle">
               <Grid.Column width={4}>
                 <div className="user-avatar">
-                  <Blockies seed={this.state.account} scale={6} size={18} />
+                  <Blockies seed={this.state.account} scale={6} size={40} />
                 </div>
               </Grid.Column>
               <Grid.Column width={1} />

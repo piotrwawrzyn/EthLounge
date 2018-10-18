@@ -13,7 +13,7 @@ import {
 import EthLounge from '../../ethereum/EthLounge';
 import { toggleModal } from '../../redux/match/actions';
 import store from '../../redux/store';
-import { Router } from '../../server/routes/next-routes';
+import { Router } from '../../next-routes';
 import TokenFromWei from '../../utils/TokenFromWei';
 
 class ConfirmBetModal extends Component {
