@@ -65,7 +65,8 @@ class Match extends Component {
     event.preventDefault();
     const errorHead = 'You forgot to do the following';
     const errors = [];
-    if (!this.props.signedIn) errors.push('Please log in to place bets.');
+    if (!this.props.gambler.address)
+      errors.push('Please log in to place bets.');
     if (tokensToBet.length === 0)
       errors.push('Please place at least one token in order to place a bet.');
     if (_.isEmpty(this.props.pickedTeam)) errors.push('Please pick a team.');
@@ -93,7 +94,7 @@ class Match extends Component {
           <Teams
             teams={this.props.initial.gameInfo.teams}
             pickedTeam={this.props.pickedTeam}
-            signedIn={this.props.signedIn}
+            gambler={this.props.gambler}
           />
           LAST BETS:
         </Grid.Column>
@@ -120,7 +121,7 @@ class Match extends Component {
           </div>
           <h2>Balances</h2>
           <TokenBox
-            signedIn={this.props.signedIn}
+            gambler={this.props.gambler}
             tokens={this.props.tokens.wallet}
           />
         </Grid.Column>
@@ -159,8 +160,8 @@ class Match extends Component {
   }
 }
 
-const getTokens = async account => {
-  const result = await EthLounge.methods.getBalances().call({ from: account });
+const getTokens = async address => {
+  const result = await EthLounge.methods.getBalances().call({ from: address });
   const tokenAddresses = result[0];
   const tokenAmounts = result[1];
   const tokens = [];
@@ -181,21 +182,19 @@ const getTokens = async account => {
 
 store.subscribe(() => {
   if (store.getState().lastAction.type === 'LOG_IN') {
-    console.log('LOG_IN');
-    getTokens(store.getState().login.account);
+    getTokens(store.getState().login.gambler.address);
   }
 });
 
 const mapStateToProps = state => {
   return {
     tokens: state.match.tokens,
-    signedIn: state.login.signedIn,
     betValue: state.match.betValue,
     prices: state.match.prices,
     pickedTeam: state.match.pickedTeam,
     errorModal: state.match.errorModal,
     confirmBetModal: state.match.confirmBetModal,
-    account: state.login.account
+    gambler: state.login.gambler
   };
 };
 

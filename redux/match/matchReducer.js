@@ -15,17 +15,6 @@ const matchReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case 'ADD_TOKENS': {
-      // if (
-      //   newState.tokens.wallet.some(
-      //     curr => curr.address == action.token.address
-      //   )
-      // )
-      //   return;
-      // if (
-      //   newState.tokens.toBet.some(curr => curr.address == action.token.address)
-      // )
-      //   return;
-
       newState.tokens.wallet = action.tokens;
 
       break;

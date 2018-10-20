@@ -36,7 +36,7 @@ class TokenBox extends Component {
   };
 
   render() {
-    if (this.props.signedIn)
+    if (this.props.gambler.address)
       return (
         <div className="tokens-box">{this.renderItems(this.props.tokens)}</div>
       );

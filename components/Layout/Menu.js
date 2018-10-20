@@ -15,6 +15,7 @@ import EthLounge from '../../ethereum/EthLounge';
 import store from '../../redux/store';
 import { Sleep } from '../../utils/Sleep';
 import ShortEthAddress from '../../utils/ShortEthAddress';
+import axios from 'axios';
 
 class MenuExampleSizeLarge extends Component {
   constructor(props) {
@@ -22,93 +23,84 @@ class MenuExampleSizeLarge extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.state = {
       loading: false,
-      account: '',
-      signedIn: false,
-      popupOpen: false,
-      readyToGenerateRightMenu: false
+      gambler: this.props.gambler,
+      popupOpen: false
     };
   }
 
-  async componentDidMount() {
-    // Restore session from local storage
-    const account = window.localStorage.getItem('eth-account', account);
-    const openSessionAccounts = await web3.eth.getAccounts();
+  // sessionize(gambler) {
+  //   if (gambler.address) {
+  //     store.dispatch({ type: 'LOG_IN', gambler: gambler });
+  //     this.state.gambler = gambler;
+  //   } else {
+  //   }
+  // }
 
-    if (account && openSessionAccounts.length > 0) {
-      store.dispatch({ type: 'LOG_IN', account: account });
-      this.setState({ signedIn: true, account: account });
-    } else store.dispatch({ type: 'LOG_OUT' });
+  generateRightMenu(gambler) {
+    console.log('Generate right menu', gambler);
+    // this.sessionize(this.props.gambler);
+    const { address } = gambler;
+    if (address) {
+      const ethAddressShort = ShortEthAddress(address);
+      const ethAddressStyle = { color: 'white' };
 
-    this.setState({ readyToGenerateRightMenu: true });
-  }
-
-  generateRightMenu(signedIn, readyToGenerateRightMenu) {
-    if (readyToGenerateRightMenu) {
-      if (signedIn) {
-        const ethAddressShort = ShortEthAddress(this.state.account);
-
-        const ethAddressStyle = { color: 'white' };
-
-        return (
-          <Grid>
-            <Grid.Row verticalAlign="middle">
-              <Grid.Column width={4}>
-                <div className="user-avatar">
-                  <Blockies seed={this.state.account} scale={6} size={40} />
-                </div>
-              </Grid.Column>
-              <Grid.Column width={1} />
-              <Grid.Column width={10} className="user-column-right">
-                <div className="user-column-right-address">
-                  <a
-                    style={ethAddressStyle}
-                    href={`https://etherscan.io/address/${this.state.account}`}
-                    target="_blank">
-                    {ethAddressShort}
-                  </a>
-                </div>
-                <Button
-                  onClick={e => this.handleLogout(e)}
-                  loading={this.state.loading}
-                  size="mini"
-                  color="black"
-                  icon
-                  labelPosition="right"
-                  className="user-column-right-signout-button">
-                  Log out
-                  <Icon name="power off" />
-                </Button>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        );
-      }
       return (
-        <Button
-          loading={this.state.loading}
-          onClick={e => this.handleLogin(e)}
-          color="black">
-          Sign in
-        </Button>
+        <Grid>
+          <Grid.Row verticalAlign="middle">
+            <Grid.Column width={4}>
+              <div className="user-avatar">
+                <Blockies seed={address} scale={6} size={40} />
+              </div>
+            </Grid.Column>
+            <Grid.Column width={1} />
+            <Grid.Column width={10} className="user-column-right">
+              <div className="user-column-right-address">
+                <a
+                  style={ethAddressStyle}
+                  href={`https://etherscan.io/address/${address}`}
+                  target="_blank">
+                  {ethAddressShort}
+                </a>
+              </div>
+              <Button
+                onClick={e => this.handleLogout(e)}
+                loading={this.state.loading}
+                size="mini"
+                color="black"
+                icon
+                labelPosition="right"
+                className="user-column-right-signout-button">
+                Log out
+                <Icon name="power off" />
+              </Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       );
     }
-
-    return <Button loading={true} className="dark-orange-bg" />;
+    return (
+      <Button
+        loading={this.state.loading}
+        onClick={e => this.handleLogin(e)}
+        color="black">
+        Sign in
+      </Button>
+    );
   }
 
   async handleLogin(e) {
     this.setState({ loading: true });
-    await Sleep(300);
 
     let account;
 
     [account] = await web3.eth.getAccounts();
 
     if (typeof account !== 'undefined') {
-      this.setState({ account: account });
-      this.setState({ signedIn: true });
-      store.dispatch({ type: 'LOG_IN', account: account });
-      window.localStorage.setItem('eth-account', account);
+      const gambler = await axios.post('/login', {
+        address: account
+      });
+      this.setState({ gambler: gambler.data });
+      store.dispatch({ type: 'LOG_IN', gambler: gambler.data });
     } else {
       this.setState({ popupOpen: true });
     }
@@ -119,10 +111,10 @@ class MenuExampleSizeLarge extends Component {
   async handleLogout(e) {
     this.setState({ loading: true });
     await Sleep(600);
-    this.setState({ signedIn: false });
+    await axios.get('/logout');
+    this.setState({ gambler: {} });
     store.dispatch({ type: 'LOG_OUT' });
     this.setState({ loading: false });
-    window.localStorage.removeItem('eth-account');
   }
 
   render() {
@@ -150,10 +142,7 @@ class MenuExampleSizeLarge extends Component {
           FAQ
         </Menu.Item>
         <Menu.Item position="right">
-          {this.generateRightMenu(
-            this.state.signedIn,
-            this.state.readyToGenerateRightMenu
-          )}
+          {this.generateRightMenu(this.state.gambler)}
         </Menu.Item>
 
         <Modal open={this.state.popupOpen} size="small">

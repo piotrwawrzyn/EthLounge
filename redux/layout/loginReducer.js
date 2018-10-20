@@ -1,8 +1,7 @@
 import _ from 'lodash';
 
 const initialState = {
-  signedIn: false,
-  account: ''
+  gambler: {}
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -16,8 +15,7 @@ const loginReducer = (state = initialState, action) => {
     }
 
     case 'LOG_IN': {
-      newState.account = action.account;
-      newState.signedIn = true;
+      newState.gambler = action.gambler;
       console.log('Logging in! State is now: ', newState);
       break;
     }

@@ -10,7 +10,7 @@ class Teams extends Component {
   }
 
   handleClick = (event, team, pickedTeam) => {
-    if (this.props.signedIn) {
+    if (this.props.gambler.address) {
       if (pickedTeam.slug === team.slug) {
         store.dispatch(pickTeam({}));
         return;
@@ -20,7 +20,7 @@ class Teams extends Component {
   };
 
   generateTeamLabel(team, pickedTeam) {
-    const style = this.props.signedIn ? { cursor: 'pointer' } : {};
+    const style = this.props.gambler.address ? { cursor: 'pointer' } : {};
     let classNameModifier =
       pickedTeam.slug == team.slug ? ' team-label-picked' : '';
     let teamCaption =
@@ -42,7 +42,7 @@ class Teams extends Component {
           className={`team-label${classNameModifier}`}>
           <Image src={`/static/img/teams/${team.slug}.png`} />
         </Label>
-        {teamCaption}{' '}
+        <div style={style}>{teamCaption}</div>{' '}
       </div>
     );
   }
