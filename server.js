@@ -21,6 +21,8 @@ app.prepare().then(() => {
   server.use(proxy(`${backend}/admin/login`));
   server.use(proxy(`${backend}/admin/logout`));
   server.use(proxy(`${backend}/api/current_admin`));
+  server.use(proxy(`${backend}/backend/new_team`));
+  server.use(proxy(`${backend}/api/teams`));
 
   server.use(handler).listen(port, err => {
     if (err) throw err;

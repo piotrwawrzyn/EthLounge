@@ -1,0 +1,26 @@
+@import '../_variables.css';
+.grid-content {
+  margin-top: 1em !important;
+}
+
+.dropdown-div {
+  width: 100% !important;
+  border: 2px dashed rgba(34, 36, 38, 0.15);
+  text-align: center;
+  height: 100px;
+  line-height: 100px;
+}
+.dropdown-div-accepted {
+  border-color: var(--orange-dark);
+}
+
+.dropdown-div-rejected {
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.dropdown-div-error {
+  border-color: var(--error);
+  color: var(--error);
+  background-color: #fff6f6;
+}

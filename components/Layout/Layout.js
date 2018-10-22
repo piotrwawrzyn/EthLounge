@@ -5,17 +5,22 @@ import { Provider } from 'react-redux';
 import Menu from './Menu';
 import store from '../../redux/store';
 import '../../static/css/layout.css';
+// import 'semantic-ui-css/semantic.min.css';
 import 'react-rangeslider/lib/index.css';
 import axios from 'axios';
+import { login } from '../../redux/layout/actions';
 import { backend } from '../../config/config';
 
 const layout = ChildPage =>
   class extends Component {
     static async getInitialProps(initialProps) {
       const { req } = initialProps;
-      const res = await axios.get(`${backend}/api/current_gambler`, {
-        headers: req ? { cookie: req.headers.cookie } : undefined
-      });
+
+      const res = req.headers.cookie
+        ? await axios.get(`${backend}/api/current_gambler`, {
+            headers: req ? { cookie: req.headers.cookie } : undefined
+          })
+        : {};
 
       const gambler = res.data;
 
@@ -35,10 +40,11 @@ const layout = ChildPage =>
       return props;
     }
 
+    componentWillMount() {
+      store.dispatch({ type: 'LOG_IN', gambler: this.props.gambler });
+    }
+
     render() {
-      if (this.props.gambler.address) {
-        store.dispatch({ type: 'LOG_IN', gambler: this.props.gambler });
-      }
       return (
         <Provider store={store}>
           <Container>

@@ -41,7 +41,7 @@ class ConfirmBetModal extends Component {
     store.dispatch(toggleModal('confirmBetModal'));
   }
 
-  async handleConfirm(tokensToBet, pickedTeam, account, matchID) {
+  async handleConfirm(tokensToBet, pickedTeam, address, matchID) {
     console.log(this.state);
     this.setState({
       isLoading: true,
@@ -58,7 +58,7 @@ class ConfirmBetModal extends Component {
     try {
       const transactionInfo = await EthLounge.methods
         .placeBet(matchID, pickedTeam.slug, tokens, amounts)
-        .send({ from: account });
+        .send({ from: address });
       if (transactionInfo.status) {
         this.setState({
           isFinalModalSuccessOpen: true,
@@ -80,7 +80,7 @@ class ConfirmBetModal extends Component {
   }
 
   render() {
-    let { open, tokensToBet, pickedTeam, account, matchID } = this.props;
+    let { open, tokensToBet, pickedTeam, gambler, matchID } = this.props;
 
     const tokenList = tokensToBet.map(curr => {
       return (
@@ -145,7 +145,12 @@ class ConfirmBetModal extends Component {
             loading={this.state.isLoading}
             className="dark-orange-bg font-white"
             onClick={e =>
-              this.handleConfirm(tokensToBet, pickedTeam, account, matchID)
+              this.handleConfirm(
+                tokensToBet,
+                pickedTeam,
+                gambler.address,
+                matchID
+              )
             }>
             Confirm
           </Button>

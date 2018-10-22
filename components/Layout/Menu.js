@@ -19,73 +19,71 @@ import axios from 'axios';
 
 class MenuExampleSizeLarge extends Component {
   constructor(props) {
+    console.log('state in constructor of menu', store.getState());
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
     this.state = {
       loading: false,
-      gambler: this.props.gambler,
       popupOpen: false
     };
   }
 
-  // sessionize(gambler) {
-  //   if (gambler.address) {
-  //     store.dispatch({ type: 'LOG_IN', gambler: gambler });
-  //     this.state.gambler = gambler;
-  //   } else {
-  //   }
-  // }
-
   generateRightMenu(gambler) {
-    console.log('Generate right menu', gambler);
-    // this.sessionize(this.props.gambler);
-    const { address } = gambler;
-    if (address) {
-      const ethAddressShort = ShortEthAddress(address);
-      const ethAddressStyle = { color: 'white' };
+    switch (gambler) {
+      case false: {
+        return (
+          <Button
+            loading={this.state.loading}
+            onClick={e => this.handleLogin(e)}
+            color="black">
+            Sign in
+          </Button>
+        );
+      }
 
-      return (
-        <Grid>
-          <Grid.Row verticalAlign="middle">
-            <Grid.Column width={4}>
-              <div className="user-avatar">
-                <Blockies seed={address} scale={6} size={40} />
-              </div>
-            </Grid.Column>
-            <Grid.Column width={1} />
-            <Grid.Column width={10} className="user-column-right">
-              <div className="user-column-right-address">
-                <a
-                  style={ethAddressStyle}
-                  href={`https://etherscan.io/address/${address}`}
-                  target="_blank">
-                  {ethAddressShort}
-                </a>
-              </div>
-              <Button
-                onClick={e => this.handleLogout(e)}
-                loading={this.state.loading}
-                size="mini"
-                color="black"
-                icon
-                labelPosition="right"
-                className="user-column-right-signout-button">
-                Log out
-                <Icon name="power off" />
-              </Button>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      );
+      case null: {
+        return '';
+      }
+
+      default: {
+        const { address } = gambler;
+        const ethAddressShort = ShortEthAddress(address);
+        const ethAddressStyle = { color: 'white' };
+        return (
+          <Grid>
+            <Grid.Row verticalAlign="middle">
+              <Grid.Column width={4}>
+                <div className="user-avatar">
+                  <Blockies seed={address} scale={6} size={8} />
+                </div>
+              </Grid.Column>
+              <Grid.Column width={1} />
+              <Grid.Column width={10} className="user-column-right">
+                <div className="user-column-right-address">
+                  <a
+                    style={ethAddressStyle}
+                    href={`https://etherscan.io/address/${address}`}
+                    target="_blank">
+                    {ethAddressShort}
+                  </a>
+                </div>
+                <Button
+                  onClick={e => this.handleLogout(e)}
+                  loading={this.state.loading}
+                  size="mini"
+                  color="black"
+                  icon
+                  labelPosition="right"
+                  className="user-column-right-signout-button">
+                  Log out
+                  <Icon name="power off" />
+                </Button>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        );
+      }
     }
-    return (
-      <Button
-        loading={this.state.loading}
-        onClick={e => this.handleLogin(e)}
-        color="black">
-        Sign in
-      </Button>
-    );
   }
 
   async handleLogin(e) {
@@ -112,7 +110,6 @@ class MenuExampleSizeLarge extends Component {
     this.setState({ loading: true });
     await Sleep(600);
     await axios.get('/logout');
-    this.setState({ gambler: {} });
     store.dispatch({ type: 'LOG_OUT' });
     this.setState({ loading: false });
   }
@@ -142,7 +139,7 @@ class MenuExampleSizeLarge extends Component {
           FAQ
         </Menu.Item>
         <Menu.Item position="right">
-          {this.generateRightMenu(this.state.gambler)}
+          {this.generateRightMenu(this.props.gambler)}
         </Menu.Item>
 
         <Modal open={this.state.popupOpen} size="small">
@@ -181,4 +178,10 @@ class MenuExampleSizeLarge extends Component {
   }
 }
 
-export default MenuExampleSizeLarge;
+const mapStateToProps = state => {
+  return {
+    gambler: state.login.gambler
+  };
+};
+
+export default connect(mapStateToProps)(MenuExampleSizeLarge);

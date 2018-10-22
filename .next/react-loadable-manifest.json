@@ -1,13 +1,5 @@
 {
-  "./noop": [
-    {
-      "id": "./node_modules/next/dist/client/noop.js",
-      "name": "./node_modules/next/dist/client/noop.js",
-      "file": "static/chunks/0.js",
-      "publicPath": "static/chunks/0.js"
-    }
-  ],
-  "../../static/css/layout.css": [
+  "../../../static/css/layout.css": [
     {
       "id": "./static/css/layout.css",
       "name": "./static/css/layout.css",
@@ -17,25 +9,25 @@
   ],
   "undefined": [
     {
-      "id": 8,
+      "id": 4,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 9,
+      "id": 5,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 7,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     },
     {
       "id": 10,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 11,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
@@ -49,12 +41,20 @@
       "publicPath": "static/chunks/styles.js"
     }
   ],
-  "../../static/css/match.css": [
+  "../../../static/css/dashboard/teams.css": [
     {
-      "id": "./static/css/match.css",
-      "name": "./static/css/match.css",
+      "id": "./static/css/dashboard/teams.css",
+      "name": "./static/css/dashboard/teams.css",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./noop": [
+    {
+      "id": "./node_modules/next/dist/client/noop.js",
+      "name": "./node_modules/next/dist/client/noop.js",
+      "file": "static/chunks/0.js",
+      "publicPath": "static/chunks/0.js"
     }
   ]
 }

@@ -10,7 +10,7 @@ import BettingBox from '../../components/match/BettingBox';
 import ConfirmBetModal from '../../components/match/ConfirmBetModal';
 import ErrorModal from '../../components/match/ErrorModal';
 import Teams from '../../components/match/Teams';
-import TokenBox from '../../components/match/TokenBox';
+import BalanceBox from '../../components/match/BalanceBox';
 import {
   toggleErrorModal,
   toggleModal,
@@ -65,8 +65,7 @@ class Match extends Component {
     event.preventDefault();
     const errorHead = 'You forgot to do the following';
     const errors = [];
-    if (!this.props.gambler.address)
-      errors.push('Please log in to place bets.');
+    if (!this.props.gambler) errors.push('Please log in to place bets.');
     if (tokensToBet.length === 0)
       errors.push('Please place at least one token in order to place a bet.');
     if (_.isEmpty(this.props.pickedTeam)) errors.push('Please pick a team.');
@@ -86,7 +85,7 @@ class Match extends Component {
           open={this.props.confirmBetModal.isOpen}
           tokensToBet={this.props.tokens.toBet}
           pickedTeam={this.props.pickedTeam}
-          account={this.props.account}
+          gambler={this.props.gambler}
           matchID={this.props.initial.gameInfo.matchID}
         />
 
@@ -120,7 +119,7 @@ class Match extends Component {
             </List>
           </div>
           <h2>Balances</h2>
-          <TokenBox
+          <BalanceBox
             gambler={this.props.gambler}
             tokens={this.props.tokens.wallet}
           />
