@@ -54,6 +54,23 @@
   margin-top: 0 !important;
 }
 
+/* Components */
+
+.dark-button {
+  background: #1b1c1d !important;
+  color: white !important;
+}
+
+.orange-button-dark {
+  background: var(--orange-dark) !important;
+  color: white !important;
+}
+
+.orange-button-light {
+  background: var(--orange-light) !important;
+  color: white !important;
+}
+
 /* Menu */
 
 .menu {

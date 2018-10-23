@@ -9,14 +9,17 @@ import {
   Label,
   Icon,
   Button,
-  Message
+  Message,
+  Input,
+  Segment
 } from 'semantic-ui-react';
 import '../../../static/css/dashboard/teams.css';
 import Dropzone from 'react-dropzone';
 import _ from 'lodash';
-import axios from 'axios';
-import { backend } from '../../../config/config';
 import CookieCall from '../../../utils/CookieCall';
+import TeamList from '../../../components/dashboard/teams/TeamList';
+import axios from 'axios';
+import { Router } from '../../../next-routes';
 
 class Teams extends Component {
   constructor(props) {
@@ -27,7 +30,8 @@ class Teams extends Component {
     this.state = {
       formInputs: { name: '', logo: false },
       formError: { name: false, logo: false },
-      formMessage: ''
+      formMessage: '',
+      searchQuery: ''
     };
   }
 
@@ -63,6 +67,7 @@ class Teams extends Component {
       });
 
       if (response.data.success) {
+        Router.replaceRoute('/admin/dashboard/teams');
         this.setState({
           formMessage: 'success',
           formInputs: { name: '', logo: false },
@@ -81,7 +86,20 @@ class Teams extends Component {
       <div>
         <h1>Manage Teams</h1> <Divider />
         <Grid columns="2" className="grid-content">
-          <GridColumn width="10">All teams</GridColumn>
+          <GridColumn width="10">
+            <Input
+              fluid
+              size="large"
+              icon="search"
+              placeholder="Search for a team..."
+              onChange={e => this.setState({ searchQuery: e.target.value })}
+            />
+            <TeamList
+              searchQuery={this.state.searchQuery}
+              teams={this.props.initial.teams}
+            />
+          </GridColumn>
+
           <GridColumn width="6">
             <Header as="h2">Add New Team</Header>
             <Form error success>
@@ -126,7 +144,6 @@ class Teams extends Component {
     if (!_.isEmpty(logo)) {
       return (
         <Label size="medium" image className="font-white dark-orange-bg">
-          {/* <img src={logo.preview} className="logo-snippet" /> */}
           {logo.name}
           <Icon
             onClick={e => {

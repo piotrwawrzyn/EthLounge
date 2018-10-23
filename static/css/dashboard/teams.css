@@ -24,3 +24,28 @@
   color: var(--error);
   background-color: #fff6f6;
 }
+
+.delete-icon,
+.edit-icon {
+  cursor: pointer;
+}
+
+/* @keyframes icon-animation {
+  0% {
+    transform: rotate(20deg);
+  }
+
+  33% {
+    transform: rotate(0deg);
+  }
+
+  66% {
+    transform: rotate(-20deg);
+  }
+} */
+
+.delete-icon:hover,
+.edit-icon:hover {
+  background: var(--orange-dark);
+  /* animation: icon-animation 2s infinite; */
+}
