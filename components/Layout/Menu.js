@@ -94,9 +94,13 @@ class MenuExampleSizeLarge extends Component {
     [account] = await web3.eth.getAccounts();
 
     if (typeof account !== 'undefined') {
-      const gambler = await axios.post('/login', {
-        address: account
-      });
+      try {
+        const gambler = await axios.post('/login', {
+          address: account
+        });
+      } catch (err) {
+        console.log(err);
+      }
       this.setState({ gambler: gambler.data });
       store.dispatch({ type: 'LOG_IN', gambler: gambler.data });
     } else {

@@ -15,12 +15,17 @@ const layout = ChildPage =>
   class extends Component {
     static async getInitialProps(initialProps) {
       const { req } = initialProps;
+      let res;
 
-      const res = req.headers.cookie
-        ? await axios.get(`${backend}/api/current_gambler`, {
-            headers: req ? { cookie: req.headers.cookie } : undefined
-          })
-        : {};
+      try {
+        res = req.headers.cookie
+          ? await axios.get(`${backend}/api/current_gambler`, {
+              headers: req ? { cookie: req.headers.cookie } : undefined
+            })
+          : {};
+      } catch (err) {
+        console.log(err);
+      }
 
       const gambler = res.data;
 

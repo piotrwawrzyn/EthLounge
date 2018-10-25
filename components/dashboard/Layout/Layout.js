@@ -14,7 +14,13 @@ const dashboardLayout = ChildPage =>
     static async getInitialProps(initialProps) {
       const { req, res } = initialProps;
 
-      let api_response = await CookieCall(req, '/api/current_admin');
+      let api_response;
+
+      try {
+        api_response = await CookieCall(req, '/api/current_admin');
+      } catch (err) {
+        console.log(err);
+      }
 
       let admin = api_response.data || false;
 
