@@ -2,6 +2,7 @@
   --orange-dark: #e67e22;
   --orange-light: #f39c12;
   --dark-gray: #1b1c1d;
+  --light-gray: #2c2d2d;
   --error: #9f3a38;
 }
 
@@ -99,8 +100,12 @@
 /* Components */
 
 .dark-button {
-  background: #1b1c1d !important;
+  background: var(--dark-gray) !important;
   color: white !important;
+}
+
+.dark-button:hover {
+  background: var(--light-gray) !important;
 }
 
 .orange-button-dark {

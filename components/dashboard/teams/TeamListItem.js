@@ -3,6 +3,7 @@ import { Table, Image, Icon, Popup, Button } from 'semantic-ui-react';
 import { backend } from '../../../config/config';
 import Dropzone from 'react-dropzone';
 import { Router } from '../../../next-routes';
+import axios from 'axios';
 
 class TeamListItem extends Component {
   constructor(props) {
@@ -15,7 +16,8 @@ class TeamListItem extends Component {
     this.state = {
       editMode: false,
       newLogo: '',
-      newName: props.name
+      newName: props.name,
+      logoURL: `${backend}/img/teams/${props.id}.png`
     };
   }
 
@@ -29,14 +31,32 @@ class TeamListItem extends Component {
     sel.addRange(range);
   }
 
-  handleDelete() {}
+  async handleDelete() {
+    await axios({
+      method: 'post',
+      url: '/backend/delete_team',
+      data: { id: this.props.id }
+    });
 
-  handleUpdate() {
-    if (this.props.name === this.state.newName && !this.state.newLogo) {
-      //you cant update because you didnt change anything
+    Router.replaceRoute('/admin/dashboard/teams');
+  }
+
+  async handleUpdate() {
+    if (!(this.props.name === this.state.newName && !this.state.newLogo)) {
+      const data = new FormData();
+      data.append('logo', this.state.newLogo);
+      data.append('displayName', this.state.newName);
+      data.append('id', this.props.id);
+
+      await axios({
+        method: 'post',
+        url: '/backend/update_team',
+        data: data,
+        config: { headers: { 'Content-Type': 'multipart/form-data' } }
+      });
     }
-
-    this.setState({ editMode: false });
+    const logo = this.state.newLogo.preview || this.state.logoURL;
+    this.setState({ editMode: false, logoURL: logo });
     Router.replaceRoute('/admin/dashboard/teams');
   }
 
@@ -68,7 +88,7 @@ class TeamListItem extends Component {
         <Table.Cell>{id}</Table.Cell>
         <Table.Cell>
           <div
-            onKeyDown={e => this.controlInput(e)}
+            onInput={e => this.controlInput(e)}
             spellCheck="false"
             ref={div => (this.teamNameElement = div)}
             suppressContentEditableWarning={true}
@@ -82,20 +102,6 @@ class TeamListItem extends Component {
       </Table.Row>
     );
   }
-
-  //   renderTeamName(newName, originalName) {
-  //     if (this.state.editMode) {
-  //       console.log(this.teamNameElement.firstChild.firstChild);
-  //       const range = document.createRange();
-  //       const sel = window.getSelection();
-  //       range.setStart(this.teamNameElement.firstChild.firstChild, 5);
-  //       sel.removeAllRanges();
-  //       sel.addRange(range);
-  //       return <div>{newName}</div>;
-  //     } else {
-  //       return <div>{originalName}</div>;
-  //     }
-  //   }
 
   renderImage(id, newLogo) {
     if (this.state.editMode) {
@@ -115,7 +121,7 @@ class TeamListItem extends Component {
             accept="image/png"
             onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}>
             <Image
-              src={`${backend}/img/teams/${id}.png`}
+              src={this.state.logoURL}
               size="mini"
               verticalAlign="middle"
             />
@@ -124,11 +130,7 @@ class TeamListItem extends Component {
       }
     }
     return (
-      <Image
-        src={`${backend}/img/teams/${id}.png`}
-        size="mini"
-        verticalAlign="middle"
-      />
+      <Image src={this.state.logoURL} size="mini" verticalAlign="middle" />
     );
   }
 
@@ -172,7 +174,12 @@ class TeamListItem extends Component {
             trigger={<Icon className="delete-icon" circular name="delete" />}>
             Are you sure?
             <br />
-            <Button color="red" size="mini" fluid compact>
+            <Button
+              color="red"
+              size="mini"
+              onClick={e => this.handleDelete()}
+              fluid
+              compact>
               DELETE
             </Button>
           </Popup>
