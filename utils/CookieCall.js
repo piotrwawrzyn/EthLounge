@@ -9,6 +9,8 @@ const CookieCall = async (req, path) => {
       response = await axios.get(`${backend}${path}`, {
         headers: { cookie: req.headers.cookie }
       });
+    } else {
+      response = false;
     }
   } else {
     response = await axios.get(path);
