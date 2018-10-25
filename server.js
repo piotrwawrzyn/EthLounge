@@ -19,14 +19,14 @@ app.prepare().then(() => {
   //    server.use(express.static('client/build'));
   // }
 
-  server.use(proxy(`${backend}/login`));
-  server.use(proxy(`${backend}/logout`));
-  server.use(proxy(`${backend}/api/current_gambler`));
-  server.use(proxy(`${backend}/admin/login`));
-  server.use(proxy(`${backend}/admin/logout`));
-  server.use(proxy(`${backend}/api/current_admin`));
-  server.use(proxy(`${backend}/backend/new_team`));
-  server.use(proxy(`${backend}/api/teams`));
+  server.use(proxy(`${backend}/login`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/logout`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/api/current_gambler`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/admin/login`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/admin/logout`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/api/current_admin`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/backend/new_team`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/api/teams`, { changeOrigin: true }));
 
   server.use(handler).listen(port, err => {
     if (err) throw err;
