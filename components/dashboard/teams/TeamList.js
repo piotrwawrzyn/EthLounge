@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Header, Image, Icon, Button } from 'semantic-ui-react';
-import { backend } from '../../../config/config';
 import _ from 'lodash';
+import TeamListItem from './TeamListItem';
 
 class TeamList extends Component {
   constructor(props) {
@@ -32,9 +32,8 @@ class TeamList extends Component {
 
     let filteredTeams = [...firstFilter, ...secondFilter];
 
-    //filteredTeams = filteredTeams.reverse();
-
     let reducedTeams;
+
     if (filteredTeams.length > this.state.limit) {
       reducedTeams = filteredTeams.slice(0, this.state.limit);
       this.renderMore = true;
@@ -44,28 +43,12 @@ class TeamList extends Component {
       this.renderMore = false;
     }
 
-    const markup = reducedTeams.map(curr => {
+    const TeamListItems = reducedTeams.map(curr => {
       const { _id, displayName } = curr;
-      return (
-        <Table.Row key={_id}>
-          <Table.Cell>{_id}</Table.Cell>
-          <Table.Cell>{displayName}</Table.Cell>
-          <Table.Cell>
-            <Image
-              src={`${backend}/img/teams/${_id}.png`}
-              size="mini"
-              verticalAlign="middle"
-            />
-          </Table.Cell>
-          <Table.Cell>
-            <Icon className="edit-icon" circular name="edit" />
-            <Icon className="delete-icon" circular name="delete" />
-          </Table.Cell>
-        </Table.Row>
-      );
+      return <TeamListItem id={_id} name={displayName} key={_id} />;
     });
 
-    return markup;
+    return TeamListItems;
   }
 
   renderLoadMore(renderMore) {

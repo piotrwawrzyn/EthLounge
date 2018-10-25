@@ -6,12 +6,11 @@ import {
   GridColumn,
   Form,
   Header,
-  Label,
   Icon,
   Button,
   Message,
-  Input,
-  Segment
+  Label,
+  Input
 } from 'semantic-ui-react';
 import '../../../static/css/dashboard/teams.css';
 import Dropzone from 'react-dropzone';
@@ -124,6 +123,10 @@ class Teams extends Component {
                   this.state.formInputs.logo,
                   this.state.formError.logo
                 )}
+                <Label className="label-warning">
+                  <Icon name="warning circle" />
+                  Please upload only square logos. Preferably 200x200 px.
+                </Label>
               </Form.Field>
 
               <Button

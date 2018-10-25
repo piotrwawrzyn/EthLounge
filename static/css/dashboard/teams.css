@@ -6,6 +6,7 @@
 .dropdown-div {
   width: 100% !important;
   border: 2px dashed rgba(34, 36, 38, 0.15);
+  color: rgba(34, 36, 38, 0.5);
   text-align: center;
   height: 100px;
   line-height: 100px;
@@ -26,26 +27,20 @@
 }
 
 .delete-icon,
-.edit-icon {
+.edit-icon,
+.update-icon,
+.undo-icon {
   cursor: pointer;
 }
 
-/* @keyframes icon-animation {
-  0% {
-    transform: rotate(20deg);
-  }
-
-  33% {
-    transform: rotate(0deg);
-  }
-
-  66% {
-    transform: rotate(-20deg);
-  }
-} */
-
+.edit-icon:hover,
+.undo-icon:hover,
 .delete-icon:hover,
-.edit-icon:hover {
+.update-icon:hover {
   background: var(--orange-dark);
-  /* animation: icon-animation 2s infinite; */
+  color: white;
+}
+
+.label-warning {
+  margin: 1em 0 1em 0 !important;
 }

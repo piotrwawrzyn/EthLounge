@@ -15,6 +15,10 @@ const port = process.env.PORT || 3000;
 app.prepare().then(() => {
   const server = express();
 
+  if (process.env.NODE_ENV === 'production') {
+    server.use(express.static('client/build'));
+  }
+
   server.use(proxy(`${backend}/login`));
   server.use(proxy(`${backend}/logout`));
   server.use(proxy(`${backend}/api/current_gambler`));
