@@ -13,7 +13,7 @@ class EthLounge extends Component {
   async handleClick() {
     try {
       const gambler = await Axios.get(
-        'http://ethlounge-api.herokuapp.com/api/current_gambler'
+        'https://ethlounge-api.herokuapp.com/api/current_gambler'
       );
       this.setState({ debug: gambler });
     } catch (err) {
