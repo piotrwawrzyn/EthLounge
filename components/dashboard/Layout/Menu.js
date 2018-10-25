@@ -19,7 +19,7 @@ class DashboardMenu extends Component {
 
   async handleLogout() {
     this.setState({ loading: true });
-    await axios.get('/logout');
+    await axios.get('/admin/logout');
     await Sleep(500);
 
     Router.pushRoute('/');

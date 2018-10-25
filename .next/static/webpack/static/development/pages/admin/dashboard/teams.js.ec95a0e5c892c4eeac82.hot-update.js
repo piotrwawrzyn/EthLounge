@@ -1,21 +1,24 @@
-webpackHotUpdate("static\\development\\pages\\index.js",{
+webpackHotUpdate("static\\development\\pages\\admin\\dashboard\\teams.js",{
 
-/***/ "./pages/index.js":
-/*!************************!*\
-  !*** ./pages/index.js ***!
-  \************************/
+/***/ "./components/dashboard/Layout/Menu.js":
+/*!*********************************************!*\
+  !*** ./components/dashboard/Layout/Menu.js ***!
+  \*********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _next_routes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../next-routes */ "./next-routes.js");
+/* harmony import */ var _next_routes__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_next_routes__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _utils_Sleep__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../utils/Sleep */ "./utils/Sleep.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -44,65 +47,65 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
-var EthLounge =
+
+
+var DashboardMenu =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(EthLounge, _Component);
+  _inherits(DashboardMenu, _Component);
 
-  function EthLounge(props) {
+  function DashboardMenu(props) {
     var _this;
 
-    _classCallCheck(this, EthLounge);
+    _classCallCheck(this, DashboardMenu);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(EthLounge).call(this, props));
-    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DashboardMenu).call(this, props));
+    _this.handleLogout = _this.handleLogout.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleRoute = _this.handleRoute.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.state = {
-      debug: ''
+      loading: false
     };
     return _this;
   }
 
-  _createClass(EthLounge, [{
-    key: "handleClick",
+  _createClass(DashboardMenu, [{
+    key: "handleRoute",
+    value: function handleRoute(path) {
+      _next_routes__WEBPACK_IMPORTED_MODULE_4__["Router"].pushRoute(path);
+    }
+  }, {
+    key: "handleLogout",
     value: function () {
-      var _handleClick = _asyncToGenerator(
+      var _handleLogout = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var gambler;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
+                this.setState({
+                  loading: true
+                });
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('http://ethlounge-api.herokuapp.com/api/current_gambler');
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/admin/logout');
 
               case 3:
-                gambler = _context.sent;
-                this.setState({
-                  debug: gambler
-                });
-                _context.next = 11;
-                break;
+                _context.next = 5;
+                return Object(_utils_Sleep__WEBPACK_IMPORTED_MODULE_5__["Sleep"])(500);
 
-              case 7:
-                _context.prev = 7;
-                _context.t0 = _context["catch"](0);
-                console.log(_context.t0);
-                this.setState({
-                  debug: _context.t0
-                });
+              case 5:
+                _next_routes__WEBPACK_IMPORTED_MODULE_4__["Router"].pushRoute('/');
 
-              case 11:
+              case 6:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[0, 7]]);
+        }, _callee, this);
       }));
 
-      return function handleClick() {
-        return _handleClick.apply(this, arguments);
+      return function handleLogout() {
+        return _handleLogout.apply(this, arguments);
       };
     }()
   }, {
@@ -110,39 +113,39 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"], {
+        inverted: true,
+        size: "large",
+        className: "menu-admin"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
         onClick: function onClick(e) {
-          return _this2.handleClick();
+          return _next_routes__WEBPACK_IMPORTED_MODULE_4__["Router"].pushRoute('/admin/dashboard');
+        },
+        src: "/static/img/logo.png"
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, {
+        onClick: function onClick(e) {
+          return _this2.handleRoute('/admin/dashboard/teams');
         }
-      }), this.state.debug);
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+        name: "users"
+      }), "Teams"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, {
+        position: "right"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        loading: this.state.loading,
+        className: "black-bg font-white",
+        onClick: function onClick(e) {
+          return _this2.handleLogout();
+        }
+      }, "Log out")));
     }
   }]);
 
-  return EthLounge;
+  return DashboardMenu;
 }(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (EthLounge);
-    (function (Component, route) {
-      if(!Component) return
-      if (false) {}
-      module.hot.accept()
-      Component.__route = route
-
-      if (module.hot.status() === 'idle') return
-
-      var components = next.router.components
-      for (var r in components) {
-        if (!components.hasOwnProperty(r)) continue
-
-        if (components[r].Component.__route === route) {
-          next.router.update(r, Component)
-        }
-      }
-    })(typeof __webpack_exports__ !== 'undefined' ? __webpack_exports__.default : (module.exports.default || module.exports), "/")
-  
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
+/* harmony default export */ __webpack_exports__["default"] = (DashboardMenu);
 
 /***/ })
 
 })
-//# sourceMappingURL=index.js.f1ff207b0899f4446fc0.hot-update.js.map
+//# sourceMappingURL=teams.js.ec95a0e5c892c4eeac82.hot-update.js.map
