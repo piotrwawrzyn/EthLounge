@@ -8,8 +8,7 @@ export function addTokens(tokens) {
 export function changeTokenPosition(token, pos) {
   return {
     type: 'CHANGE_POS',
-    token,
-    pos
+    token
   };
 }
 

@@ -20,19 +20,23 @@ import {
 import store from '../../redux/store';
 import CryptoPrices from '../../utils/CryptoPrices';
 import '../../static/css/match.css';
-import EthLounge from '../../ethereum/EthLounge';
+import axios from 'axios';
+import CookieCall from '../../utils/CookieCall';
 
 class Token {
-  constructor(address, amount, position) {
-    this.address = address;
+  constructor(symbol, amount, position = '', displayName, decimals) {
+    this.symbol = symbol;
     this.amount = amount;
     this.initialAmount = amount;
     this.position = position;
+    this.displayName = displayName;
+    this.decimals = decimals;
   }
 }
 
 class Match extends Component {
   static async getInitialProps(props) {
+    const { req } = props;
     const matchID = props.query.id;
 
     // This information will be pulled from database //
@@ -51,21 +55,48 @@ class Match extends Component {
       }
     ];
 
-    const gameInfo = { matchID, teams };
+    const api_response = await CookieCall(req, `/api/match_info?ID=${matchID}`);
 
-    return { gameInfo };
+    const data = api_response.data;
+
+    const matchInfo = { matchID, teams, ...data };
+
+    return { matchInfo };
   }
 
-  async componentDidMount() {
-    const prices = await CryptoPrices();
+  async componentWillMount() {
+    const { tokens } = this.props.initial.matchInfo;
+
+    const prices = await CryptoPrices(tokens);
     store.dispatch(updatePrices(prices));
+    this.addTokens(
+      this.props.user.balances,
+      this.props.initial.matchInfo.tokens
+    );
+  }
+
+  async addTokens(userBalances, supportedTokens) {
+    if (userBalances) {
+      const tokens = [];
+
+      userBalances.forEach(token => {
+        const { balance, symbol } = token;
+        const { displayName, decimals } = _.find(supportedTokens, { symbol });
+
+        tokens.push(
+          new Token(symbol, balance, 'balance-box', displayName, decimals)
+        );
+      });
+
+      store.dispatch(addTokens(tokens));
+    }
   }
 
   handleClick(event, tokensToBet) {
     event.preventDefault();
     const errorHead = 'You forgot to do the following';
     const errors = [];
-    if (!this.props.gambler) errors.push('Please log in to place bets.');
+    if (!this.props.user) errors.push('Please log in to place bets.');
     if (tokensToBet.length === 0)
       errors.push('Please place at least one token in order to place a bet.');
     if (_.isEmpty(this.props.pickedTeam)) errors.push('Please pick a team.');
@@ -85,15 +116,15 @@ class Match extends Component {
           open={this.props.confirmBetModal.isOpen}
           tokensToBet={this.props.tokens.toBet}
           pickedTeam={this.props.pickedTeam}
-          gambler={this.props.gambler}
-          matchID={this.props.initial.gameInfo.matchID}
+          user={this.props.user}
+          matchID={this.props.initial.matchInfo.matchID}
         />
 
         <Grid.Column width={8}>
           <Teams
-            teams={this.props.initial.gameInfo.teams}
+            teams={this.props.initial.matchInfo.teams}
             pickedTeam={this.props.pickedTeam}
-            gambler={this.props.gambler}
+            user={this.props.user}
           />
           LAST BETS:
         </Grid.Column>
@@ -120,7 +151,7 @@ class Match extends Component {
           </div>
           <h2>Balances</h2>
           <BalanceBox
-            gambler={this.props.gambler}
+            user={this.props.user}
             tokens={this.props.tokens.wallet}
           />
         </Grid.Column>
@@ -159,31 +190,11 @@ class Match extends Component {
   }
 }
 
-const getTokens = async address => {
-  const result = await EthLounge.methods.getBalances().call({ from: address });
-  const tokenAddresses = result[0];
-  const tokenAmounts = result[1];
-  const tokens = [];
-
-  for (let i = 0; i < tokenAmounts.length; i++) {
-    if (tokenAmounts[i] !== '0') {
-      const newToken = new Token(
-        tokenAddresses[i],
-        tokenAmounts[i],
-        'balance-box'
-      );
-
-      tokens.push(newToken);
-    }
-  }
-  store.dispatch(addTokens(tokens));
-};
-
-store.subscribe(() => {
-  if (store.getState().lastAction.type === 'LOG_IN') {
-    getTokens(store.getState().login.gambler.address);
-  }
-});
+// store.subscribe(() => {
+//   if (store.getState().lastAction.type === 'LOG_IN') {
+//     getTokens(store.getState().login.gambler.address);
+//   }
+// });
 
 const mapStateToProps = state => {
   return {
@@ -193,7 +204,7 @@ const mapStateToProps = state => {
     pickedTeam: state.match.pickedTeam,
     errorModal: state.match.errorModal,
     confirmBetModal: state.match.confirmBetModal,
-    gambler: state.login.gambler
+    user: state.login.user
   };
 };
 

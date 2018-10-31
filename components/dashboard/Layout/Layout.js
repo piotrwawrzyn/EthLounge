@@ -17,16 +17,19 @@ const dashboardLayout = ChildPage =>
       let api_response;
 
       try {
-        api_response = await CookieCall(req, '/api/current_admin');
+        api_response = await CookieCall(req, '/api/current_user');
       } catch (err) {
         console.log(err);
       }
 
-      let admin = api_response.data || false;
-
       const errorURL = '/404';
+      const user = api_response.data;
 
-      if (!admin) {
+      let isAdmin;
+      if (!user) isAdmin = false;
+      else isAdmin = api_response.data.permissions.includes('admin');
+
+      if (!isAdmin) {
         if (res) {
           res.writeHead(302, {
             Location: errorURL
@@ -37,7 +40,7 @@ const dashboardLayout = ChildPage =>
         }
       }
 
-      let props = { admin };
+      let props = { admin: user };
 
       const getInitialProps = ChildPage.getInitialProps;
 
@@ -55,7 +58,7 @@ const dashboardLayout = ChildPage =>
 
     render() {
       return (
-        <Container fluid>
+        <Container fluid className="main-container">
           <Head>
             <link
               rel="stylesheet"
@@ -66,6 +69,7 @@ const dashboardLayout = ChildPage =>
           <Container>
             <ChildPage initial={this.props} />
           </Container>
+          <div className="footer" />
         </Container>
       );
     }

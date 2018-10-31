@@ -38,11 +38,20 @@ class DashboardMenu extends Component {
           <Icon name="users" />
           Teams
         </Menu.Item>
-
+        <Menu.Item onClick={e => this.handleRoute('/admin/dashboard/tokens')}>
+          <Icon name="ethereum" />
+          Tokens
+        </Menu.Item>
+        <Menu.Item
+          onClick={e => this.handleRoute('/admin/dashboard/new-match')}>
+          <Icon name="plus" />
+          New Match
+        </Menu.Item>
         <Menu.Item position="right">
           <Button
             loading={this.state.loading}
             className="black-bg font-white"
+            style={{ marginRight: '1em' }}
             onClick={e => this.handleLogout()}>
             Log out
           </Button>

@@ -1,5 +1,6 @@
 const HDWalletProvider = require('truffle-hdwallet-provider');
 const Web3 = require('web3');
+const fs = require('fs');
 
 const contractName = 'EthLounge';
 
@@ -23,9 +24,9 @@ const deploy = async () => {
     .deploy({ data: '0x' + contractSource.bytecode })
     .send({ from: accounts[0] });
 
-  console.log(
-    `Contract deployed successfuly. Address: ${contract.options.address}`
-  );
+  const { address } = contract.options;
+
+  console.log(`Contract deployed successfuly. Address: ${address}`);
 };
 
 deploy();

@@ -1,13 +1,12 @@
 import Big from 'big.js';
 import GetTokenPrice from './GetTokenPrice';
-import { DictionarrySymbol } from './SupportedTokens';
 import TokenFromWei from './TokenFromWei';
 import store from '../redux/store';
 import { updateEstimateBet } from '../redux/match/actions';
 
 const EstimateBetValue = (tokensToBet, prices, dispatch = true) => {
   const symbols = tokensToBet.map(curr => {
-    return DictionarrySymbol.get(curr.address);
+    return curr.symbol;
   });
 
   const values = symbols.map(curr => {

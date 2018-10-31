@@ -28,8 +28,7 @@ class ConfirmBetModal extends Component {
       isFinalModalSuccessOpen: false,
       isFinalModalErrorOpen: false,
       errorMessage: '',
-      transactionInfo: {},
-      waitingText: ''
+      transactionInfo: {}
     };
   }
 
@@ -45,48 +44,42 @@ class ConfirmBetModal extends Component {
     console.log(this.state);
     this.setState({
       isLoading: true,
-      isCancelDisabled: true,
-      waitingText: (
-        <Label>
-          Please confirm the transaction on Metamask and wait a few seconds.
-        </Label>
-      )
+      isCancelDisabled: true
     });
     const tokens = tokensToBet.map(curr => curr.address);
     const amounts = tokensToBet.map(curr => curr.amount);
 
-    try {
-      const transactionInfo = await EthLounge.methods
-        .placeBet(matchID, pickedTeam.slug, tokens, amounts)
-        .send({ from: address });
-      if (transactionInfo.status) {
-        this.setState({
-          isFinalModalSuccessOpen: true,
-          transactionInfo: transactionInfo
-        });
-      }
-    } catch (err) {
-      console.log(err);
-      this.setState({
-        isFinalModalErrorOpen: true,
-        errorMessage: err.message.replace('Returned error: ', '')
-      });
-    }
+    // try {
+    //   const transactionInfo = await EthLounge.methods
+    //     .placeBet(matchID, pickedTeam.slug, tokens, amounts)
+    //     .send({ from: address });
+    //   if (transactionInfo.status) {
+    //     this.setState({
+    //       isFinalModalSuccessOpen: true,
+    //       transactionInfo: transactionInfo
+    //     });
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    //   this.setState({
+    //     isFinalModalErrorOpen: true,
+    //     errorMessage: err.message.replace('Returned error: ', '')
+    //   });
+    // }
     this.setState({
       isLoading: false,
-      isCancelDisabled: false,
-      waitingText: ''
+      isCancelDisabled: false
     });
   }
 
   render() {
-    let { open, tokensToBet, pickedTeam, gambler, matchID } = this.props;
+    let { open, tokensToBet, pickedTeam, user, matchID } = this.props;
 
     const tokenList = tokensToBet.map(curr => {
       return (
-        <List.Item as="p" key={curr.address}>
+        <List.Item as="p" key={curr.symbol}>
           <Icon name="right triangle" />
-          {TokenFromWei(curr, 'symbol')}
+          {`${TokenFromWei(curr)} ${curr.symbol}`}
         </List.Item>
       );
     });
@@ -121,7 +114,6 @@ class ConfirmBetModal extends Component {
                   Odds:{' '}
                   <span className="font-dark-orange">{pickedTeam.odds}</span>
                 </Header>
-                {this.state.waitingText}{' '}
               </Grid.Column>
               <Grid.Column verticalAlign="middle" width={6}>
                 <Image
@@ -145,12 +137,7 @@ class ConfirmBetModal extends Component {
             loading={this.state.isLoading}
             className="dark-orange-bg font-white"
             onClick={e =>
-              this.handleConfirm(
-                tokensToBet,
-                pickedTeam,
-                gambler.address,
-                matchID
-              )
+              this.handleConfirm(tokensToBet, pickedTeam, user.address, matchID)
             }>
             Confirm
           </Button>

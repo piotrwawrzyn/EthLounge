@@ -1,42 +1,22 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { Message } from 'semantic-ui-react';
-
 import { changeTokenPosition } from '../../redux/match/actions';
 import store from '../../redux/store';
+import Token from './Token';
 
-import BalanceBoxToken from './BalanceBoxToken';
-
-class TokenBox extends Component {
+class BalanceBox extends Component {
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleDrop(token, pos) {
-    store.dispatch(changeTokenPosition(token, pos));
+  handleClick(token) {
+    store.dispatch(changeTokenPosition(token));
   }
-
-  renderItems = tokens => {
-    const tokensInBalance = _.filter(tokens, { position: 'balance-box' });
-    const toRender = (
-      <div>
-        {tokensInBalance.map(token => {
-          return (
-            <BalanceBoxToken
-              key={token.address}
-              token={{ ...token }}
-              handleDrop={(token, pos) => this.handleDrop(token, pos)}
-            />
-          );
-        })}
-      </div>
-    );
-
-    return toRender;
-  };
 
   render() {
-    if (this.props.gambler)
+    if (this.props.user)
       return (
         <div className="tokens-box">{this.renderItems(this.props.tokens)}</div>
       );
@@ -44,11 +24,33 @@ class TokenBox extends Component {
     return (
       <Message
         warning
-        header="Sign in with Metamask"
-        content="Please sign in with Metamask in order to see your balances and place bets."
+        header="Sign in"
+        content="Please sign in in order to see your balances and place bets."
       />
     );
   }
+
+  renderItems = tokens => {
+    const tokensInBalance = _.filter(tokens, { position: 'balance-box' });
+
+    const toRender = (
+      <div>
+        {tokensInBalance.map(token => {
+          console.log(token);
+          return (
+            <div
+              className={'balance-box-token'}
+              onClick={() => this.handleClick(token)}
+              key={token.symbol}>
+              <Token token={token} />
+            </div>
+          );
+        })}
+      </div>
+    );
+
+    return toRender;
+  };
 }
 
-export default TokenBox;
+export default BalanceBox;

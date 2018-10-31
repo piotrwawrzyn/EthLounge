@@ -1,20 +1,19 @@
 import React from 'react';
 import { Image, Label } from 'semantic-ui-react';
-
-import { DictionarrySymbol } from '../../utils/SupportedTokens';
 import TokenFromWei from '../../utils/TokenFromWei';
+import { backend } from '../../config/config';
 
 export default props => {
+  const { token } = props;
   return (
-    <Label as="a" key={props.token.address} className="token-label">
+    <Label as="a" key={token.address} className="token-label unselectable-text">
       <Image
+        className="undragable"
         avatar
         spaced="right"
-        src={`/static/img/tokens/${DictionarrySymbol.get(
-          props.token.address
-        )}.png`}
+        src={`${backend}/img/tokens/${token.symbol}.png`}
       />
-      {TokenFromWei(props.token, 'symbol', true)}
+      {`${TokenFromWei(token, true)} ${token.symbol} `}
     </Label>
   );
 };

@@ -119,7 +119,8 @@ contract EthLounge {
        
    }
   
-   
+   event NewBet(address, uint, string, address[], uint[]);
+
    function placeBet(uint gameID, string teamID, address[] tokens, uint[] amounts) public onlyBeforeLocked(gameID) enoughBalances(tokens, amounts) isProperTeamID(gameID, teamID) returns(bool) {
        
        Game storage game = activeGames[gameID];
@@ -137,6 +138,8 @@ contract EthLounge {
            tokensDeposited: tokens,
            amounts: amounts
        }));
+       
+       emit NewBet(msg.sender, gameID, teamID, tokens, amounts);
        
        return true;
    }
@@ -329,6 +332,26 @@ contract EthLounge {
        isSupportedToken[newToken] = true;
        supportedTokens.push(newToken);
    }
+
+   function removeSupportedToken(address tokenToRemove) public restricted {
+       isSupportedToken[tokenToRemove] = true;
+       
+       
+       for (uint i = 0; i < supportedTokens.length; i++) {
+           if (supportedTokens[i] == tokenToRemove) {
+ 
+               break;
+           }
+       }
+       
+       for (i = i; i < supportedTokens.length-1; i++) {
+            supportedTokens[i] = supportedTokens[i+1];
+        }
+        
+        supportedTokens.length--;
+   }
+   
+
    
    // Testing functions
    

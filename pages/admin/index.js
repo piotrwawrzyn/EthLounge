@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
-import {
-  Segment,
-  Form,
-  Button,
-  FormField,
-  Container,
-  Grid
-} from 'semantic-ui-react';
 import '../../static/css/layout.css';
 import Router from 'next/router';
-import Head from 'next/head';
-import axios from 'axios';
 import CookieCall from '../../utils/CookieCall';
 import _ from 'lodash';
 
@@ -18,11 +8,15 @@ class AdminLogin extends Component {
   static async getInitialProps(props) {
     const { req, res } = props;
 
-    let api_response = await CookieCall(req, '/api/current_admin');
+    let api_response = await CookieCall(req, '/api/current_user');
 
-    const admin = api_response.data || false;
+    const user = api_response.data;
 
-    if (admin) {
+    let isAdmin;
+    if (!user) isAdmin = false;
+    else isAdmin = api_response.data.permissions.includes('admin');
+
+    if (isAdmin) {
       if (res) {
         res.writeHead(302, {
           Location: '/admin/dashboard'
@@ -31,6 +25,15 @@ class AdminLogin extends Component {
       } else {
         Router.push('/admin/dashboard');
       }
+    } else {
+      if (res) {
+        res.writeHead(302, {
+          Location: '/404'
+        });
+        res.end();
+      } else {
+        Router.push('/404');
+      }
     }
 
     return {};
@@ -38,31 +41,7 @@ class AdminLogin extends Component {
   render() {
     const style = { padding: '200px' };
 
-    return (
-      <Grid verticalAlign="middle" centered className="wrapper" style={style}>
-        <Head>
-          <link
-            rel="stylesheet"
-            href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"
-          />
-        </Head>
-        <Segment className="dark-orange-bg" padded="very">
-          <Form action="/admin/login" method="post" className="login-form">
-            <FormField>
-              <label>Username</label>
-              <input name="username" />
-            </FormField>
-            <FormField>
-              <label>Password</label>
-              <input type="password" name="password" />
-            </FormField>
-            <Button className="black-bg font-white" type="submit">
-              Login
-            </Button>
-          </Form>
-        </Segment>
-      </Grid>
-    );
+    return <div />;
   }
 }
 

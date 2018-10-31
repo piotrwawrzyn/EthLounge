@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export function login(gambler) {
+export function login(user) {
   return {
     type: 'LOG_IN',
-    gambler: gambler
+    user: user
   };
 }
 

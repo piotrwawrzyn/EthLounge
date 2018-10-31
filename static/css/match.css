@@ -15,12 +15,12 @@
 }
 
 .balance-box-token .label:hover {
-  cursor: grab !important;
+  cursor: pointer !important;
 }
 
-.balance-box-token-dragging {
+/* .balance-box-token-dragging {
   opacity: 0.1;
-}
+} */
 
 /* BettingBox Row */
 
@@ -33,7 +33,7 @@
 
 /* BettingBox Item */
 
-.betting-box-token-hovered {
+/* .betting-box-token-hovered {
   background: #ddd !important;
 }
 
@@ -41,9 +41,9 @@
   background: rgb(56, 57, 58, 0.2) !important;
   transform: scale(1.1);
   transition-duration: 0.3s;
-}
+} */
 
-.betting-box-token-dropped {
+.betting-box-token-filled {
   padding: 0em 0 0em 0 !important;
 }
 
@@ -74,6 +74,16 @@
 
 .rangeslider {
   margin: 0;
+}
+
+.range-slider-inactive {
+  opacity: 0.2 !important;
+  filter: grayscale(80%);
+  -webkit-filter: grayscale(80%);
+}
+
+.range-slider-inactive * {
+  cursor: default !important;
 }
 
 /* Teams */

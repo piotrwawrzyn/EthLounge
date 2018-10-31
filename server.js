@@ -19,16 +19,32 @@ app.prepare().then(() => {
   //    server.use(express.static('client/build'));
   // }
 
+  // Proxy: Auth user
   server.use(proxy(`${backend}/login`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/register`, { changeOrigin: true }));
   server.use(proxy(`${backend}/logout`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/api/current_gambler`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/admin/login`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/admin/logout`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/api/current_admin`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/api/current_user`, { changeOrigin: true }));
+
+  // Match page
+  server.use(proxy(`${backend}/api/match_info`, { changeOrigin: true }));
+
+  // Proxy: Backend/Team
   server.use(proxy(`${backend}/backend/new_team`, { changeOrigin: true }));
   server.use(proxy(`${backend}/backend/update_team`, { changeOrigin: true }));
   server.use(proxy(`${backend}/backend/delete_team`, { changeOrigin: true }));
   server.use(proxy(`${backend}/api/teams`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/api/leagues`, { changeOrigin: true }));
+
+  // Proxy: Backend/Tokens
+  server.use(proxy(`${backend}/api/tokens`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/backend/new_token`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/backend/update_token`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/backend/delete_token`, { changeOrigin: true }));
+
+  // Proxy: Panda API
+  server.use(
+    proxy(`${backend}/api/pandascore/upcoming_matches`, { changeOrigin: true })
+  );
 
   server.use(handler).listen(port, err => {
     if (err) throw err;

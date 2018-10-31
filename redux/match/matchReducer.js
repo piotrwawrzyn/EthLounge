@@ -16,24 +16,25 @@ const matchReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TOKENS': {
       newState.tokens.wallet = action.tokens;
+      console.log(newState.tokens.wallet);
 
       break;
     }
 
     case 'CHANGE_POS': {
-      console.log(action.token, state);
+      console.log('Change position: ', action.token);
       if (action.token.position === 'balance-box') {
-        action.token.position = action.pos;
+        action.token.position = 'betting-box';
         newState.tokens.toBet.push(action.token);
         newState.tokens.wallet = newState.tokens.wallet.filter(
-          curr => curr.address != action.token.address
+          curr => curr.symbol != action.token.symbol
         );
       } else {
         action.token.position = 'balance-box';
         action.token.amount = action.token.initialAmount;
         newState.tokens.wallet.push(action.token);
         newState.tokens.toBet = newState.tokens.toBet.filter(
-          curr => curr.address != action.token.address
+          curr => curr.symbol != action.token.symbol
         );
       }
 

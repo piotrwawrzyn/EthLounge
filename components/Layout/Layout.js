@@ -10,6 +10,7 @@ import 'react-rangeslider/lib/index.css';
 import axios from 'axios';
 import { login } from '../../redux/layout/actions';
 import { backend } from '../../config/config';
+import CookieCall from '../../utils/CookieCall';
 
 const layout = ChildPage =>
   class extends Component {
@@ -17,19 +18,17 @@ const layout = ChildPage =>
       const { req } = initialProps;
       let res;
 
+      let api_response;
+
       try {
-        res = req.headers.cookie
-          ? await axios.get(`${backend}/api/current_gambler`, {
-              headers: req ? { cookie: req.headers.cookie } : undefined
-            })
-          : {};
+        api_response = await CookieCall(req, '/api/current_user');
       } catch (err) {
         console.log(err);
       }
 
-      const gambler = res.data;
+      const user = api_response.data;
 
-      let props = { gambler };
+      let props = { user };
 
       const getInitialProps = ChildPage.getInitialProps;
 
@@ -46,23 +45,25 @@ const layout = ChildPage =>
     }
 
     componentWillMount() {
-      store.dispatch({ type: 'LOG_IN', gambler: this.props.gambler });
+      store.dispatch(login(this.props.user));
     }
 
     render() {
       return (
         <Provider store={store}>
-          <Container>
+          <div>
             <Head>
               <link
                 rel="stylesheet"
                 href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"
               />
             </Head>
-            <Menu gambler={this.props.gambler} />
-            <ChildPage initial={this.props} />
-            <h2>Footer</h2>
-          </Container>
+            <Menu user={this.props.user} />
+            <Container>
+              <ChildPage initial={this.props} />
+              <h2>Footer</h2>
+            </Container>
+          </div>
         </Provider>
       );
     }

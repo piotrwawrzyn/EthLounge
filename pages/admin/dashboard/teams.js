@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Layout from '../../../components/dashboard/Layout/Layout';
 import { Divider, Grid, GridColumn, Header, Input } from 'semantic-ui-react';
-import '../../../static/css/dashboard/teams.css';
+import '../../../static/css/dashboard/SearchableTable.css';
 import CookieCall from '../../../utils/CookieCall';
-import TeamList from '../../../components/dashboard/teams/TeamList';
+import SearchableTable from '../../../components/dashboard/shared/SearchableTable';
 import TeamForm from '../../../components/dashboard/teams/TeamForm';
+import TeamListItem from '../../../components/dashboard/teams/TeamListItem';
 
 class Teams extends Component {
   constructor(props) {
@@ -36,9 +37,12 @@ class Teams extends Component {
               placeholder="Search for a team..."
               onChange={e => this.setState({ searchQuery: e.target.value })}
             />
-            <TeamList
+            <SearchableTable
               searchQuery={this.state.searchQuery}
-              teams={this.props.initial.teams}
+              items={this.props.initial.teams}
+              headers={['ID', 'Name', 'Logo']}
+              ItemComponent={TeamListItem}
+              sortBy={'displayName'}
             />
           </GridColumn>
 

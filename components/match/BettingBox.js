@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 
-import BettingBoxToken from './BettingBoxToken';
+import BettingBoxToken from './BettingBoxItem';
 import RangeSlider from './RangeSlider';
 
 class BettingBox extends Component {
@@ -10,40 +10,28 @@ class BettingBox extends Component {
   }
 
   renderTokens(tokens) {
-    let bettingBoxes = [];
+    const items = [];
     const numberOfBoxes = 4;
 
     for (let i = 0; i < numberOfBoxes; i++) {
-      let pos = `betting-box-${i}`;
-      let tokenProp;
-      let rangeSlider = '';
-
-      for (let token of tokens) {
-        if (token.position === pos) {
-          tokenProp = token;
-          rangeSlider = (
+      const token = tokens[i] || null;
+      items.push(
+        <Grid.Row key={i}>
+          <Grid.Column width={7}>
+            <BettingBoxToken token={token} />
+          </Grid.Column>
+          <Grid.Column width={9} verticalAlign="middle">
             <RangeSlider
               prices={this.props.prices}
               token={token}
               toBet={tokens}
             />
-          );
-        }
-      }
-
-      bettingBoxes.push(
-        <Grid.Row key={pos}>
-          <Grid.Column width={7}>
-            <BettingBoxToken pos={pos} droppedToken={tokenProp} />
-          </Grid.Column>
-          <Grid.Column width={9} verticalAlign="middle">
-            {rangeSlider}
           </Grid.Column>
         </Grid.Row>
       );
     }
 
-    return bettingBoxes;
+    return items;
   }
 
   render() {

@@ -8,6 +8,9 @@ import axios from 'axios';
 class TeamListItem extends Component {
   constructor(props) {
     super(props);
+    this.id = props.item._id;
+    this.displayName = props.item.displayName;
+
     this.teamNameElement;
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -17,12 +20,12 @@ class TeamListItem extends Component {
       editMode: false,
       newLogo: '',
       newName: props.name,
-      logoURL: `${backend}/img/teams/${props.id}.png`
+      logoURL: `${backend}/img/teams/${this.id}.png`
     };
   }
 
   handleEdit(event) {
-    this.setState({ editMode: true, newName: this.props.name, newLogo: '' });
+    this.setState({ editMode: true, newName: this.displayName, newLogo: '' });
     // Set cursor at the end of the team name
     const range = document.createRange();
     const sel = window.getSelection();
@@ -35,18 +38,18 @@ class TeamListItem extends Component {
     await axios({
       method: 'post',
       url: '/backend/delete_team',
-      data: { id: this.props.id }
+      data: { id: this.id }
     });
 
     Router.replaceRoute('/admin/dashboard/teams');
   }
 
   async handleUpdate() {
-    if (!(this.props.name === this.state.newName && !this.state.newLogo)) {
+    if (!(this.displayName === this.state.newName && !this.state.newLogo)) {
       const data = new FormData();
       data.append('logo', this.state.newLogo);
       data.append('displayName', this.state.newName);
-      data.append('id', this.props.id);
+      data.append('id', this.id);
 
       await axios({
         method: 'post',
@@ -62,7 +65,7 @@ class TeamListItem extends Component {
 
   undo() {
     this.setState({ editMode: false });
-    this.teamNameElement.textContent = this.props.name;
+    this.teamNameElement.textContent = this.displayName;
   }
 
   onDrop(accepted, rejected) {
@@ -76,16 +79,10 @@ class TeamListItem extends Component {
     });
   }
 
-  componentDidUpdate() {
-    this.teamNameElement.focus();
-  }
-
   render() {
-    const { id, name } = this.props;
-
     return (
-      <Table.Row key={id} active={this.state.editMode}>
-        <Table.Cell>{id}</Table.Cell>
+      <Table.Row key={this.id} active={this.state.editMode}>
+        <Table.Cell>{this.id}</Table.Cell>
         <Table.Cell>
           <div
             onInput={e => this.controlInput(e)}
@@ -93,10 +90,10 @@ class TeamListItem extends Component {
             ref={div => (this.teamNameElement = div)}
             suppressContentEditableWarning={true}
             contentEditable={`${this.state.editMode}`}>
-            {`${name}`}
+            {`${this.displayName}`}
           </div>
         </Table.Cell>
-        <Table.Cell>{this.renderImage(id, this.state.newLogo)}</Table.Cell>
+        <Table.Cell>{this.renderImage(this.id, this.state.newLogo)}</Table.Cell>
 
         <Table.Cell>{this.renderIcons(this.state.editMode)}</Table.Cell>
       </Table.Row>
@@ -140,7 +137,7 @@ class TeamListItem extends Component {
         <div>
           <Popup
             on="click"
-            trigger={<Icon className="update-icon" circular name="check" />}>
+            trigger={<Icon className="table-icon" circular name="check" />}>
             Are you sure?
             <br />
             <Button
@@ -153,7 +150,7 @@ class TeamListItem extends Component {
             </Button>
           </Popup>
           <Icon
-            className="undo-icon"
+            className="table-icon"
             circular
             name="chevron right"
             onClick={e => this.undo()}
@@ -164,14 +161,14 @@ class TeamListItem extends Component {
       return (
         <div>
           <Icon
-            className="edit-icon"
+            className="table-icon"
             circular
             name="edit"
             onClick={e => this.handleEdit(e)}
           />
           <Popup
             on="click"
-            trigger={<Icon className="delete-icon" circular name="delete" />}>
+            trigger={<Icon className="table-icon" circular name="delete" />}>
             Are you sure?
             <br />
             <Button
