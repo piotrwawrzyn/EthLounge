@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { backend } from '../../config/config';
 
 const AddTeam = async team => {
   const data = new FormData();
   data.append('logo', team.logo);
   data.append('displayName', team.displayName);
+  data.append('pandaID', team.pandaID);
 
   const response = await axios({
     method: 'post',

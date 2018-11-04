@@ -50,7 +50,7 @@ class TeamForm extends Component {
 
     const response = await AddTeam({ displayName, logo });
 
-    if (response.data.success) {
+    if (response.data.team) {
       Router.pushRoute('/admin/dashboard/teams');
       this.setState({
         formMessage: 'success',
@@ -71,7 +71,7 @@ class TeamForm extends Component {
     return (
       <Form error success>
         <Form.Field required error={this.state.formError.displayName}>
-          <label>Display displayName</label>
+          <label>Display name</label>
           <input
             onChange={e => {
               this.clearFormErrors();
@@ -112,7 +112,7 @@ class TeamForm extends Component {
   }
 
   renderDropBox(logo, error) {
-    const classNameModifier = error ? 'dropdown-div-error' : '';
+    const classNameModifier = error ? 'dropzone-div-error' : '';
 
     return (
       <Dropzone

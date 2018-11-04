@@ -87,7 +87,7 @@ class TokenForm extends Component {
       logo
     });
 
-    if (response.data.success) {
+    if (response.data.token) {
       Router.pushRoute('/admin/dashboard/tokens');
       this.setState({
         formMessage: 'success',
@@ -203,7 +203,7 @@ class TokenForm extends Component {
   }
 
   renderDropBox(logo, error) {
-    const classNameModifier = error ? 'dropdown-div-error' : '';
+    const classNameModifier = error ? 'dropzone-div-error' : '';
 
     return (
       <Dropzone

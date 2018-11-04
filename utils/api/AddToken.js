@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { backend } from '../../config/config';
 
 const AddToken = async token => {
   const data = new FormData();

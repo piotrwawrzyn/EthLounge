@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from '../../../components/dashboard/Layout/Layout';
 import { Divider, Grid, GridColumn, Header, Input } from 'semantic-ui-react';
-import '../../../static/css/dashboard/SearchableTable.css';
+import '../../../static/css/dashboard/dropzone.css';
 import CookieCall from '../../../utils/CookieCall';
 import SearchableTable from '../../../components/dashboard/shared/SearchableTable';
 import TeamForm from '../../../components/dashboard/teams/TeamForm';

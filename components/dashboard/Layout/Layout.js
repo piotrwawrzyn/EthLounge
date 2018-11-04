@@ -40,7 +40,7 @@ const dashboardLayout = ChildPage =>
         }
       }
 
-      let props = { admin: user };
+      let props = { user };
 
       const getInitialProps = ChildPage.getInitialProps;
 
@@ -65,7 +65,7 @@ const dashboardLayout = ChildPage =>
               href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"
             />
           </Head>
-          <Menu />
+          <Menu user={this.props.user} />
           <Container>
             <ChildPage initial={this.props} />
           </Container>

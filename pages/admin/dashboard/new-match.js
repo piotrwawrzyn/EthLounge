@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from '../../../components/dashboard/Layout/Layout';
 import { Grid, Divider, Header } from 'semantic-ui-react';
-import APImatches from '../../../components/dashboard/new-match/APImatches';
+import ApiMatchesList from '../../../components/dashboard/new-match/ApiMatchesList';
 
 class NewMatch extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class NewMatch extends Component {
         <Grid className="grid-content">
           <Grid.Row>
             <Grid.Column>
-              <APImatches />
+              <ApiMatchesList />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import { Label, Icon } from 'semantic-ui-react';
+import Shorten from '../../../utils/Shorten';
 
 const DropZone = props => {
   const { droppedImg, handleDelete, classNameModifier, onDrop } = props;
@@ -8,16 +9,16 @@ const DropZone = props => {
   if (droppedImg) {
     return (
       <Label size="medium" image className="font-white dark-orange-bg">
-        {droppedImg.name}
+        {Shorten(droppedImg.name)}
         <Icon onClick={handleDelete} name="delete" />
       </Label>
     );
   }
   return (
     <Dropzone
-      className={`dropdown-div ${classNameModifier}`}
-      activeClassName="dropdown-div-accepted"
-      rejectClassName="dropdown-div-rejected"
+      className={`dropzone-div ${classNameModifier}`}
+      activeClassName="dropzone-div-accepted"
+      rejectClassName="dropzone-div-rejected"
       accept="image/png"
       onDrop={onDrop}>
       {({ isDragAccept, isDragReject }) => {

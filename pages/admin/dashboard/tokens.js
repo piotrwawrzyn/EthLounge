@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from '../../../components/dashboard/Layout/Layout';
 import { Divider, Grid, GridColumn, Header, Input } from 'semantic-ui-react';
-import '../../../static/css/dashboard/SearchableTable.css';
+import '../../../static/css/dashboard/dropzone.css';
 import CookieCall from '../../../utils/CookieCall';
 import TokenForm from '../../../components/dashboard/tokens/TokenForm';
 import TokenListItem from '../../../components/dashboard/tokens/TokenListItem';

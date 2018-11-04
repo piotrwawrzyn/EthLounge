@@ -21,13 +21,13 @@
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 7,
+      "id": 6,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 9,
+      "id": 7,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
@@ -41,10 +41,10 @@
       "publicPath": "static/chunks/styles.js"
     }
   ],
-  "../../../static/css/dashboard/SearchableTable.css": [
+  "../../../static/css/dashboard/dropzone.css": [
     {
-      "id": "./static/css/dashboard/SearchableTable.css",
-      "name": "./static/css/dashboard/SearchableTable.css",
+      "id": "./static/css/dashboard/dropzone.css",
+      "name": "./static/css/dashboard/dropzone.css",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }

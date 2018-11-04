@@ -3,11 +3,11 @@ import { Menu, Image, Icon, Button, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import { Router } from '../../../next-routes';
 import { Sleep } from '../../../utils/Sleep';
+import MenuUser from '../../Layout/MenuUser';
 
 class DashboardMenu extends Component {
   constructor(props) {
     super(props);
-    this.handleLogout = this.handleLogout.bind(this);
     this.handleRoute = this.handleRoute.bind(this);
 
     this.state = { loading: false };
@@ -17,17 +17,10 @@ class DashboardMenu extends Component {
     Router.pushRoute(path);
   }
 
-  async handleLogout() {
-    this.setState({ loading: true });
-    await axios.get('/admin/logout');
-    await Sleep(500);
-
-    Router.pushRoute('/');
-  }
-
   render() {
+    console.log(this.props.user);
     return (
-      <Menu inverted size="large" className="menu-admin">
+      <Menu inverted size="large" className="top-menu">
         <Menu.Item>
           <Image
             onClick={e => Router.pushRoute('/admin/dashboard')}
@@ -48,13 +41,7 @@ class DashboardMenu extends Component {
           New Match
         </Menu.Item>
         <Menu.Item position="right">
-          <Button
-            loading={this.state.loading}
-            className="black-bg font-white"
-            style={{ marginRight: '1em' }}
-            onClick={e => this.handleLogout()}>
-            Log out
-          </Button>
+          s<MenuUser user={this.props.user} />
         </Menu.Item>
       </Menu>
     );

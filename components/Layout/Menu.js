@@ -4,35 +4,26 @@ import {
   Menu,
   Image,
   Icon,
-  Grid,
   Modal,
-  GridColumn,
   Message,
-  Form,
-  Header,
-  GridRow
+  Form
 } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import store from '../../redux/store';
-import ShortEthAddress from '../../utils/ShortEthAddress';
-import makeBlockie from 'ethereum-blockies-base64';
 import axios from 'axios';
-import { Router } from '../../next-routes';
+import MenuUser from './MenuUser';
 
-class MenuExampleSizeLarge extends Component {
+class TopMenu extends Component {
   constructor(props) {
-    console.log('state in constructor of menu', store.getState());
     super(props);
     this.handleSignUp = this.handleSignUp.bind(this);
-    this.handleSingOut = this.handleSignOut.bind(this);
     this.state = {
       username: '',
       password: '',
       password_2: '',
       signUpErrors: [],
       signUpOpen: false,
-      signInOpen: false,
-      avatarClassNameModifier: ''
+      signInOpen: false
     };
   }
 
@@ -64,52 +55,7 @@ class MenuExampleSizeLarge extends Component {
       default: {
         const { username } = user;
         const usernameStyle = { color: 'white' };
-        return (
-          <Grid className="menu-right">
-            <Grid.Row verticalAlign="middle">
-              <Grid.Column width={4}>
-                <div>
-                  <img
-                    src={makeBlockie(username)}
-                    className={`user-avatar undragable ${
-                      this.state.avatarClassNameModifier
-                    }`}
-                  />
-                </div>
-              </Grid.Column>
-              <Grid.Column width={1} />
-              <Grid.Column width={10} className="user-column-right">
-                <Grid>
-                  <GridRow style={{ padding: '0' }}>
-                    <div>
-                      <Header size="tiny" style={usernameStyle}>
-                        {username}
-                      </Header>
-                    </div>
-                  </GridRow>
-                  <GridRow style={{ padding: '0' }}>
-                    <GridColumn width="3" style={{ padding: '0' }}>
-                      <Button
-                        size="small"
-                        onClick={e => this.handleSignOut()}
-                        icon="power off"
-                        className="user-column-right-button orange-button-dark"
-                      />
-                    </GridColumn>
-                    <GridColumn width="1" style={{ padding: '0.5em' }} />
-                    <GridColumn style={{ padding: '0' }} width="3">
-                      <Button
-                        size="small"
-                        icon="setting"
-                        className="user-column-right-button orange-button-dark"
-                      />
-                    </GridColumn>
-                  </GridRow>
-                </Grid>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        );
+        return <MenuUser user={user} />;
       }
     }
   }
@@ -157,13 +103,6 @@ class MenuExampleSizeLarge extends Component {
     }
   }
 
-  async handleSignOut() {
-    console.log('sign out');
-    this.setState({ avatarClassNameModifier: 'avatar-exit' });
-    await axios.get('/logout');
-    Router.push('/');
-  }
-
   isButtonDisabled(text) {
     const ok = text.every(curr => curr.length > 0);
 
@@ -172,7 +111,7 @@ class MenuExampleSizeLarge extends Component {
 
   render() {
     return (
-      <Menu inverted size="large" className="menu">
+      <Menu inverted size="large" className="top-menu">
         <Menu.Item>
           <Image src="/static/img/logo.png" />
         </Menu.Item>
@@ -330,4 +269,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(MenuExampleSizeLarge);
+export default connect(mapStateToProps)(TopMenu);

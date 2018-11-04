@@ -13,9 +13,10 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { user } = this.props.initial;
     return (
       <div>
-        {this.generateWelcomeMsg(this.props.initial.admin.username)}
+        {this.generateWelcomeMsg(user.username)}
         <Divider />
         <Grid columns={2}>
           <GridColumn />
