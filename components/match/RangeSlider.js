@@ -16,7 +16,6 @@ class RangeSlider extends Component {
   }
 
   handleRange = (val, token) => {
-    console.log('han');
     if (!token) return;
     this.setState({ value: val });
     const change = val / this.maxValue;

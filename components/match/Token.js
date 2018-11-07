@@ -11,7 +11,7 @@ export default props => {
         className="undragable"
         avatar
         spaced="right"
-        src={`${backend}/img/tokens/${token.symbol}.png`}
+        src={`${backend}/img/tokens/${token.id}.png`}
       />
       {`${TokenFromWei(token, true)} ${token.symbol} `}
     </Label>

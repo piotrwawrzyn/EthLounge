@@ -1,5 +1,18 @@
 @import '_variables.css';
 
+body {
+  color: var(--main-text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--dark-gray);
+}
+
 /* Generic classes */
 
 .dark-orange-bg {
@@ -11,7 +24,7 @@
 }
 
 .black-bg {
-  background: #1b1c1d !important;
+  background: var(--dark-gray) !important;
 }
 
 .white-bg {
@@ -24,6 +37,10 @@
 
 .font-dark-orange {
   color: var(--orange-dark);
+}
+
+.font-dark {
+  color: var(--dark-gray);
 }
 
 .font-light-orange {
@@ -56,6 +73,10 @@
 
 .margin-right-1em {
   margin-right: 1em !important;
+}
+
+.margin-left-1em {
+  margin-left: 1em !important;
 }
 
 .margin-top-1em {
@@ -91,6 +112,11 @@ body {
   border-radius: 0px !important;
 }
 
+.top-menu .item::before {
+  background: var(--light-gray) !important;
+  opacity: 0.3;
+}
+
 .top-menu .item:not(.right),
 .top-menu img {
   cursor: pointer;
@@ -123,6 +149,16 @@ body {
   line-height: 18px;
   border-radius: 50%;
   color: var(--orange-dark);
+}
+
+.item.item-logo {
+  padding: 10px !important;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  margin: 0 1.5em 0 1.5em;
 }
 
 .user-avatar {
@@ -278,21 +314,23 @@ body {
 
 .dark-button {
   background: var(--dark-gray) !important;
-  color: white !important;
+  color: var(--main-text-color) !important;
 }
 
 .dark-button:hover {
   background: var(--gray) !important;
 }
 
-.orange-button-dark {
+.orange-button-dark,
+.orange-label-dark {
   background: var(--orange-dark) !important;
-  color: white !important;
+  color: var(--main-text-color) !important;
 }
 
-.orange-button-light {
+.orange-button-light,
+.orange-label-light {
   background: var(--orange-light) !important;
-  color: white !important;
+  color: var(--main-text-color) !important;
 }
 
 .table-icon {
@@ -318,4 +356,21 @@ body {
 
 .label-warning {
   margin: 1em 0 1em 0 !important;
+}
+
+.divider-before::before {
+  content: '';
+  width: 1px;
+  background: var(--dark-gray);
+  opacity: 0.1;
+  height: 100%;
+  position: absolute;
+  left: 0;
+
+  z-index: 1;
+}
+
+.modal-header {
+  background: var(--orange-light) !important;
+  color: white !important;
 }

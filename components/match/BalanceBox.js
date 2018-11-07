@@ -36,7 +36,6 @@ class BalanceBox extends Component {
     const toRender = (
       <div>
         {tokensInBalance.map(token => {
-          console.log(token);
           return (
             <div
               className={'balance-box-token'}

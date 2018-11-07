@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const AddMatch = async match => {
   const data = {
-    teams: match.teams,
+    teams: [{ id: match.teams[0] }, { id: match.teams[1] }],
     league: match.league,
     startTime: match.startTime,
     pandaID: match.pandaID

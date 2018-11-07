@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Grid, Image, Label } from 'semantic-ui-react';
-
+import { Grid, Image, Label, Rail, Segment } from 'semantic-ui-react';
+import { backend } from '../../config/config';
 import { pickTeam } from '../../redux/match/actions';
 import store from '../../redux/store';
+import DateFormatter from '../../utils/DateFormatter';
 
 class Teams extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Teams extends Component {
 
   handleClick = (event, team, pickedTeam) => {
     if (this.props.user) {
-      if (pickedTeam.slug === team.slug) {
+      if (pickedTeam._id === team._id) {
         store.dispatch(pickTeam({}));
         return;
       }
@@ -22,12 +23,12 @@ class Teams extends Component {
   generateTeamLabel(team, pickedTeam) {
     const style = this.props.user ? { cursor: 'pointer' } : {};
     let classNameModifier =
-      pickedTeam.slug == team.slug ? ' team-label-picked' : '';
+      pickedTeam._id == team._id ? ' team-label-picked' : '';
     let teamCaption =
-      pickedTeam.slug == team.slug ? (
-        <p className="team-name team-name-picked">{team.name}</p>
+      pickedTeam._id == team._id ? (
+        <p className="team-name team-name-picked">{team.displayName}</p>
       ) : (
-        <p className="team-name">{team.name}</p>
+        <p className="team-name">{team.displayName}</p>
       );
 
     return (
@@ -42,7 +43,7 @@ class Teams extends Component {
           className={`team-label${classNameModifier}`}>
           <Image
             className="undragable"
-            src={`/static/img/teams/${team.slug}.png`}
+            src={`${backend}/img/teams/${team._id}.png`}
           />
         </Label>
         <div style={style}>{teamCaption}</div>{' '}
@@ -50,28 +51,30 @@ class Teams extends Component {
     );
   }
 
-  generatePercentage(teams, index) {
-    const sumOdds = teams[0].odds + teams[1].odds;
-    const percentage = Math.round((1 / teams[index].odds) * 100) + '%';
+  generatePercentage(match, index) {
+    const percentageAndOdds = (
+      <div>
+        <p className="team-percentage">{match.percentages[index]}%</p>
+        <p className="team-odds">x {match.odds[index]}</p>
+      </div>
+    );
 
     if (index === 0)
       return (
-        <Label as="a" color="black" ribbon>
-          <p className="team-percentage">{percentage}</p>
-          <p className="team-odds">x {teams[index].odds}</p>
+        <Label color="black" ribbon>
+          {percentageAndOdds}
         </Label>
       );
 
     return (
-      <Label as="a" color="black" ribbon="right">
-        <p className="team-percentage">{percentage}</p>
-        <p className="team-odds">x{teams[index].odds}</p>
+      <Label color="black" ribbon="right">
+        {percentageAndOdds}
       </Label>
     );
   }
 
   render() {
-    let { teams, pickedTeam } = this.props;
+    let { teams, pickedTeam, match } = this.props;
 
     if (teams)
       return (
@@ -82,7 +85,7 @@ class Teams extends Component {
             </Grid.Row>
             <Grid.Row>
               <Grid.Column width={2}>
-                {this.generatePercentage(teams, 0)}
+                {this.generatePercentage(match, 0)}
               </Grid.Column>
 
               <Grid.Column width={5} verticalAlign="middle" textAlign="center">
@@ -98,7 +101,7 @@ class Teams extends Component {
               </Grid.Column>
 
               <Grid.Column width={2}>
-                {this.generatePercentage(teams, 1)}
+                {this.generatePercentage(match, 1)}
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>

@@ -5,16 +5,17 @@ import {
   Header,
   Icon,
   Image,
-  Label,
   List,
-  Modal
+  Modal,
+  Label
 } from 'semantic-ui-react';
 
-import EthLounge from '../../ethereum/EthLounge';
 import { toggleModal } from '../../redux/match/actions';
 import store from '../../redux/store';
 import { Router } from '../../next-routes';
 import TokenFromWei from '../../utils/TokenFromWei';
+import { backend } from '../../config/config';
+import PlaceBet from '../../utils/api/PlaceBet';
 
 class ConfirmBetModal extends Component {
   constructor(props) {
@@ -40,40 +41,55 @@ class ConfirmBetModal extends Component {
     store.dispatch(toggleModal('confirmBetModal'));
   }
 
-  async handleConfirm(tokensToBet, pickedTeam, address, matchID) {
-    console.log(this.state);
+  async handleConfirm(match, pickedTeam, tokensToBet, user) {
     this.setState({
       isLoading: true,
       isCancelDisabled: true
     });
-    const tokens = tokensToBet.map(curr => curr.address);
-    const amounts = tokensToBet.map(curr => curr.amount);
 
-    // try {
-    //   const transactionInfo = await EthLounge.methods
-    //     .placeBet(matchID, pickedTeam.slug, tokens, amounts)
-    //     .send({ from: address });
-    //   if (transactionInfo.status) {
-    //     this.setState({
-    //       isFinalModalSuccessOpen: true,
-    //       transactionInfo: transactionInfo
-    //     });
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    //   this.setState({
-    //     isFinalModalErrorOpen: true,
-    //     errorMessage: err.message.replace('Returned error: ', '')
-    //   });
-    // }
+    const tokensBet = tokensToBet.map(curr => {
+      return { id: curr.id, amount: curr.amount };
+    });
+
+    const api_response = await PlaceBet({
+      matchID: match._id,
+      teamID: pickedTeam._id,
+      betMakerID: user.id,
+      tokensBet
+    });
+
+    const data = api_response.data;
+
+    console.log(data);
+
     this.setState({
       isLoading: false,
       isCancelDisabled: false
     });
   }
 
+  renderTeamLogos(match, pickedTeam) {
+    const notPickedTeamID =
+      pickedTeam._id === match.teams[0] ? match.teams[1] : match.teams[0];
+
+    return (
+      <div className="confirm-bet-modal-img-div">
+        <Image
+          className="confirm-bet-modal-img confirm-bet-modal-img-picked"
+          src={`${backend}/img/teams/${pickedTeam._id}.png`}
+        />
+        <div className="confirm-bet-modal-img-divider" />
+        <Image
+          className="confirm-bet-modal-img confirm-bet-modal-img-notpicked"
+          src={`${backend}/img/teams/${notPickedTeamID}.png`}
+        />
+      </div>
+    );
+  }
+
   render() {
-    let { open, tokensToBet, pickedTeam, user, matchID } = this.props;
+    let { open, tokensToBet, pickedTeam, user, match, teams } = this.props;
+    const teamIndex = pickedTeam._id === teams[0]._id ? 0 : 1;
 
     const tokenList = tokensToBet.map(curr => {
       return (
@@ -89,7 +105,7 @@ class ConfirmBetModal extends Component {
         <FinalModalSuccess
           open={this.state.isFinalModalSuccessOpen}
           transactionInfo={this.state.transactionInfo}
-          matchID={matchID}
+          match={match}
           close={this.closeFinalModal}
         />
         <FinalModalError
@@ -97,7 +113,9 @@ class ConfirmBetModal extends Component {
           errorMessage={this.state.errorMessage}
           close={this.closeFinalModal}
         />
-        <Modal.Header>You are about to place a bet</Modal.Header>
+        <Modal.Header className="modal-header">
+          You are about to place a bet
+        </Modal.Header>
         <Modal.Content>
           <Modal.Description>
             <Grid>
@@ -107,21 +125,19 @@ class ConfirmBetModal extends Component {
                   {tokenList}
                 </List>
                 <Header>
-                  Picked Team:{' '}
-                  <span className="font-dark-orange">{pickedTeam.name}</span>
+                  Picked Team:
+                  <span className="font-dark-orange">
+                    {' ' + pickedTeam.displayName}
+                  </span>
                 </Header>
-                <Header>
-                  Odds:{' '}
-                  <span className="font-dark-orange">{pickedTeam.odds}</span>
-                </Header>
+                <span className="odds-message">
+                  <Icon name="info circle" />
+                  Odds are now {match.odds[teamIndex]} but keep in mind they can
+                  change prior to the game start based on future bets.
+                </span>
               </Grid.Column>
-              <Grid.Column verticalAlign="middle" width={6}>
-                <Image
-                  className="confirm-bet-modal-img"
-                  floated="right"
-                  size="small"
-                  src={`/static/img/teams/${pickedTeam.slug}.png`}
-                />
+              <Grid.Column width={6}>
+                {this.renderTeamLogos(match, pickedTeam)}
               </Grid.Column>
             </Grid>
           </Modal.Description>
@@ -137,7 +153,7 @@ class ConfirmBetModal extends Component {
             loading={this.state.isLoading}
             className="dark-orange-bg font-white"
             onClick={e =>
-              this.handleConfirm(tokensToBet, pickedTeam, user.address, matchID)
+              this.handleConfirm(match, pickedTeam, tokensToBet, user)
             }>
             Confirm
           </Button>
@@ -149,7 +165,7 @@ class ConfirmBetModal extends Component {
 
 class FinalModalSuccess extends Component {
   render() {
-    const { open, close, transactionInfo, matchID } = this.props;
+    const { open, close, transactionInfo, match } = this.props;
 
     const hash = transactionInfo.transactionHash;
 
@@ -167,7 +183,7 @@ class FinalModalSuccess extends Component {
             className="dark-orange-bg font-white"
             onClick={e => {
               close();
-              Router.push(`/matches/${matchID}`);
+              Router.push(`/matches/${match._id}`);
             }}>
             {' '}
             Go back

@@ -1,4 +1,5 @@
 const DateFormatter = date => {
+  date = new Date(date);
   const hours =
     date.getHours().toString().length > 1
       ? date.getHours()
@@ -20,11 +21,11 @@ const DateFormatter = date => {
   if (date > now) {
     difference = (date.getTime() - now.getTime()) / 60000;
     aprox = `${minutesToWord(difference)} from now`;
-    return { formatedDate, aprox };
+    return { formatedDate, aprox, isFuture: true };
   } else {
     difference = (now.getTime() - date.getTime()) / 60000;
     aprox = `${minutesToWord(difference)} ago`;
-    return { formatedDate, aprox };
+    return { formatedDate, aprox, isFuture: false };
   }
 };
 

@@ -1,10 +1,24 @@
 :root {
+  --main-text-color: white;
   --orange-dark: #ef8c0e;
   --orange-light: #f39c12;
   --dark-gray: #1b1c1d;
   --light-gray: #e8e8e8;
   --gray: #2c2d2d;
   --error: #9f3a38;
+}
+
+body {
+  color: var(--main-text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--dark-gray);
 }
 
 /* Generic classes */
@@ -18,7 +32,7 @@
 }
 
 .black-bg {
-  background: #1b1c1d !important;
+  background: var(--dark-gray) !important;
 }
 
 .white-bg {
@@ -31,6 +45,10 @@
 
 .font-dark-orange {
   color: var(--orange-dark);
+}
+
+.font-dark {
+  color: var(--dark-gray);
 }
 
 .font-light-orange {
@@ -63,6 +81,10 @@
 
 .margin-right-1em {
   margin-right: 1em !important;
+}
+
+.margin-left-1em {
+  margin-left: 1em !important;
 }
 
 .margin-top-1em {
@@ -98,6 +120,11 @@ body {
   border-radius: 0px !important;
 }
 
+.top-menu .item::before {
+  background: var(--light-gray) !important;
+  opacity: 0.3;
+}
+
 .top-menu .item:not(.right),
 .top-menu img {
   cursor: pointer;
@@ -130,6 +157,16 @@ body {
   line-height: 18px;
   border-radius: 50%;
   color: var(--orange-dark);
+}
+
+.item.item-logo {
+  padding: 10px !important;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  margin: 0 1.5em 0 1.5em;
 }
 
 .user-avatar {
@@ -285,21 +322,23 @@ body {
 
 .dark-button {
   background: var(--dark-gray) !important;
-  color: white !important;
+  color: var(--main-text-color) !important;
 }
 
 .dark-button:hover {
   background: var(--gray) !important;
 }
 
-.orange-button-dark {
+.orange-button-dark,
+.orange-label-dark {
   background: var(--orange-dark) !important;
-  color: white !important;
+  color: var(--main-text-color) !important;
 }
 
-.orange-button-light {
+.orange-button-light,
+.orange-label-light {
   background: var(--orange-light) !important;
-  color: white !important;
+  color: var(--main-text-color) !important;
 }
 
 .table-icon {
@@ -325,6 +364,23 @@ body {
 
 .label-warning {
   margin: 1em 0 1em 0 !important;
+}
+
+.divider-before::before {
+  content: '';
+  width: 1px;
+  background: var(--dark-gray);
+  opacity: 0.1;
+  height: 100%;
+  position: absolute;
+  left: 0;
+
+  z-index: 1;
+}
+
+.modal-header {
+  background: var(--orange-light) !important;
+  color: white !important;
 }
 
 /**
@@ -508,27 +564,202 @@ body {
   transform: translate3d(-50%, 0, 0);
 }
 
-.dropzone-div {
+/* Item */
+
+.token-label {
   width: 100% !important;
-  border: 2px dashed rgba(34, 36, 38, 0.15);
-  color: rgba(34, 36, 38, 0.5);
-  text-align: center;
-  height: 100px;
-  line-height: 100px;
-}
-.dropzone-div-accepted {
-  border-color: var(--orange-dark);
 }
 
-.dropzone-div-rejected {
-  border-color: var(--error);
-  color: var(--error);
+/* TokenBox Item */
+
+.balance-box-token {
+  float: left;
+  margin: 0 1em 1em 0;
+  width: 30%;
 }
 
-.dropzone-div-error {
-  border-color: var(--error);
-  color: var(--error);
-  background-color: #fff6f6;
+.balance-box-token .label:hover {
+  cursor: pointer !important;
+}
+
+/* .balance-box-token-dragging {
+  opacity: 0.1;
+} */
+
+/* BettingBox Row */
+
+.betting-box .row:first-of-type {
+  padding: 1em 0 0.6em 0 !important;
+}
+.betting-box .row:not(:first-child) {
+  padding: 0.6em 0 0.6em 0 !important;
+}
+
+/* BettingBox Item */
+
+/* .betting-box-token-hovered {
+  background: #ddd !important;
+}
+
+.betting-box-token-candrop {
+  background: rgb(56, 57, 58, 0.2) !important;
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+} */
+
+.betting-box-token-filled {
+  padding: 0em 0 0em 0 !important;
+}
+
+.betting-box-token-dropped .label:hover {
+  background: rgb(255, 51, 0, 0.15) !important;
+}
+
+/* Betting button, Info-Bet */
+
+.button-bet,
+.info-bet {
+  margin-top: 1.4em !important;
+}
+
+/* Range-Slider */
+
+.rangeslider-horizontal .rangeslider__fill {
+  background-color: var(--orange-light) !important;
+}
+
+.rangeslider-horizontal .rangeslider__handle:focus {
+  outline: 0px transparent !important;
+}
+
+.rangeslider-horizontal {
+  border: 1px solid rgba(34, 36, 38, 0.15) !important;
+}
+
+.rangeslider {
+  margin: 0;
+}
+
+.range-slider-inactive {
+  opacity: 0.2 !important;
+  filter: grayscale(80%);
+  -webkit-filter: grayscale(80%);
+}
+
+.range-slider-inactive * {
+  cursor: default !important;
+}
+
+/* Teams */
+
+.teams-grid {
+  background: var(--orange-light) !important;
+  border-radius: 5px !important;
+}
+
+.team-name {
+  font-size: large;
+}
+
+.team-name-picked {
+  font-weight: bold;
+}
+
+.team-label {
+  background: white !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* cursor: pointer; */
+  border: 1px solid transparent !important;
+}
+
+.team-label-picked {
+  border: 1px solid var(--dark-gray) !important;
+}
+
+.team-percentage {
+  font-size: large;
+  margin: 0;
+}
+
+.team-odds {
+  font-size: x-small;
+}
+
+/* Layout of match columns */
+
+.orange-label {
+  background: var(--orange-light) !important;
+  color: white !important;
+}
+
+/* Bet Button + Estimated reward labels */
+
+.bet-container {
+  padding-top: 1em;
+}
+
+/* Confirm Bet Modal */
+
+.confirm-bet-modal-img-div {
+  float: right;
+  width: 100%;
+}
+
+.confirm-bet-modal-img-divider {
+  height: 2px;
+  width: 100%;
+  transform: rotate(-35deg);
+  background: var(--dark-gray);
+  opacity: 0.6;
+}
+
+.confirm-bet-modal-img {
+  display: block;
+  max-width: 50px;
+  max-height: 50px;
+  margin: 5px;
+}
+
+.confirm-bet-modal-img-picked {
+  border-radius: 5px;
+  padding: 5px;
+  transform: scale(1.1);
+  border: 1px solid black;
+}
+
+.confirm-bet-modal-img-notpicked {
+  position: absolute;
+  left: 60%;
+}
+
+.confirm-bet-modal-header {
+  background: var(--orange-light) !important;
+  color: white !important;
+}
+
+.confirm-bet-modal-ul {
+  margin: 0 !important;
+}
+
+.odds-message {
+  display: block;
+  color: var(--dark-gray);
+  font-size: x-small;
+  padding-top: 1em !important;
+}
+
+/* MatchDetails */
+
+.league-image {
+  max-height: 80px !important;
+  max-width: 150px !important;
+  padding: 0.2em;
+}
+
+.details-list * {
+  margin-bottom: 5px;
 }
 
 

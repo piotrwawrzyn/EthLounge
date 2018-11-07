@@ -31,6 +31,9 @@ app.prepare().then(() => {
   server.use(proxy(`${backend}/api/current_user`, { changeOrigin: true }));
   server.use(proxy(`${backend}/api/tokens`, { changeOrigin: true }));
 
+  // User actions
+  server.use(proxy(`${backend}/place_bet`, { changeOrigin: true }));
+
   // Proxy: Backend
   server.use(proxy(`${backend}/backend/new_team`, { changeOrigin: true }));
   server.use(proxy(`${backend}/backend/update_team`, { changeOrigin: true }));

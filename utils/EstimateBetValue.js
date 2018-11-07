@@ -1,5 +1,4 @@
 import Big from 'big.js';
-import GetTokenPrice from './GetTokenPrice';
 import TokenFromWei from './TokenFromWei';
 import store from '../redux/store';
 import { updateEstimateBet } from '../redux/match/actions';
@@ -10,7 +9,7 @@ const EstimateBetValue = (tokensToBet, prices, dispatch = true) => {
   });
 
   const values = symbols.map(curr => {
-    return prices.data[curr].USD;
+    return prices[curr].USD;
   });
 
   let sum = values.reduce((sum, curr, index) => {

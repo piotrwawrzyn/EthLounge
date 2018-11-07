@@ -138,10 +138,62 @@
 
 /* Confirm Bet Modal */
 
+.confirm-bet-modal-img-div {
+  float: right;
+  width: 100%;
+}
+
+.confirm-bet-modal-img-divider {
+  height: 2px;
+  width: 100%;
+  transform: rotate(-35deg);
+  background: var(--dark-gray);
+  opacity: 0.6;
+}
+
 .confirm-bet-modal-img {
-  opacity: 0.2;
+  display: block;
+  max-width: 50px;
+  max-height: 50px;
+  margin: 5px;
+}
+
+.confirm-bet-modal-img-picked {
+  border-radius: 5px;
+  padding: 5px;
+  transform: scale(1.1);
+  border: 1px solid black;
+}
+
+.confirm-bet-modal-img-notpicked {
+  position: absolute;
+  left: 60%;
+}
+
+.confirm-bet-modal-header {
+  background: var(--orange-light) !important;
+  color: white !important;
 }
 
 .confirm-bet-modal-ul {
   margin: 0 !important;
+}
+
+.odds-message {
+  display: block;
+  color: var(--dark-gray);
+  font-size: x-small;
+  padding-top: 1em !important;
+}
+
+/* MatchDetails */
+
+.league-image {
+  max-height: 80px !important;
+  max-width: 150px !important;
+  padding: 0.2em;
+}
+
+.details-list * {
+  margin-bottom: 5px;
 }

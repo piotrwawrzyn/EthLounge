@@ -91,8 +91,6 @@ class TopMenu extends Component {
       config: { headers: { 'Content-Type': 'multipart/form-data' } }
     });
 
-    console.log(response.data);
-
     if (response.data.success) {
     } else {
       this.setState({
@@ -112,8 +110,8 @@ class TopMenu extends Component {
   render() {
     return (
       <Menu inverted size="large" className="top-menu">
-        <Menu.Item>
-          <Image src="/static/img/logo.png" />
+        <Menu.Item className="item-logo">
+          <Image className="logo" src="/static/img/logo/logo.png" />
         </Menu.Item>
         <Menu.Item>
           <Icon name="chess knight" />
@@ -138,7 +136,9 @@ class TopMenu extends Component {
         </Menu.Item>
 
         <Modal open={this.state.signUpOpen} size="small">
-          <Modal.Header>Sign up as a new user</Modal.Header>
+          <Modal.Header className="modal-header">
+            Sign up as a new user
+          </Modal.Header>
           <Modal.Content>
             <Form>
               <Form.Field>
@@ -171,7 +171,7 @@ class TopMenu extends Component {
           </Modal.Content>
           <Modal.Actions>
             <Button
-              className="dark-orange-bg font-white"
+              className="dark-button"
               onClick={e => {
                 this.setState({
                   signUpOpen: false,
@@ -184,7 +184,7 @@ class TopMenu extends Component {
             </Button>
 
             <Button
-              className="dark-button"
+              className="orange-button-dark"
               onClick={e => this.handleSignUp()}
               disabled={this.isButtonDisabled([
                 this.state.username,
@@ -197,7 +197,7 @@ class TopMenu extends Component {
         </Modal>
 
         <Modal open={this.state.signInOpen} size="small">
-          <Modal.Header>Sign in</Modal.Header>
+          <Modal.Header className="modal-header">Sign in</Modal.Header>
           <Modal.Content>
             <Form id="login_form" action="/login" method="post">
               <Form.Field>
@@ -222,7 +222,7 @@ class TopMenu extends Component {
           </Modal.Content>
           <Modal.Actions>
             <Button
-              className="dark-orange-bg font-white"
+              className="dark-button"
               onClick={e => {
                 this.setState({
                   signInOpen: false,
@@ -236,7 +236,7 @@ class TopMenu extends Component {
             <Button
               type="submit"
               form="login_form"
-              className="dark-button"
+              className="orange-button-dark"
               disabled={this.isButtonDisabled([
                 this.state.username,
                 this.state.password

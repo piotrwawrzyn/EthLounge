@@ -1,9 +1,14 @@
-import GetTokenPrice from './GetTokenPrice';
+import axios from 'axios';
 
-const data = async tokens => {
-  const response = await GetTokenPrice(tokens.map(curr => curr.symbol));
+const CryptoPrices = async tokens => {
+  const symbols = tokens.map(curr => curr.symbol);
+  const response = await axios(
+    `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${symbols.map(
+      curr => curr + ','
+    )},&tsyms=USD,ETH`
+  );
 
-  return response;
+  return response.data;
 };
 
-export default data;
+export default CryptoPrices;

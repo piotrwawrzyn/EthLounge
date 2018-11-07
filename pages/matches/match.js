@@ -1,9 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
-import { Button, Grid, Label, List, Modal } from 'semantic-ui-react';
+import { Button, Grid, Label, List, Icon } from 'semantic-ui-react';
 
 import Layout from '../../components/Layout/Layout';
 import BettingBox from '../../components/match/BettingBox';
@@ -20,11 +18,15 @@ import {
 import store from '../../redux/store';
 import CryptoPrices from '../../utils/CryptoPrices';
 import '../../static/css/match.css';
-import axios from 'axios';
 import CookieCall from '../../utils/CookieCall';
+import CalculateOdds from '../../utils/CalculateOdds';
+import CalculatePercentages from '../../utils/CalculatePercentages';
+import ServerSideRedirect from '../../utils/SeverSideRedirect';
+import MatchDetails from '../../components/match/MatchDetails';
 
 class Token {
-  constructor(symbol, amount, position = '', displayName, decimals) {
+  constructor(id, symbol, amount, position = '', displayName, decimals) {
+    this.id = id;
     this.symbol = symbol;
     this.amount = amount;
     this.initialAmount = amount;
@@ -36,35 +38,28 @@ class Token {
 
 class Match extends Component {
   static async getInitialProps(props) {
-    const { req } = props;
+    const { req, res } = props;
     const matchID = props.query.id;
 
-    // This information will be pulled from database //
-    const teams = [
-      {
-        name: 'Fnatic',
-        slug: 'fnatic',
-        imgUrl: `../../img/teams/fnatic.png`,
-        odds: 1.56
-      },
-      {
-        name: 'Gambit',
-        slug: 'gambit',
-        imgUrl: `../../img/teams/gambit.png`,
-        odds: 2.77
-      }
-    ];
-
-    const api_response = await CookieCall(req, `/api/match_info?ID=${matchID}`);
+    const api_response = await CookieCall(req, `/api/match_info?id=${matchID}`);
 
     const data = api_response.data;
 
-    const matchInfo = { matchID, teams, ...data };
+    const errorURL = '/404';
+    if (!data) {
+      ServerSideRedirect(res, errorURL);
+    }
+
+    data.match.odds = [1, 1];
+    data.match.percentages = [1, 1];
+
+    const matchInfo = { ...data };
 
     return { matchInfo };
   }
 
   async componentWillMount() {
+    console.log(this.props.initial.matchInfo);
     const { tokens } = this.props.initial.matchInfo;
 
     const prices = await CryptoPrices(tokens);
@@ -79,12 +74,16 @@ class Match extends Component {
     if (userBalances) {
       const tokens = [];
 
+      console.log(userBalances, supportedTokens);
+
       userBalances.forEach(token => {
-        const { balance, symbol } = token;
-        const { displayName, decimals } = _.find(supportedTokens, { symbol });
+        const { balance, id } = token;
+        const { displayName, decimals, symbol } = _.find(supportedTokens, {
+          _id: id
+        });
 
         tokens.push(
-          new Token(symbol, balance, 'balance-box', displayName, decimals)
+          new Token(id, symbol, balance, 'balance-box', displayName, decimals)
         );
       });
 
@@ -109,51 +108,57 @@ class Match extends Component {
   }
 
   render() {
+    const { match, teams, league, bet } = this.props.initial.matchInfo;
+    const {
+      user,
+      pickedTeam,
+      prices,
+      tokens,
+      betValue,
+      confirmBetModal
+    } = this.props;
+
     return (
       <Grid relaxed>
         <ErrorModal modal={this.props.errorModal} />
         <ConfirmBetModal
-          open={this.props.confirmBetModal.isOpen}
-          tokensToBet={this.props.tokens.toBet}
-          pickedTeam={this.props.pickedTeam}
-          user={this.props.user}
-          matchID={this.props.initial.matchInfo.matchID}
+          open={confirmBetModal.isOpen}
+          tokensToBet={tokens.toBet}
+          pickedTeam={pickedTeam}
+          user={user}
+          match={match}
+          teams={teams}
         />
 
         <Grid.Column width={8}>
           <Teams
-            teams={this.props.initial.matchInfo.teams}
-            pickedTeam={this.props.pickedTeam}
-            user={this.props.user}
+            teams={teams}
+            match={match}
+            pickedTeam={pickedTeam}
+            user={user}
           />
-          LAST BETS:
+          <MatchDetails match={match} league={league} />
         </Grid.Column>
         <Grid.Column width={8}>
           <h2>Place bet</h2>
-          <BettingBox
-            prices={this.props.prices}
-            tokens={this.props.tokens.toBet}
-          />
+          <BettingBox prices={prices} tokens={tokens.toBet} />
           <div className="bet-container">
             <Button
-              onClick={event =>
-                this.handleClick(event, this.props.tokens.toBet)
-              }
+              icon
+              onClick={event => this.handleClick(event, tokens.toBet)}
               className="button-bet"
               size="large"
               color="black">
-              Place bet
+              Bet
+              <Icon style={{ marginLeft: '1em !important' }} name="check" />
             </Button>
             <List relaxed floated="right" className="info-bet">
-              {this.renderBetValue(this.props.betValue)}
-              {this.renderEstimatedReward(this.props.betValue)}
+              {this.renderBetValue(betValue)}
+              {this.renderEstimatedReward(betValue)}
             </List>
           </div>
           <h2>Balances</h2>
-          <BalanceBox
-            user={this.props.user}
-            tokens={this.props.tokens.wallet}
-          />
+          <BalanceBox user={user} tokens={tokens.wallet} />
         </Grid.Column>
       </Grid>
     );
@@ -163,10 +168,12 @@ class Match extends Component {
     if (this.props.tokens.toBet.length > 0)
       return (
         <List.Item>
-          <Label className="orange-label" horizontal>
+          <Label className="orange-label-light" horizontal>
             ESTIMATED BET VALUE
           </Label>
-          <strong>{` ${betValue}$`}</strong>
+          <span className="font-dark">
+            <strong>{` ${betValue}$`}</strong>
+          </span>
         </List.Item>
       );
 
@@ -174,27 +181,32 @@ class Match extends Component {
   }
 
   renderEstimatedReward(betValue) {
-    if (this.props.tokens.toBet.length > 0 && !_.isEmpty(this.props.pickedTeam))
+    if (
+      this.props.tokens.toBet.length > 0 &&
+      !_.isEmpty(this.props.pickedTeam)
+    ) {
+      const { teams, match } = this.props.initial.matchInfo;
+      const { pickedTeam } = this.props;
+
+      const teamIndex = pickedTeam._id === teams[0]._id ? 0 : 1;
+
       return (
         <List.Item>
-          <Label className="orange-label" horizontal>
+          <Label className="orange-label-light" horizontal>
             ESTIMATED RETURN
           </Label>
-          <strong>{` ${(
-            parseFloat(betValue) * this.props.pickedTeam.odds
-          ).toFixed(2)}$`}</strong>
+          <span className="font-dark">
+            <strong>{` ${(parseFloat(betValue) * match.odds[teamIndex]).toFixed(
+              2
+            )}$`}</strong>
+          </span>
         </List.Item>
       );
+    }
 
     return '';
   }
 }
-
-// store.subscribe(() => {
-//   if (store.getState().lastAction.type === 'LOG_IN') {
-//     getTokens(store.getState().login.gambler.address);
-//   }
-// });
 
 const mapStateToProps = state => {
   return {
@@ -207,7 +219,5 @@ const mapStateToProps = state => {
     user: state.login.user
   };
 };
-
-Match = DragDropContext(HTML5Backend)(Match);
 
 export default Layout(connect(mapStateToProps)(Match));

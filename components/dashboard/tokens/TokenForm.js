@@ -51,8 +51,6 @@ class TokenForm extends Component {
       logo
     } = this.state.formInputs;
 
-    console.log(!decimals || isNaN(decimals));
-
     const displayNameNotValid = !displayName;
     const addressNotValid =
       !address || address.length !== 42 || !address.startsWith('0x');

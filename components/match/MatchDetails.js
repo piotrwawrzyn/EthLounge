@@ -1,0 +1,81 @@
+import React, { Component } from 'react';
+import { Grid, Icon, Label, List } from 'semantic-ui-react';
+import { backend } from '../../config/config';
+import DateFormatter from '../../utils/DateFormatter';
+
+class MatchDetails extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const { match, league } = this.props;
+    const { teams } = match;
+    const date = DateFormatter(match.startTime);
+    const aproxIcon = date.isFuture ? 'hourglass half' : 'hourglass end';
+
+    if (match)
+      return (
+        <div style={{ marginTop: '0.5em' }}>
+          <Grid>
+            <Grid.Row columns="1">
+              <Grid.Column textAlign="right">
+                <Label className="orange-label-light" size="large">
+                  <Icon name="calendar alternate outline" />
+                  {date.formatedDate}
+                </Label>
+                <Label className="orange-label-light" size="large">
+                  <Icon name={aproxIcon} />
+                  {date.aprox}
+                </Label>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row columns="2">
+              <Grid.Column>
+                <List className="details-list">
+                  <List.Item>
+                    <List.Icon name="dollar sign" className="font-dark" />
+                    <List.Content>
+                      <List.Header>{`${(
+                        teams[0].totalDollarsBet + teams[1].totalDollarsBet
+                      ).toFixed(2)}$`}</List.Header>{' '}
+                      <List.Description>Total bet</List.Description>
+                    </List.Content>
+                  </List.Item>{' '}
+                  <List.Item>
+                    <List.Icon name="chess king" className="font-dark" />
+                    <List.Content>
+                      <List.Header>{`${match.highestBet}$`}</List.Header>
+                      <List.Description>Highest bet</List.Description>
+                    </List.Content>
+                  </List.Item>
+                  <List.Item>
+                    <List.Icon name="ethereum" className="font-dark" />
+                    <List.Content>
+                      <List.Header>{match.tokensInPool.length}</List.Header>
+                      <List.Description>
+                        Different coins in pool
+                      </List.Description>
+                    </List.Content>
+                  </List.Item>
+                </List>
+              </Grid.Column>
+              <Grid.Column
+                verticalAlign="middle"
+                textAlign="center"
+                className="divider-before">
+                <img
+                  className="league-image"
+                  src={`${backend}/img/leagues/${league._id}.png`}
+                />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </div>
+      );
+
+    return '';
+  }
+}
+
+export default MatchDetails;
