@@ -1,4 +1,5 @@
 @import '_variables.css';
+@import '_animations.css';
 
 /* Item */
 
@@ -139,35 +140,44 @@
 /* Confirm Bet Modal */
 
 .confirm-bet-modal-img-div {
-  float: right;
-  width: 100%;
+  position: relative;
+  width: 150px;
+  height: 150px;
 }
 
 .confirm-bet-modal-img-divider {
-  height: 2px;
-  width: 100%;
-  transform: rotate(-35deg);
+  border: 1px var(--dark-gray) solid;
+  border-radius: 1px;
+  width: 212px;
+  transform: rotate(45deg);
+  transform-origin: top left;
   background: var(--dark-gray);
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .confirm-bet-modal-img {
-  display: block;
-  max-width: 50px;
-  max-height: 50px;
-  margin: 5px;
+  padding: 8px;
+  position: absolute !important;
+  max-width: 65px !important;
+  max-height: 65px;
+  display: inline;
 }
 
 .confirm-bet-modal-img-picked {
   border-radius: 5px;
-  padding: 5px;
-  transform: scale(1.1);
   border: 1px solid black;
+  right: 0px;
+  top: 0px;
+  transform: scale(1.1);
+  -webkit-animation: pulsate 0.9s ease-in-out infinite both;
+  animation: pulsate 0.9s ease-in-out infinite both;
 }
 
 .confirm-bet-modal-img-notpicked {
-  position: absolute;
-  left: 60%;
+  bottom: 0px;
+  left: 0px;
+  -webkit-filter: grayscale(60%);
+  filter: grayscale(60%);
 }
 
 .confirm-bet-modal-header {
@@ -192,6 +202,12 @@
   max-height: 80px !important;
   max-width: 150px !important;
   padding: 0.2em;
+}
+
+.league-caption {
+  font-size: medium;
+  color: var(--dark-gray);
+  font-weight: bold;
 }
 
 .details-list * {

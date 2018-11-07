@@ -5,7 +5,8 @@ const AddMatch = async match => {
     teams: [{ id: match.teams[0] }, { id: match.teams[1] }],
     league: match.league,
     startTime: match.startTime,
-    pandaID: match.pandaID
+    pandaID: match.pandaID,
+    serie: match.serie
   };
 
   const response = await axios({

@@ -6,8 +6,7 @@ import {
   Icon,
   Image,
   List,
-  Modal,
-  Label
+  Modal
 } from 'semantic-ui-react';
 
 import { toggleModal } from '../../redux/match/actions';
@@ -70,15 +69,18 @@ class ConfirmBetModal extends Component {
 
   renderTeamLogos(match, pickedTeam) {
     const notPickedTeamID =
-      pickedTeam._id === match.teams[0] ? match.teams[1] : match.teams[0];
+      pickedTeam._id === match.teams[0].id
+        ? match.teams[1].id
+        : match.teams[0].id;
 
     return (
       <div className="confirm-bet-modal-img-div">
+        <div className="confirm-bet-modal-img-divider" />
         <Image
           className="confirm-bet-modal-img confirm-bet-modal-img-picked"
           src={`${backend}/img/teams/${pickedTeam._id}.png`}
         />
-        <div className="confirm-bet-modal-img-divider" />
+
         <Image
           className="confirm-bet-modal-img confirm-bet-modal-img-notpicked"
           src={`${backend}/img/teams/${notPickedTeamID}.png`}
@@ -88,8 +90,7 @@ class ConfirmBetModal extends Component {
   }
 
   render() {
-    let { open, tokensToBet, pickedTeam, user, match, teams } = this.props;
-    const teamIndex = pickedTeam._id === teams[0]._id ? 0 : 1;
+    let { open, tokensToBet, pickedTeam, user, match } = this.props;
 
     const tokenList = tokensToBet.map(curr => {
       return (
@@ -114,6 +115,7 @@ class ConfirmBetModal extends Component {
           close={this.closeFinalModal}
         />
         <Modal.Header className="modal-header">
+          <Icon style={{ marginRight: '1em' }} name="check" />
           You are about to place a bet
         </Modal.Header>
         <Modal.Content>
@@ -132,7 +134,7 @@ class ConfirmBetModal extends Component {
                 </Header>
                 <span className="odds-message">
                   <Icon name="info circle" />
-                  Odds are now {match.odds[teamIndex]} but keep in mind they can
+                  Odds are now {pickedTeam.odds} but keep in mind they can
                   change prior to the game start based on future bets.
                 </span>
               </Grid.Column>

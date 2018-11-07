@@ -107,7 +107,7 @@ class ApiMatchesItem extends Component {
   }
 
   async handleAddMatch(data) {
-    const { dataToSend, teams, league, pandaID, startTime } = data;
+    const { dataToSend, teams, league, pandaID, startTime, serie } = data;
 
     for (let i = 0; i < 2; i++) {
       if (!dataToSend[`team_${i}_ID`]) {
@@ -125,7 +125,8 @@ class ApiMatchesItem extends Component {
       teams: [dataToSend.team_0_ID, dataToSend.team_1_ID],
       league: dataToSend.league_ID,
       startTime,
-      pandaID
+      pandaID,
+      serie
     });
 
     const match = api_response.data.match;
@@ -143,7 +144,7 @@ class ApiMatchesItem extends Component {
 
   async handleAdd(match) {
     this.setState({ button: { ...this.state.button, loading: true } });
-    const { pandaID, startTime, teams, league } = match;
+    const { pandaID, startTime, teams, league, serie } = match;
     let dataToSend = { team_0_ID: null, team_1_ID: null, league_ID: null };
 
     // Teams
@@ -187,7 +188,8 @@ class ApiMatchesItem extends Component {
         teams: [team_0_ID, team_1_ID],
         league: league_ID,
         pandaID,
-        startTime
+        startTime,
+        serie
       });
       if (api_response.data.match) this.addComplete(true);
       else this.addComplete(false);
@@ -202,6 +204,7 @@ class ApiMatchesItem extends Component {
           dataToSend,
           pandaID,
           startTime,
+          serie,
           teams: _.cloneDeep(teams),
           league: _.cloneDeep(league)
         }
@@ -228,6 +231,7 @@ class ApiMatchesItem extends Component {
 
   render() {
     const { match } = this.props;
+
     const date = DateFormatter(match.startTime);
     return (
       <Table.Row>

@@ -19,8 +19,6 @@ import store from '../../redux/store';
 import CryptoPrices from '../../utils/CryptoPrices';
 import '../../static/css/match.css';
 import CookieCall from '../../utils/CookieCall';
-import CalculateOdds from '../../utils/CalculateOdds';
-import CalculatePercentages from '../../utils/CalculatePercentages';
 import ServerSideRedirect from '../../utils/SeverSideRedirect';
 import MatchDetails from '../../components/match/MatchDetails';
 
@@ -46,12 +44,10 @@ class Match extends Component {
     const data = api_response.data;
 
     const errorURL = '/404';
+
     if (!data) {
       ServerSideRedirect(res, errorURL);
     }
-
-    data.match.odds = [1, 1];
-    data.match.percentages = [1, 1];
 
     const matchInfo = { ...data };
 
@@ -108,7 +104,7 @@ class Match extends Component {
   }
 
   render() {
-    const { match, teams, league, bet } = this.props.initial.matchInfo;
+    const { match, bet } = this.props.initial.matchInfo;
     const {
       user,
       pickedTeam,
@@ -127,17 +123,11 @@ class Match extends Component {
           pickedTeam={pickedTeam}
           user={user}
           match={match}
-          teams={teams}
         />
 
         <Grid.Column width={8}>
-          <Teams
-            teams={teams}
-            match={match}
-            pickedTeam={pickedTeam}
-            user={user}
-          />
-          <MatchDetails match={match} league={league} />
+          <Teams user={user} match={match} pickedTeam={pickedTeam} />
+          <MatchDetails match={match} />
         </Grid.Column>
         <Grid.Column width={8}>
           <h2>Place bet</h2>
@@ -185,10 +175,8 @@ class Match extends Component {
       this.props.tokens.toBet.length > 0 &&
       !_.isEmpty(this.props.pickedTeam)
     ) {
-      const { teams, match } = this.props.initial.matchInfo;
+      const { match } = this.props.initial.matchInfo;
       const { pickedTeam } = this.props;
-
-      const teamIndex = pickedTeam._id === teams[0]._id ? 0 : 1;
 
       return (
         <List.Item>
@@ -196,7 +184,7 @@ class Match extends Component {
             ESTIMATED RETURN
           </Label>
           <span className="font-dark">
-            <strong>{` ${(parseFloat(betValue) * match.odds[teamIndex]).toFixed(
+            <strong>{` ${(parseFloat(betValue) * pickedTeam.odds).toFixed(
               2
             )}$`}</strong>
           </span>

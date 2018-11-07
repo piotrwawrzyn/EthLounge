@@ -76,6 +76,7 @@ class ApiMatchesList extends Component {
       if (!match.begin_at) return false;
       if (match.opponents.length !== 2) return false;
       if (!match.league) return false;
+      //  if (!match.serie) return false;
       if (matchesInDb.some(curr => curr.pandaID == match.id)) return false;
 
       return true;
@@ -107,12 +108,12 @@ class ApiMatchesList extends Component {
           pandaID: match.league.id,
           displayName: match.league.name,
           logo: match.league.image_url
-        }
+        },
+        serie: match.serie.name
       };
     });
 
     this.setState({ allMatches: matches });
-    // this.setState({ filters: { ...this.state.filters } });
   }
 
   renderItems() {

@@ -1220,14 +1220,14 @@ function (_Component) {
   }, {
     key: "renderTeamLogos",
     value: function renderTeamLogos(match, pickedTeam) {
-      var notPickedTeamID = pickedTeam._id === match.teams[0] ? match.teams[1] : match.teams[0];
+      var notPickedTeamID = pickedTeam._id === match.teams[0].id ? match.teams[1].id : match.teams[0].id;
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "confirm-bet-modal-img-div"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "confirm-bet-modal-img-divider"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
         className: "confirm-bet-modal-img confirm-bet-modal-img-picked",
         src: "".concat(_config_config__WEBPACK_IMPORTED_MODULE_7__["backend"], "/img/teams/").concat(pickedTeam._id, ".png")
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "confirm-bet-modal-img-divider"
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
         className: "confirm-bet-modal-img confirm-bet-modal-img-notpicked",
         src: "".concat(_config_config__WEBPACK_IMPORTED_MODULE_7__["backend"], "/img/teams/").concat(notPickedTeamID, ".png")
@@ -1243,9 +1243,7 @@ function (_Component) {
           tokensToBet = _this$props.tokensToBet,
           pickedTeam = _this$props.pickedTeam,
           user = _this$props.user,
-          match = _this$props.match,
-          teams = _this$props.teams;
-      var teamIndex = pickedTeam._id === teams[0]._id ? 0 : 1;
+          match = _this$props.match;
       var tokenList = tokensToBet.map(function (curr) {
         return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["List"].Item, {
           as: "p",
@@ -1268,7 +1266,12 @@ function (_Component) {
         close: this.closeFinalModal
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
         className: "modal-header"
-      }, "You are about to place a bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Description, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Column, {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+        style: {
+          marginRight: '1em'
+        },
+        name: "check"
+      }), "You are about to place a bet"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Description, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Column, {
         width: 10
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Header"], null, "Your bet: "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["List"], {
         className: "confirm-bet-modal-ul font-dark-orange",
@@ -1279,7 +1282,7 @@ function (_Component) {
         className: "odds-message"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
         name: "info circle"
-      }), "Odds are now ", match.odds[teamIndex], " but keep in mind they can change prior to the game start based on future bets.")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Column, {
+      }), "Odds are now ", pickedTeam.odds, " but keep in mind they can change prior to the game start based on future bets.")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Column, {
         width: 6
       }, this.renderTeamLogos(match, pickedTeam))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
         disabled: this.state.isCancelDisabled,
@@ -1479,7 +1482,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../config/config */ "./config/config.js");
 /* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_config_config__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _utils_DateFormatter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/DateFormatter */ "./utils/DateFormatter.js");
+/* harmony import */ var react_image__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-image */ "react-image");
+/* harmony import */ var react_image__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_image__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1502,6 +1509,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var MatchDetails =
 /*#__PURE__*/
 function (_Component) {
@@ -1516,11 +1524,19 @@ function (_Component) {
   _createClass(MatchDetails, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          match = _this$props.match,
-          league = _this$props.league;
-      var teams = match.teams;
-      var date = Object(_utils_DateFormatter__WEBPACK_IMPORTED_MODULE_3__["default"])(match.startTime);
+      var match = this.props.match;
+      var teams = match.teams,
+          league = match.league,
+          numberOfBets = match.numberOfBets,
+          highestBet = match.highestBet,
+          tokensInPool = match.tokensInPool,
+          serie = match.serie,
+          startTime = match.startTime;
+      if (!serie) serie = (_readOnlyError("serie"), '');
+      if (!league) league = (_readOnlyError("league"), {
+        displayName: ''
+      });
+      var date = Object(_utils_DateFormatter__WEBPACK_IMPORTED_MODULE_3__["default"])(startTime);
       var aproxIcon = date.isFuture ? 'hourglass half' : 'hourglass end';
       if (match) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
@@ -1542,25 +1558,32 @@ function (_Component) {
         name: aproxIcon
       }), date.aprox))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, {
         columns: "2"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
+        dividing: true,
+        as: "h4"
+      }, "Match statistics"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"], {
         className: "details-list"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Icon, {
         name: "dollar sign",
         className: "font-dark"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Content, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Header, null, "".concat((teams[0].totalDollarsBet + teams[1].totalDollarsBet).toFixed(2), "$")), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Description, null, "Total bet"))), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Icon, {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Content, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Header, null, "".concat((teams[0].totalDollarsBet + teams[1].totalDollarsBet).toFixed(2), "$")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Description, null, "Total bet"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Icon, {
+        name: "ticket alternate",
+        className: "font-dark"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Content, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Header, null, numberOfBets), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Description, null, "Bets total"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Icon, {
         name: "chess king",
         className: "font-dark"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Content, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Header, null, "".concat(match.highestBet, "$")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Description, null, "Highest bet"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Icon, {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Content, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Header, null, "".concat(highestBet.toFixed(2), "$")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Description, null, "Highest bet"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Icon, {
         name: "ethereum",
         className: "font-dark"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Content, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Header, null, match.tokensInPool.length), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Description, null, "Different coins in pool"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Content, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Header, null, tokensInPool.length), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Description, null, "Different coins in pool"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
         verticalAlign: "middle",
-        textAlign: "center",
-        className: "divider-before"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        textAlign: "center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_image__WEBPACK_IMPORTED_MODULE_4___default.a, {
         className: "league-image",
         src: "".concat(_config_config__WEBPACK_IMPORTED_MODULE_2__["backend"], "/img/leagues/").concat(league._id, ".png")
-      })))));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "league-caption"
+      }, "".concat(league.displayName, " ").concat(serie))))));
       return '';
     }
   }]);
@@ -1752,8 +1775,8 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Teams).call(this, props));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (event, team, pickedTeam) {
-      if (_this.props.user) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleClick", function (user, team, pickedTeam) {
+      if (user) {
         if (pickedTeam._id === team._id) {
           _redux_store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(Object(_redux_match_actions__WEBPACK_IMPORTED_MODULE_3__["pickTeam"])({}));
           return;
@@ -1767,11 +1790,11 @@ function (_Component) {
   }
 
   _createClass(Teams, [{
-    key: "generateTeamLabel",
-    value: function generateTeamLabel(team, pickedTeam) {
+    key: "renderTeamLabel",
+    value: function renderTeamLabel(user, team, pickedTeam) {
       var _this2 = this;
 
-      var style = this.props.user ? {
+      var style = user ? {
         cursor: 'pointer'
       } : {};
       var classNameModifier = pickedTeam._id == team._id ? ' team-label-picked' : '';
@@ -1782,9 +1805,9 @@ function (_Component) {
       }, team.displayName);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: function onClick(event) {
-          _this2.handleClick(event, team, pickedTeam);
+          _this2.handleClick(user, team, pickedTeam);
         }
-      }, ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
         size: "huge",
         style: style,
         className: "team-label".concat(classNameModifier)
@@ -1796,13 +1819,13 @@ function (_Component) {
       }, teamCaption), ' ');
     }
   }, {
-    key: "generatePercentage",
-    value: function generatePercentage(match, index) {
+    key: "renderOdds",
+    value: function renderOdds(match, index) {
       var percentageAndOdds = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "team-percentage"
-      }, match.percentages[index], "%"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, match.teams[index].percentages, "%"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "team-odds"
-      }, "x ", match.odds[index]));
+      }, "x ", match.teams[index].odds.toFixed(2)));
       if (index === 0) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Label"], {
         color: "black",
         ribbon: true
@@ -1816,19 +1839,19 @@ function (_Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          teams = _this$props.teams,
+          match = _this$props.match,
           pickedTeam = _this$props.pickedTeam,
-          match = _this$props.match;
-      if (teams) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"], {
+          user = _this$props.user;
+      if (match) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"], {
         className: "teams-grid",
         padded: true
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
         width: 2
-      }, this.generatePercentage(match, 0)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+      }, this.renderOdds(match, 0)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
         width: 5,
         verticalAlign: "middle",
         textAlign: "center"
-      }, this.generateTeamLabel(teams[0], pickedTeam)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+      }, this.renderTeamLabel(user, match.teams[0], pickedTeam)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
         width: 2,
         verticalAlign: "middle",
         textAlign: "center"
@@ -1838,9 +1861,9 @@ function (_Component) {
         width: 5,
         verticalAlign: "middle",
         textAlign: "center"
-      }, this.generateTeamLabel(teams[1], pickedTeam)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+      }, this.renderTeamLabel(user, match.teams[1], pickedTeam)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
         width: 2
-      }, this.generatePercentage(match, 1))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null))));
+      }, this.renderOdds(match, 1))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null))));
       return '';
     }
   }]);
@@ -1958,10 +1981,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _static_css_match_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../static/css/match.css */ "./static/css/match.css");
 /* harmony import */ var _static_css_match_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_static_css_match_css__WEBPACK_IMPORTED_MODULE_14__);
 /* harmony import */ var _utils_CookieCall__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../utils/CookieCall */ "./utils/CookieCall.js");
-/* harmony import */ var _utils_CalculateOdds__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../utils/CalculateOdds */ "./utils/CalculateOdds.js");
-/* harmony import */ var _utils_CalculatePercentages__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../utils/CalculatePercentages */ "./utils/CalculatePercentages.js");
-/* harmony import */ var _utils_SeverSideRedirect__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../utils/SeverSideRedirect */ "./utils/SeverSideRedirect.js");
-/* harmony import */ var _components_match_MatchDetails__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../components/match/MatchDetails */ "./components/match/MatchDetails.js");
+/* harmony import */ var _utils_SeverSideRedirect__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../utils/SeverSideRedirect */ "./utils/SeverSideRedirect.js");
+/* harmony import */ var _components_match_MatchDetails__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../components/match/MatchDetails */ "./components/match/MatchDetails.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1989,8 +2010,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-
 
 
 
@@ -2136,8 +2155,6 @@ function (_Component) {
 
       var _this$props$initial$m = this.props.initial.matchInfo,
           match = _this$props$initial$m.match,
-          teams = _this$props$initial$m.teams,
-          league = _this$props$initial$m.league,
           bet = _this$props$initial$m.bet;
       var _this$props = this.props,
           user = _this$props.user,
@@ -2155,18 +2172,15 @@ function (_Component) {
         tokensToBet: tokens.toBet,
         pickedTeam: pickedTeam,
         user: user,
-        match: match,
-        teams: teams
+        match: match
       }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"].Column, {
         width: 8
       }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_match_Teams__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        teams: teams,
+        user: user,
         match: match,
-        pickedTeam: pickedTeam,
-        user: user
-      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_match_MatchDetails__WEBPACK_IMPORTED_MODULE_19__["default"], {
-        match: match,
-        league: league
+        pickedTeam: pickedTeam
+      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_match_MatchDetails__WEBPACK_IMPORTED_MODULE_17__["default"], {
+        match: match
       })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"].Column, {
         width: 8
       }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h2", null, "Place bet"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_match_BettingBox__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -2211,17 +2225,14 @@ function (_Component) {
     key: "renderEstimatedReward",
     value: function renderEstimatedReward(betValue) {
       if (this.props.tokens.toBet.length > 0 && !lodash__WEBPACK_IMPORTED_MODULE_1___default.a.isEmpty(this.props.pickedTeam)) {
-        var _this$props$initial$m2 = this.props.initial.matchInfo,
-            teams = _this$props$initial$m2.teams,
-            match = _this$props$initial$m2.match;
+        var match = this.props.initial.matchInfo.match;
         var pickedTeam = this.props.pickedTeam;
-        var teamIndex = pickedTeam._id === teams[0]._id ? 0 : 1;
         return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"].Item, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Label"], {
           className: "orange-label-light",
           horizontal: true
         }, "ESTIMATED RETURN"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
           className: "font-dark"
-        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("strong", null, " ".concat((parseFloat(betValue) * match.odds[teamIndex]).toFixed(2), "$"))));
+        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("strong", null, " ".concat((parseFloat(betValue) * pickedTeam.odds).toFixed(2), "$"))));
       }
 
       return '';
@@ -2248,17 +2259,15 @@ function (_Component) {
                 errorURL = '/404';
 
                 if (!data) {
-                  Object(_utils_SeverSideRedirect__WEBPACK_IMPORTED_MODULE_18__["default"])(res, errorURL);
+                  Object(_utils_SeverSideRedirect__WEBPACK_IMPORTED_MODULE_16__["default"])(res, errorURL);
                 }
 
-                data.match.odds = [1, 1];
-                data.match.percentages = [1, 1];
                 matchInfo = _objectSpread({}, data);
                 return _context3.abrupt("return", {
                   matchInfo: matchInfo
                 });
 
-              case 12:
+              case 10:
               case "end":
                 return _context3.stop();
             }
@@ -2665,99 +2674,6 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(___WEBPACK
 /***/ (function(module, exports) {
 
 
-
-/***/ }),
-
-/***/ "./utils/CalculateOdds.js":
-/*!********************************!*\
-  !*** ./utils/CalculateOdds.js ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var CalculateOdds = function CalculateOdds(teams) {
-  var totalDollarsBet = teams.map(function (team) {
-    return team.totalDollarsBet;
-  });
-  var feeMultiplier = 0.98;
-  var oddsMap = new Map();
-
-  for (var i = 0; i < 2; i++) {
-    var odds = void 0,
-        percentage = void 0;
-    var sumDollars = totalDollarsBet[0] + totalDollarsBet[1];
-
-    if (sumDollars === 0) {
-      percentage = 50;
-      odds = (2.0 * feeMultiplier).toFixed(2);
-    } else {
-      percentage = totalDollarsBet[i] / sumDollars * 100;
-
-      switch (percentage) {
-        case 100:
-          {
-            odds = (100 * feeMultiplier).toFixed(2);
-            break;
-          }
-
-        case 0:
-          {
-            odds = 1 .toFixed(2);
-            break;
-          }
-
-        default:
-          {
-            odds = 1 / (percentage / 100);
-            odds = (odds * feeMultiplier).toFixed(2);
-          }
-      }
-    }
-
-    oddsMap.set(teams[i].id, odds);
-  }
-
-  return oddsMap;
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (CalculateOdds);
-
-/***/ }),
-
-/***/ "./utils/CalculatePercentages.js":
-/*!***************************************!*\
-  !*** ./utils/CalculatePercentages.js ***!
-  \***************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var CalculatePercentages = function CalculatePercentages(teams) {
-  var totalDollarsBet = teams.map(function (team) {
-    return team.totalDollarsBet;
-  });
-  var percentagesMap = new Map();
-
-  for (var i = 0; i < 2; i++) {
-    var percentage = void 0;
-    var sumDollars = totalDollarsBet[0] + totalDollarsBet[1];
-
-    if (sumDollars === 0) {
-      percentage = 50;
-    } else {
-      percentage = Math.round(totalDollarsBet[i] / sumDollars * 100);
-    }
-
-    percentagesMap.set(teams[i], percentage);
-  }
-
-  return percentagesMap;
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (CalculatePercentages);
 
 /***/ }),
 
@@ -3259,6 +3175,17 @@ module.exports = require("next/head");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-image":
+/*!******************************!*\
+  !*** external "react-image" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-image");
 
 /***/ }),
 

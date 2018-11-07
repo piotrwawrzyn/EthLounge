@@ -10,8 +10,8 @@ class Teams extends Component {
     super(props);
   }
 
-  handleClick = (event, team, pickedTeam) => {
-    if (this.props.user) {
+  handleClick = (user, team, pickedTeam) => {
+    if (user) {
       if (pickedTeam._id === team._id) {
         store.dispatch(pickTeam({}));
         return;
@@ -20,8 +20,8 @@ class Teams extends Component {
     }
   };
 
-  generateTeamLabel(team, pickedTeam) {
-    const style = this.props.user ? { cursor: 'pointer' } : {};
+  renderTeamLabel(user, team, pickedTeam) {
+    const style = user ? { cursor: 'pointer' } : {};
     let classNameModifier =
       pickedTeam._id == team._id ? ' team-label-picked' : '';
     let teamCaption =
@@ -34,9 +34,8 @@ class Teams extends Component {
     return (
       <div
         onClick={event => {
-          this.handleClick(event, team, pickedTeam);
+          this.handleClick(user, team, pickedTeam);
         }}>
-        {' '}
         <Label
           size="huge"
           style={style}
@@ -51,11 +50,11 @@ class Teams extends Component {
     );
   }
 
-  generatePercentage(match, index) {
+  renderOdds(match, index) {
     const percentageAndOdds = (
       <div>
-        <p className="team-percentage">{match.percentages[index]}%</p>
-        <p className="team-odds">x {match.odds[index]}</p>
+        <p className="team-percentage">{match.teams[index].percentages}%</p>
+        <p className="team-odds">x {match.teams[index].odds.toFixed(2)}</p>
       </div>
     );
 
@@ -74,9 +73,9 @@ class Teams extends Component {
   }
 
   render() {
-    let { teams, pickedTeam, match } = this.props;
+    let { match, pickedTeam, user } = this.props;
 
-    if (teams)
+    if (match)
       return (
         <div>
           <Grid className="teams-grid" padded>
@@ -84,12 +83,10 @@ class Teams extends Component {
               <Grid.Column />
             </Grid.Row>
             <Grid.Row>
-              <Grid.Column width={2}>
-                {this.generatePercentage(match, 0)}
-              </Grid.Column>
+              <Grid.Column width={2}>{this.renderOdds(match, 0)}</Grid.Column>
 
               <Grid.Column width={5} verticalAlign="middle" textAlign="center">
-                {this.generateTeamLabel(teams[0], pickedTeam)}
+                {this.renderTeamLabel(user, match.teams[0], pickedTeam)}
               </Grid.Column>
 
               <Grid.Column width={2} verticalAlign="middle" textAlign="center">
@@ -97,12 +94,10 @@ class Teams extends Component {
               </Grid.Column>
 
               <Grid.Column width={5} verticalAlign="middle" textAlign="center">
-                {this.generateTeamLabel(teams[1], pickedTeam)}
+                {this.renderTeamLabel(user, match.teams[1], pickedTeam)}
               </Grid.Column>
 
-              <Grid.Column width={2}>
-                {this.generatePercentage(match, 1)}
-              </Grid.Column>
+              <Grid.Column width={2}>{this.renderOdds(match, 1)}</Grid.Column>
             </Grid.Row>
             <Grid.Row>
               <Grid.Column />
