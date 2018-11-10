@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import Axios from 'axios';
+import Layout from '../components/Layout/Layout';
 
 class EthLounge extends Component {
   constructor(props) {
@@ -23,13 +24,8 @@ class EthLounge extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Button onClick={e => this.handleClick()}>Click to debug </Button>
-        {this.state.debug.toString()}
-      </div>
-    );
+    return <div />;
   }
 }
 
-export default EthLounge;
+export default Layout(EthLounge);

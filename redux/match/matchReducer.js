@@ -15,14 +15,19 @@ const matchReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case 'ADD_TOKENS': {
-      newState.tokens.wallet = action.tokens;
-      console.log(newState.tokens.wallet);
+      const tokens = action.tokens.map(token => {
+        return {
+          ...token,
+          position: 'balance-box',
+          initialBalance: token.balance
+        };
+      });
 
+      newState.tokens.wallet = tokens;
       break;
     }
 
     case 'CHANGE_POS': {
-      console.log('Change position: ', action.token);
       if (action.token.position === 'balance-box') {
         action.token.position = 'betting-box';
         newState.tokens.toBet.push(action.token);
@@ -31,24 +36,15 @@ const matchReducer = (state = initialState, action) => {
         );
       } else {
         action.token.position = 'balance-box';
-        action.token.amount = action.token.initialAmount;
+        action.token.balance = action.token.initialBalance;
         newState.tokens.wallet.push(action.token);
         newState.tokens.toBet = newState.tokens.toBet.filter(
           curr => curr.symbol != action.token.symbol
         );
       }
 
-      newState.betValue = EstimateBetValue(
-        newState.tokens.toBet,
-        newState.prices,
-        false
-      );
+      newState.betValue = EstimateBetValue(newState.tokens.toBet, false);
 
-      break;
-    }
-
-    case 'UPDATE_PRICES': {
-      newState.prices = action.prices;
       break;
     }
 

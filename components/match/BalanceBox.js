@@ -40,7 +40,7 @@ class BalanceBox extends Component {
             <div
               className={'balance-box-token'}
               onClick={() => this.handleClick(token)}
-              key={token.symbol}>
+              key={token.id}>
               <Token token={token} />
             </div>
           );

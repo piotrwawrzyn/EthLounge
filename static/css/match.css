@@ -1,9 +1,25 @@
 @import '_variables.css';
 @import '_animations.css';
 
-/* Item */
+/* Token */
 
-.token-label {
+.token {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+  background: #f0f0f0 !important;
+}
+
+.token img {
+  transform: scale(0.7);
+  -webkit-transform: scale(0.7);
+}
+
+.balancebox-token {
   width: 100% !important;
 }
 
@@ -25,12 +41,22 @@
 
 /* BettingBox Row */
 
-.betting-box .row:first-of-type {
+/* .betting-box .row {
   padding: 1em 0 0.6em 0 !important;
-}
-.betting-box .row:not(:first-child) {
+} */
+
+.betting-box-row {
   padding: 0.6em 0 0.6em 0 !important;
 }
+
+.betting-box-row:first-of-type {
+  padding-top: 0px !important;
+}
+
+/* .betting-box .row:first-of-type {
+  padding-top: 0 !important;
+  background: red !important;
+} */
 
 /* BettingBox Item */
 
@@ -44,13 +70,13 @@
   transition-duration: 0.3s;
 } */
 
-.betting-box-token-filled {
+.betting-box-segment-filled {
   padding: 0em 0 0em 0 !important;
 }
 
-.betting-box-token-dropped .label:hover {
+/* .betting-box-token-dropped .label:hover {
   background: rgb(255, 51, 0, 0.15) !important;
-}
+} */
 
 /* Betting button, Info-Bet */
 
@@ -98,10 +124,6 @@
   font-size: large;
 }
 
-.team-name-picked {
-  font-weight: bold;
-}
-
 .team-label {
   background: white !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -113,6 +135,10 @@
 
 .team-label-picked {
   border: 1px solid var(--dark-gray) !important;
+}
+
+.team-name-picked {
+  font-weight: bold;
 }
 
 .team-percentage {
@@ -169,6 +195,7 @@
   right: 0px;
   top: 0px;
   transform: scale(1.1);
+  -webkit-transform: scale(1.1);
   -webkit-animation: pulsate 0.9s ease-in-out infinite both;
   animation: pulsate 0.9s ease-in-out infinite both;
 }
@@ -212,4 +239,58 @@
 
 .details-list * {
   margin-bottom: 5px;
+}
+
+/* Last bets */
+
+.last-bets-row {
+  background: var(--dark-gray);
+  margin-bottom: 15px;
+  border-radius: 5px;
+  padding: 10px !important;
+}
+
+.lastbets-token {
+  width: 100%;
+}
+
+.lastbets-token span {
+  font-size: 80%;
+}
+
+.lastbets-token img {
+  transform: scale(0.6);
+  -webkit-transform: scale(0.6);
+}
+
+.lastbets-token img {
+  width: 80%;
+}
+
+.last-bets-token-column {
+  padding: 4px 4px 4px 4px !important;
+}
+
+.img-team-reveal {
+  border: 0;
+  /* filter: brightness(0) invert(1); */
+}
+
+/* Bet info */
+
+.bet-info * {
+  margin-bottom: 10px;
+}
+
+.bet-info {
+  color: var(--dark-gray) !important;
+  text-transform: uppercase;
+}
+
+.bet-info-status-lost {
+  color: var(--color-lost) !important;
+}
+
+.bet-info-status-won {
+  color: var(--color-won) !important;
 }

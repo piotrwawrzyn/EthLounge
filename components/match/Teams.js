@@ -12,7 +12,8 @@ class Teams extends Component {
 
   handleClick = (user, team, pickedTeam) => {
     if (user) {
-      if (pickedTeam._id === team._id) {
+      if (user.bet) return;
+      if (pickedTeam.id === team.id) {
         store.dispatch(pickTeam({}));
         return;
       }
@@ -21,15 +22,20 @@ class Teams extends Component {
   };
 
   renderTeamLabel(user, team, pickedTeam) {
-    const style = user ? { cursor: 'pointer' } : {};
-    let classNameModifier =
-      pickedTeam._id == team._id ? ' team-label-picked' : '';
-    let teamCaption =
-      pickedTeam._id == team._id ? (
-        <p className="team-name team-name-picked">{team.displayName}</p>
-      ) : (
-        <p className="team-name">{team.displayName}</p>
-      );
+    const style = user && !user.bet ? { cursor: 'pointer' } : {};
+    let nameClassNameModifier = '';
+    let labelClassNameModifier = '';
+
+    if (user.bet) {
+      if (user.bet.teamID == team.id) {
+        labelClassNameModifier = ' team-label-picked';
+        nameClassNameModifier = ' team-name-picked';
+      }
+    } else {
+      if (pickedTeam.id == team.id)
+        labelClassNameModifier = ' team-label-picked';
+      nameClassNameModifier = ' team-name-picked';
+    }
 
     return (
       <div
@@ -39,13 +45,14 @@ class Teams extends Component {
         <Label
           size="huge"
           style={style}
-          className={`team-label${classNameModifier}`}>
-          <Image
-            className="undragable"
-            src={`${backend}/img/teams/${team._id}.png`}
-          />
+          className={`team-label${labelClassNameModifier}`}>
+          <Image className="undragable" src={`${backend}/img/${team.logo}`} />
         </Label>
-        <div style={style}>{teamCaption}</div>{' '}
+        <div style={style}>
+          <p className={`team-name${nameClassNameModifier}`}>
+            {team.displayName}
+          </p>
+        </div>{' '}
       </div>
     );
   }
@@ -74,6 +81,7 @@ class Teams extends Component {
 
   render() {
     let { match, pickedTeam, user } = this.props;
+    const { bet } = user;
 
     if (match)
       return (

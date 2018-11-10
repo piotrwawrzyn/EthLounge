@@ -61,7 +61,7 @@ const layout = ChildPage =>
             <Menu user={this.props.user} />
             <Container>
               <ChildPage initial={this.props} />
-              <h2>Footer</h2>
+              <div className="footer" />
             </Container>
           </div>
         </Provider>

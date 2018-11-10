@@ -20,7 +20,7 @@ class MenuUser extends Component {
   render() {
     let { user } = this.props;
 
-    const { username } = user;
+    const { username, id } = user;
     const usernameStyle = { color: 'white' };
 
     return (
@@ -30,7 +30,7 @@ class MenuUser extends Component {
             <div>
               <img
                 src={makeBlockie(username)}
-                className={`user-avatar undragable ${
+                className={`user-avatar user-avatar-menu undragable ${
                   this.state.avatarClassNameModifier
                 }`}
               />

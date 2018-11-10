@@ -3,26 +3,13 @@ import TokenFromWei from './TokenFromWei';
 import store from '../redux/store';
 import { updateEstimateBet } from '../redux/match/actions';
 
-const EstimateBetValue = (tokensToBet, prices, dispatch = true) => {
-  const symbols = tokensToBet.map(curr => {
-    return curr.symbol;
-  });
-
-  const values = symbols.map(curr => {
-    return prices[curr].USD;
-  });
-
-  let sum = values.reduce((sum, curr, index) => {
-    console.log(
-      `${Big(TokenFromWei(tokensToBet[index]))} * ${curr} = ${Big(
-        TokenFromWei(tokensToBet[index])
-      ).mul(curr)}`
-    );
+const EstimateBetValue = (tokensToBet, dispatch = true) => {
+  let sum = tokensToBet.reduce((sum, token) => {
     return (
       sum +
       parseFloat(
-        Big(TokenFromWei(tokensToBet[index]))
-          .mul(curr)
+        Big(TokenFromWei(token))
+          .mul(token.price.USD)
           .toFixed(2)
       )
     );

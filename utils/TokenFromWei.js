@@ -8,14 +8,28 @@ const getScientificNotation = decimals => {
 };
 
 export default (token, optimize = false) => {
+  const amount = token.balance ? token.balance : token.amount;
+  const { decimals } = token;
+
+  // console.log(
+  //   'I divide ' +
+  //     Big(amount) +
+  //     'by ' +
+  //     getScientificNotation(decimals) +
+  //     ' and it gives me ' +
+  //     Big(amount)
+  //       .div(getScientificNotation(decimals))
+  //       .toFixed()
+  // );
+
   if (optimize)
     return `${Optimize(
-      Big(token.amount)
-        .div(getScientificNotation(token.decimals))
+      Big(amount)
+        .div(getScientificNotation(decimals))
         .toFixed()
     )}`;
 
-  return `${Big(token.amount)
-    .div(getScientificNotation(token.decimals))
+  return `${Big(amount)
+    .div(getScientificNotation(decimals))
     .toFixed()}`;
 };

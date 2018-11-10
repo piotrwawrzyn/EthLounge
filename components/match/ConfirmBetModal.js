@@ -15,6 +15,7 @@ import { Router } from '../../next-routes';
 import TokenFromWei from '../../utils/TokenFromWei';
 import { backend } from '../../config/config';
 import PlaceBet from '../../utils/api/PlaceBet';
+import Sleep from '../../utils/Sleep';
 
 class ConfirmBetModal extends Component {
   constructor(props) {
@@ -22,13 +23,11 @@ class ConfirmBetModal extends Component {
     this.handleConfirm = this.handleConfirm.bind(this);
     this.closeFinalModal = this.closeFinalModal.bind(this);
     this.state = {
-      isLoading: false,
-      isCancelDisabled: false,
-      isFinalModalSuccessOpen: false,
-      isFinalModalSuccessOpen: false,
-      isFinalModalErrorOpen: false,
-      errorMessage: '',
-      transactionInfo: {}
+      isConfirmButtonLoading: false,
+      confirmButtonIcon: false,
+      confirmButtonText: 'Confirm and place bet',
+      confirmButtonClassName: 'orange-button-dark',
+      isBackButtonDisabled: false
     };
   }
 
@@ -42,48 +41,60 @@ class ConfirmBetModal extends Component {
 
   async handleConfirm(match, pickedTeam, tokensToBet, user) {
     this.setState({
-      isLoading: true,
-      isCancelDisabled: true
+      isConfirmButtonLoading: true,
+      isBackButtonDisabled: true
     });
 
-    const tokensBet = tokensToBet.map(curr => {
-      return { id: curr.id, amount: curr.amount };
+    const tokensBet = tokensToBet.map(token => {
+      return { id: token.id, amount: token.balance };
     });
 
     const api_response = await PlaceBet({
       matchID: match._id,
-      teamID: pickedTeam._id,
-      betMakerID: user.id,
+      teamID: pickedTeam.id,
+      betMakerID: user._id,
       tokensBet
     });
 
-    const data = api_response.data;
+    const { data } = api_response;
 
-    console.log(data);
+    if (data.bet) {
+      this.setState({
+        isConfirmButtonLoading: false,
+        isBackButtonDisabled: false,
+        confirmButtonIcon: 'chevron down',
+        confirmButtonText: 'Bet placed successfuly'
+      });
 
-    this.setState({
-      isLoading: false,
-      isCancelDisabled: false
-    });
+      await Sleep(500);
+
+      Router.push(`/matches/${match._id}`);
+    } else {
+      this.setState({
+        isConfirmButtonLoading: false,
+        isBackButtonDisabled: false,
+        confirmButtonIcon: 'exclamation',
+        confirmButtonText: 'Placing bet failed',
+        confirmButtonClassName: 'error-button'
+      });
+    }
   }
 
   renderTeamLogos(match, pickedTeam) {
-    const notPickedTeamID =
-      pickedTeam._id === match.teams[0].id
-        ? match.teams[1].id
-        : match.teams[0].id;
+    const notPickedTeam =
+      pickedTeam.id === match.teams[0].id ? match.teams[1] : match.teams[0];
 
     return (
       <div className="confirm-bet-modal-img-div">
         <div className="confirm-bet-modal-img-divider" />
         <Image
           className="confirm-bet-modal-img confirm-bet-modal-img-picked"
-          src={`${backend}/img/teams/${pickedTeam._id}.png`}
+          src={`${backend}/img/${pickedTeam.logo}`}
         />
 
         <Image
           className="confirm-bet-modal-img confirm-bet-modal-img-notpicked"
-          src={`${backend}/img/teams/${notPickedTeamID}.png`}
+          src={`${backend}/img/${notPickedTeam.logo}`}
         />
       </div>
     );
@@ -103,17 +114,6 @@ class ConfirmBetModal extends Component {
 
     return (
       <Modal size="tiny" open={open}>
-        <FinalModalSuccess
-          open={this.state.isFinalModalSuccessOpen}
-          transactionInfo={this.state.transactionInfo}
-          match={match}
-          close={this.closeFinalModal}
-        />
-        <FinalModalError
-          open={this.state.isFinalModalErrorOpen}
-          errorMessage={this.state.errorMessage}
-          close={this.closeFinalModal}
-        />
         <Modal.Header className="modal-header">
           <Icon style={{ marginRight: '1em' }} name="check" />
           You are about to place a bet
@@ -146,70 +146,20 @@ class ConfirmBetModal extends Component {
         </Modal.Content>
         <Modal.Actions>
           <Button
-            disabled={this.state.isCancelDisabled}
-            color="black"
+            disabled={this.state.isBackButtonDisabled}
+            className="dark-button"
             onClick={e => store.dispatch(toggleModal('confirmBetModal'))}>
-            Cancel
+            Back
           </Button>
           <Button
-            loading={this.state.isLoading}
-            className="dark-orange-bg font-white"
+            loading={this.state.isConfirmButtonLoading}
+            icon={this.state.confirmButtonIcon}
+            className={this.state.confirmButtonClassName}
+            content={this.state.confirmButtonText}
             onClick={e =>
               this.handleConfirm(match, pickedTeam, tokensToBet, user)
-            }>
-            Confirm
-          </Button>
-        </Modal.Actions>
-      </Modal>
-    );
-  }
-}
-
-class FinalModalSuccess extends Component {
-  render() {
-    const { open, close, transactionInfo, match } = this.props;
-
-    const hash = transactionInfo.transactionHash;
-
-    return (
-      <Modal open={open} size="tiny">
-        <Modal.Header>Bet placed successfuly</Modal.Header>
-        <Modal.Content className="word-wrap">
-          <p>
-            Transaction hash:{' '}
-            <a href={` https://etherscan.io/tx/${hash}`}>{hash}</a>
-          </p>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button
-            className="dark-orange-bg font-white"
-            onClick={e => {
-              close();
-              Router.push(`/matches/${match._id}`);
-            }}>
-            {' '}
-            Go back
-          </Button>
-        </Modal.Actions>
-      </Modal>
-    );
-  }
-}
-
-class FinalModalError extends Component {
-  render() {
-    return (
-      <Modal open={this.props.open} size="mini">
-        <Modal.Header className="font-error">Placing bet failed</Modal.Header>
-        <Modal.Content className="font-error word-wrap">
-          <p>{this.props.errorMessage}</p>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button
-            className="dark-orange-bg font-white"
-            onClick={e => this.props.close()}>
-            Go back
-          </Button>
+            }
+          />
         </Modal.Actions>
       </Modal>
     );

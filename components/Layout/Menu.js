@@ -53,8 +53,6 @@ class TopMenu extends Component {
       }
 
       default: {
-        const { username } = user;
-        const usernameStyle = { color: 'white' };
         return <MenuUser user={user} />;
       }
     }
@@ -76,7 +74,7 @@ class TopMenu extends Component {
         signUpErrors.push('Passwords do not seem to match.');
       }
     } else {
-      c;
+      signUpErrors.push('Password should contain at least 8 characters.');
     }
 
     if (signUpErrors.length > 0) {
@@ -92,6 +90,15 @@ class TopMenu extends Component {
     });
 
     if (response.data.success) {
+      // const data = new FormData();
+      // data.append('username', username);
+      // data.append('password', password);
+      // const response = await axios({
+      //   method: 'post',
+      //   url: '/login',
+      //   data: data,
+      //   config: { headers: { 'Content-Type': 'multipart/form-data' } }
+      // });
     } else {
       this.setState({
         signUpErrors: [

@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const AddLeague = async league => {
-  console.log(league);
   const data = new FormData();
   data.append('logo', league.logo);
   data.append('displayName', league.displayName);

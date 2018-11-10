@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Grid, Label, List, Icon } from 'semantic-ui-react';
+import { Button, Grid, Label, List, Icon, Header } from 'semantic-ui-react';
 
 import Layout from '../../components/Layout/Layout';
 import BettingBox from '../../components/match/BettingBox';
@@ -12,27 +12,15 @@ import BalanceBox from '../../components/match/BalanceBox';
 import {
   toggleErrorModal,
   toggleModal,
-  updatePrices,
   addTokens
 } from '../../redux/match/actions';
 import store from '../../redux/store';
-import CryptoPrices from '../../utils/CryptoPrices';
 import '../../static/css/match.css';
 import CookieCall from '../../utils/CookieCall';
 import ServerSideRedirect from '../../utils/SeverSideRedirect';
 import MatchDetails from '../../components/match/MatchDetails';
-
-class Token {
-  constructor(id, symbol, amount, position = '', displayName, decimals) {
-    this.id = id;
-    this.symbol = symbol;
-    this.amount = amount;
-    this.initialAmount = amount;
-    this.position = position;
-    this.displayName = displayName;
-    this.decimals = decimals;
-  }
-}
+import LastBets from '../../components/match/LastBets';
+import WinningsBox from '../../components/match/WinningsBox';
 
 class Match extends Component {
   static async getInitialProps(props) {
@@ -55,36 +43,14 @@ class Match extends Component {
   }
 
   async componentWillMount() {
-    console.log(this.props.initial.matchInfo);
-    const { tokens } = this.props.initial.matchInfo;
+    const { tokens, user } = this.props.initial.matchInfo;
 
-    const prices = await CryptoPrices(tokens);
-    store.dispatch(updatePrices(prices));
-    this.addTokens(
-      this.props.user.balances,
-      this.props.initial.matchInfo.tokens
-    );
+    //store.dispatch(updatePrices(prices));
+    this.addTokens(user.balances);
   }
 
-  async addTokens(userBalances, supportedTokens) {
-    if (userBalances) {
-      const tokens = [];
-
-      console.log(userBalances, supportedTokens);
-
-      userBalances.forEach(token => {
-        const { balance, id } = token;
-        const { displayName, decimals, symbol } = _.find(supportedTokens, {
-          _id: id
-        });
-
-        tokens.push(
-          new Token(id, symbol, balance, 'balance-box', displayName, decimals)
-        );
-      });
-
-      store.dispatch(addTokens(tokens));
-    }
+  async addTokens(userBalances) {
+    if (userBalances) store.dispatch(addTokens(userBalances));
   }
 
   handleClick(event, tokensToBet) {
@@ -104,9 +70,9 @@ class Match extends Component {
   }
 
   render() {
-    const { match, bet } = this.props.initial.matchInfo;
+    const { match, user } = this.props.initial.matchInfo;
+    console.log(match);
     const {
-      user,
       pickedTeam,
       prices,
       tokens,
@@ -125,44 +91,63 @@ class Match extends Component {
           match={match}
         />
 
-        <Grid.Column width={8}>
+        <Grid.Column computer={8} mobile={16} tablet={16}>
           <Teams user={user} match={match} pickedTeam={pickedTeam} />
+
           <MatchDetails match={match} />
+
+          <h2>Last bets</h2>
+          <LastBets bets={match.bets} />
         </Grid.Column>
-        <Grid.Column width={8}>
-          <h2>Place bet</h2>
-          <BettingBox prices={prices} tokens={tokens.toBet} />
-          <div className="bet-container">
-            <Button
-              icon
-              onClick={event => this.handleClick(event, tokens.toBet)}
-              className="button-bet"
-              size="large"
-              color="black">
-              Bet
-              <Icon style={{ marginLeft: '1em !important' }} name="check" />
-            </Button>
-            <List relaxed floated="right" className="info-bet">
-              {this.renderBetValue(betValue)}
-              {this.renderEstimatedReward(betValue)}
-            </List>
-          </div>
-          <h2>Balances</h2>
-          <BalanceBox user={user} tokens={tokens.wallet} />
+        <Grid.Column computer={8} mobile={16} tablet={16}>
+          <h2>{user.bet ? 'Your bet' : 'Place bet'}</h2>
+          <BettingBox
+            teams={match.teams}
+            prices={prices}
+            tokens={tokens.toBet}
+            bet={user.bet}
+          />
+          {user.bet ? (
+            ''
+          ) : (
+            <div className="bet-container">
+              <Button
+                icon
+                onClick={event => this.handleClick(event, tokens.toBet)}
+                className="button-bet"
+                size="large"
+                color="black">
+                Bet
+                <Icon style={{ marginLeft: '1em !important' }} name="check" />
+              </Button>
+              <List relaxed floated="right" className="info-bet">
+                {this.renderBetValue(betValue)}
+                {this.renderEstimatedReturn(betValue)}
+              </List>
+            </div>
+          )}
+
+          <h2>{user.bet ? 'Winnings' : 'Balances'}</h2>
+          {user.bet ? (
+            <WinningsBox bet={user.bet} />
+          ) : (
+            <BalanceBox user={user} tokens={tokens.wallet} />
+          )}
         </Grid.Column>
       </Grid>
     );
   }
 
   renderBetValue(betValue) {
-    if (this.props.tokens.toBet.length > 0)
+    const { tokens } = this.props;
+    if (tokens.toBet.length > 0)
       return (
         <List.Item>
           <Label className="orange-label-light" horizontal>
             ESTIMATED BET VALUE
           </Label>
           <span className="font-dark">
-            <strong>{` ${betValue}$`}</strong>
+            <strong>{` ${betValue.toFixed(2)}$`}</strong>
           </span>
         </List.Item>
       );
@@ -170,14 +155,9 @@ class Match extends Component {
     return '';
   }
 
-  renderEstimatedReward(betValue) {
-    if (
-      this.props.tokens.toBet.length > 0 &&
-      !_.isEmpty(this.props.pickedTeam)
-    ) {
-      const { match } = this.props.initial.matchInfo;
-      const { pickedTeam } = this.props;
-
+  renderEstimatedReturn(betValue) {
+    const { pickedTeam, tokens } = this.props;
+    if (tokens.toBet.length !== 0 && !_.isEmpty(pickedTeam)) {
       return (
         <List.Item>
           <Label className="orange-label-light" horizontal>

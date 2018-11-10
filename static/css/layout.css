@@ -84,6 +84,10 @@ h6 {
   margin-top: 1em !important;
 }
 
+.padding-top-0 {
+  padding-top: 0 !important;
+}
+
 /* Main Container */
 html,
 body {
@@ -168,6 +172,9 @@ body {
   height: 50px;
   border-radius: 2px;
   overflow: hidden;
+}
+
+.user-avatar-menu {
   -webkit-animation: avatar-animation 0.9s both;
   animation: avatar-animation 0.9s both;
 }
@@ -230,6 +237,11 @@ body {
 .orange-label-light {
   background: var(--orange-light) !important;
   color: var(--main-text-color) !important;
+}
+
+.error-button {
+  background: var(--error) !important;
+  color: white !important;
 }
 
 .table-icon {

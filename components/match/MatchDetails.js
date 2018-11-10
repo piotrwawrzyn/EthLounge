@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Icon, Label, List, Header } from 'semantic-ui-react';
 import { backend } from '../../config/config';
 import DateFormatter from '../../utils/DateFormatter';
-import Img from 'react-image';
+import { ICON } from '../../utils/constants';
 
 class MatchDetails extends Component {
   constructor(props) {
@@ -18,14 +18,25 @@ class MatchDetails extends Component {
       highestBet,
       tokensInPool,
       serie,
-      startTime
+      startTime,
+      state
     } = match;
 
     if (!serie) serie = '';
     if (!league) league = { displayName: '' };
 
     const date = DateFormatter(startTime);
-    const aproxIcon = date.isFuture ? 'hourglass half' : 'hourglass end';
+
+    let aproxIcon;
+    if (date.isFuture) {
+      aproxIcon = ICON.GAME_SCHEDULED;
+    } else {
+      if (state === 'finalized' || state === 'canceled') {
+        aproxIcon = ICON.GAME_FINISHED;
+      } else {
+        aproxIcon = ICON.GAME_STARTED;
+      }
+    }
 
     if (match)
       return (
@@ -34,7 +45,7 @@ class MatchDetails extends Component {
             <Grid.Row columns="1">
               <Grid.Column textAlign="right">
                 <Label className="orange-label-light" size="large">
-                  <Icon name="calendar alternate outline" />
+                  <Icon name={ICON.DATE} />
                   {date.formatedDate}
                 </Label>
                 <Label className="orange-label-light" size="large">
@@ -77,16 +88,16 @@ class MatchDetails extends Component {
                     <List.Content>
                       <List.Header>{tokensInPool.length}</List.Header>
                       <List.Description>
-                        Different coins in pool
+                        Different tokens in pool
                       </List.Description>
                     </List.Content>
                   </List.Item>
                 </List>
               </Grid.Column>
               <Grid.Column verticalAlign="middle" textAlign="center">
-                <Img
-                  className="league-image"
-                  src={`${backend}/img/leagues/${league._id}.png`}
+                <img
+                  className="league-image undragable"
+                  src={`${backend}/img/${league.logo}`}
                 />
                 <p className="league-caption">{`${
                   league.displayName

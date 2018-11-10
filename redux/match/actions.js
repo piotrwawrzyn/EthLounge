@@ -26,13 +26,6 @@ export function updateEstimateBet(sum) {
   };
 }
 
-export function updatePrices(prices) {
-  return {
-    type: 'UPDATE_PRICES',
-    prices
-  };
-}
-
 export function pickTeam(team) {
   return {
     type: 'PICK_TEAM',

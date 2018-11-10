@@ -1,5 +1,5 @@
 const routes = require('next-routes')();
 
-routes.add('/matches/:id', '/matches/match');
+routes.add('match', '/matches/:id', '/matches/match');
 
 module.exports = routes;

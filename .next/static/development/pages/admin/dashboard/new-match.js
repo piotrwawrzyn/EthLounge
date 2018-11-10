@@ -105,7 +105,8 @@ function (_Component) {
       var _this2 = this;
 
       var user = this.props.user;
-      var username = user.username;
+      var username = user.username,
+          id = user.id;
       var usernameStyle = {
         color: 'white'
       };
@@ -117,7 +118,7 @@ function (_Component) {
         width: 4
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
         src: ethereum_blockies_base64__WEBPACK_IMPORTED_MODULE_3___default()(username),
-        className: "user-avatar undragable ".concat(this.state.avatarClassNameModifier)
+        className: "user-avatar user-avatar-menu undragable ".concat(this.state.avatarClassNameModifier)
       }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Column, {
         width: 1
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Column, {
@@ -259,6 +260,9 @@ var dashboardLayout = function dashboardLayout(ChildPage) {
           }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("link", {
             rel: "stylesheet",
             href: "//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"
+          }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("meta", {
+            name: "robots",
+            content: "noindex, nofollow "
           })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Menu__WEBPACK_IMPORTED_MODULE_10__["default"], {
             user: this.props.user
           }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Container"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ChildPage, {
@@ -1411,7 +1415,7 @@ module.exports = config;
 
 var routes = __webpack_require__(/*! next-routes */ "./node_modules/next-routes/dist/index.js")();
 
-routes.add('/matches/:id', '/matches/match');
+routes.add('match', '/matches/:id', '/matches/match');
 module.exports = routes;
 
 /***/ }),
@@ -76410,17 +76414,18 @@ var Shorten = function Shorten(word) {
 /*!************************!*\
   !*** ./utils/Sleep.js ***!
   \************************/
-/*! exports provided: Sleep */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Sleep", function() { return Sleep; });
-function Sleep(ms) {
+var Sleep = function Sleep(ms) {
   return new Promise(function (resolve) {
     return setTimeout(resolve, ms);
   });
-}
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Sleep);
 
 /***/ }),
 
@@ -76456,12 +76461,11 @@ function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(league);
             data = new FormData();
             data.append('logo', league.logo);
             data.append('displayName', league.displayName);
             data.append('pandaID', league.pandaID);
-            _context.next = 7;
+            _context.next = 6;
             return axios__WEBPACK_IMPORTED_MODULE_1___default()({
               method: 'post',
               url: '/backend/new_league',
@@ -76473,11 +76477,11 @@ function () {
               }
             });
 
-          case 7:
+          case 6:
             response = _context.sent;
             return _context.abrupt("return", response);
 
-          case 9:
+          case 8:
           case "end":
             return _context.stop();
         }
@@ -76693,7 +76697,7 @@ function () {
 
 /***/ }),
 
-/***/ 9:
+/***/ 11:
 /*!**************************************************!*\
   !*** multi ./pages/admin/dashboard/new-match.js ***!
   \**************************************************/
@@ -76718,5 +76722,5 @@ module.exports = dll_5d62d38be3592dca3a42;
 
 /***/ })
 
-},[[9,"static/runtime/webpack.js","styles"]]]));;
+},[[11,"static/runtime/webpack.js","styles"]]]));;
 //# sourceMappingURL=new-match.js.map

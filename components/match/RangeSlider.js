@@ -19,11 +19,11 @@ class RangeSlider extends Component {
     if (!token) return;
     this.setState({ value: val });
     const change = val / this.maxValue;
-    let newAmount = `${Big(token.initialAmount)
+    let newBalance = `${Big(token.initialBalance)
       .mul(change)
       .toFixed(0)}`;
-    newAmount = newAmount < 1 ? 1 : newAmount;
-    token.amount = newAmount;
+    newBalance = newBalance < 1 ? 1 : newBalance;
+    token.balance = newBalance;
     store.dispatch(changeTokenAmount(token));
   };
 

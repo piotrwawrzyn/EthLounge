@@ -64,6 +64,7 @@ const dashboardLayout = ChildPage =>
               rel="stylesheet"
               href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"
             />
+            <meta name="robots" content="noindex, nofollow " />
           </Head>
           <Menu user={this.props.user} />
           <Container>
