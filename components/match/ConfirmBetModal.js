@@ -27,6 +27,7 @@ class ConfirmBetModal extends Component {
       confirmButtonIcon: false,
       confirmButtonText: 'Confirm and place bet',
       confirmButtonClassName: 'orange-button-dark',
+      isConfirmButtonDisabled: false,
       isBackButtonDisabled: false
     };
   }
@@ -40,8 +41,10 @@ class ConfirmBetModal extends Component {
   }
 
   async handleConfirm(match, pickedTeam, tokensToBet, user) {
+    if (this.state.isConfirmButtonDisabled) return;
     this.setState({
       isConfirmButtonLoading: true,
+      isConfirmButtonDisabled: true,
       isBackButtonDisabled: true
     });
 
@@ -72,6 +75,7 @@ class ConfirmBetModal extends Component {
     } else {
       this.setState({
         isConfirmButtonLoading: false,
+        isConfirmButtonDisabled: false,
         isBackButtonDisabled: false,
         confirmButtonIcon: 'exclamation',
         confirmButtonText: 'Placing bet failed',

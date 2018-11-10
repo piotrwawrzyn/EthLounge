@@ -1,5 +1,5 @@
 {
-  "../../../static/css/layout.css": [
+  "../../static/css/layout.css": [
     {
       "id": "./static/css/layout.css",
       "name": "./static/css/layout.css",
@@ -33,13 +33,13 @@
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 8,
+      "id": 10,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 12,
+      "id": 8,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"

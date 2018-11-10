@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1276,6 +1276,7 @@ function (_Component) {
       confirmButtonIcon: false,
       confirmButtonText: 'Confirm and place bet',
       confirmButtonClassName: 'orange-button-dark',
+      isConfirmButtonDisabled: false,
       isBackButtonDisabled: false
     };
     return _this;
@@ -1301,8 +1302,17 @@ function (_Component) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                if (!this.state.isConfirmButtonDisabled) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 2:
                 this.setState({
                   isConfirmButtonLoading: true,
+                  isConfirmButtonDisabled: true,
                   isBackButtonDisabled: true
                 });
                 tokensBet = tokensToBet.map(function (token) {
@@ -1311,7 +1321,7 @@ function (_Component) {
                     amount: token.balance
                   };
                 });
-                _context.next = 4;
+                _context.next = 6;
                 return Object(_utils_api_PlaceBet__WEBPACK_IMPORTED_MODULE_8__["default"])({
                   matchID: match._id,
                   teamID: pickedTeam.id,
@@ -1319,12 +1329,12 @@ function (_Component) {
                   tokensBet: tokensBet
                 });
 
-              case 4:
+              case 6:
                 api_response = _context.sent;
                 data = api_response.data;
 
                 if (!data.bet) {
-                  _context.next = 13;
+                  _context.next = 15;
                   break;
                 }
 
@@ -1334,24 +1344,25 @@ function (_Component) {
                   confirmButtonIcon: 'chevron down',
                   confirmButtonText: 'Bet placed successfuly'
                 });
-                _context.next = 10;
+                _context.next = 12;
                 return Object(_utils_Sleep__WEBPACK_IMPORTED_MODULE_9__["default"])(500);
 
-              case 10:
+              case 12:
                 _next_routes__WEBPACK_IMPORTED_MODULE_5__["Router"].push("/matches/".concat(match._id));
-                _context.next = 14;
+                _context.next = 16;
                 break;
 
-              case 13:
+              case 15:
                 this.setState({
                   isConfirmButtonLoading: false,
+                  isConfirmButtonDisabled: false,
                   isBackButtonDisabled: false,
                   confirmButtonIcon: 'exclamation',
                   confirmButtonText: 'Placing bet failed',
                   confirmButtonClassName: 'error-button'
                 });
 
-              case 14:
+              case 16:
               case "end":
                 return _context.stop();
             }
@@ -3303,7 +3314,7 @@ var ICON = {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!**************************************!*\
   !*** multi ./pages/matches/match.js ***!
   \**************************************/
