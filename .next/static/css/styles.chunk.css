@@ -348,6 +348,9 @@ body {
 .ui.menu .token:before {
   background: rgba(34, 36, 38, 0.15) !important;
 }
+.menu-right-item {
+  flex-direction: row !important;
+}
 
 /* Footer */
 
@@ -899,6 +902,29 @@ body {
 
 .bet-info-status-won {
   color: var(--color-won) !important;
+}
+
+.dropzone-div {
+  width: 100% !important;
+  border: 2px dashed rgba(34, 36, 38, 0.15);
+  color: rgba(34, 36, 38, 0.5);
+  text-align: center;
+  height: 100px;
+  line-height: 100px;
+}
+.dropzone-div-accepted {
+  border-color: var(--orange-dark);
+}
+
+.dropzone-div-rejected {
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.dropzone-div-error {
+  border-color: var(--error);
+  color: var(--error);
+  background-color: #fff6f6;
 }
 
 

@@ -1,13 +1,5 @@
 {
-  "./noop": [
-    {
-      "id": "./node_modules/next/dist/client/noop.js",
-      "name": "./node_modules/next/dist/client/noop.js",
-      "file": "static/chunks/0.js",
-      "publicPath": "static/chunks/0.js"
-    }
-  ],
-  "../../static/css/layout.css": [
+  "../../../static/css/layout.css": [
     {
       "id": "./static/css/layout.css",
       "name": "./static/css/layout.css",
@@ -45,6 +37,12 @@
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 10,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
     }
   ],
   "react-rangeslider/lib/index.css": [
@@ -61,6 +59,22 @@
       "name": "./static/css/match.css",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "../../../static/css/dashboard/dropzone.css": [
+    {
+      "id": "./static/css/dashboard/dropzone.css",
+      "name": "./static/css/dashboard/dropzone.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./noop": [
+    {
+      "id": "./node_modules/next/dist/client/noop.js",
+      "name": "./node_modules/next/dist/client/noop.js",
+      "file": "static/chunks/0.js",
+      "publicPath": "static/chunks/0.js"
     }
   ]
 }

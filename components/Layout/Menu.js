@@ -31,7 +31,7 @@ class TopMenu extends Component {
     switch (user) {
       case false: {
         return (
-          <div>
+          <div className="auth-buttons">
             <Button
               onClick={e => this.setState({ signInOpen: true })}
               color="black">
@@ -116,7 +116,7 @@ class TopMenu extends Component {
 
   render() {
     return (
-      <Menu inverted size="large" className="top-menu">
+      <Menu inverted size="large" className="top-menu" icon="labeled">
         <Menu.Item className="item-logo">
           <Image className="logo" src="/static/img/logo/logo.png" />
         </Menu.Item>
@@ -138,7 +138,8 @@ class TopMenu extends Component {
           <Icon name="question circle outline" />
           FAQ
         </Menu.Item>
-        <Menu.Item position="right">
+
+        <Menu.Item className="menu-right-item" position="right">
           {this.renderRightMenu(this.props.user)}
         </Menu.Item>
 

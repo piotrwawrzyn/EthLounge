@@ -208,6 +208,9 @@ body {
 .ui.menu .token:before {
   background: rgba(34, 36, 38, 0.15) !important;
 }
+.menu-right-item {
+  flex-direction: row !important;
+}
 
 /* Footer */
 

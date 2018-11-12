@@ -19,7 +19,7 @@ class DashboardMenu extends Component {
 
   render() {
     return (
-      <Menu inverted size="large" className="top-menu">
+      <Menu inverted size="large" className="top-menu" icon="labeled">
         <Menu.Item className="item-logo">
           <Image
             className="logo"
@@ -41,7 +41,7 @@ class DashboardMenu extends Component {
           New Match
         </Menu.Item>
         <Menu.Item position="right">
-          s<MenuUser user={this.props.user} />
+          <MenuUser user={this.props.user} />
         </Menu.Item>
       </Menu>
     );

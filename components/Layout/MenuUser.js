@@ -14,7 +14,7 @@ class MenuUser extends Component {
   async handleSignOut() {
     this.setState({ avatarClassNameModifier: 'avatar-exit' });
     await axios.get('/logout');
-    Router.push('/');
+    window.location.href = window.location.href;
   }
 
   render() {

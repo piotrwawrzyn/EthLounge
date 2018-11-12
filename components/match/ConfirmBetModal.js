@@ -69,9 +69,10 @@ class ConfirmBetModal extends Component {
         confirmButtonText: 'Bet placed successfuly'
       });
 
-      await Sleep(500);
+      await Sleep(400);
 
-      Router.push(`/matches/${match._id}`);
+      //Router.push(`/matches/${match._id}`);
+      window.location.href = window.location.href;
     } else {
       this.setState({
         isConfirmButtonLoading: false,

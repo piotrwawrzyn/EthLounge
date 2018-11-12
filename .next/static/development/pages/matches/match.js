@@ -256,7 +256,9 @@ function (_Component) {
       switch (user) {
         case false:
           {
-            return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+            return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+              className: "auth-buttons"
+            }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
               onClick: function onClick(e) {
                 return _this2.setState({
                   signInOpen: true
@@ -391,7 +393,8 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"], {
         inverted: true,
         size: "large",
-        className: "top-menu"
+        className: "top-menu",
+        icon: "labeled"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, {
         className: "item-logo"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
@@ -406,6 +409,7 @@ function (_Component) {
       }), "Withdraw"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
         name: "question circle outline"
       }), "FAQ"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, {
+        className: "menu-right-item",
         position: "right"
       }, this.renderRightMenu(this.props.user)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
         open: this.state.signUpOpen,
@@ -606,7 +610,7 @@ function (_Component) {
                 return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/logout');
 
               case 3:
-                _next_routes__WEBPACK_IMPORTED_MODULE_5__["Router"].push('/');
+                window.location.href = window.location.href;
 
               case 4:
               case "end":
@@ -1243,10 +1247,11 @@ function (_Component) {
                   confirmButtonText: 'Bet placed successfuly'
                 });
                 _context.next = 12;
-                return Object(_utils_Sleep__WEBPACK_IMPORTED_MODULE_9__["default"])(500);
+                return Object(_utils_Sleep__WEBPACK_IMPORTED_MODULE_9__["default"])(400);
 
               case 12:
-                _next_routes__WEBPACK_IMPORTED_MODULE_5__["Router"].push("/matches/".concat(match._id));
+                //Router.push(`/matches/${match._id}`);
+                window.location.href = window.location.href;
                 _context.next = 16;
                 break;
 
@@ -81878,7 +81883,7 @@ var ICON = {
 
 /***/ }),
 
-/***/ 3:
+/***/ 12:
 /*!**************************************!*\
   !*** multi ./pages/matches/match.js ***!
   \**************************************/
@@ -81903,5 +81908,5 @@ module.exports = dll_5d62d38be3592dca3a42;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js","styles"]]]));;
+},[[12,"static/runtime/webpack.js","styles"]]]));;
 //# sourceMappingURL=match.js.map
