@@ -16,6 +16,7 @@ class TokenListItem extends Component {
     this.symbol = props.item.symbol;
     this.address = props.item.address;
     this.decimals = props.item.decimals;
+    this.logo = props.item.logo;
 
     this.tokenNameElement;
     this.tokenSymbolElement;
@@ -29,7 +30,7 @@ class TokenListItem extends Component {
       editMode: false,
       newLogo: '',
       newName: props.name,
-      logoURL: `${backend}/img/tokens/${this.symbol}.png`
+      logoURL: `${backend}/img/${this.logo}`
     };
   }
 

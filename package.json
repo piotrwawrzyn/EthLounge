@@ -17,6 +17,7 @@
     "next": "^7.0.2",
     "next-js": "^0.9.0-alpha",
     "next-routes": "^1.4.2",
+    "npm": "^6.4.1",
     "react": "^16.5.2",
     "react-dnd": "^5.0.0",
     "react-dnd-html5-backend": "^5.0.1",

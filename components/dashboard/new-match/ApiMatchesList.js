@@ -4,7 +4,7 @@ import { Table, Dimmer, Loader, Dropdown } from 'semantic-ui-react';
 import '../../../static/css/dashboard/dropzone.css';
 import _ from 'lodash';
 import GetMatches from '../../../utils/api/GetMatches';
-import ApiMatchesItem from './ApiMatchesItem';
+import ApiMatchesItem from './ApiMatchesListItem';
 
 class ApiMatchesList extends Component {
   constructor(props) {
@@ -42,11 +42,10 @@ class ApiMatchesList extends Component {
     const now = new Date();
     const { hours } = this.state.filters;
 
-    const filteredMatches = matches.filter(
-      curr =>
-        (curr.startTime.getTime() - now.getTime()) / 3600000 <= hours
-          ? true
-          : false
+    const filteredMatches = matches.filter(curr =>
+      (curr.startTime.getTime() - now.getTime()) / 3600000 <= hours
+        ? true
+        : false
     );
 
     return filteredMatches;

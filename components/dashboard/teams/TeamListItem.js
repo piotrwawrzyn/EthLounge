@@ -10,6 +10,7 @@ class TeamListItem extends Component {
     super(props);
     this.id = props.item._id;
     this.displayName = props.item.displayName;
+    this.logo = props.item.logo;
 
     this.teamNameElement;
     this.handleEdit = this.handleEdit.bind(this);
@@ -20,7 +21,7 @@ class TeamListItem extends Component {
       editMode: false,
       newLogo: '',
       newName: props.name,
-      logoURL: `${backend}/img/teams/${this.id}.png`
+      logoURL: `${backend}/img/${this.logo}`
     };
   }
 

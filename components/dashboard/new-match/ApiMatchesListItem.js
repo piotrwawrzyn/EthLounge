@@ -12,7 +12,7 @@ import _ from 'lodash';
 class ApiMatchesItem extends Component {
   constructor(props) {
     super(props);
-    this.handleAdd = this.handleAdd.bind(this);
+    this.handleAdd = this.handleClick.bind(this);
     this.state = {
       modal: {
         open: false,
@@ -32,7 +32,7 @@ class ApiMatchesItem extends Component {
     let markup = [];
 
     for (let i = 0; i < 2; i++) {
-      if (!dataToSend[`team_${i}_ID`]) {
+      if (dataToSend[`team_${i}_ID`] === null) {
         const image = teams[i].logo ? (
           <Image
             size="small"
@@ -44,7 +44,7 @@ class ApiMatchesItem extends Component {
           ''
         );
         markup.push(
-          <Grid.Column>
+          <Grid.Column key={teams[i].displayName}>
             <Header as="h3">{teams[i].displayName}</Header>
             <Dropzone
               handleDelete={e => {
@@ -64,7 +64,7 @@ class ApiMatchesItem extends Component {
       }
     }
 
-    if (!dataToSend.league_ID) {
+    if (dataToSend.league_ID === null) {
       const image = league.logo ? (
         <Image
           size="small"
@@ -75,8 +75,9 @@ class ApiMatchesItem extends Component {
       ) : (
         ''
       );
+
       markup.push(
-        <Grid.Column className="max-width-100">
+        <Grid.Column className="max-width-100" key={league.displayName}>
           <Header as="h3">{league.displayName}</Header>
           <Dropzone
             handleDelete={e => {
@@ -110,13 +111,13 @@ class ApiMatchesItem extends Component {
     const { dataToSend, teams, league, pandaID, startTime, serie } = data;
 
     for (let i = 0; i < 2; i++) {
-      if (!dataToSend[`team_${i}_ID`]) {
+      if (dataToSend[`team_${i}_ID`] === null) {
         const api_response = await AddTeam(teams[i]);
         dataToSend[`team_${i}_ID`] = api_response.data.team._id;
       }
     }
 
-    if (!dataToSend.league_ID) {
+    if (dataToSend.league_ID === null) {
       const api_response = await AddLeague(league);
       dataToSend.league_ID = api_response.data.league._id;
     }
@@ -142,7 +143,7 @@ class ApiMatchesItem extends Component {
     });
   }
 
-  async handleAdd(match) {
+  async handleClick(match) {
     this.setState({ button: { ...this.state.button, loading: true } });
     const { pandaID, startTime, teams, league, serie } = match;
     let dataToSend = { team_0_ID: null, team_1_ID: null, league_ID: null };
@@ -183,7 +184,7 @@ class ApiMatchesItem extends Component {
 
     const { team_0_ID, team_1_ID, league_ID } = dataToSend;
 
-    if (team_0_ID && team_1_ID && league_ID) {
+    if (team_0_ID !== null && team_1_ID !== null && league_ID !== null) {
       const api_response = await AddMatch({
         teams: [team_0_ID, team_1_ID],
         league: league_ID,
@@ -264,7 +265,7 @@ class ApiMatchesItem extends Component {
             basic
             inverted
             as="a"
-            onClick={e => this.handleAdd(match)}
+            onClick={e => this.handleClick(match)}
           />
         </Table.Cell>
 
