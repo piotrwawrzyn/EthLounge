@@ -10,6 +10,7 @@
     "concurrently": "^4.0.1",
     "ethereum-blockies-base64": "^1.0.2",
     "express": "^4.16.4",
+    "force-ssl-heroku": "^1.0.2",
     "fs-extra": "^7.0.0",
     "ganache-cli": "^6.1.8",
     "http-proxy-middleware": "^0.19.0",
