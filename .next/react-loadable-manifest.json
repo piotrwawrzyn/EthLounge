@@ -33,13 +33,13 @@
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 8,
+      "id": 12,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     },
     {
-      "id": 10,
+      "id": 8,
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
@@ -53,18 +53,18 @@
       "publicPath": "static/chunks/styles.js"
     }
   ],
-  "../../static/css/match.css": [
-    {
-      "id": "./static/css/match.css",
-      "name": "./static/css/match.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
   "../../../static/css/dashboard/dropzone.css": [
     {
       "id": "./static/css/dashboard/dropzone.css",
       "name": "./static/css/dashboard/dropzone.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "../../static/css/match.css": [
+    {
+      "id": "./static/css/match.css",
+      "name": "./static/css/match.css",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }

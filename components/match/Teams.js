@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Grid, Image, Label, Rail, Segment } from 'semantic-ui-react';
-import { backend } from '../../config/config';
 import { pickTeam } from '../../redux/match/actions';
 import store from '../../redux/store';
 import DateFormatter from '../../utils/DateFormatter';
@@ -46,7 +45,7 @@ class Teams extends Component {
           size="huge"
           style={style}
           className={`team-label${labelClassNameModifier}`}>
-          <Image className="undragable" src={`${backend}/img/${team.logo}`} />
+          <Image className="undragable" src={`/img/${team.logo}`} />
         </Label>
         <div style={style}>
           <p className={`team-name${nameClassNameModifier}`}>

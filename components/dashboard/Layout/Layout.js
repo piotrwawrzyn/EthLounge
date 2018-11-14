@@ -4,7 +4,6 @@ import Head from 'next/head';
 import '../../../static/css/layout.css';
 import 'react-rangeslider/lib/index.css';
 import axios from 'axios';
-import { backend } from '../../../config/config';
 import { Router, Link } from '../../../next-routes';
 import CookieCall from '../../../utils/CookieCall';
 import Menu from './Menu';

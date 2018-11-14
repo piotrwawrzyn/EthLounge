@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Grid, Icon, Label, List, Header } from 'semantic-ui-react';
-import { backend } from '../../config/config';
 import DateFormatter from '../../utils/DateFormatter';
 import { ICON } from '../../utils/constants';
 
@@ -97,7 +96,7 @@ class MatchDetails extends Component {
               <Grid.Column verticalAlign="middle" textAlign="center">
                 <img
                   className="league-image undragable"
-                  src={`${backend}/img/${league.logo}`}
+                  src={`/img/${league.logo}`}
                 />
                 <p className="league-caption">{`${
                   league.displayName

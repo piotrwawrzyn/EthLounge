@@ -341,8 +341,18 @@ body {
   user-select: none;
 }
 
+.user-column-right-content {
+  margin-right: 3em;
+}
+
 .user-column-right-button {
   margin-top: 0.6em !important;
+  margin-right: 5px !important;
+}
+
+.user-column-right-buttons {
+  display: flex;
+  flex-direction: row;
 }
 
 .ui.menu .token:before {
@@ -608,6 +618,29 @@ body {
   display: inline-block;
   top: 10px;
   transform: translate3d(-50%, 0, 0);
+}
+
+.dropzone-div {
+  width: 100% !important;
+  border: 2px dashed rgba(34, 36, 38, 0.15);
+  color: rgba(34, 36, 38, 0.5);
+  text-align: center;
+  height: 100px;
+  line-height: 100px;
+}
+.dropzone-div-accepted {
+  border-color: var(--orange-dark);
+}
+
+.dropzone-div-rejected {
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.dropzone-div-error {
+  border-color: var(--error);
+  color: var(--error);
+  background-color: #fff6f6;
 }
 
 /* Token */
@@ -902,29 +935,6 @@ body {
 
 .bet-info-status-won {
   color: var(--color-won) !important;
-}
-
-.dropzone-div {
-  width: 100% !important;
-  border: 2px dashed rgba(34, 36, 38, 0.15);
-  color: rgba(34, 36, 38, 0.5);
-  text-align: center;
-  height: 100px;
-  line-height: 100px;
-}
-.dropzone-div-accepted {
-  border-color: var(--orange-dark);
-}
-
-.dropzone-div-rejected {
-  border-color: var(--error);
-  color: var(--error);
-}
-
-.dropzone-div-error {
-  border-color: var(--error);
-  color: var(--error);
-  background-color: #fff6f6;
 }
 
 

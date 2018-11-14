@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Menu, Image, Icon, Button, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import { Router } from '../../../next-routes';
-import { Sleep } from '../../../utils/Sleep';
+
 import MenuUser from '../../Layout/MenuUser';
 
-class DashboardMenu extends Component {
+class DashboardTopMenu extends Component {
   constructor(props) {
     super(props);
     this.handleRoute = this.handleRoute.bind(this);
@@ -48,4 +48,4 @@ class DashboardMenu extends Component {
   }
 }
 
-export default DashboardMenu;
+export default DashboardTopMenu;

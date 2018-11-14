@@ -89,22 +89,16 @@ class TopMenu extends Component {
       config: { headers: { 'Content-Type': 'multipart/form-data' } }
     });
 
-    if (response.data.success) {
-      // const data = new FormData();
-      // data.append('username', username);
-      // data.append('password', password);
-      // const response = await axios({
-      //   method: 'post',
-      //   url: '/login',
-      //   data: data,
-      //   config: { headers: { 'Content-Type': 'multipart/form-data' } }
-      // });
-    } else {
+    console.log(response);
+
+    if (response.data.success === false) {
       this.setState({
         signUpErrors: [
           'This username already exist. Try to pick something else.'
         ]
       });
+    } else {
+      window.location.href = response.request.responseURL;
     }
   }
 

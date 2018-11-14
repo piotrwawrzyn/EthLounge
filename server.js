@@ -25,27 +25,16 @@ app.prepare().then(() => {
   server.use(proxy(`${backend}/logout`, { changeOrigin: true }));
 
   // Proxy: API
-  server.use(proxy(`${backend}/api/match_info`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/api/teams`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/api/leagues`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/api/current_user`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/api/tokens`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/api`, { changeOrigin: true }));
+
+  // Images
+  server.use(proxy(`${backend}/img`, { changeOrigin: true }));
 
   // User actions
   server.use(proxy(`${backend}/place_bet`, { changeOrigin: true }));
 
   // Proxy: Backend
-  server.use(proxy(`${backend}/backend/new_team`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/backend/update_team`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/backend/delete_team`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/backend/new_token`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/backend/update_token`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/backend/delete_token`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/backend/new_league`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/backend/update_league`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/backend/delete_league`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/backend/new_match`, { changeOrigin: true }));
-  server.use(proxy(`${backend}/backend/matches`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/backend`, { changeOrigin: true }));
 
   // Proxy: Panda API
   server.use(

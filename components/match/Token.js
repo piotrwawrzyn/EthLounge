@@ -1,7 +1,6 @@
 import React from 'react';
 import { Image, Label } from 'semantic-ui-react';
 import TokenFromWei from '../../utils/TokenFromWei';
-import { backend } from '../../config/config';
 
 export default props => {
   const { token, isBettingBox } = props;
@@ -13,7 +12,7 @@ export default props => {
         <Image
           className="undragable"
           spaced="left"
-          src={`${backend}/img/${token.logo}`}
+          src={`/img/${token.logo}`}
         />
       </Label>
     );
@@ -28,7 +27,7 @@ export default props => {
         <Image
           className="undragable"
           spaced="left"
-          src={`${backend}/img/${token.logo}`}
+          src={`/img/${token.logo}`}
         />
       </Label>
     );

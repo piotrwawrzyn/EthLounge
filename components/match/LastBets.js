@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Grid, Reveal } from 'semantic-ui-react';
 import makeBlockie from 'ethereum-blockies-base64';
 import Token from './Token';
-import { backend } from '../../config/config';
 
 class LastBets extends Component {
   constructor(props) {
@@ -40,7 +39,7 @@ class LastBets extends Component {
               </Reveal.Content>
               <Reveal.Content hidden>
                 <img
-                  src={`${backend}/img/${team.logo}`}
+                  src={`/img/${team.logo}`}
                   className="user-avatar undragable img-team-reveal"
                 />
               </Reveal.Content>

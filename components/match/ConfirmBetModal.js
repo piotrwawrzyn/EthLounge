@@ -13,7 +13,6 @@ import { toggleModal } from '../../redux/match/actions';
 import store from '../../redux/store';
 import { Router } from '../../next-routes';
 import TokenFromWei from '../../utils/TokenFromWei';
-import { backend } from '../../config/config';
 import PlaceBet from '../../utils/api/PlaceBet';
 import Sleep from '../../utils/Sleep';
 
@@ -94,12 +93,12 @@ class ConfirmBetModal extends Component {
         <div className="confirm-bet-modal-img-divider" />
         <Image
           className="confirm-bet-modal-img confirm-bet-modal-img-picked"
-          src={`${backend}/img/${pickedTeam.logo}`}
+          src={`/img/${pickedTeam.logo}`}
         />
 
         <Image
           className="confirm-bet-modal-img confirm-bet-modal-img-notpicked"
-          src={`${backend}/img/${notPickedTeam.logo}`}
+          src={`/img/${notPickedTeam.logo}`}
         />
       </div>
     );

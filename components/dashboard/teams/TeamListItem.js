@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Table, Image, Icon, Popup, Button } from 'semantic-ui-react';
-import { backend } from '../../../config/config';
 import Dropzone from 'react-dropzone';
 import { Router } from '../../../next-routes';
 import axios from 'axios';
@@ -21,7 +20,7 @@ class TeamListItem extends Component {
       editMode: false,
       newLogo: '',
       newName: props.name,
-      logoURL: `${backend}/img/${this.logo}`
+      logoURL: `/img/${this.logo}`
     };
   }
 
