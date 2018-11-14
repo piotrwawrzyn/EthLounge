@@ -3,7 +3,6 @@ const nextRoutes = require('./next-routes');
 const express = require('express');
 const proxy = require('http-proxy-middleware');
 const { backend } = require('./config/config');
-const forceSsl = require('force-ssl-heroku');
 
 const app = next({
   dev: process.env.NODE_ENV !== 'production'
@@ -15,10 +14,6 @@ const port = process.env.PORT || 3000;
 
 app.prepare().then(() => {
   const server = express();
-
-  // Force SSL for Heroku
-
-  server.use(forceSsl);
 
   // if (process.env.NODE_ENV === 'production') {
   //    server.use(express.static('client/build'));
