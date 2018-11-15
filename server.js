@@ -23,11 +23,12 @@ app.prepare().then(() => {
   server.use(proxy(`${backend}/login`, { changeOrigin: true }));
   server.use(proxy(`${backend}/register`, { changeOrigin: true }));
   server.use(proxy(`${backend}/logout`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/verify`, { changeOrigin: true }));
 
   // Proxy: API
   server.use(proxy(`${backend}/api`, { changeOrigin: true }));
 
-  // Images
+  // Proxy: Images
   server.use(proxy(`${backend}/img`, { changeOrigin: true }));
 
   // User actions
