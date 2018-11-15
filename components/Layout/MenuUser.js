@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Grid, Header, Button } from 'semantic-ui-react';
 import makeBlockie from 'ethereum-blockies-base64';
 import axios from 'axios';
-import { Router } from '../../next-routes';
 import Sleep from '../../utils/Sleep';
 
 class MenuUser extends Component {
@@ -51,7 +50,6 @@ class MenuUser extends Component {
               </div>
 
               <div className="user-column-right-buttons">
-                {' '}
                 <Button
                   size="small"
                   onClick={e => this.handleSignOut()}

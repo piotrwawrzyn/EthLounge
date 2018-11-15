@@ -191,9 +191,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _MenuUser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./MenuUser */ "./components/Layout/MenuUser.js");
+/* harmony import */ var ethereum_blockies_base64__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ethereum-blockies-base64 */ "./node_modules/ethereum-blockies-base64/dist/main.js");
+/* harmony import */ var ethereum_blockies_base64__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(ethereum_blockies_base64__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _MenuUser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./MenuUser */ "./components/Layout/MenuUser.js");
+/* harmony import */ var _utils_FormValidation_IsUsernameOk__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utils/FormValidation/IsUsernameOk */ "./utils/FormValidation/IsUsernameOk.js");
+/* harmony import */ var _utils_FormValidation_IsPasswordOk__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils/FormValidation/IsPasswordOk */ "./utils/FormValidation/IsPasswordOk.js");
+/* harmony import */ var _utils_FormValidation_isEmailOk__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/FormValidation/isEmailOk */ "./utils/FormValidation/isEmailOk.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -225,6 +230,10 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+
+
+
+
 var TopMenu =
 /*#__PURE__*/
 function (_Component) {
@@ -237,8 +246,10 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TopMenu).call(this, props));
     _this.handleSignUp = _this.handleSignUp.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleSignIn = _this.handleSignIn.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.state = {
       username: '',
+      email: '',
       password: '',
       password_2: '',
       signUpErrors: [],
@@ -285,60 +296,92 @@ function (_Component) {
 
         default:
           {
-            return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_MenuUser__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_MenuUser__WEBPACK_IMPORTED_MODULE_7__["default"], {
               user: user
             });
           }
       }
     }
   }, {
-    key: "handleSignUp",
+    key: "handleSignIn",
     value: function () {
-      var _handleSignUp = _asyncToGenerator(
+      var _handleSignIn = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _this$state, username, password, password_2, signUpErrors, response;
+        var _this$state, username, password, data, response;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                // Client side check
-                _this$state = this.state, username = _this$state.username, password = _this$state.password, password_2 = _this$state.password_2;
-                signUpErrors = [];
-
-                if (username.length < 5) {
-                  signUpErrors.push('Username should be at least 4 characters long.');
-                } else if (username.length > 20) {
-                  signUpErrors.push('Username should be maximum 20 characters long.');
-                }
-
-                if (password.length >= 8) {
-                  if (password !== password_2) {
-                    signUpErrors.push('Passwords do not seem to match.');
+                _this$state = this.state, username = _this$state.username, password = _this$state.password;
+                data = JSON.stringify({
+                  password: password,
+                  username: username
+                });
+                _context.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_6___default.a.post('/login', data, {
+                  headers: {
+                    'Content-Type': 'application/json'
                   }
-                } else {
-                  signUpErrors.push('Password should contain at least 8 characters.');
-                }
+                });
+
+              case 4:
+                response = _context.sent;
+                console.log(response);
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function handleSignIn() {
+        return _handleSignIn.apply(this, arguments);
+      };
+    }()
+  }, {
+    key: "handleSignUp",
+    value: function () {
+      var _handleSignUp = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _this$state2, username, password, password_2, email, signUpErrors, isUsernameOk, isPasswordOk, isEmailOk, response;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this$state2 = this.state, username = _this$state2.username, password = _this$state2.password, password_2 = _this$state2.password_2, email = _this$state2.email;
+                signUpErrors = [];
+                isUsernameOk = Object(_utils_FormValidation_IsUsernameOk__WEBPACK_IMPORTED_MODULE_8__["default"])(username);
+                if (isUsernameOk !== true) signUpErrors.push(isUsernameOk);
+                isPasswordOk = Object(_utils_FormValidation_IsPasswordOk__WEBPACK_IMPORTED_MODULE_9__["default"])(password, password_2);
+                if (isPasswordOk !== true) signUpErrors.push(isPasswordOk);
+                isEmailOk = Object(_utils_FormValidation_isEmailOk__WEBPACK_IMPORTED_MODULE_10__["default"])(email);
+                if (isEmailOk !== true) signUpErrors.push(isEmailOk);
 
                 if (!(signUpErrors.length > 0)) {
-                  _context.next = 7;
+                  _context2.next = 11;
                   break;
                 }
 
                 this.setState({
                   signUpErrors: signUpErrors
                 });
-                return _context.abrupt("return");
+                return _context2.abrupt("return");
 
-              case 7:
-                _context.next = 9;
-                return axios__WEBPACK_IMPORTED_MODULE_5___default()({
+              case 11:
+                _context2.next = 13;
+                return axios__WEBPACK_IMPORTED_MODULE_6___default()({
                   method: 'post',
                   url: '/register',
                   data: {
                     username: username,
-                    password: password
+                    password: password,
+                    email: email
                   },
                   config: {
                     headers: {
@@ -347,24 +390,22 @@ function (_Component) {
                   }
                 });
 
-              case 9:
-                response = _context.sent;
-                console.log(response);
+              case 13:
+                response = _context2.sent;
 
-                if (response.data.success === false) {
-                  this.setState({
-                    signUpErrors: ['This username already exist. Try to pick something else.']
-                  });
+                if (!response.data.errors) {// here display message about email verification
                 } else {
-                  window.location.href = response.request.responseURL;
+                  this.setState({
+                    signUpErrors: response.data.errors
+                  });
                 }
 
-              case 12:
+              case 15:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       return function handleSignUp() {
@@ -373,17 +414,155 @@ function (_Component) {
     }()
   }, {
     key: "isButtonDisabled",
-    value: function isButtonDisabled(text) {
-      var ok = text.every(function (curr) {
+    value: function isButtonDisabled(inputs) {
+      var ok = inputs.every(function (curr) {
         return curr.length > 0;
       });
       return !ok;
     }
   }, {
-    key: "render",
-    value: function render() {
+    key: "renderAvatar",
+    value: function renderAvatar(username) {
+      if (Object(_utils_FormValidation_IsUsernameOk__WEBPACK_IMPORTED_MODULE_8__["default"])(username) === true) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "sign-up-avatar-box"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Your avatar:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
+        src: ethereum_blockies_base64__WEBPACK_IMPORTED_MODULE_5___default()(username)
+      }));
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "sign-up-avatar-box"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Your avatar:"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Image"], {
+        className: "sign-up-avatar-box-img-placeholder",
+        src: ethereum_blockies_base64__WEBPACK_IMPORTED_MODULE_5___default()('dfgdasd')
+      }));
+    }
+  }, {
+    key: "renderSignUpModal",
+    value: function renderSignUpModal(open) {
       var _this3 = this;
 
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
+        open: open,
+        size: "small"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
+        className: "modal-header"
+      }, "Sign up as a new user"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Column, {
+        width: 10
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Field, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Username"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Input"], {
+        onChange: function onChange(e) {
+          _this3.setState({
+            username: e.target.value
+          });
+
+          _this3.resetErrors();
+        },
+        value: this.state.username
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", null)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "sign-up-hint"
+      }, "Username should contain between 3 and 15 characters.")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Field, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "E-mail"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Input"], {
+        onChange: function onChange(e) {
+          _this3.setState({
+            email: e.target.value
+          });
+
+          _this3.resetErrors();
+        },
+        value: this.state.email
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", null))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Field, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Password"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        type: "password",
+        onChange: function onChange(e) {
+          _this3.setState({
+            password: e.target.value
+          });
+
+          _this3.resetErrors();
+        },
+        value: this.state.password
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "sign-up-hint"
+      }, "Password should contain at least 8 characters.")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Field, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Repeat password"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        type: "password",
+        onChange: function onChange(e) {
+          _this3.setState({
+            password_2: e.target.value
+          });
+
+          _this3.resetErrors();
+        },
+        value: this.state.password_2
+      }))), this.renderSingUpErrors(this.state.signUpErrors)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Grid"].Column, {
+        width: 6,
+        verticalAlign: "middle",
+        textAlign: "center"
+      }, this.renderAvatar(this.state.username))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        className: "dark-button",
+        onClick: function onClick(e) {
+          _this3.setState({
+            signUpOpen: false,
+            username: '',
+            password: '',
+            password_2: '',
+            signUpErrors: []
+          });
+        }
+      }, "Back"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        className: "orange-button-dark",
+        onClick: function onClick(e) {
+          return _this3.handleSignUp();
+        },
+        disabled: this.isButtonDisabled([this.state.username, this.state.password, this.state.password_2, this.state.email])
+      }, "Sign Up")));
+    }
+  }, {
+    key: "renderSignInModal",
+    value: function renderSignInModal(open) {
+      var _this4 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
+        open: open,
+        size: "small"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
+        className: "modal-header"
+      }, "Sign in"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], {
+        id: "login_form",
+        action: "/login",
+        method: "get"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Field, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Username"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        name: "username",
+        onChange: function onChange(e) {
+          return _this4.setState({
+            username: e.target.value
+          });
+        },
+        value: this.state.username
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Field, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Password"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        name: "password",
+        type: "password",
+        onChange: function onChange(e) {
+          return _this4.setState({
+            password: e.target.value
+          });
+        },
+        value: this.state.password
+      })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        className: "dark-button",
+        onClick: function onClick(e) {
+          _this4.setState({
+            signInOpen: false,
+            username: '',
+            password: ''
+          });
+        }
+      }, "Back"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        onClick: function onClick() {
+          return _this4.handleSignIn();
+        },
+        className: "orange-button-dark",
+        disabled: this.isButtonDisabled([this.state.username, this.state.password])
+      }, "Sign In")));
+    }
+  }, {
+    key: "render",
+    value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"], {
         inverted: true,
         size: "large",
@@ -405,91 +584,14 @@ function (_Component) {
       }), "FAQ"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Menu"].Item, {
         className: "menu-right-item",
         position: "right"
-      }, this.renderRightMenu(this.props.user)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
-        open: this.state.signUpOpen,
-        size: "small"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
-        className: "modal-header"
-      }, "Sign up as a new user"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Field, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Username"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-        onChange: function onChange(e) {
-          return _this3.setState({
-            username: e.target.value
-          });
-        },
-        value: this.state.username
-      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Field, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Password"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-        type: "password",
-        onChange: function onChange(e) {
-          return _this3.setState({
-            password: e.target.value
-          });
-        },
-        value: this.state.password
-      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Field, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Repeat password"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-        type: "password",
-        onChange: function onChange(e) {
-          return _this3.setState({
-            password_2: e.target.value
-          });
-        },
-        value: this.state.password_2
-      }))), this.renderSingUpErrors(this.state.signUpErrors)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-        className: "dark-button",
-        onClick: function onClick(e) {
-          _this3.setState({
-            signUpOpen: false,
-            username: '',
-            password: '',
-            password_2: ''
-          });
-        }
-      }, "Back"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-        className: "orange-button-dark",
-        onClick: function onClick(e) {
-          return _this3.handleSignUp();
-        },
-        disabled: this.isButtonDisabled([this.state.username, this.state.password, this.state.password_2])
-      }, "Sign Up"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
-        open: this.state.signInOpen,
-        size: "small"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
-        className: "modal-header"
-      }, "Sign in"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Content, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], {
-        id: "login_form",
-        action: "/login",
-        method: "post"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Field, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Username"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-        name: "username",
-        onChange: function onChange(e) {
-          return _this3.setState({
-            username: e.target.value
-          });
-        },
-        value: this.state.username
-      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Field, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Password"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-        name: "password",
-        type: "password",
-        onChange: function onChange(e) {
-          return _this3.setState({
-            password: e.target.value
-          });
-        },
-        value: this.state.password
-      })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Modal"].Actions, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-        className: "dark-button",
-        onClick: function onClick(e) {
-          _this3.setState({
-            signInOpen: false,
-            username: '',
-            password: ''
-          });
-        }
-      }, "Back"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-        type: "submit",
-        form: "login_form",
-        className: "orange-button-dark",
-        disabled: this.isButtonDisabled([this.state.username, this.state.password])
-      }, "Sign In"))));
+      }, this.renderRightMenu(this.props.user)), this.renderSignUpModal(this.state.signUpOpen), this.renderSignInModal(this.state.signInOpen));
+    }
+  }, {
+    key: "resetErrors",
+    value: function resetErrors() {
+      this.setState({
+        signUpErrors: []
+      });
     }
   }, {
     key: "renderSingUpErrors",
@@ -537,9 +639,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ethereum_blockies_base64__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(ethereum_blockies_base64__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _next_routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../next-routes */ "./next-routes.js");
-/* harmony import */ var _next_routes__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_next_routes__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _utils_Sleep__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/Sleep */ "./utils/Sleep.js");
+/* harmony import */ var _utils_Sleep__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/Sleep */ "./utils/Sleep.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -563,7 +663,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 
 
 
@@ -606,7 +705,7 @@ function (_Component) {
                 return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/logout');
 
               case 3:
-                Object(_utils_Sleep__WEBPACK_IMPORTED_MODULE_6__["default"])(100);
+                Object(_utils_Sleep__WEBPACK_IMPORTED_MODULE_5__["default"])(100);
                 window.location.href = window.location.href;
 
               case 5:
@@ -652,7 +751,7 @@ function (_Component) {
         style: usernameStyle
       }, username)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "user-column-right-buttons"
-      }, ' ', react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Button"], {
         size: "small",
         onClick: function onClick(e) {
           return _this2.handleSignOut();
@@ -81640,6 +81739,71 @@ var EstimateBetValue = function EstimateBetValue(tokensToBet) {
 
 /***/ }),
 
+/***/ "./utils/FormValidation/IsPasswordOk.js":
+/*!**********************************************!*\
+  !*** ./utils/FormValidation/IsPasswordOk.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var MINIMUM_PASSWORD_LENGTH = 8;
+
+var isPasswordOk = function isPasswordOk(password, repeatedPassword) {
+  if (password.length < MINIMUM_PASSWORD_LENGTH) return "Password should contain at least ".concat(MINIMUM_PASSWORD_LENGTH, " characters.");
+  if (password !== repeatedPassword) return 'Passwords do not match.';
+  return true;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (isPasswordOk);
+
+/***/ }),
+
+/***/ "./utils/FormValidation/IsUsernameOk.js":
+/*!**********************************************!*\
+  !*** ./utils/FormValidation/IsUsernameOk.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var MAXIMUM_USERNAME_LENGTH = 20;
+var MINIMUM_USERNAME_LENGTH = 3;
+
+var isUsernameOk = function isUsernameOk(username) {
+  if (username.length < MINIMUM_USERNAME_LENGTH) return "Username should be at least ".concat(MINIMUM_USERNAME_LENGTH, " characters long.");
+  if (username.length > MAXIMUM_USERNAME_LENGTH) return "Username should be maximum ".concat(MAXIMUM_USERNAME_LENGTH, " characters long.");
+  return true;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (isUsernameOk);
+
+/***/ }),
+
+/***/ "./utils/FormValidation/isEmailOk.js":
+/*!*******************************************!*\
+  !*** ./utils/FormValidation/isEmailOk.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var isEmailOk = function isEmailOk(email) {
+  if (!isEmail(email)) return 'This does not look like a proper e-mail address.';
+  return true;
+};
+
+function isEmail(email) {
+  return /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/.test(email);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (isEmailOk);
+
+/***/ }),
+
 /***/ "./utils/OptimizeTokenAmount.js":
 /*!**************************************!*\
   !*** ./utils/OptimizeTokenAmount.js ***!
@@ -81845,7 +82009,7 @@ var ICON = {
 
 /***/ }),
 
-/***/ 3:
+/***/ 8:
 /*!**************************************!*\
   !*** multi ./pages/matches/match.js ***!
   \**************************************/
@@ -81870,5 +82034,5 @@ module.exports = dll_5d62d38be3592dca3a42;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js","styles"]]]));;
+},[[8,"static/runtime/webpack.js","styles"]]]));;
 //# sourceMappingURL=match.js.map
