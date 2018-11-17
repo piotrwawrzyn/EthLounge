@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Table, Dimmer, Loader, Dropdown } from 'semantic-ui-react';
 import '../../../static/css/dashboard/dropzone.css';
 import _ from 'lodash';
-import GetMatches from '../../../utils/api/GetMatches';
+import getMatches from '../../../utils/backend-calls/getMatches';
 import ApiMatchesItem from './ApiMatchesListItem';
 
 class ApiMatchesList extends Component {
@@ -63,7 +63,7 @@ class ApiMatchesList extends Component {
 
   async componentDidMount() {
     const api_call = await axios.get('/api/pandascore/upcoming_matches');
-    const api_response = await GetMatches();
+    const api_response = await getMatches();
     const matchesInDb = api_response.data;
 
     // Array of matches.

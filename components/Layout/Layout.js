@@ -7,10 +7,8 @@ import store from '../../redux/store';
 import '../../static/css/layout.css';
 // import 'semantic-ui-css/semantic.min.css';
 import 'react-rangeslider/lib/index.css';
-import axios from 'axios';
 import { login } from '../../redux/layout/actions';
-import { backend } from '../../config/config';
-import CookieCall from '../../utils/CookieCall';
+import cookieCall from '../../utils/cookieCall';
 
 const layout = ChildPage =>
   class extends Component {
@@ -21,7 +19,7 @@ const layout = ChildPage =>
       let api_response;
 
       try {
-        api_response = await CookieCall(req, '/api/current_user');
+        api_response = await cookieCall(req, '/api/current_user');
       } catch (err) {
         console.log(err);
       }

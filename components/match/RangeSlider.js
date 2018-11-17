@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Slider from 'react-rangeslider';
 import { changeTokenAmount } from '../../redux/match/actions';
 import store from '../../redux/store';
-import EstimateBetValue from '../../utils/EstimateBetValue';
+import estimateBetValue from '../../utils/estimateBetValue';
 
 class RangeSlider extends Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class RangeSlider extends Component {
         value={this.state.value}
         onChange={val => this.handleRange(val, token)}
         onChangeComplete={() => {
-          EstimateBetValue(toBet, prices);
+          estimateBetValue(toBet, prices);
         }}
       />
     );

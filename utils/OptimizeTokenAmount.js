@@ -1,6 +1,6 @@
 import Big from 'big.js';
 
-const optimize = amount => {
+const optimizeTokenAmount = amount => {
   const minimalAmountToDisplay = 0.0001;
 
   amount = Big(amount);
@@ -15,4 +15,4 @@ const optimize = amount => {
   return `< ${minimalAmountToDisplay}`;
 };
 
-export default optimize;
+export default optimizeTokenAmount;

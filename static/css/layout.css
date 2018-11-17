@@ -241,7 +241,10 @@ body {
 
 .sign-up-avatar-box p {
   font-size: large;
+  border-radius: 2px;
+  border: 1px solid var(--orange-dark);
   background: var(--orange-light);
+  padding: 2px;
 }
 
 .sign-up-hint {

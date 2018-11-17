@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DashboardLayout from '../../../components/dashboard/Layout/Layout';
-import { Divider, Grid, GridColumn, Segment } from 'semantic-ui-react';
+import { Divider, Grid, GridColumn } from 'semantic-ui-react';
 
 class Dashboard extends Component {
   generateWelcomeMsg(username) {

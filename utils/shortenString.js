@@ -1,4 +1,4 @@
-const Shorten = (word, maxChars = 20) => {
+const shorten = (word, maxChars = 20) => {
   if (!word) return '';
   if (word.length <= 20) return word;
 
@@ -10,4 +10,4 @@ const Shorten = (word, maxChars = 20) => {
   return result;
 };
 
-export default Shorten;
+export default shorten;

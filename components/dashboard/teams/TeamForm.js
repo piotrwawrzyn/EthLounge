@@ -5,7 +5,7 @@ import axios from 'axios';
 import Dropzone from '../shared/DropZone';
 import { Router } from '../../../next-routes';
 import FormMessage from '../shared/FormMessage';
-import AddTeam from '../../../utils/api/AddTeam';
+import addTeam from '../../../utils/backend-calls/AddTeam';
 
 class TeamForm extends Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class TeamForm extends Component {
 
     const { displayName, logo } = this.state.formInputs;
 
-    const response = await AddTeam({ displayName, logo });
+    const response = await addTeam({ displayName, logo });
 
     if (response.data.team) {
       Router.pushRoute('/admin/dashboard/teams');

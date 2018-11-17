@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import '../../static/css/layout.css';
 import Router from 'next/router';
-import CookieCall from '../../utils/CookieCall';
+import cookieCall from '../../utils/cookieCall';
 import _ from 'lodash';
 
 class AdminLogin extends Component {
   static async getInitialProps(props) {
     const { req, res } = props;
 
-    let api_response = await CookieCall(req, '/api/current_user');
+    let api_response = await cookieCall(req, '/api/current_user');
 
     const user = api_response.data;
 

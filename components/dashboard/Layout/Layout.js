@@ -5,7 +5,7 @@ import '../../../static/css/layout.css';
 import 'react-rangeslider/lib/index.css';
 import axios from 'axios';
 import { Router, Link } from '../../../next-routes';
-import CookieCall from '../../../utils/CookieCall';
+import cookieCall from '../../../utils/cookieCall';
 import Menu from './Menu';
 
 const dashboardLayout = ChildPage =>
@@ -16,7 +16,7 @@ const dashboardLayout = ChildPage =>
       let api_response;
 
       try {
-        api_response = await CookieCall(req, '/api/current_user');
+        api_response = await cookieCall(req, '/api/current_user');
       } catch (err) {
         console.log(err);
       }

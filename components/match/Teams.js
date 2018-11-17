@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Grid, Image, Label, Rail, Segment } from 'semantic-ui-react';
 import { pickTeam } from '../../redux/match/actions';
 import store from '../../redux/store';
-import DateFormatter from '../../utils/DateFormatter';
 
 class Teams extends Component {
   constructor(props) {

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Table, Image, Modal, Header, Button, Grid } from 'semantic-ui-react';
-import DateFormatter from '../../../utils/DateFormatter';
-import AddTeam from '../../../utils/api/AddTeam';
-import AddLeague from '../../../utils/api/AddLeague';
-import AddMatch from '../../../utils/api/AddMatch';
+import dateFormatter from '../../../utils/dateFormatter';
+import addTeam from '../../../utils/backend-calls/addTeam';
+import addLeague from '../../../utils/backend-calls/addLeague';
+import addMatch from '../../../utils/backend-calls/addMatch';
 import '../../../static/css/dashboard/dropzone.css';
 import Dropzone from '../shared/DropZone';
 import _ from 'lodash';
@@ -112,17 +112,17 @@ class ApiMatchesItem extends Component {
 
     for (let i = 0; i < 2; i++) {
       if (dataToSend[`team_${i}_ID`] === null) {
-        const api_response = await AddTeam(teams[i]);
+        const api_response = await addTeam(teams[i]);
         dataToSend[`team_${i}_ID`] = api_response.data.team._id;
       }
     }
 
     if (dataToSend.league_ID === null) {
-      const api_response = await AddLeague(league);
+      const api_response = await addLeague(league);
       dataToSend.league_ID = api_response.data.league._id;
     }
 
-    const api_response = await AddMatch({
+    const api_response = await addMatch({
       teams: [dataToSend.team_0_ID, dataToSend.team_1_ID],
       league: dataToSend.league_ID,
       startTime,
@@ -162,7 +162,7 @@ class ApiMatchesItem extends Component {
       if (teamsInDb[i] !== null) {
         dataToSend[`team_${i}_ID`] = teamsInDb[i]._id;
       } else if (teamsInDb[i] === null && teams[i].logo !== null) {
-        const api_response = await AddTeam(teams[i]);
+        const api_response = await addTeam(teams[i]);
         const team = api_response.data.team;
         dataToSend[`team_${i}_ID`] = team._id;
       }
@@ -177,7 +177,7 @@ class ApiMatchesItem extends Component {
 
     if (leagueInDb !== null) dataToSend.league_ID = leagueInDb._id;
     if (leagueInDb === null && league.logo !== null) {
-      const api_response = await AddLeague(league);
+      const api_response = await addLeague(league);
       const new_league = api_response.data.league;
       dataToSend.league_ID = new_league._id;
     }
@@ -185,7 +185,7 @@ class ApiMatchesItem extends Component {
     const { team_0_ID, team_1_ID, league_ID } = dataToSend;
 
     if (team_0_ID !== null && team_1_ID !== null && league_ID !== null) {
-      const api_response = await AddMatch({
+      const api_response = await addMatch({
         teams: [team_0_ID, team_1_ID],
         league: league_ID,
         pandaID,
@@ -233,7 +233,7 @@ class ApiMatchesItem extends Component {
   render() {
     const { match } = this.props;
 
-    const date = DateFormatter(match.startTime);
+    const date = dateFormatter(match.startTime);
     return (
       <Table.Row>
         <Table.Cell>

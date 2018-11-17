@@ -5,7 +5,7 @@ import { Router } from '../../../next-routes';
 import axios from 'axios';
 
 class TeamListItem extends Component {
-  constructor(props) {
+  constructor(props) { 
     super(props);
     this.id = props.item._id;
     this.displayName = props.item.displayName;

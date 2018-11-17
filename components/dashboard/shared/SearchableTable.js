@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Header, Image, Icon, Button } from 'semantic-ui-react';
+import { Table, Image, Icon, Button } from 'semantic-ui-react';
 import _ from 'lodash';
 
 class SearchableTable extends Component {

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Form, Button, Label, Icon, Message } from 'semantic-ui-react';
 import _ from 'lodash';
-import axios from 'axios';
 import Dropzone from '../shared/DropZone';
 import { Router } from '../../../next-routes';
 import FormMessage from '../shared/FormMessage';
-import AddToken from '../../../utils/api/AddToken';
+import addToken from '../../../utils/backend-calls/addToken';
 
 class TokenForm extends Component {
   constructor(props) {
@@ -77,7 +76,7 @@ class TokenForm extends Component {
     )
       return;
 
-    const response = await AddToken({
+    const response = await addToken({
       displayName,
       address,
       symbol,

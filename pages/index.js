@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react';
 import Axios from 'axios';
 import Layout from '../components/Layout/Layout';
 

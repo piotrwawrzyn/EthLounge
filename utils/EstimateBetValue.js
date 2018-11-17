@@ -1,5 +1,5 @@
 import Big from 'big.js';
-import TokenFromWei from './TokenFromWei';
+import TokenFromWei from './tokenFromWei';
 import store from '../redux/store';
 import { updateEstimateBet } from '../redux/match/actions';
 

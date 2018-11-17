@@ -3,7 +3,7 @@ import { Menu, Image, Icon, Button, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import { Router } from '../../../next-routes';
 
-import MenuUser from '../../Layout/MenuUser';
+import MenuUser from '../../Layout/MenuUser'; 
 
 class DashboardTopMenu extends Component {
   constructor(props) {

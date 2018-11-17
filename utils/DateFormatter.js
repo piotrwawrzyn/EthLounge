@@ -1,4 +1,4 @@
-const DateFormatter = date => {
+const dateFormatter = date => {
   date = new Date(date);
   const hours =
     date.getHours().toString().length > 1
@@ -47,4 +47,4 @@ const minutesToWord = minutes => {
   }
 };
 
-export default DateFormatter;
+export default dateFormatter;

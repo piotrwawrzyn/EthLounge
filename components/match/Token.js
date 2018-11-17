@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Label } from 'semantic-ui-react';
-import TokenFromWei from '../../utils/TokenFromWei';
+import tokenFromWei from '../../utils/tokenFromWei';
 
 export default props => {
   const { token, isBettingBox } = props;
@@ -8,7 +8,7 @@ export default props => {
   if (isBettingBox || token.balance)
     return (
       <Label className="token balancebox-token">
-        <span>{`${TokenFromWei(token, true)}`}</span>
+        <span>{`${tokenFromWei(token, true)}`}</span>
         <Image
           className="undragable"
           spaced="left"
@@ -20,7 +20,7 @@ export default props => {
   if (token)
     return (
       <Label className="token lastbets-token">
-        <span className="lastbets-token-span">{`${TokenFromWei(
+        <span className="lastbets-token-span">{`${tokenFromWei(
           token,
           true
         )}`}</span>

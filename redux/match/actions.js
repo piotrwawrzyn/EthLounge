@@ -1,49 +1,49 @@
-export function addTokens(tokens) {
+export const addTokens = tokens => {
   return {
     type: 'ADD_TOKENS',
     tokens
   };
-}
+};
 
-export function changeTokenPosition(token, pos) {
+export const changeTokenPosition = (token, pos) => {
   return {
     type: 'CHANGE_POS',
     token
   };
-}
+};
 
-export function changeTokenAmount(token) {
+export const changeTokenAmount = token => {
   return {
     type: 'CHANGE_AMOUNT',
     token
   };
-}
+};
 
-export function updateEstimateBet(sum) {
+export const updateEstimateBet = sum => {
   return {
     type: 'UPDATE_ESTIMATE_BET',
     sum
   };
-}
+};
 
-export function pickTeam(team) {
+export const pickTeam = team => {
   return {
     type: 'PICK_TEAM',
     team
   };
-}
+};
 
-export function toggleErrorModal(head = '', reasons = []) {
+export const toggleErrorModal = (head = '', reasons = []) => {
   return {
     type: 'TOGGLE_ERROR_MODAL',
     head: head,
     reasons: reasons
   };
-}
+};
 
-export function toggleModal(property) {
+export const toggleModal = property => {
   return {
     type: 'TOGGLE_MODAL',
     property
   };
-}
+};

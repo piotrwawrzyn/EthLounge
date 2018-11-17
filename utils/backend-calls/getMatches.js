@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const GetMatches = async match => {
+const getMatches = async match => {
   const response = await axios({
     method: 'get',
     url: '/backend/matches'
@@ -9,4 +9,4 @@ const GetMatches = async match => {
   return response;
 };
 
-export default GetMatches;
+export default getMatches;

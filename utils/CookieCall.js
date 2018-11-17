@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { backend } from '../config/config';
 
-const CookieCall = async (req, path) => {
+const cookieCall = async (req, path) => {
   let response;
 
   if (req) {
@@ -19,4 +19,4 @@ const CookieCall = async (req, path) => {
   return response;
 };
 
-export default CookieCall;
+export default cookieCall;

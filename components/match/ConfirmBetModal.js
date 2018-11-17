@@ -11,10 +11,9 @@ import {
 
 import { toggleModal } from '../../redux/match/actions';
 import store from '../../redux/store';
-import { Router } from '../../next-routes';
-import TokenFromWei from '../../utils/TokenFromWei';
-import PlaceBet from '../../utils/api/PlaceBet';
-import Sleep from '../../utils/Sleep';
+import tokenFromWei from '../../utils/tokenFromWei';
+import placeBet from '../../utils/backend-calls/placeBet';
+import sleep from '../../utils/sleep';
 
 class ConfirmBetModal extends Component {
   constructor(props) {
@@ -51,7 +50,7 @@ class ConfirmBetModal extends Component {
       return { id: token.id, amount: token.balance };
     });
 
-    const api_response = await PlaceBet({
+    const api_response = await placeBet({
       matchID: match._id,
       teamID: pickedTeam.id,
       betMakerID: user._id,
@@ -68,7 +67,7 @@ class ConfirmBetModal extends Component {
         confirmButtonText: 'Bet placed successfuly'
       });
 
-      await Sleep(400);
+      await sleep(400);
 
       //Router.push(`/matches/${match._id}`);
       window.location.href = window.location.href;
@@ -111,7 +110,7 @@ class ConfirmBetModal extends Component {
       return (
         <List.Item as="p" key={curr.symbol}>
           <Icon name="right triangle" />
-          {`${TokenFromWei(curr)} ${curr.symbol}`}
+          {`${tokenFromWei(curr)} ${curr.symbol}`}
         </List.Item>
       );
     });

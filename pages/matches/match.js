@@ -16,8 +16,8 @@ import {
 } from '../../redux/match/actions';
 import store from '../../redux/store';
 import '../../static/css/match.css';
-import CookieCall from '../../utils/CookieCall';
-import ServerSideRedirect from '../../utils/SeverSideRedirect';
+import cookieCall from '../../utils/cookieCall';
+import serverSideRedirect from '../../utils/severSideRedirect';
 import MatchDetails from '../../components/match/MatchDetails';
 import LastBets from '../../components/match/LastBets';
 import WinningsBox from '../../components/match/WinningsBox';
@@ -27,14 +27,14 @@ class Match extends Component {
     const { req, res } = props;
     const matchID = props.query.id;
 
-    const api_response = await CookieCall(req, `/api/match_info?id=${matchID}`);
+    const api_response = await cookieCall(req, `/api/match_info?id=${matchID}`);
 
     const data = api_response.data;
 
     const errorURL = '/404';
 
     if (!data) {
-      ServerSideRedirect(res, errorURL);
+      serverSideRedirect(res, errorURL);
     }
 
     const matchInfo = { ...data };

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from '../../../components/dashboard/Layout/Layout';
 import { Divider, Grid, GridColumn, Header, Input } from 'semantic-ui-react';
 import '../../../static/css/dashboard/dropzone.css';
-import CookieCall from '../../../utils/CookieCall';
+import cookieCall from '../../../utils/cookieCall';
 import SearchableTable from '../../../components/dashboard/shared/SearchableTable';
 import TeamForm from '../../../components/dashboard/teams/TeamForm';
 import TeamListItem from '../../../components/dashboard/teams/TeamListItem';
@@ -18,7 +18,7 @@ class Teams extends Component {
 
   static async getInitialProps(props) {
     const { req } = props;
-    const response = await CookieCall(req, '/api/teams');
+    const response = await cookieCall(req, '/api/teams');
     const teams = response.data;
 
     return { teams };

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Header, Icon, Message, Modal } from 'semantic-ui-react';
+import { Button, Icon, Modal } from 'semantic-ui-react';
 
 import { toggleErrorModal } from '../../redux/match/actions';
 import store from '../../redux/store';

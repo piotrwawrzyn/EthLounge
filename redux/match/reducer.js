@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import EstimateBetValue from '../../utils/EstimateBetValue';
+import EstimateBetValue from '../../utils/estimateBetValue';
 
 const initialState = {
   tokens: { toBet: [], wallet: [] },

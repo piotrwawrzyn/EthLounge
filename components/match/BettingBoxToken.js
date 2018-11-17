@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Icon } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 import Token from './Token';
 import { changeTokenPosition } from '../../redux/match/actions';
 import store from '../../redux/store';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Icon, Label, List, Header } from 'semantic-ui-react';
-import DateFormatter from '../../utils/DateFormatter';
+import dateFormatter from '../../utils/dateFormatter';
 import { ICON } from '../../utils/constants';
 
 class MatchDetails extends Component {
@@ -24,7 +24,7 @@ class MatchDetails extends Component {
     if (!serie) serie = '';
     if (!league) league = { displayName: '' };
 
-    const date = DateFormatter(startTime);
+    const date = dateFormatter(startTime);
 
     let aproxIcon;
     if (date.isFuture) {

@@ -1,4 +1,4 @@
-import Optimize from './OptimizeTokenAmount';
+import Optimize from './optimizeTokenAmount';
 import Big from 'big.js';
 
 const getScientificNotation = decimals => {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from '../../../components/dashboard/Layout/Layout';
 import { Divider, Grid, GridColumn, Header, Input } from 'semantic-ui-react';
 import '../../../static/css/dashboard/dropzone.css';
-import CookieCall from '../../../utils/CookieCall';
+import cookieCall from '../../../utils/cookieCall';
 import TokenForm from '../../../components/dashboard/tokens/TokenForm';
 import TokenListItem from '../../../components/dashboard/tokens/TokenListItem';
 import SearchableTable from '../../../components/dashboard/shared/SearchableTable';
@@ -18,7 +18,7 @@ class Tokens extends Component {
 
   static async getInitialProps(props) {
     const { req } = props;
-    const response = await CookieCall(req, '/api/tokens');
+    const response = await cookieCall(req, '/api/tokens');
     const tokens = response.data;
 
     return { tokens };

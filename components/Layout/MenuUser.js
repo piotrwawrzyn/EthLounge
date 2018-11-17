@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Header, Button } from 'semantic-ui-react';
 import makeBlockie from 'ethereum-blockies-base64';
 import axios from 'axios';
-import Sleep from '../../utils/Sleep';
+import Sleep from '../../utils/sleep';
 
 class MenuUser extends Component {
   constructor(props) {

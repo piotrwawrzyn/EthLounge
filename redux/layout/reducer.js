@@ -1,7 +1,9 @@
 import _ from 'lodash';
 
 const initialState = {
-  user: null
+  user: null,
+  signInModal: { isOpen: false },
+  signUpModal: { isOpen: false }
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -17,8 +19,17 @@ const loginReducer = (state = initialState, action) => {
       newState.user = action.user || false;
       break;
     }
-  }
 
+    case 'TOGGLE_SIGNIN_MODAL': {
+      newState.signInModal.isOpen = !newState.signInModal.isOpen;
+      break;
+    }
+
+    case 'TOGGLE_SIGNUP_MODAL': {
+      newState.signUpModal.isOpen = !newState.signUpModal.isOpen;
+      break;
+    }
+  }
   return newState;
 };
 
