@@ -6,13 +6,17 @@ import {
   Form,
   Input,
   Grid,
-  Message
+  Message,
+  Dimmer,
+  Header,
+  Icon
 } from 'semantic-ui-react';
 import makeBlockie from 'ethereum-blockies-base64';
 import axios from 'axios';
 import { toggleSignUpModal } from '../../redux/layout/actions';
 import store from '../../redux/store';
 import validateSignUpForm from '../../utils/validateSignUpForm';
+import sleep from '../../utils/sleep';
 
 class SignUpModal extends Component {
   constructor(props) {
@@ -23,7 +27,9 @@ class SignUpModal extends Component {
       email: '',
       password: '',
       password_2: '',
-      signUpErrors: []
+      signUpErrors: [],
+      registrationSuccessful: false,
+      buttonLoading: false
     };
 
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -32,6 +38,10 @@ class SignUpModal extends Component {
 
   async handleSignUp() {
     const { username, password, password_2, email } = this.state;
+    this.setState({ buttonLoading: true });
+    console.log('sleep start');
+    await sleep(300);
+    console.log('sleep end');
 
     const signUpErrors = validateSignUpForm(
       username,
@@ -42,6 +52,7 @@ class SignUpModal extends Component {
 
     if (signUpErrors.length > 0) {
       this.setState({ signUpErrors });
+      this.setState({ buttonLoading: false });
       return;
     }
 
@@ -53,12 +64,14 @@ class SignUpModal extends Component {
     });
 
     if (!response.data.errors) {
-      // here display message about email verification
+      this.setState({ registrationSuccessful: true });
     } else {
       this.setState({
         signUpErrors: response.data.errors
       });
     }
+
+    this.setState({ buttonLoading: false });
   }
 
   handleBack() {
@@ -68,7 +81,8 @@ class SignUpModal extends Component {
       email: '',
       password: '',
       password_2: '',
-      signUpErrors: []
+      signUpErrors: [],
+      registrationSuccessful: false
     });
   }
 
@@ -144,6 +158,19 @@ class SignUpModal extends Component {
                   </Form.Field>
                 </Form>
                 {this.renderSingUpErrors(this.state.signUpErrors)}
+                <Dimmer
+                  active={this.state.registrationSuccessful}
+                  onClickOutside={this.handleBack}
+                  page>
+                  <Header as="h2" icon inverted>
+                    <Icon name="mail" />
+                    You have successfuly signed up
+                    <Header.Subheader>
+                      We've just sent you a verification e-mail. Please confirm
+                      your e-mail address before you can log in.
+                    </Header.Subheader>
+                  </Header>
+                </Dimmer>
               </Grid.Column>
               <Grid.Column width={6} verticalAlign="middle" textAlign="center">
                 {this.renderAvatar(this.state.username)}
@@ -159,6 +186,7 @@ class SignUpModal extends Component {
           <Button
             className="orange-button-dark"
             onClick={e => this.handleSignUp()}
+            loading={this.state.buttonLoading}
             disabled={this.isButtonDisabled([
               this.state.username,
               this.state.password,
@@ -192,7 +220,7 @@ class SignUpModal extends Component {
         <p>Your avatar:</p>
         <Image
           className="sign-up-avatar-box-img-placeholder"
-          src={makeBlockie('dfgdasd')}
+          src={makeBlockie('randomAvatar')}
         />
       </div>
     );
@@ -202,12 +230,23 @@ class SignUpModal extends Component {
     this.setState({ signUpErrors: [] });
   }
 
+  // renderSuccessMessage() {
+  //   return (
+  //     <Message
+  //       icon="mail"
+  //       success
+  //       header="You have successfuly signed up"
+  //       content="We've just sent you a verification e-mail. Please confirm your e-mail address before you can log in."
+  //     />
+  //   );
+  // }
+
   renderSingUpErrors(errors) {
     if (errors[0]) {
       return (
         <Message
           error
-          header="There were some errors in your sign up form."
+          header="There were some errors in your sign up form"
           list={errors}
         />
       );

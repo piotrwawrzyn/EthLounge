@@ -5,7 +5,7 @@ import axios from 'axios';
 import Dropzone from '../shared/DropZone';
 import { Router } from '../../../next-routes';
 import FormMessage from '../shared/FormMessage';
-import addTeam from '../../../utils/backend-calls/AddTeam';
+import addTeam from '../../../utils/backend-calls/addTeam';
 
 class TeamForm extends Component {
   constructor(props) {

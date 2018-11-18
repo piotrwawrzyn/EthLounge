@@ -24,6 +24,9 @@ app.prepare().then(() => {
   server.use(proxy(`${backend}/register`, { changeOrigin: true }));
   server.use(proxy(`${backend}/logout`, { changeOrigin: true }));
   server.use(proxy(`${backend}/verify`, { changeOrigin: true }));
+  server.use(
+    proxy(`${backend}/resend-verification-email`, { changeOrigin: true })
+  );
 
   // Proxy: API
   server.use(proxy(`${backend}/api`, { changeOrigin: true }));

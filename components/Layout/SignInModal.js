@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Modal, Form } from 'semantic-ui-react';
+import { Button, Modal, Form, Message, Icon } from 'semantic-ui-react';
 import axios from 'axios';
 import { toggleSignInModal } from '../../redux/layout/actions';
 import store from '../../redux/store';
+import sleep from '../../utils/sleep';
 
 class SignInModal extends Component {
   constructor(props) {
@@ -11,11 +12,13 @@ class SignInModal extends Component {
     this.state = {
       username: '',
       password: '',
-      signUpErrors: []
+      error: '',
+      additionalEmailSent: false
     };
 
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleBack = this.handleBack.bind(this);
+    this.resendVerificationEmail = this.resendVerificationEmail.bind(this);
   }
 
   async handleSignIn() {
@@ -32,7 +35,18 @@ class SignInModal extends Component {
       }
     });
 
-    console.log(response);
+    if (response.data.success) {
+      window.location.href = window.location.href;
+      return;
+    }
+
+    if (response.data.invalidCredentials) {
+      this.setState({ error: 'invalid-credentials' });
+    }
+
+    if (response.data.unverifiedEmail) {
+      this.setState({ error: 'unverified-email' });
+    }
   }
 
   isButtonDisabled(inputs) {
@@ -45,7 +59,9 @@ class SignInModal extends Component {
     store.dispatch(toggleSignInModal());
     this.setState({
       username: '',
-      password: ''
+      password: '',
+      error: '',
+      additionalEmailSent: false
     });
   }
 
@@ -61,7 +77,9 @@ class SignInModal extends Component {
               <label>Username</label>
               <input
                 name="username"
-                onChange={e => this.setState({ username: e.target.value })}
+                onChange={e =>
+                  this.setState({ username: e.target.value, error: '' })
+                }
                 value={this.state.username}
               />
             </Form.Field>
@@ -71,11 +89,14 @@ class SignInModal extends Component {
               <input
                 name="password"
                 type="password"
-                onChange={e => this.setState({ password: e.target.value })}
+                onChange={e =>
+                  this.setState({ password: e.target.value, error: '' })
+                }
                 value={this.state.password}
               />
             </Form.Field>
           </Form>
+          {this.renderMessage(this.state.error)}
         </Modal.Content>
         <Modal.Actions>
           <Button className="dark-button" onClick={() => this.handleBack()}>
@@ -94,6 +115,59 @@ class SignInModal extends Component {
         </Modal.Actions>
       </Modal>
     );
+  }
+
+  renderMessage(error) {
+    switch (error) {
+      case 'invalid-credentials': {
+        return (
+          <Message
+            error
+            icon="times circle"
+            header="Invalid username or password."
+          />
+        );
+      }
+      case 'unverified-email': {
+        return (
+          <Message warning icon>
+            <Icon name="mail" />
+            <Message.Content>
+              <Message.Header>E-mail pending confirmation</Message.Header>
+              <p>
+                Please confirm your e-mail address before you can sign in.
+                <br />
+                {this.state.additionalEmailSent ? (
+                  <span>
+                    Verification e-mail has been re-send successfuly! Remember
+                    to check the spam folder as well.
+                  </span>
+                ) : (
+                  <span
+                    className="resend-verification-email"
+                    onClick={() => this.resendVerificationEmail()}>
+                    Resend verification e-mail.
+                  </span>
+                )}
+              </p>
+            </Message.Content>
+          </Message>
+        );
+      }
+
+      default: {
+        return '';
+      }
+    }
+  }
+
+  async resendVerificationEmail() {
+    await axios.post('/resend-verification-email', {
+      username: this.state.username
+    });
+
+    await sleep(500);
+    this.setState({ additionalEmailSent: true });
   }
 }
 
