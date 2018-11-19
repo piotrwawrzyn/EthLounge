@@ -37,15 +37,14 @@ class Match extends Component {
       serverSideRedirect(res, errorURL);
     }
 
-    const matchInfo = { ...data };
+    const matchProps = { ...data };
 
-    return { matchInfo };
+    return { matchProps };
   }
 
   async componentWillMount() {
-    const { tokens, user } = this.props.initial.matchInfo;
+    const { user } = this.props.initial.matchProps;
 
-    //store.dispatch(updatePrices(prices));
     this.addTokens(user.balances);
   }
 
@@ -70,7 +69,7 @@ class Match extends Component {
   }
 
   render() {
-    const { match, user } = this.props.initial.matchInfo;
+    const { match, user } = this.props.initial.matchProps;
     console.log(match);
     const {
       pickedTeam,

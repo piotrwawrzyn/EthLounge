@@ -11,7 +11,7 @@
   -ms-user-select: none;
   user-select: none;
   text-align: center;
-  background: --var(--gray) !important;
+  background-color: var(--light-gray) !important;
   border: 1px solid rgba(80, 80, 80, 0.5) !important;
 }
 
@@ -36,15 +36,7 @@
   cursor: pointer !important;
 }
 
-/* .balance-box-token-dragging {
-  opacity: 0.1;
-} */
-
 /* BettingBox Row */
-
-/* .betting-box .row {
-  padding: 1em 0 0.6em 0 !important;
-} */
 
 .betting-box-row {
   padding: 0.6em 0 0.6em 0 !important;
@@ -54,30 +46,9 @@
   padding-top: 0px !important;
 }
 
-/* .betting-box .row:first-of-type {
-  padding-top: 0 !important;
-  background: red !important;
-} */
-
-/* BettingBox Item */
-
-/* .betting-box-token-hovered {
-  background: #ddd !important;
-}
-
-.betting-box-token-candrop {
-  background: rgb(56, 57, 58, 0.2) !important;
-  transform: scale(1.1);
-  transition-duration: 0.3s;
-} */
-
 .betting-box-segment-filled {
   padding: 0em 0 0em 0 !important;
 }
-
-/* .betting-box-token-dropped .label:hover {
-  background: rgb(255, 51, 0, 0.15) !important;
-} */
 
 /* Betting button, Info-Bet */
 
@@ -117,7 +88,7 @@
 /* Teams */
 
 .teams-grid {
-  background: var(--orange-light) !important;
+  background-color: var(--orange-light) !important;
   border-radius: 5px !important;
 }
 
@@ -126,7 +97,7 @@
 }
 
 .team-label {
-  background: white !important;
+  background-color: var(--lighter-gray) !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -154,7 +125,7 @@
 /* Layout of match columns */
 
 .orange-label {
-  background: var(--orange-light) !important;
+  background-color: var(--orange-light) !important;
   color: white !important;
 }
 
@@ -178,7 +149,7 @@
   width: 212px;
   transform: rotate(45deg);
   transform-origin: top left;
-  background: var(--dark-gray);
+  background-color: var(--dark-gray);
   opacity: 0.7;
 }
 
@@ -209,7 +180,7 @@
 }
 
 .confirm-bet-modal-header {
-  background: var(--orange-light) !important;
+  background-color: var(--orange-light) !important;
   color: white !important;
 }
 
@@ -245,7 +216,7 @@
 /* Last bets */
 
 .last-bets-row {
-  background: var(--dark-gray);
+  background-color: var(--dark-gray);
   margin-bottom: 15px;
   border-radius: 5px;
   padding: 10px !important;

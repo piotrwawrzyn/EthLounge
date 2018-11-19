@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Menu, Image, Icon, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { Link } from '../../next-routes';
 import {
   toggleSignUpModal,
   toggleSignInModal
@@ -31,16 +32,17 @@ class TopMenu extends Component {
         return (
           <div className="auth-buttons">
             <Button
-              onClick={() => store.dispatch(toggleSignInModal())}
-              color="black">
+              className="sign-in-button"
+              onClick={() => store.dispatch(toggleSignInModal())}>
               Sign in
             </Button>
             <span className="or">or</span>
             <Button
+              icon
               onClick={() => store.dispatch(toggleSignUpModal())}
-              color="black"
-              className="margin-right-1em">
+              className="sign-up-button margin-right-1em">
               Sign up
+              <Icon style={{ marginLeft: '1em !important' }} name="add user" />
             </Button>
           </div>
         );
@@ -65,7 +67,9 @@ class TopMenu extends Component {
         <SignInModal open={signInModal.isOpen} />
 
         <Menu.Item className="item-logo">
-          <Image className="logo" src="/static/img/logo/logo.png" />
+          <Link route="/">
+            <Image className="logo" src="/static/img/logo/logo.png" />
+          </Link>
         </Menu.Item>
         <Menu.Item>
           <Icon name="chess knight" />

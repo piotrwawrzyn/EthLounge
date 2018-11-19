@@ -22,6 +22,11 @@ const validateSignUpForm = (username, email, password, repeatedPassword) => {
       `Username should be maximum ${MAXIMUM_USERNAME_LENGTH} characters long.`
     );
 
+  if (/[^\w\s]/gi.test(username))
+    errors.push(
+      `Username should not contain any special characters or whitespaces.`
+    );
+
   // Email validation
   if (!isEmail(email))
     errors.push('This does not look like a proper e-mail address.');

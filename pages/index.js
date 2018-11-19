@@ -1,29 +1,42 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import { Grid } from 'semantic-ui-react';
 import Layout from '../components/Layout/Layout';
+import cookieCall from '../utils/cookieCall';
+import MatchList from '../components/index/MatchList';
+import '../static/css/index.css';
 
 class EthLounge extends Component {
   constructor(props) {
     super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-    this.state = { debug: '' };
   }
 
-  async handleClick() {
-    try {
-      const gambler = await Axios.get(
-        'https://ethlounge-api.herokuapp.com/api/current_gambler'
-      );
-      this.setState({ debug: gambler });
-    } catch (err) {
-      console.log(err);
-      this.setState({ debug: err });
-    }
+  static async getInitialProps(props) {
+    const { req } = props;
+
+    const api_response = await cookieCall(req, `/api/index_info`);
+
+    const data = api_response.data;
+
+    const indexProps = { ...data };
+
+    return { indexProps };
   }
 
   render() {
-    return <div />;
+    const { matches } = this.props.initial.indexProps;
+
+    return (
+      <Grid>
+        <Grid.Row>
+          <Grid.Column computer={6} mobile={16} tablet={16}>
+            left
+          </Grid.Column>
+          <Grid.Column computer={10} mobile={16} tablet={16}>
+            <MatchList matches={matches} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    );
   }
 }
 

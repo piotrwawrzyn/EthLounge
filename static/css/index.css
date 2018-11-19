@@ -1,0 +1,53 @@
+@import '_variables.css';
+
+/* Match List */
+
+.match-list-item:not(:first-of-type) {
+  margin-top: 12px;
+}
+
+.match-list-item {
+  color: var(--dark-gray);
+  cursor: pointer;
+}
+
+.match-list-item-grid-main {
+  background: var(--light-gray);
+  border-radius: 2px;
+  margin: 0 !important;
+
+  overflow: hidden;
+}
+
+.match-list-item-grid-main-name {
+  font-weight: 900;
+  font-size: 15px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.match-list-item-grid-main-percentage {
+  font-size: 18px;
+  font-weight: bolder;
+  color: var(--orange-dark);
+}
+
+.match-list-item-grid-main-logo {
+  min-width: 40px !important;
+  max-width: 80% !important;
+}
+
+/* @media only screen and (max-width: 800px) {
+  .match-list-item-grid-main-logo {
+    min-width: 0px !important;
+  }
+} */
+
+.match-list-item-grid-main-tournament img {
+  max-width: 90% !important;
+  max-height: 90% !important;
+  -webkit-filter: grayscale(10%);
+  filter: grayscale(10%);
+  opacity: 0.8;
+}

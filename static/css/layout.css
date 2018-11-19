@@ -148,6 +148,23 @@ body {
   background: black !important;
 }
 
+.sign-in-button {
+  background: var(--dark-orange) !important;
+  color: white !important;
+  border: 1px solid white !important;
+}
+
+.sign-up-button {
+  background: white !important;
+  color: var(--orange-dark) !important;
+  border: 1px solid white !important;
+}
+
+.sign-in-button:hover,
+.sign-up-button:hover {
+  animation: shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
 .or {
   margin: 0 1em 0 1em;
   background: white;
@@ -224,6 +241,11 @@ body {
 }
 .menu-right-item {
   flex-direction: row !important;
+}
+
+.auth-buttons {
+  padding-right: 1em;
+  padding-left: 1em;
 }
 
 /* Signup */
