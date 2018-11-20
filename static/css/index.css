@@ -3,7 +3,7 @@
 /* Match List */
 
 .match-list-item:not(:first-of-type) {
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 .match-list-item {
@@ -12,11 +12,27 @@
 }
 
 .match-list-item-grid-main {
-  background: var(--light-gray);
-  border-radius: 2px;
-  margin: 0 !important;
+}
 
-  overflow: hidden;
+.match-list-item-grid-main-row-1 {
+  background: var(--light-gray);
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  margin: 0 !important;
+  border: 1px solid var(--opaque-gray);
+}
+
+.match-list-item-grid-main-row-2 {
+  padding: 0 !important;
+  margin-bottom: 14px !important;
+  background-color: var(--opaque-gray) !important;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  border-color: var(--opaque-gray);
 }
 
 .match-list-item-grid-main-name {
@@ -38,16 +54,24 @@
   max-width: 80% !important;
 }
 
-/* @media only screen and (max-width: 800px) {
-  .match-list-item-grid-main-logo {
-    min-width: 0px !important;
-  }
-} */
-
 .match-list-item-grid-main-tournament img {
-  max-width: 90% !important;
-  max-height: 90% !important;
+  max-height: auto !important;
+  max-width: 80% !important;
   -webkit-filter: grayscale(10%);
   filter: grayscale(10%);
   opacity: 0.8;
+}
+
+.match-list-item-grid-main-vs {
+  font-family: Arial;
+  letter-spacing: 1px;
+}
+
+.live-label {
+  border: 1px solid green !important;
+  border-radius: 0px !important;
+  font-weight: 500;
+  margin-bottom: 10px !important;
+  background: transparent !important;
+  color: green !important;
 }

@@ -116,8 +116,8 @@ class Match extends Component {
                 className="button-bet"
                 size="large"
                 color="black">
-                Bet
-                <Icon style={{ marginLeft: '1em !important' }} name="check" />
+                <span style={{ marginRight: '1em' }}>Bet</span>
+                <Icon name="check" />
               </Button>
               <List relaxed floated="right" className="info-bet">
                 {this.renderBetValue(betValue)}

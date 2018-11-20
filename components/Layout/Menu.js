@@ -41,8 +41,8 @@ class TopMenu extends Component {
               icon
               onClick={() => store.dispatch(toggleSignUpModal())}
               className="sign-up-button margin-right-1em">
-              Sign up
-              <Icon style={{ marginLeft: '1em !important' }} name="add user" />
+              <span style={{ marginRight: '1em' }}>Sign up</span>
+              <Icon name="add user" />
             </Button>
           </div>
         );

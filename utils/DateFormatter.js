@@ -19,19 +19,27 @@ const dateFormatter = date => {
   let aprox;
 
   if (date > now) {
-    difference = (date.getTime() - now.getTime()) / 60000;
-    aprox = `${minutesToWord(difference)} from now`;
+    difference = ((date.getTime() - now.getTime()) / 60000) * 60;
+    aprox = `${secondsToWord(difference)} from now`;
     return { formatedDate, aprox, isFuture: true };
   } else {
-    difference = (now.getTime() - date.getTime()) / 60000;
-    aprox = `${minutesToWord(difference)} ago`;
+    difference = ((now.getTime() - date.getTime()) / 60000) * 60;
+    aprox = `${secondsToWord(difference)} ago`;
     return { formatedDate, aprox, isFuture: false };
   }
 };
 
-const minutesToWord = minutes => {
-  minutes = Math.round(minutes);
-  if (minutes < 60) {
+const secondsToWord = seconds => {
+  seconds = Math.round(seconds);
+  const minutes = Math.round(seconds / 60);
+
+  if (seconds < 60) {
+    if (seconds === 1) return '1 second';
+    else return `${minutes} seconds`;
+  } else if (minutes < 60) {
+    if (minutes === 1) return '1 minute';
+    else return `${minutes} minutes`;
+  } else if (minutes < 60) {
     if (minutes === 1) return '1 minute';
     else return `${minutes} minutes`;
   } else if (minutes < 60 * 24) {
