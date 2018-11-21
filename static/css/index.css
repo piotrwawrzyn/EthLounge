@@ -57,6 +57,7 @@
 .match-list-item-grid-main-tournament img {
   max-height: auto !important;
   max-width: 80% !important;
+  padding: 10%;
   -webkit-filter: grayscale(10%);
   filter: grayscale(10%);
   opacity: 0.8;

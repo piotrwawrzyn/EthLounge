@@ -15,9 +15,15 @@ const port = process.env.PORT || 3000;
 app.prepare().then(() => {
   const server = express();
 
-  // if (process.env.NODE_ENV === 'production') {
-  //    server.use(express.static('client/build'));
-  // }
+  // Set favicon
+
+  const faviconOptions = {
+    root: __dirname + '/static/'
+  };
+
+  server.get('/favicon.ico', (req, res) =>
+    res.status(200).sendFile('favicon.ico', faviconOptions)
+  );
 
   // Proxy: Auth user
   server.use(proxy(`${backend}/login`, { changeOrigin: true }));

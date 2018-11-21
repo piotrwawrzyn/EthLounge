@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Label, Icon, Message } from 'semantic-ui-react';
+import { Form, Button, Label, Icon } from 'semantic-ui-react';
 import _ from 'lodash';
 import Dropzone from '../shared/DropZone';
 import { Router } from '../../../next-routes';

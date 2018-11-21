@@ -17,7 +17,7 @@ import {
 import store from '../../redux/store';
 import '../../static/css/match.css';
 import cookieCall from '../../utils/cookieCall';
-import serverSideRedirect from '../../utils/severSideRedirect';
+import serverSideRedirect from '../../utils/serverSideRedirect';
 import MatchDetails from '../../components/match/MatchDetails';
 import LastBets from '../../components/match/LastBets';
 import WinningsBox from '../../components/match/WinningsBox';
