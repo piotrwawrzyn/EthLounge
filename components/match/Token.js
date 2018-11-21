@@ -9,11 +9,7 @@ export default props => {
     return (
       <Label className="token balancebox-token">
         <span>{`${tokenFromWei(token, true)}`}</span>
-        <Image
-          className="undragable"
-          spaced="left"
-          src={`/img/${token.logo}`}
-        />
+        <Image className="undragable" spaced="left" src={`${token.logo}`} />
       </Label>
     );
 
@@ -24,11 +20,7 @@ export default props => {
           token,
           true
         )}`}</span>
-        <Image
-          className="undragable"
-          spaced="left"
-          src={`/img/${token.logo}`}
-        />
+        <Image className="undragable" spaced="left" src={`${token.logo}`} />
       </Label>
     );
 

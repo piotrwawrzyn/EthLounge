@@ -44,7 +44,7 @@ class Teams extends Component {
           size="huge"
           style={style}
           className={`team-label${labelClassNameModifier}`}>
-          <Image className="undragable" src={`/img/${team.logo}`} />
+          <Image className="undragable" src={`${team.logo}`} />
         </Label>
         <div style={style}>
           <p className={`team-name${nameClassNameModifier}`}>

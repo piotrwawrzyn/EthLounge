@@ -96,7 +96,7 @@ class MatchDetails extends Component {
               <Grid.Column verticalAlign="middle" textAlign="center">
                 <img
                   className="league-image undragable"
-                  src={`/img/${league.logo}`}
+                  src={`${league.logo}`}
                 />
                 <p className="league-caption">{`${
                   league.displayName

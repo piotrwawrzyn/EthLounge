@@ -5,7 +5,7 @@ import { Router } from '../../../next-routes';
 import axios from 'axios';
 
 class TeamListItem extends Component {
-  constructor(props) { 
+  constructor(props) {
     super(props);
     this.id = props.item._id;
     this.displayName = props.item.displayName;
@@ -20,7 +20,7 @@ class TeamListItem extends Component {
       editMode: false,
       newLogo: '',
       newName: props.name,
-      logoURL: `/img/${this.logo}`
+      logoURL: `${this.logo}`
     };
   }
 

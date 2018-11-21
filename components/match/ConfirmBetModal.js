@@ -92,12 +92,12 @@ class ConfirmBetModal extends Component {
         <div className="confirm-bet-modal-img-divider" />
         <Image
           className="confirm-bet-modal-img confirm-bet-modal-img-picked"
-          src={`/img/${pickedTeam.logo}`}
+          src={`${pickedTeam.logo}`}
         />
 
         <Image
           className="confirm-bet-modal-img confirm-bet-modal-img-notpicked"
-          src={`/img/${notPickedTeam.logo}`}
+          src={`${notPickedTeam.logo}`}
         />
       </div>
     );

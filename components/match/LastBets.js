@@ -39,7 +39,7 @@ class LastBets extends Component {
               </Reveal.Content>
               <Reveal.Content hidden>
                 <img
-                  src={`/img/${team.logo}`}
+                  src={`${team.logo}`}
                   className="user-avatar undragable img-team-reveal"
                 />
               </Reveal.Content>

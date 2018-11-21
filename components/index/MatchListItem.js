@@ -24,7 +24,7 @@ class MatchListItem extends Component {
       <Grid.Column textAlign={align} width={6}>
         <img
           className="match-list-item-grid-main-logo undragable"
-          src={`/img/${logo}`}
+          src={`${logo}`}
           alt={displayName}
         />
       </Grid.Column>
@@ -95,7 +95,7 @@ class MatchListItem extends Component {
                 verticalAlign="middle"
                 width={3}>
                 <img
-                  src={`img/${league.logo}`}
+                  src={`${league.logo}`}
                   className="undragable"
                   alt={league.displayName}
                 />
