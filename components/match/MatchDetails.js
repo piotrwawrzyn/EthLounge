@@ -16,6 +16,7 @@ class MatchDetails extends Component {
       numberOfBets,
       highestBet,
       tokensInPool,
+      numberOfGames,
       serie,
       startTime,
       state
@@ -26,14 +27,19 @@ class MatchDetails extends Component {
 
     const date = dateFormatter(startTime);
 
+    const isLive =
+      !date.isFuture && state !== 'finalized' && state !== 'canceled'
+        ? true
+        : false;
+
     let aproxIcon;
     if (date.isFuture) {
       aproxIcon = ICON.GAME_SCHEDULED;
     } else {
-      if (state === 'finalized' || state === 'canceled') {
-        aproxIcon = ICON.GAME_FINISHED;
-      } else {
+      if (isLive) {
         aproxIcon = ICON.GAME_STARTED;
+      } else {
+        aproxIcon = ICON.GAME_FINISHED;
       }
     }
 
@@ -44,12 +50,15 @@ class MatchDetails extends Component {
             <Grid.Row columns="1">
               <Grid.Column textAlign="right">
                 <Label className="orange-label-light" size="large">
+                  BO{numberOfGames}
+                </Label>
+                <Label className="orange-label-light" size="large">
                   <Icon name={ICON.DATE} />
                   {date.formatedDate}
                 </Label>
                 <Label className="orange-label-light" size="large">
                   <Icon name={aproxIcon} />
-                  {date.aprox}
+                  {isLive ? 'LIVE' : date.aprox}
                 </Label>
               </Grid.Column>
             </Grid.Row>

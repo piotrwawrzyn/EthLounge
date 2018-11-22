@@ -63,20 +63,23 @@ class ApiMatchesList extends Component {
 
   async componentDidMount() {
     const api_call = await axios.get('/api/pandascore/upcoming_matches');
-    const api_response = await getMatches();
-    const matchesInDb = api_response.data;
 
-    // Array of matches.
-    const data = api_call.data.data;
+    const matchesDb = await getMatches();
+    const matchesInDb = matchesDb.data;
+
+    // Array of matches from API
+    const apiMatchesArr = api_call.data.data;
 
     // Filter to debug and remove already added matches
-    const debugedData = data.filter(match => {
+    const debugedData = apiMatchesArr.filter(match => {
       if (!match.id) return false;
       if (!match.begin_at) return false;
       if (match.opponents.length !== 2) return false;
       if (!match.league) return false;
-      //  if (!match.serie) return false;
-      if (matchesInDb.some(curr => curr.pandaID == match.id)) return false;
+      if (!match.number_of_games) return false;
+      if (matchesInDb.some(curr => curr.pandaID == match.id))
+        //  if (!match.serie) return false;
+        return false;
 
       return true;
     });
@@ -108,6 +111,7 @@ class ApiMatchesList extends Component {
           displayName: match.league.name,
           logo: match.league.image_url
         },
+        numberOfGames: match.number_of_games,
         serie: match.serie.name
       };
     });
@@ -158,7 +162,8 @@ class ApiMatchesList extends Component {
               <Table.Row>
                 <Table.HeaderCell>Team 1</Table.HeaderCell>
                 <Table.HeaderCell>Team 2</Table.HeaderCell>
-                <Table.HeaderCell>League</Table.HeaderCell>
+                <Table.HeaderCell>League</Table.HeaderCell>{' '}
+                <Table.HeaderCell>Format</Table.HeaderCell>
                 <Table.HeaderCell>Start date</Table.HeaderCell>
                 <Table.HeaderCell />
               </Table.Row>

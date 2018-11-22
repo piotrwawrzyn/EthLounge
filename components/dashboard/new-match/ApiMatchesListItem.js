@@ -108,7 +108,15 @@ class ApiMatchesItem extends Component {
   }
 
   async handleAddMatch(data) {
-    const { dataToSend, teams, league, pandaID, startTime, serie } = data;
+    const {
+      dataToSend,
+      teams,
+      league,
+      pandaID,
+      startTime,
+      numberOfGames,
+      serie
+    } = data;
 
     for (let i = 0; i < 2; i++) {
       if (dataToSend[`team_${i}_ID`] === null) {
@@ -127,6 +135,7 @@ class ApiMatchesItem extends Component {
       league: dataToSend.league_ID,
       startTime,
       pandaID,
+      numberOfGames,
       serie
     });
 
@@ -145,7 +154,7 @@ class ApiMatchesItem extends Component {
 
   async handleClick(match) {
     this.setState({ button: { ...this.state.button, loading: true } });
-    const { pandaID, startTime, teams, league, serie } = match;
+    const { pandaID, startTime, teams, league, serie, numberOfGames } = match;
     let dataToSend = { team_0_ID: null, team_1_ID: null, league_ID: null };
 
     // Teams
@@ -190,6 +199,7 @@ class ApiMatchesItem extends Component {
         league: league_ID,
         pandaID,
         startTime,
+        numberOfGames,
         serie
       });
       if (api_response.data.match) this.addComplete(true);
@@ -205,6 +215,7 @@ class ApiMatchesItem extends Component {
           dataToSend,
           pandaID,
           startTime,
+          numberOfGames,
           serie,
           teams: _.cloneDeep(teams),
           league: _.cloneDeep(league)
@@ -246,10 +257,12 @@ class ApiMatchesItem extends Component {
             {match.teams[1].displayName}
           </Header>
         </Table.Cell>
+
         <Table.Cell>
-          <Image src={match.league.logo} spaced size="mini" inline />
+          {/* <Image src={match.league.logo} spaced size="mini" inline /> */}
           {match.league.displayName}
         </Table.Cell>
+        <Table.Cell>BO{match.numberOfGames}</Table.Cell>
         <Table.Cell>
           {date.formatedDate}
           <span

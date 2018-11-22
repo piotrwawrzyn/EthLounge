@@ -3,7 +3,6 @@ import EstimateBetValue from '../../utils/estimateBetValue';
 
 const initialState = {
   tokens: { toBet: [], wallet: [] },
-  prices: {},
   betValue: 0,
   pickedTeam: {},
   errorModal: { isOpen: false, head: '', reasons: [] },
@@ -15,6 +14,10 @@ const matchReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case 'ADD_TOKENS': {
+      
+      // Reset state
+      newState = { ...initialState };
+
       const tokens = action.tokens.map(token => {
         return {
           ...token,
@@ -72,7 +75,6 @@ const matchReducer = (state = initialState, action) => {
 
     case 'LOG_OUT': {
       newState = { ...initialState };
-      newState.prices = state.prices;
       break;
     }
   }

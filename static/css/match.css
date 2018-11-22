@@ -12,7 +12,7 @@
   user-select: none;
   text-align: center;
   background-color: var(--light-gray) !important;
-  border: 1px solid var(--opaque-gray) !important;
+  border: 1px solid var(--opaquer-gray) !important;
 }
 
 .token img {
@@ -103,6 +103,10 @@
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
   /* cursor: pointer; */
   border: 1px solid transparent !important;
+}
+
+.team-label img {
+  transform: scale(1.2);
 }
 
 .team-label-picked {
@@ -211,6 +215,11 @@
 
 .details-list * {
   margin-bottom: 5px;
+}
+
+.match-details-live-label {
+  background: green !important;
+  color: white !important;
 }
 
 /* Last bets */

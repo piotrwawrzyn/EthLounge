@@ -4,8 +4,9 @@
   --orange-light: #f39c12;
   --dark-gray: #1b1c1d;
   --light-gray: #e8e8e8;
-  --lighter-gray: #f1f1f1;
+  --lighter-gray: #f8f8f8;
   --opaque-gray: rgba(80, 80, 80, 0.5);
+  --opaquer-gray: rgba(80, 80, 80, 0.25);
   --gray: #2c2d2d;
   --error: #9f3a38;
   --color-won: #006600;

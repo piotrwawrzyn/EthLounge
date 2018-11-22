@@ -21,7 +21,7 @@ class MatchListItem extends Component {
     );
 
     const logoColumn = (
-      <Grid.Column textAlign={align} width={6}>
+      <Grid.Column textAlign="center" width={6}>
         <img
           className="match-list-item-grid-main-logo undragable"
           src={`${logo}`}
@@ -33,7 +33,7 @@ class MatchListItem extends Component {
     if (index === 0)
       return (
         <Grid verticalAlign="middle">
-          <Grid.Row>
+          <Grid.Row style={{ paddingRight: '0.6em' }}>
             {nameAndPercentagesColumn}
             {logoColumn}
           </Grid.Row>
@@ -42,7 +42,7 @@ class MatchListItem extends Component {
 
     return (
       <Grid verticalAlign="middle">
-        <Grid.Row>
+        <Grid.Row style={{ paddingLeft: '0.6em' }}>
           {logoColumn}
           {nameAndPercentagesColumn}
         </Grid.Row>
@@ -51,7 +51,15 @@ class MatchListItem extends Component {
   }
 
   render() {
-    const { _id, teams, league, startTime, serie, state } = this.props.match;
+    const {
+      _id,
+      teams,
+      league,
+      startTime,
+      numberOfGames,
+      serie,
+      state
+    } = this.props.match;
     const date = dateFormatter(startTime);
     const liveLabel =
       !date.isFuture && state !== 'finalized' ? (
@@ -66,7 +74,7 @@ class MatchListItem extends Component {
 
     return (
       <Link route="match" params={{ id: _id }}>
-        <div className="match-list-item">
+        <div className="match-list-item unselectable-text">
           <Grid className="match-list-item-grid-main">
             <Grid.Row
               className="match-list-item-grid-main-row-1"
@@ -79,11 +87,11 @@ class MatchListItem extends Component {
                 {liveLabel}
                 {this.renderTeam(teams[0], 0)}
               </Grid.Column>
-              <Grid.Column
-                className="match-list-item-grid-main-vs"
-                width={1}
-                style={{ padding: 0 }}>
-                VS
+              <Grid.Column width={1} style={{ padding: 0 }} textAlign="center">
+                <span className="match-list-item-grid-main-vs">VS</span>
+                <span className="match-list-item-grid-main-bestof">
+                  BO{numberOfGames}
+                </span>
               </Grid.Column>
               <Grid.Column width={6}>
                 {this.renderTeam(teams[1], 1)}

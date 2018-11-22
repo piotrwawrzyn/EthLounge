@@ -108,7 +108,12 @@ class TeamListItem extends Component {
             style={{}}
             accept="image/png"
             onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}>
-            <Image src={newLogo.preview} size="mini" verticalAlign="middle" />
+            <Image
+              className="transparent-image-reveal"
+              src={newLogo.preview}
+              size="mini"
+              verticalAlign="middle"
+            />
           </Dropzone>
         );
       } else {
@@ -118,6 +123,7 @@ class TeamListItem extends Component {
             accept="image/png"
             onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}>
             <Image
+              className="transparent-image-reveal"
               src={this.state.logoURL}
               size="mini"
               verticalAlign="middle"
@@ -127,7 +133,12 @@ class TeamListItem extends Component {
       }
     }
     return (
-      <Image src={this.state.logoURL} size="mini" verticalAlign="middle" />
+      <Image
+        className="transparent-image-reveal"
+        src={this.state.logoURL}
+        size="mini"
+        verticalAlign="middle"
+      />
     );
   }
 

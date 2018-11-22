@@ -6,6 +6,7 @@ const AddMatch = async match => {
     league: match.league,
     startTime: match.startTime,
     pandaID: match.pandaID,
+    numberOfGames: match.numberOfGames,
     serie: match.serie
   };
 
