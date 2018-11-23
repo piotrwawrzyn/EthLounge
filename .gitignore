@@ -1,4 +1,7 @@
 /node_modules
 /.next
-/semantic/dist/
-/semantic/tasks/
+semantic/dist/components
+semantic/dist/themes/*
+!semantic/dist/*.js
+!semantic/dist/*.css
+!semantic/dist/themes/default/
