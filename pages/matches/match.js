@@ -56,9 +56,9 @@ class Match extends Component {
     event.preventDefault();
     const errorHead = 'You forgot to do the following';
     const errors = [];
-    if (!this.props.user) errors.push('Please log in to place bets.');
+    if (!this.props.user) errors.push('Please sign in to place bets.');
     if (tokensToBet.length === 0)
-      errors.push('Please place at least one token in order to place a bet.');
+      errors.push('Please bet at least one token in order to place a bet.');
     if (_.isEmpty(this.props.pickedTeam)) errors.push('Please pick a team.');
     if (errors.length > 0) {
       store.dispatch(toggleErrorModal(errorHead, errors));

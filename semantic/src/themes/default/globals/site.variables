@@ -6,7 +6,7 @@
        Fonts
 --------------------*/
 
-@fontName          : 'Work Sans';
+@fontName          : 'Open Sans';
 @fontSmoothing     : antialiased;
 
 @headerFont        : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -18,7 +18,7 @@
 @googleSubset      : 'latin';
 
 @googleProtocol    : 'https://';
-@googleFontRequest : 'Work+Sans:400,500';
+@googleFontRequest : 'Open+Sans:400,500';
 
 
 @bold              : bold;

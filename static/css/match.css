@@ -15,9 +15,20 @@
   border: 1px solid var(--opaquer-gray) !important;
 }
 
+.token span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  display: block;
+}
+
 .token img {
-  transform: scale(0.7);
-  -webkit-transform: scale(0.7);
+  /* transform: scale(0.8);
+  -webkit-transform: scale(0.8); */
+  float: right !important;
+  max-width: 30px !important;
+  min-width: 22px !important;
 }
 
 .balancebox-token {
@@ -90,6 +101,10 @@
 .teams-grid {
   background-color: var(--orange-light) !important;
   border-radius: 5px !important;
+}
+
+.odds-label {
+  /* font-family: var(--font-numbers) !important; */
 }
 
 .team-name {
@@ -240,8 +255,8 @@
 }
 
 .lastbets-token img {
-  transform: scale(0.6);
-  -webkit-transform: scale(0.6);
+  /* transform: scale(0.7);
+  -webkit-transform: scale(0.7); */
 }
 
 .lastbets-token img {
@@ -254,7 +269,7 @@
 
 .img-team-reveal {
   border: 0;
-  /* filter: brightness(0) invert(1); */
+  filter: brightness(0) invert(1);
 }
 
 /* Bet info */

@@ -25,7 +25,7 @@ class BalanceBox extends Component {
       <Message
         warning
         header="Sign in"
-        content="Please sign in in order to see your balances and place bets."
+        content="Please sign in to see your balances and place bets."
       />
     );
   }

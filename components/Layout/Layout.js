@@ -7,6 +7,7 @@ import store from '../../redux/store';
 import '../../static/css/layout.css';
 // import 'semantic-ui-css/semantic.min.css';
 import 'react-rangeslider/lib/index.css';
+import '../../semantic/dist/semantic.min.css';
 import { login } from '../../redux/layout/actions';
 import cookieCall from '../../utils/cookieCall';
 
@@ -50,12 +51,7 @@ const layout = ChildPage =>
       return (
         <Provider store={store}>
           <div>
-            <Head>
-              <link
-                rel="stylesheet"
-                href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"
-              />
-            </Head>
+            <Head />
             <Menu user={this.props.user} />
             <Container>
               <ChildPage initial={this.props} />

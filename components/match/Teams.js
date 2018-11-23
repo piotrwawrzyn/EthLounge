@@ -30,9 +30,10 @@ class Teams extends Component {
         nameClassNameModifier = ' team-name-picked';
       }
     } else {
-      if (pickedTeam.id == team.id)
+      if (pickedTeam.id == team.id) {
         labelClassNameModifier = ' team-label-picked';
-      nameClassNameModifier = ' team-name-picked';
+        nameClassNameModifier = ' team-name-picked';
+      }
     }
 
     return (
@@ -65,13 +66,13 @@ class Teams extends Component {
 
     if (index === 0)
       return (
-        <Label color="black" ribbon>
+        <Label className="odds-label" color="black" ribbon>
           {percentageAndOdds}
         </Label>
       );
 
     return (
-      <Label color="black" ribbon="right">
+      <Label className="odds-label" color="black" ribbon="right">
         {percentageAndOdds}
       </Label>
     );

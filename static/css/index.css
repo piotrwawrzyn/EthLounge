@@ -11,9 +11,6 @@
   cursor: pointer;
 }
 
-.match-list-item-grid-main {
-}
-
 .match-list-item-grid-main-row-1 {
   background: var(--light-gray);
   border-top-left-radius: 2px;
@@ -47,6 +44,7 @@
   font-size: 18px;
   font-weight: bolder;
   color: var(--orange-dark);
+  /* font-family: var(--font-numbers) !important; */
 }
 
 .match-list-item-grid-main-logo {
@@ -58,14 +56,14 @@
 .match-list-item-grid-main-tournament img {
   max-height: 80px !important;
   max-width: 80% !important;
-  -webkit-filter: grayscale(5%);
+  /* -webkit-filter: grayscale(5%);
   filter: grayscale(5%);
-  opacity: 0.9;
+  opacity: 0.9; */
 }
 
 .match-list-item-grid-main-vs,
 .match-list-item-grid-main-bestof {
-  font-family: Arial;
+  /* font-family: Arial; */
   font-size: 11px;
   display: inline-block;
   height: 25px;

@@ -63,7 +63,7 @@ class MatchListItem extends Component {
     const date = dateFormatter(startTime);
     const liveLabel =
       !date.isFuture && state !== 'finalized' ? (
-        <Rail>
+        <Rail position="left" internal>
           <Label className="live-label" attached="bottom left" circular>
             LIVE
           </Label>

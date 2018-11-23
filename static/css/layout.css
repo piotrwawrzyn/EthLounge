@@ -257,6 +257,7 @@ body {
 
 .sign-up-avatar-box * {
   margin: 0 auto !important;
+  color: white;
 }
 
 .sign-up-avatar-box img {
