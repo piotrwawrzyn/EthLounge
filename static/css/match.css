@@ -10,12 +10,32 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  text-align: center;
-  background-color: var(--light-gray) !important;
+  background: var(--light-gray) !important;
   border: 1px solid var(--opaquer-gray) !important;
+  border-radius: 4px;
 }
 
-.token span {
+.token {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row nowrap;
+}
+
+.token-amount {
+  width: 80%;
+  text-align: center;
+  font-size: 15px;
+  padding-right: 2px;
+}
+
+.betting-box-div .token .token-amount {
+  font-size: 17px;
+}
+
+.token-amount span {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -23,17 +43,66 @@
   display: block;
 }
 
-.token img {
-  /* transform: scale(0.8);
-  -webkit-transform: scale(0.8); */
+.token-logo {
+  height: 32px;
+  text-align: center;
+  padding-right: 4px;
+  padding-left: 4px;
+  border-left: 1px solid var(--opaquer-gray);
+}
+
+.betting-box-div .token .token-logo {
+  height: 40px;
+  font-size: 17px;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.betting-box-div .token .token-logo img {
+  height: 40px;
+  width: auto;
+}
+
+.token-logo img {
+  height: 32px;
+  width: auto;
+}
+
+.lastbets-token {
+  width: 100%;
+}
+
+.token.last-bets-token .token-amount span {
+  font-size: 12px;
+}
+
+.token.last-bets-token .token-logo {
+  height: 20px;
+  width: auto;
+}
+
+.token.last-bets-token .token-logo img {
+  height: 20px;
+  width: auto;
+}
+
+/* .token span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  display: block;
+} */
+
+/* .token img {
   float: right !important;
   max-width: 30px !important;
   min-width: 22px !important;
-}
+} */
 
-.balancebox-token {
+/* .balancebox-token {
   width: 100% !important;
-}
+} */
 
 /* TokenBox Item */
 
@@ -41,6 +110,8 @@
   float: left;
   margin: 0 1em 1em 0;
   width: 30%;
+  min-width: 120px;
+  cursor: pointer;
 }
 
 .balance-box-token .label:hover {
@@ -57,8 +128,18 @@
   padding-top: 0px !important;
 }
 
-.betting-box-segment-filled {
+.betting-box-div {
+  height: 50px !important;
+  border: 1px solid var(--opaque-gray);
+  border-radius: 4px;
+  background: rgba(80, 80, 80, 0.05);
+  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #b3b3b3;
+}
+
+.betting-box-div-filled {
   padding: 0em 0 0em 0 !important;
+  /* border: 0;
+  box-shadow: none; */
 }
 
 /* Betting button, Info-Bet */
@@ -244,23 +325,6 @@
   margin-bottom: 15px;
   border-radius: 5px;
   padding: 10px !important;
-}
-
-.lastbets-token {
-  width: 100%;
-}
-
-.lastbets-token span {
-  font-size: 80%;
-}
-
-.lastbets-token img {
-  /* transform: scale(0.7);
-  -webkit-transform: scale(0.7); */
-}
-
-.lastbets-token img {
-  width: 80%;
 }
 
 .last-bets-token-column {

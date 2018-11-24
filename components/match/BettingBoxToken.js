@@ -24,28 +24,23 @@ class BettingBoxToken extends Component {
         : { cursor: 'default' };
       return (
         <div>
-          <Segment
+          <div
             style={style}
             onClick={() => this.handleClick(token)}
-            textAlign="center"
-            className={'betting-box-segment betting-box-segment-filled'}>
+            className={'betting-box-div betting-box-div-filled'}>
             <Token
               isBettingBox={true}
               token={token}
               className="token-dropped"
             />
-          </Segment>
+          </div>
         </div>
       );
     }
 
     return (
       <div>
-        <Segment
-          size={'big'}
-          textAlign="center"
-          className={'betting-box-segment'}
-        />
+        <div className={'betting-box-div'} />
       </div>
     );
   }

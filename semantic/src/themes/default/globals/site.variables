@@ -6,7 +6,7 @@
        Fonts
 --------------------*/
 
-@fontName          : 'Open Sans';
+@fontName          : 'Karla';
 @fontSmoothing     : antialiased;
 
 @headerFont        : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -18,7 +18,7 @@
 @googleSubset      : 'latin';
 
 @googleProtocol    : 'https://';
-@googleFontRequest : 'Open+Sans:400,500';
+@googleFontRequest : 'Karla:400,500';
 
 
 @bold              : bold;
