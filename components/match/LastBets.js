@@ -14,7 +14,7 @@ class LastBets extends Component {
         <Grid.Column
           key={bet.betMakerID + token.id}
           className="last-bets-token-column"
-          width={4}>
+          width={8}>
           {<Token token={token} />}
         </Grid.Column>
       );

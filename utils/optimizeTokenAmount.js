@@ -1,7 +1,7 @@
 import Big from 'big.js';
 
-const optimizeTokenAmount = amount => {
-  const minimalAmountToDisplay = 0.0001;
+const optimizeTokenAmount = (amount, maximalDecimals = 8) => {
+  const minimalAmountToDisplay = Big(`1e-${maximalDecimals}`);
 
   amount = Big(amount);
 
@@ -9,10 +9,10 @@ const optimizeTokenAmount = amount => {
     amount.cmp(minimalAmountToDisplay) === 1 ||
     amount.cmp(minimalAmountToDisplay) === 0
   ) {
-    return amount.round(4);
+    return amount.round(maximalDecimals).toFixed();
   }
 
-  return `< ${minimalAmountToDisplay}`;
+  return `< ${minimalAmountToDisplay.toFixed(maximalDecimals)}`;
 };
 
 export default optimizeTokenAmount;

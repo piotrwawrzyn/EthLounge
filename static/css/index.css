@@ -43,8 +43,7 @@
 .match-list-item-grid-main-percentage {
   font-size: 18px;
   font-weight: bolder;
-  color: var(--orange-dark);
-  /* font-family: var(--font-numbers) !important; */
+  color: var(--main-color);
 }
 
 .match-list-item-grid-main-logo {

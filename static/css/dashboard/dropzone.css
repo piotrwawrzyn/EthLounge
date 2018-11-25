@@ -9,16 +9,16 @@
   line-height: 100px;
 }
 .dropzone-div-accepted {
-  border-color: var(--orange-dark);
+  border-color: var(--main-color);
 }
 
 .dropzone-div-rejected {
-  border-color: var(--error);
-  color: var(--error);
+  border-color: var(--error-color);
+  color: var(--error-color);
 }
 
-.dropzone-div-error {
-  border-color: var(--error);
-  color: var(--error);
+.dropzone-div-error-color {
+  border-color: var(--error-color);
+  color: var(--error-color);
   background-color: #fff6f6;
 }

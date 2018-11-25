@@ -6,6 +6,7 @@ import 'react-rangeslider/lib/index.css';
 import axios from 'axios';
 import { Router, Link } from '../../../next-routes';
 import cookieCall from '../../../utils/cookieCall';
+import '../../../semantic/dist/semantic.min.css';
 import Menu from './Menu';
 
 const dashboardLayout = ChildPage =>
@@ -59,11 +60,13 @@ const dashboardLayout = ChildPage =>
       return (
         <Container fluid className="main-container">
           <Head>
-            <link
-              rel="stylesheet"
-              href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"
-            />
             <meta name="robots" content="noindex, nofollow " />
+            <link
+              rel="icon"
+              type="image/x-icon"
+              href="/static/img/favicon/favicon.png"
+            />
+            <title>ethlounge | Control Panel</title>
           </Head>
           <Menu user={this.props.user} />
           <Container>

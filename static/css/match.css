@@ -46,16 +46,20 @@
 .token-logo {
   height: 32px;
   text-align: center;
-  padding-right: 4px;
-  padding-left: 4px;
+  padding-right: 6px;
+  padding-left: 6px;
   border-left: 1px solid var(--opaquer-gray);
+}
+
+.token.last-bets-token {
+  height: 30px;
 }
 
 .betting-box-div .token .token-logo {
   height: 40px;
   font-size: 17px;
-  padding-right: 8px;
-  padding-left: 8px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .betting-box-div .token .token-logo img {
@@ -70,6 +74,7 @@
 
 .lastbets-token {
   width: 100%;
+  height: 20px;
 }
 
 .token.last-bets-token .token-amount span {
@@ -152,7 +157,7 @@
 /* Range-Slider */
 
 .rangeslider-horizontal .rangeslider__fill {
-  background-color: var(--orange-light) !important;
+  background-color: var(--main-color-light) !important;
 }
 
 .rangeslider-horizontal .rangeslider__handle:focus {
@@ -180,12 +185,8 @@
 /* Teams */
 
 .teams-grid {
-  background-color: var(--orange-light) !important;
+  background-color: var(--main-color-light) !important;
   border-radius: 5px !important;
-}
-
-.odds-label {
-  /* font-family: var(--font-numbers) !important; */
 }
 
 .team-name {
@@ -197,7 +198,6 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  /* cursor: pointer; */
   border: 1px solid transparent !important;
 }
 
@@ -225,7 +225,7 @@
 /* Layout of match columns */
 
 .orange-label {
-  background-color: var(--orange-light) !important;
+  background-color: var(--main-color-light) !important;
   color: white !important;
 }
 
@@ -280,7 +280,7 @@
 }
 
 .confirm-bet-modal-header {
-  background-color: var(--orange-light) !important;
+  background-color: var(--main-color-light) !important;
   color: white !important;
 }
 
@@ -348,9 +348,9 @@
 }
 
 .bet-info-status-lost {
-  color: var(--color-lost) !important;
+  color: var(--lost-color) !important;
 }
 
 .bet-info-status-won {
-  color: var(--color-won) !important;
+  color: var(--won-color) !important;
 }

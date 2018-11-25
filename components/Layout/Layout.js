@@ -51,7 +51,14 @@ const layout = ChildPage =>
       return (
         <Provider store={store}>
           <div>
-            <Head />
+            <Head>
+              <link
+                rel="icon"
+                type="image/x-icon"
+                href="/static/img/favicon/favicon.png"
+              />
+              <title>ethlounge | Cryptocurrency CS:GO Betting Platform</title>
+            </Head>
             <Menu user={this.props.user} />
             <Container>
               <ChildPage initial={this.props} />

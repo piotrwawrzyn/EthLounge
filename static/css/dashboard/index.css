@@ -1,0 +1,32 @@
+@import '../_variables.css';
+
+.setup-box {
+  background: var(--dark-gray);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.setup-box-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.setup-box-row:not(:first-of-type) {
+  border-top: 1px solid var(--opaque-gray);
+}
+
+.setup-box-row-title {
+  padding-left: 20px;
+  padding-right: 0;
+}
+
+.setup-box-row-checkbox {
+  padding-right: 20px;
+  margin-left: 20px;
+}

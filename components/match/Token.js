@@ -5,11 +5,15 @@ import tokenFromWei from '../../utils/tokenFromWei';
 export default props => {
   const { token, isBettingBox } = props;
 
+  const amount = isBettingBox
+    ? `${tokenFromWei(token, true, 14)}`
+    : `${tokenFromWei(token, true)}`;
+
   if (isBettingBox || token.balance)
     return (
       <div className="token">
         <div className="token-amount">
-          <span>{`${tokenFromWei(token, true)}`}</span>
+          <span>{amount}</span>
         </div>
         <div className="token-logo">
           <img className="undragable" src={`${token.logo}`} />
@@ -37,7 +41,7 @@ export default props => {
     return (
       <div className="token last-bets-token">
         <div className="token-amount">
-          <span>{`${tokenFromWei(token, true)}`}</span>
+          <span>{amount}</span>
         </div>
         <div className="token-logo">
           <img className="undragable" src={`${token.logo}`} />

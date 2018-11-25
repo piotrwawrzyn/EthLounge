@@ -17,13 +17,13 @@ app.prepare().then(() => {
 
   // Set favicon
 
-  const faviconOptions = {
-    root: __dirname + '/static/'
-  };
+  // const faviconOptions = {
+  //   root: __dirname + '/static/img/favicon'
+  // };
 
-  server.get('/favicon.ico', (req, res) =>
-    res.status(200).sendFile('favicon.ico', faviconOptions)
-  );
+  // server.get('/favicon.ico', (req, res) =>
+  //   res.status(200).sendFile('favicon.ico', faviconOptions)
+  // );
 
   // Proxy: Auth user
   server.use(proxy(`${backend}/login`, { changeOrigin: true }));

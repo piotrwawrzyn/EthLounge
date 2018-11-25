@@ -7,7 +7,7 @@ const getScientificNotation = decimals => {
   return `10e+${number}`;
 };
 
-export default (token, optimize = false) => {
+export default (token, optimize = false, maximalDecimals = undefined) => {
   const amount = token.balance ? token.balance : token.amount;
   const { decimals } = token;
 
@@ -26,7 +26,8 @@ export default (token, optimize = false) => {
     return `${Optimize(
       Big(amount)
         .div(getScientificNotation(decimals))
-        .toFixed()
+        .toFixed(),
+      maximalDecimals
     )}`;
 
   return `${Big(amount)

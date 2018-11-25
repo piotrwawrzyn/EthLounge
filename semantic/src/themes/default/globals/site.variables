@@ -219,6 +219,20 @@
       Site Colors
 --------------------*/
 
+/*---  Mine  ---*/
+
+@main-color : #ef8c0e;
+@main-color-light : #f39c12;
+@dark-gray : 1b1c1d;
+@gray : #2c2d2d; 
+@light-gray : #e8e8e8;
+@lighter-gray: : #f8f8f8;
+@opaque-gray : rgba(80, 80, 80, 0.5);
+@opaquer-gray : rgba(80, 80, 80, 0.25);
+@error-color : #9f3a38;
+@won-color : #006600;
+@lost-color : #ff1a1a;
+
 /*---  Colors  ---*/
 @red              : #DB2828;
 @orange           : #F2711C;
@@ -233,6 +247,7 @@
 @brown            : #A5673F;
 @grey             : #767676;
 @black            : #1B1C1D;
+
 
 /*---  Light Colors  ---*/
 @lightRed         : #FF695E;
