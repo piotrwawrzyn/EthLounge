@@ -7,21 +7,21 @@ class ApiSetup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      automaticGameRescheduling: props.pandaAPI.automaticGameRescheduling,
-      automaticGameFinalizing: props.pandaAPI.automaticGameFinalizing
+      automaticMatchRescheduling: props.pandaAPI.automaticMatchRescheduling,
+      automaticMatchFinalizing: props.pandaAPI.automaticMatchFinalizing
     };
 
-    this.handleGameFinalizing = this.handleGameFinalizing.bind(this);
-    this.handleGameRescheduling = this.handleGameRescheduling.bind(this);
+    this.handleMatchFinalizing = this.handleMatchFinalizing.bind(this);
+    this.handleMatchRescheduling = this.handleMatchRescheduling.bind(this);
   }
 
-  async handleGameRescheduling(newValue) {
+  async handleMatchRescheduling(newValue) {
     this.setState({
-      automaticGameRescheduling: newValue
+      automaticMatchRescheduling: newValue
     });
 
     await axios.post(
-      '/backend/update-config/pandascoreapi/automatic-game-rescheduling',
+      '/backend/update-config/pandascoreapi/automatic-match-rescheduling',
       {
         method: 'post',
         data: { newValue }
@@ -29,13 +29,13 @@ class ApiSetup extends Component {
     );
   }
 
-  async handleGameFinalizing(newValue) {
+  async handleMatchFinalizing(newValue) {
     this.setState({
-      automaticGameFinalizing: newValue
+      automaticMatchFinalizing: newValue
     });
 
     await axios.post(
-      '/backend/update-config/pandascoreapi/automatic-game-finalizing',
+      '/backend/update-config/pandascoreapi/automatic-match-finalizing',
       {
         method: 'post',
         data: { newValue }
@@ -48,33 +48,33 @@ class ApiSetup extends Component {
       <div className="setup-box">
         <div className="setup-box-row">
           <div className="setup-box-row-title">
-            <Icon name="calendar alternate outline" /> Automatic Game
+            <Icon name="calendar alternate outline" /> Automatic Match
             Rescheduling
           </div>
           <div className="setup-box-row-checkbox">
             <Checkbox
               onClick={() =>
-                this.handleGameRescheduling(
-                  !this.state.automaticGameRescheduling
+                this.handleMatchRescheduling(
+                  !this.state.automaticMatchRescheduling
                 )
               }
               toggle
-              checked={this.state.automaticGameRescheduling}
+              checked={this.state.automaticMatchRescheduling}
             />
           </div>
         </div>
 
         <div className="setup-box-row">
           <div className="setup-box-row-title">
-            <Icon name="calendar check" /> Automatic Game Finalizing
+            <Icon name="calendar check" /> Automatic Match Finalizing
           </div>
           <div className="setup-box-row-checkbox">
             <Checkbox
               onClick={() =>
-                this.handleGameFinalizing(!this.state.automaticGameFinalizing)
+                this.handleMatchFinalizing(!this.state.automaticMatchFinalizing)
               }
               toggle
-              checked={this.state.automaticGameFinalizing}
+              checked={this.state.automaticMatchFinalizing}
             />
           </div>
         </div>

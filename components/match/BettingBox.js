@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, List, Label, Icon } from 'semantic-ui-react';
+import { Grid, List, Label, Icon, Popup } from 'semantic-ui-react';
 import { ICON } from '../../utils/constants';
 import _ from 'lodash';
 
@@ -13,9 +13,23 @@ class BettingBox extends Component {
     super(props);
   }
 
+  renderHelpPopup(helpText) {
+    return (
+      <Popup
+        trigger={<Icon style={{ marginLeft: '5px' }} name="help circle" />}
+        content={helpText}
+        wide
+        inverted
+        position="right center"
+      />
+    );
+  }
+
   renderBetInfo(bet, odds) {
-    const estimatedBetValue = bet.estimatedBetValue.toFixed(2);
-    const estimatedReturn = (bet.estimatedBetValue * odds).toFixed(2);
+    const { estimatedBetValue } = bet;
+
+    const estimatedReturn = (estimatedBetValue * odds).toFixed(3);
+
     let statusIcon, status, statusClassName;
 
     switch (bet.state) {
@@ -73,6 +87,11 @@ class BettingBox extends Component {
             </Label>
             <span>
               <strong>{estimatedBetValue}$</strong>
+              {bet.state === 'pending'
+                ? this.renderHelpPopup(
+                    'This value may change prior to the end of the match based on volatility of cryptocurrencies you bet.'
+                  )
+                : ''}
             </span>
           </List.Item>
           <List.Item>
@@ -81,6 +100,11 @@ class BettingBox extends Component {
             </Label>
             <span>
               <strong>{estimatedReturn}$</strong>
+              {bet.state === 'pending'
+                ? this.renderHelpPopup(
+                    'This value may change prior to the beginning of the match based on future bets of other users.'
+                  )
+                : ''}
             </span>
           </List.Item>
         </List>

@@ -9,16 +9,31 @@ class BalanceBox extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    if (this.props.user && this.props.user.balances)
+      this.emptyBalances = this.props.user.balances.length === 0;
   }
 
-  handleClick(token) {
+  handleClick(token, betsClosed) {
+    if (betsClosed) return;
+    if (store.getState().match.tokens.toBet.length === 4) return;
+
     store.dispatch(changeTokenPosition(token));
   }
 
   render() {
-    if (this.props.user)
+    const { user, tokens, betsClosed } = this.props;
+
+    if (this.emptyBalances)
       return (
-        <div className="tokens-box">{this.renderItems(this.props.tokens)}</div>
+        <p className="informational-text">
+          Your balances are empty. You can{' '}
+          <a className="dark-link">deposit your tokens here</a>.
+        </p>
+      );
+
+    if (user)
+      return (
+        <div className="tokens-box">{this.renderItems(tokens, betsClosed)}</div>
       );
 
     return (
@@ -30,16 +45,18 @@ class BalanceBox extends Component {
     );
   }
 
-  renderItems = tokens => {
+  renderItems = (tokens, betsClosed) => {
     const tokensInBalance = _.filter(tokens, { position: 'balance-box' });
+    const additionalStyles = betsClosed ? { cursor: 'default' } : {};
 
     const toRender = (
       <div>
         {tokensInBalance.map(token => {
           return (
             <div
+              style={additionalStyles}
               className={'balance-box-token'}
-              onClick={() => this.handleClick(token)}
+              onClick={() => this.handleClick(token, betsClosed)}
               key={token.id}>
               <Token token={token} />
             </div>

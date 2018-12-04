@@ -60,6 +60,12 @@ class LastBets extends Component {
   render() {
     const { bets } = this.props;
 
+    if (bets.length === 0) {
+      return (
+        <p className="informational-text">No bets found for this match.</p>
+      );
+    }
+
     return (
       <div>
         <Grid padded>{this.renderLastBets(bets)}</Grid>

@@ -6,9 +6,12 @@ import store from '../../redux/store';
 class Teams extends Component {
   constructor(props) {
     super(props);
+    this.betsClosed = this.props.match.betsClosed;
   }
 
   handleClick = (user, team, pickedTeam) => {
+    if (this.betsClosed) return;
+
     if (user) {
       if (user.bet) return;
       if (pickedTeam.id === team.id) {
@@ -19,8 +22,9 @@ class Teams extends Component {
     }
   };
 
-  renderTeamLabel(user, team, pickedTeam) {
-    const style = user && !user.bet ? { cursor: 'pointer' } : {};
+  renderTeamLabel(user, team, pickedTeam, winnerID, position) {
+    const style =
+      user && !user.bet && !this.betsClosed ? { cursor: 'pointer' } : {};
     let nameClassNameModifier = '';
     let labelClassNameModifier = '';
 
@@ -38,20 +42,28 @@ class Teams extends Component {
 
     return (
       <div
-        onClick={event => {
+        onClick={() => {
           this.handleClick(user, team, pickedTeam);
         }}>
-        <Label
-          size="huge"
+        <div
           style={style}
-          className={`team-label${labelClassNameModifier}`}>
-          <Image className="undragable" src={`${team.logo}`} />
-        </Label>
+          className={`team-label team-label${labelClassNameModifier}`}>
+          {winnerID === team.id ? (
+            <img
+              className={`match-team-winner match-team-winner-${position}`}
+              src="/static/img/winner-tick-gray.png"
+            />
+          ) : (
+            ''
+          )}
+          <Image className="team-label-logo undragable" src={`${team.logo}`} />
+        </div>
+
         <div style={style}>
           <p className={`team-name${nameClassNameModifier}`}>
             {team.displayName}
           </p>
-        </div>{' '}
+        </div>
       </div>
     );
   }
@@ -80,7 +92,6 @@ class Teams extends Component {
 
   render() {
     let { match, pickedTeam, user } = this.props;
-    const { bet } = user;
 
     if (match)
       return (
@@ -93,7 +104,13 @@ class Teams extends Component {
               <Grid.Column width={2}>{this.renderOdds(match, 0)}</Grid.Column>
 
               <Grid.Column width={5} verticalAlign="middle" textAlign="center">
-                {this.renderTeamLabel(user, match.teams[0], pickedTeam)}
+                {this.renderTeamLabel(
+                  user,
+                  match.teams[0],
+                  pickedTeam,
+                  match.winnerID,
+                  'left'
+                )}
               </Grid.Column>
 
               <Grid.Column width={2} verticalAlign="middle" textAlign="center">
@@ -101,7 +118,13 @@ class Teams extends Component {
               </Grid.Column>
 
               <Grid.Column width={5} verticalAlign="middle" textAlign="center">
-                {this.renderTeamLabel(user, match.teams[1], pickedTeam)}
+                {this.renderTeamLabel(
+                  user,
+                  match.teams[1],
+                  pickedTeam,
+                  match.winnerID,
+                  'right'
+                )}
               </Grid.Column>
 
               <Grid.Column width={2}>{this.renderOdds(match, 1)}</Grid.Column>

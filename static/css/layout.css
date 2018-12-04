@@ -399,3 +399,18 @@ body {
 .setup-box-row-checkbox {
   padding-right: 10%;
 }
+
+/* Informational text */
+
+.informational-text {
+  font-size: 16px;
+}
+
+/* Black link */
+
+.dark-link,
+.dark-link:hover {
+  color: var(--dark-gray);
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -28,9 +28,7 @@ class EthLounge extends Component {
     return (
       <Grid>
         <Grid.Row>
-          <Grid.Column computer={5} mobile={16} tablet={16}>
-            left
-          </Grid.Column>
+          <Grid.Column computer={5} mobile={16} tablet={16} />
           <Grid.Column computer={11} mobile={16} tablet={16}>
             <MatchList matches={matches} />
           </Grid.Column>

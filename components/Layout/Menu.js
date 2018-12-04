@@ -68,7 +68,9 @@ class TopMenu extends Component {
 
         <Menu.Item className="item-logo">
           <Link route="/">
-            <Image className="logo" src="/static/img/logo/logo.png" />
+            <a>
+              <Image className="logo" src="/static/img/logo/logo.png" />
+            </a>
           </Link>
         </Menu.Item>
         <Menu.Item>

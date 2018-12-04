@@ -19,7 +19,9 @@ class MatchDetails extends Component {
       numberOfGames,
       serie,
       startTime,
-      state
+      state,
+      isLive,
+      isEnded
     } = match;
 
     if (!serie) serie = '';
@@ -27,12 +29,8 @@ class MatchDetails extends Component {
 
     const date = dateFormatter(startTime);
 
-    const isLive =
-      !date.isFuture && state !== 'finalized' && state !== 'canceled'
-        ? true
-        : false;
-
     let aproxIcon;
+
     if (date.isFuture) {
       aproxIcon = ICON.GAME_SCHEDULED;
     } else {

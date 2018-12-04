@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Label, Rail } from 'semantic-ui-react';
+import { Grid, Label, Rail, Icon } from 'semantic-ui-react';
 import { Link } from '../../next-routes';
 import dateFormatter from '../../utils/dateFormatter';
 
@@ -8,8 +8,8 @@ class MatchListItem extends Component {
     super(props);
   }
 
-  renderTeam(team, index) {
-    const { displayName, percentages, logo } = team;
+  renderTeam(team, winnerID, index) {
+    const { displayName, id, percentages, logo } = team;
 
     const align = index === 0 ? 'right' : 'left';
 
@@ -22,11 +22,21 @@ class MatchListItem extends Component {
 
     const logoColumn = (
       <Grid.Column textAlign="center" width={6}>
-        <img
-          className="match-list-item-grid-main-logo undragable"
-          src={`${logo}`}
-          alt={displayName}
-        />
+        <div className="match-list-item-team-logo">
+          <img
+            className="match-list-item-grid-main-logo undragable"
+            src={`${logo}`}
+            alt={displayName}
+          />
+          {id === winnerID ? (
+            <img
+              src="/static/img/winner-tick-orange.png"
+              className={`index-team-winner index-team-winner-${align}`}
+            />
+          ) : (
+            ''
+          )}
+        </div>
       </Grid.Column>
     );
 
@@ -58,9 +68,14 @@ class MatchListItem extends Component {
       startTime,
       numberOfGames,
       serie,
-      state
+      state,
+      winnerID
     } = this.props.match;
     const date = dateFormatter(startTime);
+
+    const isPastMatch = state === 'finalized';
+    const classNameModifier = isPastMatch ? 'past-match' : '';
+
     const liveLabel =
       !date.isFuture && state !== 'finalized' ? (
         <Rail position="left" internal>
@@ -74,50 +89,56 @@ class MatchListItem extends Component {
 
     return (
       <Link route="match" params={{ id: _id }}>
-        <div className="match-list-item unselectable-text">
-          <Grid className="match-list-item-grid-main">
-            <Grid.Row
-              className="match-list-item-grid-main-row-1"
-              style={{ padding: 0 }}
-              verticalAlign="middle"
-              textAlign="center">
-              <Grid.Column
-                width={6}
-                style={{ paddingTop: '1em', paddingBottom: '1em' }}>
-                {liveLabel}
-                {this.renderTeam(teams[0], 0)}
-              </Grid.Column>
-              <Grid.Column width={1} style={{ padding: 0 }} textAlign="center">
-                <span className="match-list-item-grid-main-vs">VS</span>
-                <span className="match-list-item-grid-main-bestof">
-                  BO{numberOfGames}
-                </span>
-              </Grid.Column>
-              <Grid.Column width={6}>
-                {this.renderTeam(teams[1], 1)}
-              </Grid.Column>
-
-              <Grid.Column
-                className="match-list-item-grid-main-tournament"
-                textAlign="center"
+        <a>
+          <div
+            className={`match-list-item unselectable-text ${classNameModifier}`}>
+            <Grid className="match-list-item-grid-main">
+              <Grid.Row
+                className="match-list-item-grid-main-row-1"
+                style={{ padding: 0 }}
                 verticalAlign="middle"
-                width={3}>
-                <img
-                  src={`${league.logo}`}
-                  className="undragable"
-                  alt={league.displayName}
-                />
-              </Grid.Column>
-            </Grid.Row>
+                textAlign="center">
+                <Grid.Column
+                  width={6}
+                  style={{ paddingTop: '1em', paddingBottom: '1em' }}>
+                  {liveLabel}
+                  {this.renderTeam(teams[0], winnerID, 0)}
+                </Grid.Column>
+                <Grid.Column
+                  width={1}
+                  style={{ padding: 0 }}
+                  textAlign="center">
+                  <span className="match-list-item-grid-main-vs">VS</span>
+                  <span className="match-list-item-grid-main-bestof">
+                    BO{numberOfGames}
+                  </span>
+                </Grid.Column>
+                <Grid.Column width={6}>
+                  {this.renderTeam(teams[1], winnerID, 1)}
+                </Grid.Column>
 
-            <Grid.Row columns="2" className="match-list-item-grid-main-row-2">
-              <Grid.Column textAlign="left">{date.aprox}</Grid.Column>
-              <Grid.Column textAlign="right">{`${
-                league.displayName
-              } ${serie}`}</Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </div>
+                <Grid.Column
+                  className="match-list-item-grid-main-tournament"
+                  textAlign="center"
+                  verticalAlign="middle"
+                  width={3}>
+                  <img
+                    src={`${league.logo}`}
+                    className="undragable"
+                    alt={league.displayName}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+
+              <Grid.Row columns="2" className="match-list-item-grid-main-row-2">
+                <Grid.Column textAlign="left">{date.aprox}</Grid.Column>
+                <Grid.Column textAlign="right">{`${
+                  league.displayName
+                } ${serie}`}</Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </div>
+        </a>
       </Link>
     );
   }

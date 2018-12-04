@@ -111,11 +111,15 @@
 
 /* TokenBox Item */
 
-.balance-box-token {
+.balance-box-token,
+.winnings-box-token {
   float: left;
   margin: 0 1em 1em 0;
   width: 30%;
   min-width: 120px;
+}
+
+.balance-box-token {
   cursor: pointer;
 }
 
@@ -145,6 +149,10 @@
   padding: 0em 0 0em 0 !important;
   /* border: 0;
   box-shadow: none; */
+}
+
+.betting-box-disabled {
+  opacity: 0.55;
 }
 
 /* Betting button, Info-Bet */
@@ -184,16 +192,15 @@
 
 /* Teams */
 
-.teams-grid {
-  background-color: var(--main-color-light) !important;
-  border-radius: 5px !important;
-}
-
-.team-name {
-  font-size: large;
-}
-
 .team-label {
+  width: 90px;
+  height: 78px;
+  text-align: center;
+  border-radius: 4px;
+  padding: 4px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  position: relative;
   background-color: var(--lighter-gray) !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
@@ -201,8 +208,27 @@
   border: 1px solid transparent !important;
 }
 
-.team-label img {
-  transform: scale(1.2);
+.team-label .team-label-logo {
+  max-height: 68px;
+  max-width: 68px;
+  padding: 6px;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.teams-grid {
+  background-color: var(--main-color-light) !important;
+  border-radius: 5px !important;
+}
+
+.team-name {
+  font-size: large;
 }
 
 .team-label-picked {
@@ -353,4 +379,58 @@
 
 .bet-info-status-won {
   color: var(--won-color) !important;
+}
+
+/* Winnings Box */
+
+.confetti {
+  width: 1px;
+  margin: 0 auto;
+}
+
+.winnings-box-token-hidden {
+  display: none;
+}
+
+.winnings-box-token-animated {
+  -webkit-animation: entrance-1 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+  animation: entrance-1 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+
+.bet-lost-info span {
+  font-size: 16px;
+  color: var(--lost-color);
+}
+
+.bet-lost-info p {
+  font-size: 100px;
+  color: var(--dark-gray);
+  text-align: center;
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.bet-lost-info .bet-lost-info-smiley-2 {
+  transform: rotate(90deg) translateX(-80px);
+}
+
+/* Winner tick */
+
+.match-team-winner {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: auto;
+}
+
+.match-team-winner-left {
+  left: 0;
+  display: inline-block;
+  transform: translateX(-14px) translateY(-15px);
+}
+
+.match-team-winner-right {
+  right: 0;
+  display: inline-block;
+  transform: translateX(14px) translateY(-15px);
 }

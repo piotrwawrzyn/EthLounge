@@ -15,16 +15,6 @@ const port = process.env.PORT || 3000;
 app.prepare().then(() => {
   const server = express();
 
-  // Set favicon
-
-  // const faviconOptions = {
-  //   root: __dirname + '/static/img/favicon'
-  // };
-
-  // server.get('/favicon.ico', (req, res) =>
-  //   res.status(200).sendFile('favicon.ico', faviconOptions)
-  // );
-
   // Proxy: Auth user
   server.use(proxy(`${backend}/login`, { changeOrigin: true }));
   server.use(proxy(`${backend}/register`, { changeOrigin: true }));
@@ -42,6 +32,7 @@ app.prepare().then(() => {
 
   // User actions
   server.use(proxy(`${backend}/place_bet`, { changeOrigin: true }));
+  server.use(proxy(`${backend}/set_displayed_bet`, { changeOrigin: true }));
 
   // Proxy: Backend
   server.use(proxy(`${backend}/backend`, { changeOrigin: true }));
