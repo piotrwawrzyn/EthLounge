@@ -25,7 +25,7 @@ class WinningsBox extends Component {
           this.setState({
             classNameModifiers: newClassNameModifiers
           });
-        }, 300 * i);
+        }, 300 * (i + 1));
       }
   }
 

@@ -86,11 +86,11 @@ class Match extends Component {
     if (bet)
       if (bet.displayedToUser === false && bet.state === 'won')
         if (!this.state.confettiActive) {
-          const multiplier = bet.tokensWon ? bet.tokensWon.length - 1 : 0;
+          const multiplier = bet.tokensWon ? bet.tokensWon.length : 0;
 
           setTimeout(() => {
             this.setState({ confettiActive: true });
-          }, 500 + 300 * multiplier);
+          }, 600 + 300 * multiplier);
 
           axios({
             url: '/set_displayed_bet',
