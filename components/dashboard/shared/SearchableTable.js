@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Image, Icon, Button } from 'semantic-ui-react';
 import _ from 'lodash';
+import { sort } from 'semver';
 
 class SearchableTable extends Component {
   constructor(props) {
@@ -12,24 +13,61 @@ class SearchableTable extends Component {
     this.recordsRendered = 0;
     this.state = { limit: this.limitStep };
   }
-  renderTeams(items, query, sortBy, ItemComponent) {
+  renderItems(items, query, sortBy, ItemComponent) {
     query = query.toLowerCase();
+    let filteredItems;
 
-    let firstFilter = items.filter(curr => {
-      const name = curr.displayName.toLowerCase();
-      return name.startsWith(query);
-    });
+    if (query.includes('::')) {
+      const splitedQuery = query.split('::');
+      sortBy = splitedQuery[0];
+      if (sortBy === 'id') sortBy = '_id';
+      query = splitedQuery[1];
 
-    firstFilter = firstFilter.reverse();
+      if (query.startsWith(' ')) query = query.slice(1);
 
-    let secondFilter = items.filter(curr => {
-      const name = curr[sortBy].toLowerCase();
-      return !name.startsWith(query) && name.includes(query);
-    });
+      filteredItems = items.filter(item => {
+        if (item[sortBy] === undefined) return false;
 
-    secondFilter = secondFilter.reverse();
+        return item[sortBy] == query;
+      });
+    } else {
+      if (query.includes(':')) {
+        const splitedQuery = query.split(':');
+        sortBy = splitedQuery[0];
+        if (sortBy === 'id') sortBy = '_id';
+        query = splitedQuery[1];
 
-    let filteredItems = [...firstFilter, ...secondFilter];
+        if (query.startsWith(' ')) query = query.slice(1);
+      }
+
+      // Sort by default property
+
+      let firstFilter = items.filter(curr => {
+        if (curr[sortBy] === undefined) return false;
+        const name = curr[sortBy].toString().toLowerCase();
+        return name === query;
+      });
+
+      let secondFilter = items.filter(curr => {
+        if (curr[sortBy] === undefined) return false;
+        const name = curr[sortBy].toString().toLowerCase();
+        return name.startsWith(query) && name !== query;
+      });
+
+      secondFilter = secondFilter.reverse();
+
+      let thirdFilter = items.filter(curr => {
+        if (curr[sortBy] === undefined) return false;
+        const name = curr[sortBy].toString().toLowerCase();
+        return (
+          !name.startsWith(query) && name.includes(query) && name !== query
+        );
+      });
+
+      thirdFilter = thirdFilter.reverse();
+
+      filteredItems = [...firstFilter, ...secondFilter, ...thirdFilter];
+    }
 
     let reducedItems;
 
@@ -55,7 +93,7 @@ class SearchableTable extends Component {
       return (
         <Table.Footer>
           <Table.Row>
-            <Table.HeaderCell colSpan="4">
+            <Table.HeaderCell colSpan={this.props.headers.length + 1}>
               <Button
                 fluid
                 className="orange-button-light"
@@ -105,13 +143,10 @@ class SearchableTable extends Component {
     return (
       <Table>
         <Table.Header>
-          <Table.Row>
-            {this.renderHeaders(headers)}
-            <Table.HeaderCell />
-          </Table.Row>
+          <Table.Row>{this.renderHeaders(headers)}</Table.Row>
         </Table.Header>
         <Table.Body>
-          {this.renderTeams(items, searchQuery, sortBy, ItemComponent)}
+          {this.renderItems(items, searchQuery, sortBy, ItemComponent)}
         </Table.Body>
         {this.renderLoadMore(this.renderMore)}
       </Table>

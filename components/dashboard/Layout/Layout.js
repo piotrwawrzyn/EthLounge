@@ -8,6 +8,7 @@ import { Router, Link } from '../../../next-routes';
 import cookieCall from '../../../utils/cookieCall';
 import '../../../semantic/dist/semantic.min.css';
 import Menu from './Menu';
+import { MISCELLANEOUS } from '../../../utils/constants';
 
 const dashboardLayout = ChildPage =>
   class extends Component {
@@ -22,7 +23,6 @@ const dashboardLayout = ChildPage =>
         console.log(err);
       }
 
-      const errorURL = '/404';
       const user = api_response.data;
 
       let isAdmin;
@@ -32,11 +32,11 @@ const dashboardLayout = ChildPage =>
       if (!isAdmin) {
         if (res) {
           res.writeHead(302, {
-            Location: errorURL
+            Location: MISCELLANEOUS.ERROR_PAGE_URL
           });
           res.end();
         } else {
-          Router.pushRoute(errorURL);
+          Router.pushRoute(MISCELLANEOUS.ERROR_PAGE_URL);
         }
       }
 

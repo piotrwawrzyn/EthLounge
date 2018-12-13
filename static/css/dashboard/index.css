@@ -30,3 +30,33 @@
   padding-right: 20px;
   margin-left: 20px;
 }
+
+/* Server stats */
+
+.server-stats-item-key,
+.server-stats-item-value {
+  font-size: 14px;
+}
+
+.server-stats-item {
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+
+.server-stats-item-key {
+  font-weight: bolder;
+  background: var(--dark-gray);
+  color: white;
+  padding: 6px;
+  border-radius: 2px;
+}
+
+.server-stats-item-value {
+  margin-left: 8px;
+}
+
+/* Collections */
+
+.collections button {
+  margin-bottom: 10px !important;
+}

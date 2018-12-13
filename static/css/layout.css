@@ -56,6 +56,14 @@ h6 {
   color: var(--error-color) !important;
 }
 
+.font-lost {
+  color: var(--lost-color);
+}
+
+.font-won {
+  color: var(--won-color);
+}
+
 .word-wrap {
   word-wrap: break-word;
 }
@@ -413,4 +421,86 @@ body {
   color: var(--dark-gray);
   text-decoration: underline;
   cursor: pointer;
+}
+
+/* Token */
+
+.token {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: var(--light-gray) !important;
+  border: 1px solid var(--opaquer-gray) !important;
+  border-radius: 4px;
+}
+
+.token {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row nowrap;
+  line-height: 18px;
+}
+
+.token-amount {
+  width: 80%;
+  text-align: center;
+  font-size: 16px;
+  padding-right: 2px;
+}
+
+.token-amount span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  display: block;
+}
+
+.token-amount-span {
+  font-weight: 500;
+}
+
+.token-symbol-span {
+  font-size: 11px;
+}
+
+.token-logo {
+  height: 32px;
+  text-align: center;
+  padding-right: 6px;
+  padding-left: 6px;
+  border-left: 1px solid var(--opaquer-gray);
+}
+
+.token-logo img {
+  height: 32px;
+  width: auto;
+}
+
+/* EMPTY BOX */
+
+.empty-box::before {
+  content: 'EMPTY';
+}
+
+.empty-box {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 4px;
+  padding: 1em;
+  color: var(--opaque-gray);
+  letter-spacing: 20px;
+  font-size: 22px;
+  background: var(--opaquer-gray);
+  opacity: 0.4;
+  text-transform: capitalize;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

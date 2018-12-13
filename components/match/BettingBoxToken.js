@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Segment } from 'semantic-ui-react';
-import Token from './Token';
+import Token from '../shared/Token';
 import { changeTokenPosition } from '../../redux/match/actions';
 import store from '../../redux/store';
 

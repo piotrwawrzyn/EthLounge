@@ -7,5 +7,11 @@ export const ICON = {
   BET_WON: 'trophy',
   BET_LOST: 'minus',
   BET_DRAW: 'law',
-  BET_CANCELED: 'calendar times'
+  BET_CANCELED: 'calendar times',
+  USER_VERIFIED: 'chevron down',
+  USER_UNVERIFIED: 'x'
+};
+
+export const MISCELLANEOUS = {
+  ERROR_PAGE_URL: '/404'
 };

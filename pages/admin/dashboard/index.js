@@ -4,6 +4,8 @@ import { Divider, Grid, GridColumn } from 'semantic-ui-react';
 import ApiSetup from '../../../components/dashboard/index/ApiSetup';
 import cookieCall from '../../../utils/cookieCall';
 import '../../../static/css/dashboard/index.css';
+import ServerStats from '../../../components/dashboard/index/ServerStats';
+import Collections from '../../../components/dashboard/index/Collections';
 
 class Dashboard extends Component {
   static async getInitialProps(props) {
@@ -28,7 +30,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { pandaAPI } = this.props.initial.indexProps;
+    const { pandaAPI, serverStats } = this.props.initial.indexProps;
 
     const { user } = this.props.initial;
     return (
@@ -40,6 +42,10 @@ class Dashboard extends Component {
           <GridColumn width={6}>
             <h3>Pandascore API setup</h3>
             <ApiSetup pandaAPI={pandaAPI} />
+            <h3>Collections</h3>
+            <Collections />
+            <h3>Server statistics</h3>
+            <ServerStats stats={serverStats} />
           </GridColumn>
         </Grid>
       </div>

@@ -1,6 +1,6 @@
 import Big from 'big.js';
 
-const optimizeTokenAmount = (amount, maximalDecimals = 8) => {
+const optimizeTokenAmount = (amount, maximalDecimals = 6) => {
   const minimalAmountToDisplay = Big(`1e-${maximalDecimals}`);
 
   amount = Big(amount);

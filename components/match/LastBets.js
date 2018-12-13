@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Reveal } from 'semantic-ui-react';
 import makeBlockie from 'ethereum-blockies-base64';
-import Token from './Token';
+import Token from '../shared/Token';
 
 class LastBets extends Component {
   constructor(props) {

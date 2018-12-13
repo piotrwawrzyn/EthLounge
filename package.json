@@ -15,7 +15,7 @@
     "fs-extra": "^7.0.1",
     "ganache-cli": "^6.2.3",
     "gulp-help": "^1.6.1",
-    "http-proxy-middleware": "^0.19.0",
+    "http-proxy-middleware": "^0.19.1",
     "lodash": "^4.17.11",
     "next": "^7.0.2",
     "next-compose-plugins": "^2.1.1",

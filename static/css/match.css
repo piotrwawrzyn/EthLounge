@@ -3,52 +3,8 @@
 
 /* Token */
 
-.token {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background: var(--light-gray) !important;
-  border: 1px solid var(--opaquer-gray) !important;
-  border-radius: 4px;
-}
-
-.token {
-  height: 50px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-flow: row nowrap;
-}
-
-.token-amount {
-  width: 80%;
-  text-align: center;
-  font-size: 15px;
-  padding-right: 2px;
-}
-
 .betting-box-div .token .token-amount {
   font-size: 17px;
-}
-
-.token-amount span {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 100%;
-  display: block;
-}
-
-.token-logo {
-  height: 32px;
-  text-align: center;
-  padding-right: 6px;
-  padding-left: 6px;
-  border-left: 1px solid var(--opaquer-gray);
 }
 
 .token.last-bets-token {
@@ -64,11 +20,6 @@
 
 .betting-box-div .token .token-logo img {
   height: 40px;
-  width: auto;
-}
-
-.token-logo img {
-  height: 32px;
   width: auto;
 }
 
@@ -91,25 +42,11 @@
   width: auto;
 }
 
-/* .token span {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 100%;
-  display: block;
-} */
-
-/* .token img {
-  float: right !important;
-  max-width: 30px !important;
-  min-width: 22px !important;
-} */
-
-/* .balancebox-token {
-  width: 100% !important;
-} */
-
 /* TokenBox Item */
+
+.balance-box {
+  overflow: auto;
+}
 
 .balance-box-token,
 .winnings-box-token {
@@ -125,6 +62,10 @@
 
 .balance-box-token .label:hover {
   cursor: pointer !important;
+}
+
+.balance-box-token-inactive {
+  cursor: default;
 }
 
 /* BettingBox Row */

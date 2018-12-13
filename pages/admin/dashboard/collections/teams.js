@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Layout from '../../../components/dashboard/Layout/Layout';
+import Layout from '../../../../components/dashboard/Layout/Layout';
 import { Divider, Grid, GridColumn, Header, Input } from 'semantic-ui-react';
-import '../../../static/css/dashboard/dropzone.css';
-import cookieCall from '../../../utils/cookieCall';
-import SearchableTable from '../../../components/dashboard/shared/SearchableTable';
-import TeamForm from '../../../components/dashboard/teams/TeamForm';
-import TeamListItem from '../../../components/dashboard/teams/TeamListItem';
+import '../../../../static/css/dashboard/dropzone.css';
+import cookieCall from '../../../../utils/cookieCall';
+import SearchableTable from '../../../../components/dashboard/shared/SearchableTable';
+import TeamForm from '../../../../components/dashboard/teams/TeamForm';
+import TeamListItem from '../../../../components/dashboard/teams/TeamListItem';
 
 class Teams extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class Teams extends Component {
             <SearchableTable
               searchQuery={this.state.searchQuery}
               items={this.props.initial.teams}
-              headers={['ID', 'Name', 'Logo']}
+              headers={['ID', 'Name', 'Logo', '']}
               ItemComponent={TeamListItem}
               sortBy={'displayName'}
             />

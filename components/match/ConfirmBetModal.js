@@ -108,9 +108,12 @@ class ConfirmBetModal extends Component {
 
     const tokenList = tokensToBet.map(curr => {
       return (
-        <List.Item as="p" key={curr.symbol}>
-          <Icon name="right triangle" />
-          {`${tokenFromWei(curr)} ${curr.symbol}`}
+        <List.Item as="span" key={curr.symbol}>
+          <span>
+            <Icon name="right triangle" />
+            {`${tokenFromWei(curr)}`}
+            <strong> {' ' + `${curr.symbol}`}</strong>
+          </span>
         </List.Item>
       );
     });

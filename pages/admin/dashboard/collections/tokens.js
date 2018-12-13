@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Layout from '../../../components/dashboard/Layout/Layout';
+import Layout from '../../../../components/dashboard/Layout/Layout';
 import { Divider, Grid, GridColumn, Header, Input } from 'semantic-ui-react';
-import '../../../static/css/dashboard/dropzone.css';
-import cookieCall from '../../../utils/cookieCall';
-import TokenForm from '../../../components/dashboard/tokens/TokenForm';
-import TokenListItem from '../../../components/dashboard/tokens/TokenListItem';
-import SearchableTable from '../../../components/dashboard/shared/SearchableTable';
+import '../../../../static/css/dashboard/dropzone.css';
+import cookieCall from '../../../../utils/cookieCall';
+import TokenForm from '../../../../components/dashboard/tokens/TokenForm';
+import TokenListItem from '../../../../components/dashboard/tokens/TokenListItem';
+import SearchableTable from '../../../../components/dashboard/shared/SearchableTable';
 
 class Tokens extends Component {
   constructor(props) {
@@ -47,7 +47,8 @@ class Tokens extends Component {
                   'Symbol',
                   'Address (Read Only)',
                   'Decimals',
-                  'Logo'
+                  'Logo',
+                  ''
                 ]}
                 ItemComponent={TokenListItem}
                 sortBy={'displayName'}

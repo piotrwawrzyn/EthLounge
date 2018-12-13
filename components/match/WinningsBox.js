@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Message, Image } from 'semantic-ui-react';
 import { ICON } from '../../utils/constants';
-import Token from './Token';
+import Token from '../shared/Token';
 
 class WinningsBox extends Component {
   constructor(props) {

@@ -1,0 +1,97 @@
+@import '../_variables.css';
+
+/* Users List */
+
+.user-list-item:hover {
+  background: rgba(80, 80, 80, 0.05);
+  cursor: pointer;
+}
+
+.user-list-item-avatar {
+  width: 40px;
+  border-radius: 50%;
+}
+
+/* Single User - Header */
+
+.user-header-grid {
+  background: var(--dark-gray) !important;
+  margin-top: 1em !important;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.user-header-grid-avatar {
+  border: 2px solid white;
+  border-radius: 4px;
+  width: 100px;
+}
+
+.user-header-grid-username {
+  font-size: 45px;
+  color: white;
+  padding-top: 20px;
+}
+
+.user-header-grid-email {
+  color: white;
+  font-size: 20px;
+}
+
+/* Single User - Details */
+
+.user-details {
+  background: var(--dark-gray);
+  color: white;
+  padding: 1em;
+}
+
+.user-details-item {
+  padding: 10px;
+
+  margin: 0;
+}
+
+.user-details-item:not(:last-of-type) {
+  border-bottom: 1px solid white;
+}
+
+.user-details-item-key {
+  margin-right: 10px;
+  font-size: 13px;
+}
+
+.user-details-item-value {
+  font-size: 16px;
+}
+
+/* Single User - User balances */
+
+.user-balances {
+  margin-top: 1em;
+  overflow: auto;
+  clear: both;
+}
+
+.user-balances-box {
+  width: 100%;
+}
+
+.user-balances-box-token {
+  float: left;
+  margin: 0 1em 1em 0;
+  width: 30%;
+  min-width: 120px;
+}
+
+/* Single User - Pending bets */
+
+.user-pending-bets {
+  margin-top: 1em;
+}
+
+/* Single User - Bet History */
+
+.user-bet-history {
+  margin-top: 1em;
+}

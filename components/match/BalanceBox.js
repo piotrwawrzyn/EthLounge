@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Message } from 'semantic-ui-react';
 import { changeTokenPosition } from '../../redux/match/actions';
 import store from '../../redux/store';
-import Token from './Token';
+import Token from '../shared/Token';
 
 class BalanceBox extends Component {
   constructor(props) {
@@ -31,10 +31,7 @@ class BalanceBox extends Component {
         </p>
       );
 
-    if (user)
-      return (
-        <div className="tokens-box">{this.renderItems(tokens, betsClosed)}</div>
-      );
+    if (user) return <div>{this.renderItems(tokens, betsClosed)}</div>;
 
     return (
       <Message
@@ -47,18 +44,21 @@ class BalanceBox extends Component {
 
   renderItems = (tokens, betsClosed) => {
     const tokensInBalance = _.filter(tokens, { position: 'balance-box' });
-    const additionalStyles = betsClosed ? { cursor: 'default' } : {};
+
+    const active = betsClosed ? false : true;
+    const classNameModifier = active
+      ? 'balance-box-token-active'
+      : 'balance-box-token-inactive';
 
     const toRender = (
-      <div>
+      <div className="balance-box">
         {tokensInBalance.map(token => {
           return (
             <div
-              style={additionalStyles}
-              className={'balance-box-token'}
+              className={`balance-box-token ${classNameModifier}`}
               onClick={() => this.handleClick(token, betsClosed)}
               key={token.id}>
-              <Token token={token} />
+              <Token isBalanceBox={true} active={active} token={token} />
             </div>
           );
         })}

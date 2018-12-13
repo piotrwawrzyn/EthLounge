@@ -15,7 +15,6 @@ const layout = ChildPage =>
   class extends Component {
     static async getInitialProps(initialProps) {
       const { req } = initialProps;
-      let res;
 
       let api_response;
 

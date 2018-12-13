@@ -23,6 +23,7 @@ import LastBets from '../../components/match/LastBets';
 import WinningsBox from '../../components/match/WinningsBox';
 import Confetti from 'react-dom-confetti';
 import axios from 'axios';
+import { MISCELLANEOUS } from '../../utils/constants';
 
 class Match extends Component {
   constructor(props) {
@@ -39,10 +40,8 @@ class Match extends Component {
 
     const data = api_response.data;
 
-    const errorURL = '/404';
-
     if (!data) {
-      serverSideRedirect(res, errorURL);
+      serverSideRedirect(res, MISCELLANEOUS.ERROR_PAGE_URL);
     }
 
     const now = new Date();
@@ -85,7 +84,7 @@ class Match extends Component {
     const { bet } = user;
 
     if (bet)
-      if (bet.displayedToUser === false)
+      if (bet.displayedToUser === false && bet.state === 'won')
         if (!this.state.confettiActive) {
           const multiplier = bet.tokensWon ? bet.tokensWon.length - 1 : 0;
 
