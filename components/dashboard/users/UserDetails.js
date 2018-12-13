@@ -4,6 +4,7 @@ import { Icon } from 'semantic-ui-react';
 import Big from 'big.js';
 import tokenFromWei from '../../../utils/tokenFromWei';
 import { ICON } from '../../../utils/constants';
+import getBalancesWorth from '../../../utils/getBalancesWorth';
 
 class UserDetails extends Component {
   renderWinRatio(bets) {
@@ -41,19 +42,6 @@ class UserDetails extends Component {
     );
   }
 
-  getBalancesWorth(balances) {
-    let total = new Big(0);
-
-    for (let i = 0; i < balances.length; i++) {
-      const { balance, decimals, price } = balances[i];
-      console.log(balance, decimals, price.USD);
-      const value = Big(tokenFromWei(balances[i])).mul(price.USD);
-      total = total.add(value);
-    }
-
-    return total.toFixed(2);
-  }
-
   render() {
     const { user } = this.props;
 
@@ -85,7 +73,7 @@ class UserDetails extends Component {
         {this.renderItem('Win ratio', this.renderWinRatio(user.bets))}
         {this.renderItem(
           'Balances worth',
-          this.getBalancesWorth(user.balances) + '$'
+          getBalancesWorth(user.balances) + '$'
         )}
         {this.renderItem('Total betting volume', totalDollarVolume + '$')}
       </div>

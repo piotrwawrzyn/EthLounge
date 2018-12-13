@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Divider } from 'semantic-ui-react';
 import Token from '../../shared/Token';
+import getBalancesWorth from '../../../utils/getBalancesWorth';
 
 class UserBalances extends Component {
   constructor(props) {
@@ -19,7 +20,9 @@ class UserBalances extends Component {
     const { balances } = this.props;
     return (
       <div className="user-balances">
-        <h1>Balances</h1>
+        <h1>
+          Balances <small>({getBalancesWorth(balances)}$)</small>
+        </h1>
         <Divider />
         {balances.length > 0 ? (
           <div className="user-balances-box">

@@ -90,7 +90,7 @@ class Match extends Component {
 
           setTimeout(() => {
             this.setState({ confettiActive: true });
-          }, 600 + 300 * multiplier);
+          }, 600 + 500 * multiplier);
 
           axios({
             url: '/set_displayed_bet',
