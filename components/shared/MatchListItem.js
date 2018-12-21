@@ -20,9 +20,13 @@ class MatchListItem extends Component {
       </Grid.Column>
     );
 
+    const pickedTeamClassNameModifier =
+      this.props.picked === id ? ' match-list-item-team-logo-picked' : '';
+
     const logoColumn = (
       <Grid.Column textAlign="center" width={6}>
-        <div className="match-list-item-team-logo">
+        <div
+          className={`match-list-item-team-logo${pickedTeamClassNameModifier}`}>
           <img
             className="match-list-item-grid-main-logo undragable"
             src={`${logo}`}
@@ -31,7 +35,7 @@ class MatchListItem extends Component {
           {id === winnerID ? (
             <img
               src="/static/img/winner-tick-orange.png"
-              className={`index-team-winner index-team-winner-${align}`}
+              className={`match-list-item-team-winner match-list-item-team-winner-${align}`}
             />
           ) : (
             ''

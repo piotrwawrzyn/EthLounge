@@ -73,10 +73,12 @@ class TopMenu extends Component {
             </a>
           </Link>
         </Menu.Item>
-        <Menu.Item>
-          <Icon name="chess knight" />
-          My Bets
-        </Menu.Item>
+        <Link route="/bets">
+          <Menu.Item>
+            <Icon name="chess knight" />
+            My Bets
+          </Menu.Item>
+        </Link>
         <Menu.Item>
           <Icon name="angle double down" />
           Deposit

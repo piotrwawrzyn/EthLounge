@@ -90,6 +90,14 @@
   margin-top: 1em;
 }
 
+.match-list-item {
+  padding: 1em;
+}
+
+.match-list-item:first-of-type {
+  padding-top: 1em;
+}
+
 /* Single User - Bet History */
 
 .user-bet-history {

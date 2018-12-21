@@ -48,7 +48,9 @@
   },
   "scripts": {
     "test": "mocha --timeout 3000000",
-    "dev": "node server.js",
+    "client": "node server.js",
+    "server": "cd .. && cd ethloungeAPI && nodemon server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "ganache": "ganache-cli --accounts 1000",
     "build": "next build",
     "start": "node server.js",

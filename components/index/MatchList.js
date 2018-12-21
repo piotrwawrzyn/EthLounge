@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MatchListItem from './MatchListItem';
+import MatchListItem from '../shared/MatchListItem';
 
 class MatchList extends Component {
   constructor(props) {
