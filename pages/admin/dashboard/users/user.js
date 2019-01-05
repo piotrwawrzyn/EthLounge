@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from '../../../../components/dashboard/Layout/Layout';
 import cookieCall from '../../../../utils/cookieCall';
-import serverSideRedirect from '../../../../utils/serverSideRedirect';
+import redirect from '../../../../utils/redirect';
 import { MISCELLANEOUS } from '../../../../utils/constants';
 import { Grid } from 'semantic-ui-react';
 import makeBlockie from 'ethereum-blockies-base64';
@@ -25,7 +25,7 @@ class User extends Component {
     const data = api_response.data;
 
     if (!data) {
-      serverSideRedirect(res, MISCELLANEOUS.ERROR_PAGE_URL);
+      redirect(res, MISCELLANEOUS.ERROR_PAGE_URL);
     }
 
     return { ...data };

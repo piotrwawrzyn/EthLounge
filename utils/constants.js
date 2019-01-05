@@ -13,5 +13,6 @@ export const ICON = {
 };
 
 export const MISCELLANEOUS = {
-  ERROR_PAGE_URL: '/404'
+  ERROR_PAGE_URL: '/404',
+  NOT_SIGNED_IN_REDIRECT_URL: '/'
 };

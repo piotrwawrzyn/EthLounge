@@ -1,0 +1,111 @@
+@import '_variables.css';
+
+/* Pending Bets */
+
+.match-list-item {
+  margin-top: 1em;
+}
+
+.my-bets-tokens-bet {
+  background: var(--dark-gray);
+  width: 100%;
+  height: calc(100% - 2em);
+  border: 1px solid var(--opaque-gray);
+  border-left: 0 transparent;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 30px;
+  align-items: center;
+  padding-right: 30px;
+  margin-top: 0.5em;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.my-bets-tokens-bet .token {
+  width: 48%;
+  height: 42% !important;
+  max-width: 200px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .my-bets-tokens-bet {
+    display: none;
+  }
+}
+
+/* Bet History */
+
+.bet-history-item {
+  background: var(--opaquer-gray);
+  border-radius: 2px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--dark-gray);
+  border-top: 1px solid var(--dark-gray);
+  border-right: 1px solid var(--dark-gray);
+}
+
+.bet-history-item span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.bet-history-item.won {
+  border-left: 5px solid var(--won-color);
+}
+
+.bet-history-item.lost {
+  border-left: 5px solid var(--lost-color);
+}
+
+.bet-history-item.default {
+  border-left: 5px solid var(--gray);
+}
+
+.team-img {
+  width: 30px;
+}
+
+.league-img {
+  max-width: 50px;
+  max-height: 30px;
+}
+
+.image-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.image-box img {
+  margin-right: 20px;
+}
+
+.bet-lost-profit,
+.bet-won-profit {
+  font-weight: bold;
+}
+
+.bet-lost-profit {
+  color: var(--lost-color);
+}
+
+.bet-won-profit {
+  color: var(--won-color);
+}
+
+.bet-history-item-grid-team-picked {
+  padding: 4px;
+  border: 1px solid var(--dark-gray);
+  border-radius: 4px;
+  width: 34px;
+}
+
+.bet-history-item-grid-winning-team-name {
+  font-weight: bold;
+}

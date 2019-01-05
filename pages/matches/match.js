@@ -17,7 +17,7 @@ import {
 import store from '../../redux/store';
 import '../../static/css/match.css';
 import cookieCall from '../../utils/cookieCall';
-import serverSideRedirect from '../../utils/serverSideRedirect';
+import redirect from '../../utils/redirect';
 import MatchDetails from '../../components/match/MatchDetails';
 import LastBets from '../../components/match/LastBets';
 import WinningsBox from '../../components/match/WinningsBox';
@@ -41,7 +41,7 @@ class Match extends Component {
     const data = api_response.data;
 
     if (!data) {
-      serverSideRedirect(res, MISCELLANEOUS.ERROR_PAGE_URL);
+      redirect(res, MISCELLANEOUS.ERROR_PAGE_URL);
     }
 
     const now = new Date();

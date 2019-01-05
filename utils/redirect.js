@@ -1,5 +1,5 @@
 import { Router } from '../next-routes';
-const serverSideRedirect = (res, path) => {
+const redirect = (res, path) => {
   if (res) {
     res.writeHead(302, {
       Location: path
@@ -10,4 +10,4 @@ const serverSideRedirect = (res, path) => {
   }
 };
 
-export default serverSideRedirect;
+export default redirect;

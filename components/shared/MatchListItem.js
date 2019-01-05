@@ -25,10 +25,9 @@ class MatchListItem extends Component {
 
     const logoColumn = (
       <Grid.Column textAlign="center" width={6}>
-        <div
-          className={`match-list-item-team-logo${pickedTeamClassNameModifier}`}>
+        <div className={`match-list-item-team-logo`}>
           <img
-            className="match-list-item-grid-main-logo undragable"
+            className={`match-list-item-grid-main-logo${pickedTeamClassNameModifier} undragable`}
             src={`${logo}`}
             alt={displayName}
           />
