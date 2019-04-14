@@ -19,3 +19,7 @@ Check out current progress of development at [ethlounge.com](https://ethlounge.c
 ![ethlounge match page](https://i.imgur.com/pPL53dy.jpg)
 
 ![ethlounge accept bet](https://i.imgur.com/x8mfsKO.jpg)
+
+- My bets
+
+![ethlounge my bets](https://i.imgur.com/US8jjSR.jpg)
