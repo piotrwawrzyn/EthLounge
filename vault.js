@@ -1,17 +1,16 @@
 import web3 from './web3';
 
-const address = '0x2E470F5E83a4528888e2B590af8594994E87bFC5';
+const address = '0x7F1543DB70701D98Eba1bF80DCF42968119fdebd';
 
 const abi = [
   {
+    inputs: [],
+    stateMutability: 'nonpayable',
+    type: 'constructor'
+  },
+  {
     anonymous: false,
     inputs: [
-      {
-        indexed: true,
-        internalType: 'address',
-        name: '_from',
-        type: 'address'
-      },
       {
         indexed: false,
         internalType: 'string',
@@ -21,7 +20,7 @@ const abi = [
       {
         indexed: false,
         internalType: 'uint256',
-        name: '_value',
+        name: 'value',
         type: 'uint256'
       }
     ],
@@ -39,6 +38,19 @@ const abi = [
     name: 'deposit',
     outputs: [],
     stateMutability: 'payable',
+    type: 'function'
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256'
+      }
+    ],
+    name: 'withdraw',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function'
   }
 ];

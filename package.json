@@ -12,7 +12,7 @@
     "ethereum-blockies-base64": "^1.0.2",
     "express": "^4.16.4",
     "file-loader": "^2.0.0",
-    "fs-extra": "^7.0.1",
+git 
     "gulp-help": "^1.6.1",
     "http-proxy-middleware": "^0.19.1",
     "lodash": "^4.17.11",
@@ -37,7 +37,6 @@
     "semantic-ui-react": "^0.82.5",
     "style-loader": "^0.23.1",
     "styled-jsx": "^3.1.2",
-    "truffle-hdwallet-provider": "^0.0.6",
     "url-loader": "^1.1.2",
     "web3": "^1.2.7"
   },
