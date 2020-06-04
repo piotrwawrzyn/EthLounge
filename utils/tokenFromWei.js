@@ -9,17 +9,14 @@ const getScientificNotation = decimals => {
 
 export default (token, optimize = false, maximalDecimals = undefined) => {
   const amount = token.balance ? token.balance : token.amount;
+
   const { decimals } = token;
 
   if (optimize)
     return `${Optimize(
-      Big(amount)
-        .div(getScientificNotation(decimals))
-        .toFixed(),
+      Big(amount).div(getScientificNotation(decimals)).toFixed(),
       maximalDecimals
     )}`;
 
-  return `${Big(amount)
-    .div(getScientificNotation(decimals))
-    .toFixed()}`;
+  return `${Big(amount).div(getScientificNotation(decimals)).toFixed()}`;
 };

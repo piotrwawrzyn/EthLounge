@@ -24,8 +24,8 @@ class MatchDetails extends Component {
       isEnded
     } = match;
 
-    if (!serie) serie = '';
-    if (!league) league = { displayName: '' };
+    const serieToDisplay = serie ? serie : '';
+    const leagueToDisplay = league ? league : { displayName: '' };
 
     const date = dateFormatter(startTime);
 
@@ -103,11 +103,9 @@ class MatchDetails extends Component {
               <Grid.Column verticalAlign="middle" textAlign="center">
                 <img
                   className="league-image undragable"
-                  src={`${league.logo}`}
+                  src={`${leagueToDisplay.logo}`}
                 />
-                <p className="league-caption">{`${
-                  league.displayName
-                } ${serie}`}</p>
+                <p className="league-caption">{`${league.displayName} ${serieToDisplay}`}</p>
               </Grid.Column>
             </Grid.Row>
           </Grid>

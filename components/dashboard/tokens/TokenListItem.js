@@ -51,7 +51,7 @@ class TokenListItem extends Component {
       data: { id: this.id }
     });
 
-    Router.replaceRoute('/admin/dashboard/tokens');
+    Router.replaceRoute('/admin/dashboard/collections/tokens');
   }
 
   hasSomethingChanged() {
@@ -83,7 +83,7 @@ class TokenListItem extends Component {
     }
     const logo = this.state.newLogo.preview || this.state.logoURL;
     this.setState({ editMode: false, logoURL: logo });
-    Router.replaceRoute('/admin/dashboard/tokens');
+    Router.replaceRoute('/admin/dashboard/collections/tokens');
   }
 
   undo() {
@@ -137,7 +137,8 @@ class TokenListItem extends Component {
             spellCheck="false"
             ref={div => (this.tokenNameElement = div)}
             suppressContentEditableWarning={true}
-            contentEditable={`${this.state.editMode}`}>
+            contentEditable={`${this.state.editMode}`}
+          >
             {`${this.displayName}`}
           </div>
         </Table.Cell>
@@ -148,7 +149,8 @@ class TokenListItem extends Component {
             spellCheck="false"
             ref={div => (this.tokenSymbolElement = div)}
             suppressContentEditableWarning={true}
-            contentEditable={`${this.state.editMode}`}>
+            contentEditable={`${this.state.editMode}`}
+          >
             {`${this.symbol}`}
           </div>
         </Table.Cell>
@@ -163,7 +165,8 @@ class TokenListItem extends Component {
             spellCheck="false"
             ref={div => (this.tokenDecimalsElement = div)}
             suppressContentEditableWarning={true}
-            contentEditable={`${this.state.editMode}`}>
+            contentEditable={`${this.state.editMode}`}
+          >
             {`${this.decimals}`}
           </div>
         </Table.Cell>
@@ -182,7 +185,8 @@ class TokenListItem extends Component {
           <Dropzone
             style={{}}
             accept="image/png"
-            onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}>
+            onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}
+          >
             <Image
               className="transparent-image-reveal"
               src={newLogo.preview}
@@ -196,7 +200,8 @@ class TokenListItem extends Component {
           <Dropzone
             style={{}}
             accept="image/png"
-            onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}>
+            onDrop={(accepted, rejected) => this.onDrop(accepted, rejected)}
+          >
             <Image
               className="transparent-image-reveal"
               src={this.state.logoURL}
@@ -223,7 +228,8 @@ class TokenListItem extends Component {
         <div>
           <Popup
             on="click"
-            trigger={<Icon className="table-icon" circular name="check" />}>
+            trigger={<Icon className="table-icon" circular name="check" />}
+          >
             Are you sure?
             <br />
             <Button
@@ -231,7 +237,8 @@ class TokenListItem extends Component {
               color="green"
               size="mini"
               fluid
-              compact>
+              compact
+            >
               UPDATE
             </Button>
           </Popup>
@@ -254,7 +261,8 @@ class TokenListItem extends Component {
           />
           <Popup
             on="click"
-            trigger={<Icon className="table-icon" circular name="delete" />}>
+            trigger={<Icon className="table-icon" circular name="delete" />}
+          >
             Are you sure?
             <br />
             <Button
@@ -262,7 +270,8 @@ class TokenListItem extends Component {
               size="mini"
               onClick={e => this.handleDelete()}
               fluid
-              compact>
+              compact
+            >
               DELETE
             </Button>
           </Popup>

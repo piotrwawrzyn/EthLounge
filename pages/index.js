@@ -4,6 +4,8 @@ import Layout from '../components/Layout/Layout';
 import cookieCall from '../utils/cookieCall';
 import MatchList from '../components/index/MatchList';
 import '../static/css/index.css';
+import { toggleSignInModal } from '../redux/layout/actions';
+import store from '../redux/store';
 
 class EthLounge extends Component {
   constructor(props) {
@@ -11,7 +13,7 @@ class EthLounge extends Component {
   }
 
   static async getInitialProps(props) {
-    const { req } = props;
+    const { req, query } = props;
 
     const api_response = await cookieCall(req, `/api/index_info`);
 

@@ -13,7 +13,6 @@
     "express": "^4.16.4",
     "file-loader": "^2.0.0",
     "fs-extra": "^7.0.1",
-    "ganache-cli": "^6.2.3",
     "gulp-help": "^1.6.1",
     "http-proxy-middleware": "^0.19.1",
     "lodash": "^4.17.11",
@@ -36,12 +35,11 @@
     "redux-thunk": "^2.3.0",
     "semantic-ui": "^2.4.2",
     "semantic-ui-react": "^0.82.5",
-    "solc": "^0.4.25",
     "style-loader": "^0.23.1",
     "styled-jsx": "^3.1.2",
     "truffle-hdwallet-provider": "^0.0.6",
     "url-loader": "^1.1.2",
-    "web3": "^1.0.0-beta2"
+    "web3": "^1.2.7"
   },
   "devDependencies": {
     "gulp-util": "^3.0.8",

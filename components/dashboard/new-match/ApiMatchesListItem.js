@@ -227,7 +227,7 @@ class ApiMatchesItem extends Component {
   addComplete(success) {
     if (success)
       this.setState({
-        button: { loading: false, icon: 'chevron down', disabled: true },
+        button: { loading: false, icon: 'check', disabled: true },
         modal: { open: false, data: {} }
       });
     else
@@ -267,7 +267,8 @@ class ApiMatchesItem extends Component {
           {date.formatedDate}
           <span
             className="font-size-xsmall"
-            style={{ marginLeft: '0.5em' }}>{`(${date.aprox})`}</span>
+            style={{ marginLeft: '0.5em' }}
+          >{`(${date.aprox})`}</span>
         </Table.Cell>
 
         <Table.Cell>
@@ -292,7 +293,8 @@ class ApiMatchesItem extends Component {
           <Modal.Actions>
             <Button
               className="orange-button-dark"
-              onClick={e => this.handleBack()}>
+              onClick={e => this.handleBack()}
+            >
               Back
             </Button>
             <Button
@@ -302,7 +304,8 @@ class ApiMatchesItem extends Component {
                 this.state.modal.data.league,
                 this.state.modal.data.dataToSend
               )}
-              onClick={e => this.handleAddMatch(this.state.modal.data)}>
+              onClick={e => this.handleAddMatch(this.state.modal.data)}
+            >
               Create new match
             </Button>
           </Modal.Actions>

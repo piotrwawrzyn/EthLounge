@@ -33,14 +33,16 @@ class TopMenu extends Component {
           <div className="auth-buttons">
             <Button
               className="sign-in-button"
-              onClick={() => store.dispatch(toggleSignInModal())}>
+              onClick={() => store.dispatch(toggleSignInModal())}
+            >
               Sign in
             </Button>
             <span className="or">or</span>
             <Button
               icon
               onClick={() => store.dispatch(toggleSignUpModal())}
-              className="sign-up-button margin-right-1em">
+              className="sign-up-button margin-right-1em"
+            >
               <span style={{ marginRight: '1em' }}>Sign up</span>
               <Icon name="add user" />
             </Button>
@@ -79,10 +81,12 @@ class TopMenu extends Component {
             My Bets
           </Menu.Item>
         </Link>
-        <Menu.Item>
-          <Icon name="angle double down" />
-          Deposit
-        </Menu.Item>
+        <Link route="/deposit">
+          <Menu.Item>
+            <Icon name="angle double down" />
+            Deposit
+          </Menu.Item>
+        </Link>
 
         <Menu.Item>
           <Icon name="angle double up" />
